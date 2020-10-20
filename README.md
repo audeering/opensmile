@@ -86,9 +86,9 @@ Fundamental research in companies, for example, is permitted, but if a product i
 the research, we require you to buy a commercial development license. 
 Contact us at info@audeering.com (or visit us at https://www.audeering.com) for more information.
 
-Original authors: Florian Eyben, Felix Weninger, Martin Wöllmer, Björn Schuller
-Copyright © 2008-2013, Institute for Human-Machine Communication, Technische Universität München, Germany
-Copyright © 2013-2015, audEERING UG (haftungsbeschränkt)
+Original authors: Florian Eyben, Felix Weninger, Martin Wöllmer, Björn Schuller  
+Copyright © 2008-2013, Institute for Human-Machine Communication, Technische Universität München, Germany  
+Copyright © 2013-2015, audEERING UG (haftungsbeschränkt)  
 Copyright © 2016-2020, audEERING GmbH
 
 Citing
