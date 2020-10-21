@@ -1,0 +1,44 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cMZcr:
+
+cMZcr
+-----
+
+Description
+~~~~~~~~~~~
+This component computes time signal properties\, zero\-corssing rate\, mean\-crossing rate\, dc offset\, max\/min value\, and absolute maximum value of a PCM frame\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cMZcr`
+
+Fields
+~~~~~~
+- **nameAppend** (string) [default: None]
+  
+    \(ignored here\)
+  
+- **zcr** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) compute zero\-crossing rate \(zcr\)
+  
+- **mcr** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) compute mean\-crossing rate \(mcr\) \(i\.e\. the rate at which a signal crosses its mean\, for signals with mean 0 this is identical to the zero\-crossing rate\)
+  
+- **amax** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) enable output of the maximum \*absolute\* sample value
+  
+- **maxmin** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) enable output of the maximum and minimum sample value
+  
+- **dc** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) compute the DC\-offset \(\= the arithmetic mean of input values\)
+  

@@ -1,0 +1,60 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cAcf:
+
+cAcf
+----
+
+Description
+~~~~~~~~~~~
+This component computes the autocorrelation function \(ACF\) by squaring a magnitude spectrum and applying an inverse Fast Fourier Transform\. This component must read from a level containing \*only\* FFT magnitudes in a single field\. Use the \'cTransformFFT\' and \'cFFTmagphase\' components to compute the magnitude spectrum from PCM frames\. Computation of the Cepstrum is also supported \(this applies a log\(\) function to the magnitude spectra\)\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cAcf`
+
+Fields
+~~~~~~
+- **nameAppend** (string) [default: acf]
+  
+    A string suffix to append to the input field names \(default\: empty\)
+  
+- **usePower** (numeric) [default: 1\.0]
+  
+    1 \= square input values\; you must leave this at default 1\, when using fft magnitude as input for ACF\. For cepstrum this will be set to 0 by default\, unless you explicitly give the value 1\.
+  
+- **cepstrum** (numeric) [default: 0\.0]
+  
+    1 \= compute the real valued cepstrum instead of the standard ACF\. This applies a log\(\) to the magnitudes bevore transforming from the spectral domain back to the time domain\. You might want to set \'nameAppend\=cepstrum\' when using this option\. See the cCepstrum component for complex valued cepstrum and more options \(only in commercial version\)\.
+  
+- **inverse** (numeric) [default: 0\.0]
+  
+    1 \= do the inverse transform of cepstrum or ACF\. The output is an FFT magnitude spectrum\.
+  
+- **cosLifterCepstrum** (numeric) [default: 0\.0]
+  
+    1 \= apply cosine lifter function to the cepstrum\, effectively applying a Hanning window function to the cepstrum\.
+  
+- **expBeforeAbs** (numeric) [default: 1\.0]
+  
+    1 \= perform exp operation before computing magnitude spectrum \(for inverse cepstrum only\)\.
+  
+- **symmetricData** (numeric) [default: 1\.0]
+  
+    1 \= treat data in acf\/cepstral domain as symmetric data\, i\.e\. output only half of the buffer or symmetrically duplicate the input before applying fft\.
+  
+- **acfCepsNormOutput** (numeric) [default: 1\.0]
+  
+    1 \= Divide the output values by the framesize \(this is the default since version 2\.0\, however for older versions\, such as 0\.1 \(openEAR\) setting this option to 0 is required for comaptibility\.
+  
+- **oldCompatCepstrum** (numeric) [default: 0\.0]
+  
+    1 \= compatibility with old openEAR \(0\.1\) cepstrum computation \(absCepstrum \= 1\, acfCepsNormOutput \= 0\, and usePower should be 1 \(not forced though\)\)\.
+  
+- **absCepstrum** (numeric) [default: 0\.0]
+  
+    1 \= enable output of root of power cepstrum \(absolute value\)
+  

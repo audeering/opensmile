@@ -1,0 +1,44 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cDataSink:
+
+cDataSink
+---------
+
+Description
+~~~~~~~~~~~
+This is a base class for components reading from \(and not writing to\) the dataMemory and dumping\/passing data to external entities\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **reader** (object of type :ref:`cDataReader`)
+  
+    The configuration of the cDataReader subcomponent\, which handles the dataMemory interface for reading of input
+  
+- **blocksize** (numeric) [default: 0\.0]
+  
+    The size of the data blocks to read at once\, in frames \(overwrites blocksize\_sec\, if set\)
+  
+- **blocksizeR** (numeric) [default: 0\.0]
+  
+    The size of the data blocks to read at once\, in frames \(this overwrites blocksize and blocksize\_sec\!\) \(this option is provided for compatibility only\.\.\. it is exactly the same as \'blocksize\'\)
+  
+- **blocksize_sec** (numeric) [default: 0\.0]
+  
+    The size of the data blocks to read at once\, in seconds
+  
+- **blocksizeR_sec** (numeric) [default: 0\.0]
+  
+    The size of the data blocks to read at once\, in seconds \(this overwrites blocksize\_sec\!\) \(this option is provided for compatibility only\.\.\. it is exactly the same as \'blocksize\'\)
+  
+- **errorOnNoOutput** (numeric) [default: 0\.0]
+  
+    1 \= show an error message if no output was written by this sink during this run\.
+  

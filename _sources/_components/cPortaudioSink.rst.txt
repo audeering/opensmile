@@ -1,0 +1,44 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cPortaudioSink:
+
+cPortaudioSink
+--------------
+
+Description
+~~~~~~~~~~~
+This component handles live audio playback via the PortAudio library
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cPortaudioSink`
+
+Fields
+~~~~~~
+- **monoMixdown** (numeric) [default: 0\.0]
+  
+    mix down all channels to 1 mono channel
+  
+- **device** (numeric) [default: \-1\.0]
+  
+    PortAudio device to use \(device number\)
+  
+- **listDevices** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) list available portaudio devices during initialisation phase
+  
+- **sampleRate** (numeric) [default: 0\.0]
+  
+    force output sample rate \(0\=determine sample rate from input level\)
+  
+- **audioBuffersize** (numeric) [default: 1000\.0]
+  
+    size of port audio recording buffer in samples \(overwrites audioBuffersize\_sec\, if set\)
+  
+- **audioBuffersize_sec** (numeric) [default: 0\.05]
+  
+    size of port audio recording buffer in seconds
+  

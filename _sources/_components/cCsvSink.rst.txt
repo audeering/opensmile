@@ -1,0 +1,72 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cCsvSink:
+
+cCsvSink
+--------
+
+Description
+~~~~~~~~~~~
+This component exports data in CSV \(comma\-separated\-value\) format used in many spreadsheet applications\. As the first line of the CSV file a header line may be printed\, which contains a delimiter separated list of field names of the output values\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cCsvSink`
+
+Fields
+~~~~~~
+- **filename** (string) [default: smileoutput\.csv]
+  
+    The CSV file to write to\. An empty filename \(or \'\?\' as the filename\) disables this sink component\.
+  
+- **delimChar** (char) [default: \;]
+  
+    The column delimiter character to use \(usually \'\,\' or \'\;\'\) \(NOTE\: use \'\<space\>\' or \'\<tab\>\' for these special characters respectively\)
+  
+- **lag** (numeric) [default: 0\.0]
+  
+    output data \<lag\> frames behind
+  
+- **append** (numeric) [default: 0\.0]
+  
+    1 \= append to an existing file\, or create a new file\; 0 \= overwrite an existing file\, or create a new file
+  
+- **frameIndex** (numeric) [default: 1\.0]
+  
+    \(same as \'number\'\) 1 \= print an instance number \(\= frameIndex\) attribute for each output frame \(1\/0 \= yes\/no\)
+  
+- **number** (numeric) [default: 1\.0]
+  
+    1 \= print an instance number \(\= frameIndex\) attribute for each output frame \(1\/0 \= yes\/no\)
+  
+- **frameLength** (numeric) [default: 0\.0]
+  
+    1 \= print a frame length attribute \(1\/0 \= yes\/no\)\.
+  
+- **frameTime** (numeric) [default: 1\.0]
+  
+    \(same as \'timestamp\'\) 1 \= print a timestamp attribute for each output frame \(1\/0 \= yes\/no\)
+  
+- **timestamp** (numeric) [default: 1\.0]
+  
+    1 \= print a timestamp attribute for each output frame \(1\/0 \= yes\/no\)
+  
+- **printHeader** (numeric) [default: 1\.0]
+  
+    1 \= print a header line as the first line in the CSV file\. This line contains the attribute names separated by the delimiter character\.
+  
+- **flush** (numeric) [default: 0\.0]
+  
+    1 \= flush data to file after every line written \(might give low performance for small lines\!\)\.
+  
+- **instanceBase** (string) [default: None]
+  
+    if not empty\, print instance name attribute \<instanceBase\_Nr\>
+  
+- **instanceName** (string) [default: None]
+  
+    if not empty\, print instance name attribute \<instanceName\>
+  

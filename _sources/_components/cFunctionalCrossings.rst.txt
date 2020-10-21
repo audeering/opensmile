@@ -1,0 +1,32 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionalCrossings:
+
+cFunctionalCrossings
+--------------------
+
+Description
+~~~~~~~~~~~
+zero\-crossing rate\, mean crossing rate\, dc offset\, min\, and max value
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **zcr** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of zero crossing rate
+  
+- **mcr** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of mean crossing rate \(the rate at which the signal crosses its arithmetic mean value \(same as zcr for mean normalised signals\)
+  
+- **amean** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean
+  

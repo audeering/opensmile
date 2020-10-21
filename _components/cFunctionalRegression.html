@@ -1,0 +1,507 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cFunctionalRegression &mdash; openSMILE Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/audeering.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="cFunctionalSamples" href="cFunctionalSamples.html" />
+    <link rel="prev" title="cFunctionalPercentiles" href="cFunctionalPercentiles.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          <a href="../index.html">
+          
+            
+            <img src="../_static/openSMILE-logoSlogan-white.svg" class="logo" alt="Logo"/>
+          
+          
+            
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About openSMILE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get-started.html">Get started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Reference section</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#smilextract-command-line-options">SMILExtract command-line options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#opensmile-architecture">openSMILE architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#configuration-files">Configuration files</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../reference.html#components">Components</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="cAcf.html">cAcf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cAmdf.html">cAmdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cArffSink.html">cArffSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cArffSink.html#arffclass">arffClass</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cArffSink.html#arfftarget">arffTarget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cArffSource.html">cArffSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cBowProducer.html">cBowProducer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cCens.html">cCens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cChroma.html">cChroma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cContourSmoother.html">cContourSmoother</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cCsvSink.html">cCsvSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cCsvSource.html">cCsvSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataMemory.html">cDataMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataMemory.html#cdatamemorylevel">cDataMemoryLevel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataPrintSink.html">cDataPrintSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataProcessor.html">cDataProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataReader.html">cDataReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataSelector.html">cDataSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataSink.html">cDataSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataSource.html">cDataSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataWriter.html">cDataWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataWriter.html#cdatamemorylevel">cDataMemoryLevel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDatadumpSink.html">cDatadumpSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDbA.html">cDbA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDeltaRegression.html">cDeltaRegression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cEnergy.html">cEnergy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExampleSink.html">cExampleSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExampleSource.html">cExampleSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExternalAudioSource.html">cExternalAudioSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExternalMessageInterface.html">cExternalMessageInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExternalSink.html">cExternalSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExternalSource.html">cExternalSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFFTmagphase.html">cFFTmagphase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFFmpegSource.html">cFFmpegSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFormantLpc.html">cFormantLpc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFormantSmoother.html">cFormantSmoother</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFramer.html">cFramer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFullinputMean.html">cFullinputMean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFullturnMean.html">cFullturnMean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalCrossings.html">cFunctionalCrossings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalDCT.html">cFunctionalDCT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalExtremes.html">cFunctionalExtremes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalLpc.html">cFunctionalLpc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalMeans.html">cFunctionalMeans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalModulation.html">cFunctionalModulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalMoments.html">cFunctionalMoments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalOnset.html">cFunctionalOnset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalPeaks.html">cFunctionalPeaks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalPeaks2.html">cFunctionalPeaks2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalPercentiles.html">cFunctionalPercentiles</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">cFunctionalRegression</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#type-hierarchy">Type hierarchy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fields">Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalSamples.html">cFunctionalSamples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalSegments.html">cFunctionalSegments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalTimes.html">cFunctionalTimes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionals.html">cFunctionals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cHarmonics.html">cHarmonics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cHtkSink.html">cHtkSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cHtkSource.html">cHtkSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cIntensity.html">cIntensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cLibsvmLiveSink.html">cLibsvmLiveSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cLibsvmSink.html">cLibsvmSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cLpc.html">cLpc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cLsp.html">cLsp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cMZcr.html">cMZcr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cMaxIndex.html">cMaxIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cMelspec.html">cMelspec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cMfcc.html">cMfcc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cMonoMixdown.html">cMonoMixdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cNullSink.html">cNullSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchACF.html">cPitchACF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchBase.html">cPitchBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchDirection.html">cPitchDirection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchJitter.html">cPitchJitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchShs.html">cPitchShs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchShs.html#cdatawritershs">cDataWriterShs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchSmoother.html">cPitchSmoother</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchSmootherViterbi.html">cPitchSmootherViterbi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPlp.html">cPlp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPortaudioDuplex.html">cPortaudioDuplex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPortaudioSink.html">cPortaudioSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPortaudioSource.html">cPortaudioSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPortaudioWavplayer.html">cPortaudioWavplayer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPreemphasis.html">cPreemphasis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cRnnProcessor.html">cRnnProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cRnnSink.html">cRnnSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cRnnVad2.html">cRnnVad2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSignalGenerator.html">cSignalGenerator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSimpleMessageSender.html">cSimpleMessageSender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSmileResample.html">cSmileResample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSpecResample.html">cSpecResample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSpecScale.html">cSpecScale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSpectral.html">cSpectral</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSvmSink.html">cSvmSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cTonefilt.html">cTonefilt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cTonespec.html">cTonespec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cTransformFFT.html">cTransformFFT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cTurnDetector.html">cTurnDetector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVadV1.html">cVadV1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cValbasedSelector.html">cValbasedSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVecToWinProcessor.html">cVecToWinProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorBinaryOperation.html">cVectorBinaryOperation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorConcat.html">cVectorConcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorMVN.html">cVectorMVN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorOperation.html">cVectorOperation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorPreemphasis.html">cVectorPreemphasis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorProcessor.html">cVectorProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorTransform.html">cVectorTransform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWaveSink.html">cWaveSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWaveSinkCut.html">cWaveSinkCut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWaveSource.html">cWaveSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWinToVecProcessor.html">cWinToVecProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWindowProcessor.html">cWindowProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWindower.html">cWindower</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#smileapi-c-api-and-wrappers">SMILEapi C API and wrappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#feature-names">Feature names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#feature-extraction-algorithms">Feature extraction algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developer’s documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgement.html">Acknowledgement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">openSMILE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../reference.html">Reference section</a> &raquo;</li>
+        
+      <li>cFunctionalRegression</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/_components/cFunctionalRegression.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cfunctionalregression">
+<span id="id1"></span><h1>cFunctionalRegression<a class="headerlink" href="#cfunctionalregression" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>linear and quadratic regression coefficients and corresponding linear and quadratic regression errors. Linear regression line: y = m*x + t ; quadratic regression parabola: y = a*x^2 + b*x + c . Algorithm used: Minimum mean square error, direct analytic solution. This component also computes the centroid of the contour.</p>
+</div>
+<div class="section" id="type-hierarchy">
+<h2>Type hierarchy<a class="headerlink" href="#type-hierarchy" title="Permalink to this headline">¶</a></h2>
+<p>This config type does not inherit from any base type.</p>
+</div>
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p><strong>linregc1</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of slope m (linear regression line)</p>
+</div></blockquote>
+</li>
+<li><p><strong>linregc2</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of offset t (linear regression line)</p>
+</div></blockquote>
+</li>
+<li><p><strong>linregerrA</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of linear error between contour and linear regression line</p>
+</div></blockquote>
+</li>
+<li><p><strong>linregerrQ</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of quadratic error between contour and linear regression line</p>
+</div></blockquote>
+</li>
+<li><p><strong>qregc1</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of quadratic regression coefficient 1 (a)</p>
+</div></blockquote>
+</li>
+<li><p><strong>qregc2</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of quadratic regression coefficient 2 (b)</p>
+</div></blockquote>
+</li>
+<li><p><strong>qregc3</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of quadratic regression coefficient 3 (c = offset)</p>
+</div></blockquote>
+</li>
+<li><p><strong>qregerrA</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of linear error between contour and quadratic regression line (parabola)</p>
+</div></blockquote>
+</li>
+<li><p><strong>qregerrQ</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of quadratic error between contour and quadratic regression line (parabola)</p>
+</div></blockquote>
+</li>
+<li><p><strong>centroid</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of centroid of contour (this is computed as a by-product of the regression coefficients).</p>
+</div></blockquote>
+</li>
+<li><p><strong>centroidNorm</strong> (string) [default: segment]</p>
+<blockquote>
+<div><p>normalise time-scale of centroid to time in seconds (seconds), frame index (frame), or relative segment percentage (segment).</p>
+</div></blockquote>
+</li>
+<li><p><strong>centroidUseAbsValues</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable. Use absolute values when computing temporal centroid. Default in pre 2.2 versions was 0. In 2.2 the default changes to 1!</p>
+</div></blockquote>
+</li>
+<li><p><strong>centroidRatioLimit</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>(1/0) = yes/no. Apply soft limiting of centroid to valid (segment range) in order to avoid high uncontrolled output values if the denominator (absolute mean of values) is close to 0. For strict compatibility with pre 2.2 openSMILE releases (also release candidates 2.2rc1), set it to 0. Default in new versions is 1 (enabled).</p>
+</div></blockquote>
+</li>
+<li><p><strong>qregls</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of left slope of parabola (slope of the line from first point on the parabola at t=0 to the vertex).</p>
+</div></blockquote>
+</li>
+<li><p><strong>qregrs</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of right slope of parabola (slope of the line from the vertex to the last point on the parabola at t=N).</p>
+</div></blockquote>
+</li>
+<li><p><strong>qregx0</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of x coordinate of the parabola vertex (since for very flat parabolas this can be very large/small, it is clipped to range -Nin - +Nin ).</p>
+</div></blockquote>
+</li>
+<li><p><strong>qregy0</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of y coordinate of the parabola vertex.</p>
+</div></blockquote>
+</li>
+<li><p><strong>qregyr</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of y coordinate of the last point on the parabola (t=N).</p>
+</div></blockquote>
+</li>
+<li><p><strong>qregy0nn</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of y coordinate of the parabola vertex. This value is unnormalised, regardless of value of normInput.</p>
+</div></blockquote>
+</li>
+<li><p><strong>qregc3nn</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of y coordinate of the first point on the parabola (t=0). This value is unnormalised, regardless of value of normInput.</p>
+</div></blockquote>
+</li>
+<li><p><strong>qregyrnn</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable output of y coordinate of the last point on the parabola (t=N). This value is unnormalised, regardless of value of normInput.</p>
+</div></blockquote>
+</li>
+<li><p><strong>normRegCoeff</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>If &gt; 0, do normalisation of regression coefficients, slopes, and coordinates on the time scale.
+-  If == 1 (segment relative scaling), the coefficients are scaled (multiplied by the contour length) so that a regression line or parabola approximating the contour can be plotted over an x-axis range from 0 to 1, i.e. this makes the coefficients independent of the contour length (a longer contour with a lower slope will then have the same ‘m’ (slope) linear regression coefficient as a shorter but steeper slope).
+-  If == 2, normalisation of time scale to the units of seconds, i.e. slope is value_delta/second.
+-  Note: The unnormalised slope is value_delta/timestep.</p>
+</div></blockquote>
+</li>
+<li><p><strong>normInputs</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>1/0=enable/disable normalisation of regression coefficients, coordinates, and regression errors on the value scale. If enabled all input values will be normalised to the range 0..1. Use this in conjunction with normRegCoeff.</p>
+</div></blockquote>
+</li>
+<li><p><strong>oldBuggyQerr</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>Set this to 1 (default) to output the (input lengthwise) unnormalised quadratic regression errors (if qregerr* == 1) for compatibility with older feature sets. In new setups you should always change from the default to 0 to enable the proper scaling of the quadratic error!</p>
+</div></blockquote>
+</li>
+<li><p><strong>doRatioLimit</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0) = yes/no. Apply soft limiting of ratio features (slopes etc.) in order to avoid high uncontrolled output values if the denominator is close to 0. For strict compatibility with pre 2.2 openSMILE releases (also release candidates 2.2rc1), set it to 0 (current default)</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cFunctionalSamples.html" class="btn btn-neutral float-right" title="cFunctionalSamples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cFunctionalPercentiles.html" class="btn btn-neutral float-left" title="cFunctionalPercentiles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2013-2020 audEERING GmbH and 2008-2013 TU München, MMK
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

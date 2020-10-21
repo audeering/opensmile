@@ -1,0 +1,188 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionalPeaks2:
+
+cFunctionalPeaks2
+-----------------
+
+Description
+~~~~~~~~~~~
+number of peaks and various measures associated with peaks\, such as mean of peaks\, mean distance between peaks\, etc\. Peak finding is based on \: x\(t\-1\) \< x\(t\) \> x\(t\+1\) plus an advanced post filtering of low relative amplitude peaks\. See source code for brief description of peak picking algorithm\. This component provides a new and improved algorithm for peak detection\, as compared to cFunctionalPeaks component\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **numPeaks** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of number of peaks \(if norm\=segment or frame\) and rate of peaks per time \(1 second\) if norm\=second\.
+  
+- **meanPeakDist** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of mean distance between peaks \(relative to the input segment length\, in seconds\, or in frames\, see the \'norm\' option or the \'masterTimeNorm\' option of the cFunctionals parent component\)
+  
+- **meanPeakDistDelta** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of mean difference between consecutive inter peak distances \(relative to the input segment length\, in seconds\, or in frames\, see the \'norm\' option or the \'masterTimeNorm\' option of the cFunctionals parent component\) \[NOT YET IMPLEMENTED\!\]
+  
+- **peakDistStddev** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of standard deviation of inter peak distances
+  
+- **peakRangeAbs** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of peak range \(max peak value \- min peak value\)
+  
+- **peakRangeRel** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of peak range \(max peak value \- min peak value\) \/ arithmetic mean
+  
+- **peakMeanAbs** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean of peaks \(local maxima\)
+  
+- **peakMeanMeanDist** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean of peaks \- arithmetic mean of all values \(mean of peaks to signal mean distance\)
+  
+- **peakMeanRel** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean of peaks \(local maxima\) \/ arithmetic mean of all values \(mean of peaks to signal mean ratio \~ peakMeanMeanRatio\)
+  
+- **ptpAmpMeanAbs** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of mean peak to peak \(amplitude\) difference
+  
+- **ptpAmpMeanRel** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of mean peak to peak \(amplitude\) difference \/ range of signal
+  
+- **ptpAmpStddevAbs** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of mean peak to peak \(amplitude\) standard deviation
+  
+- **ptpAmpStddevRel** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of mean peak to peak \(amplitude\) standard deviation \/ range of signal
+  
+- **minRangeAbs** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of local minima range \(max minmum value \- min minimum value\)
+  
+- **minRangeRel** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of local minima range \(max minmum value \- min minimum value\) \/ arithmetic mean
+  
+- **minMeanAbs** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean of local minima
+  
+- **minMeanMeanDist** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean of local minima \- arithmetic mean of all values
+  
+- **minMeanRel** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean of local minima \/ arithmetic mean
+  
+- **mtmAmpMeanAbs** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of mean minimum to minimum \(amplitude\) difference
+  
+- **mtmAmpMeanRel** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of mean minimum to minimum \(amplitude\) difference \/ range of signal
+  
+- **mtmAmpStddevAbs** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of mean minimum to minimum \(amplitude\) standard deviation
+  
+- **mtmAmpStddevRel** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of mean minimum to minimum \(amplitude\) standard deviation \/ range of signal
+  
+- **meanRisingSlope** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of the mean of the rising slopes \(rising slope is the slope of the line connecting a local minimum \(or the beginning of input sample\) with the following local maximum\/peak or the end of input sample\)
+  
+- **maxRisingSlope** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of maximum rising slope
+  
+- **minRisingSlope** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of minimum rising slope
+  
+- **stddevRisingSlope** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of the standard deviation of the rising slopes
+  
+- **covRisingSlope** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of the coefficient of variation \(std\. dev\. divided by arithmetic mean\) of the rising slopes
+  
+- **meanFallingSlope** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of the mean of the falling slopes \(falling slope is the slope of the line connecting a local maximum\/peak \(or the beginning of input sample\) with the following local minimum \(or the end of input sample\)\)
+  
+- **maxFallingSlope** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of maximum falling slope\.
+  
+- **minFallingSlope** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of minimum falling slope
+  
+- **stddevFallingSlope** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of the standard deviation of the falling slopes
+  
+- **covFallingSlope** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of the coefficient of variation \(std\. dev\. divided by arithmetic mean\) of the falling slopes
+  
+- **norm** (string) [default: frames]
+  
+    This option specifies how this component should normalise times \(if it generates output values related to durations\)\:
+
+    -   \'segment\' \(or\: \'turn\'\) \: normalise to the range 0\.\.1\, the result is the relative length wrt\. to the segment length \)
+    -   \'second\'  \(absolute time in seconds\) 
+    -   \'frame\' \(absolute time in number of frames of input level\)
+  
+- **noClearPeakList** (numeric) [default: 0\.0]
+  
+    1 \= don\'t clear the peak list when a new segment is processed\. This should never be used\, unless you need compatibility with old \(buggy\!\) behaviour\. If you are using a config file with peak2 functionals from before 05\. Sept\. 2012\, you need to enable this option to be compatible with old models and results\. 
+  
+- **absThresh** (numeric) [default: 0\.0]
+  
+    Gives an absolute threshold for the minimum peak height\. Use with caution\, use only if you know what you are doing\. If this option is not set\, relThresh will be used\.
+  
+- **relThresh** (numeric) [default: 0\.1]
+  
+    Gives the threshold relative to the input contour range\, which is used to remove peaks and minimima below this threshold\. Valid values\: 0\.\.1\, a higher value will remove more peaks\, while a lower value will keep more and less salient peaks\. If not using dynRelThresh\=1 you should use a default value of \~0\.10 otherwise a default of \~0\.35
+  
+- **dynRelThresh** (numeric) [default: 0\.0]
+  
+    1\/0 \= enable disable dynamic relative threshold\. Instead of converting the relThresh to an absolute threshold relThresh\*range\, the threshold is applied as\: abs\(a\/b\-1\.0\) \< relThresh \, where a is always larger than b\.
+  
+- **posDbgOutp** (string) [default: None]
+  
+    Filename for debug output of peak positions\. The file will be created initially \(unless \'posDbgAppend\' is set to 1\) and values for consecutive input frames will be appended\, separated by a \'\-\-\-\' marker line\.
+  
+- **posDbgAppend** (numeric) [default: 0\.0]
+  
+    Append to debug ouptut file instead of overwriting it at startup\. If the file does not exist\, it will be created\, even if this option is set to 1\.
+  
+- **consoleDbg** (numeric) [default: 0\.0]
+  
+    Debug output of peak positions to console if no output file is given \(an output file will override this option\)\.
+  
+- **doRatioLimit** (numeric) [default: 1\.0]
+  
+    \(1\/0\) \= yes\/no\. Apply soft limiting of ratio features \(mean relative etc\.\) in order to avoid high uncontrolled output values if the denominator is close to 0\. For strict compatibility with pre 2\.2 openSMILE releases \(also release candidates 2\.2rc1\)\, set it to 0\. Default in new versions is 1 \(enabled\)\.
+  

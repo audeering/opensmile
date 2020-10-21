@@ -1,0 +1,72 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cDataProcessor:
+
+cDataProcessor
+--------------
+
+Description
+~~~~~~~~~~~
+This is an abstract base class for all components which read data from the data memory and write new data to the data memory\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **reader** (object of type :ref:`cDataReader`)
+  
+    The configuration of the cDataReader subcomponent\, which handles the dataMemory interface for data input
+  
+- **writer** (object of type :ref:`cDataWriter`)
+  
+    The configuration of the cDataWriter subcomponent\, which handles the dataMemory interface for data output
+  
+- **buffersize** (numeric) [default: 0\.0]
+  
+    The buffer size for the output level in frames \(default \[0\] \= same as input level\)\, this option overwrites \'buffersize\_sec\'
+  
+- **buffersize_sec** (numeric) [default: 0\.0]
+  
+    The buffer size for the output level in seconds \(default \[0\] \= same as input level\)
+  
+- **blocksize** (numeric) [default: 0\.0]
+  
+    The size of data blocks to process in frames \(this sets both blocksizeR and blocksizeW\, and overwrites blocksize\_sec\)
+  
+- **blocksizeR** (numeric) [default: 0\.0]
+  
+    The size of data blocks to read in frames \(overwrites blocksize\)
+  
+- **blocksizeW** (numeric) [default: 0\.0]
+  
+    The size of data blocks to write in frames \(overwrites blocksize\)
+  
+- **blocksize_sec** (numeric) [default: 0\.0]
+  
+    size of data blocks to process in seconds \(this sets both blocksizeR\_sec and blocksizeW\_sec\)
+  
+- **blocksizeR_sec** (numeric) [default: 0\.0]
+  
+    size of data blocks to read in seconds \(overwrites blocksize\_sec\!\)
+  
+- **blocksizeW_sec** (numeric) [default: 0\.0]
+  
+    size of data blocks to write in seconds \(overwrites blocksize\_sec\!\)
+  
+- **nameAppend** (string) [default: None]
+  
+    A string suffix to append to the input field names \(default\: empty\)
+  
+- **copyInputName** (numeric) [default: 1\.0]
+  
+    1 \= copy the input name \(and optionally append a suffix\, see \'nameAppend\' option\)\, 0 \= discard the input name and use only the \'nameAppend\' string as new name\.
+  
+- **EOIlevel** (numeric) [default: 0\.0]
+  
+    set the EOI counter threshold at which to act in EOI mode \(for full input processing\)\. Required e\.g\. for multi\-level EOI chains to avoid running full input functionals\/windows on incomplete first EOI iteration data\.
+  

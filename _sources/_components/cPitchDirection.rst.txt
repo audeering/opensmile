@@ -1,0 +1,86 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cPitchDirection:
+
+cPitchDirection
+---------------
+
+Description
+~~~~~~~~~~~
+This component reads pitch data\, detects pseudo syllables\, and computes pitch direction estimates per syllable\. Thereby the classes falling\, flat\, and rising are distinguished\. 
+
+Required input fields\: F0\, F0env\, and \'loudness\' or \'RMSenergy\'\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cPitchDirection`
+
+Fields
+~~~~~~
+- **ltbs** (numeric) [default: 0\.2]
+  
+    The size of the long\-term average buffer in seconds
+  
+- **stbs** (numeric) [default: 0\.05]
+  
+    The size of the short\-term average buffer in seconds
+  
+- **directionMsgRecp** (string) [default: None]
+  
+    Recipient component\(s\) for per syllable event\-based pitch direction message \(rise\/fall\/rise\-fall\/fall\-rise message are sent only if and as ofter as a such event occurs on a syllable\)
+  
+- **speakingRateBsize** (numeric) [default: 100\.0]
+  
+    The buffer size for computation of speaking rate \(in input frames\, typical frame rate 100 fps\)
+  
+- **F0direction** (numeric) [default: 1\.0]
+  
+    1 \= enable output of F0 direction as numeric value \(fall\: \-1\.0 \/ flat\: 0\.0 \/ rise\: 1\.0\)
+  
+- **directionScore** (numeric) [default: 1\.0]
+  
+    1 \= enable output of F0 direction score \(short term mean \- long term mean\)
+  
+- **speakingRate** (numeric) [default: 0\.0]
+  
+    1 \= enable output of current speaking rate in Hz \(is is output for every frame\, thus\, a lot of redundancy here\)
+  
+- **F0avg** (numeric) [default: 0\.0]
+  
+    1 \= enable output of long term average F0
+  
+- **F0smooth** (numeric) [default: 0\.0]
+  
+    1 \= enable output of exponentially smoothed F0
+  
+- **onlyTurn** (numeric) [default: 0\.0]
+  
+    1 \= send pitch direction messages \(directionMsgRecp\) only during speech turns \(voice activity\) \(according to turnStart\/turnEnd messages received from cTurnDetector\)
+  
+- **turnStartMessage** (string) [default: turnStart]
+  
+    Use this option to define a custom message name for turn start messages\, i\.e\. if you want to use voice activity start\/end messages instead
+  
+- **turnEndMessage** (string) [default: turnEnd]
+  
+    Use this option to define a custom message name for turn end messages\, i\.e\. if you want to use voice activity start\/end messages instead
+  
+- **F0fieldname** (string) [default: F0]
+  
+    The name of the F0 data field to use for syllable detection and pitch direction analysis
+  
+- **F0envFieldname** (string) [default: F0env]
+  
+    The name of the F0 envelope data field to use for syllable detection and pitch direction analysis
+  
+- **LoudnessFieldname** (string) [default: loudness]
+  
+    The name of the \'Loudness\' data field \(see cIntensity component\) to use for syllable nuclei detection
+  
+- **RMSenergyFieldname** (string) [default: pcm\_RMSenergy]
+  
+    The name of the RMS energy data field to use for syllable detection
+  

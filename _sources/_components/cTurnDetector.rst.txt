@@ -1,0 +1,148 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cTurnDetector:
+
+cTurnDetector
+-------------
+
+Description
+~~~~~~~~~~~
+Speaker turn detector using data from cVadV1 component or cSemaineSpeakerID1 \(adaptive VAD\) to determine speaker turns and identify continuous segments of voice activity\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cTurnDetector`
+
+Fields
+~~~~~~
+- **threshold** (numeric) [default: 0\.001]
+  
+    The silence\-\>speech threshold to use \(the default value is for RMS energy\, change it to \-13\.0 for log energy\)
+  
+- **threshold2** (numeric) [default: 0\.001]
+  
+    The speech\-\>silence threshold to use \(if this value is not set in the config\, the same value as \'threshold\' will be used\)
+  
+- **autoThreshold** (numeric) [default: 0\.0]
+  
+    1 \= automatically adjust threshold for RMS energy \(EXPERIMENTAL\; works for energy as input\)
+  
+- **minmaxDecay** (numeric) [default: 0\.9995]
+  
+    The decay constant used for min\/max values in auto\-thresholder \(a larger value means a slower recovery from loud sounds\)
+  
+- **nPre** (numeric) [default: 10\.0]
+  
+    number of frames \> threshold until a turn start is detected
+  
+- **nPost** (numeric) [default: 20\.0]
+  
+    number of frames \< threshold\(2\) until a turn end is detected
+  
+- **useRMS** (numeric) [default: 1\.0]
+  
+    1 \= the provided energy field in the input is rms energy instead of log energy
+  
+- **readVad** (numeric) [default: 0\.0]
+  
+    1 \= use the result \(bianry 0\/1 or probability\) from another VAD component instead of reading RMS or LOG energy \(\'threshold\' and \'threshold2\' will be set to 0\.55 and 0\.45 if this option is enabled\, unless other values for thresholds are given in the config file\)
+  
+- **idx** (numeric) [default: \-1\.0]
+  
+    The index of the RMS or LOG energy \(or vadBin\) field to use \(\-1 to automatically find the field\)
+  
+- **messageRecp** (string) [default: None]
+  
+    The \(cWinToVecProcessor type\) component\(s\) to send \'frameTime\' messages to \(use \, to separate multiple recepients\)\, leave blank \(NULL\) to not send any messages\. The messages will be sent at the turn end and \(optionally\) during the turn at fixed intervals configured by the \'msgInterval\' parameter \(if it is not 0\)\.
+  
+- **msgInterval** (numeric) [default: 0\.0]
+  
+    Interval at which to send \'frameTime\' messages during an ongoing turn\. Set to 0 to disable sending of intra turn messages\.
+  
+- **turnFrameTimePreRollSec** (numeric) [default: 0\.0]
+  
+    Time offset which is added to the turnStart for turnFrameTimeMessages\. Use this to compensate for VAD lags\. Typically one would use negative values here\, e\.g\. \-0\.1\.
+  
+- **turnFrameTimePostRollSec** (numeric) [default: 0\.0]
+  
+    Time offset which is added to the turnEnd for turnFrameTimeMessages\. Use this to compensate for VAD lags\. CAUTION\: If this value is positive\, it might prevent the receiving component from working correctly\, as it will not have all data \(for the full segment\) available in the input data memory level when it receives the message\.
+  
+- **msgPeriodicMaxLength** (numeric) [default: 0\.0]
+  
+    If periodic message sending is enabled \(msgInterval \> 0\)\, then this can limit the maximum length of the segments \(going backwards from the current position\, i\.e\. a sliding window \- as opposed to maxTurnLength\, which limits the total turn length from the beginning of the turn\)\. If this is 0\, there is no limit \(\= default\)\, the segments will grow up to maxTurnLength\.
+  
+- **sendTurnFrameTimeMessageAtEnd** (numeric) [default: 1\.0]
+  
+    If not 0\, indicates that at the end of a turn a turnFrameTime message will be sent\. If it is set to 1\, a full length \(from turn start to turn end\) message will be sent\. If it is set to 2\, and if periodic sending is enabled \(msgInterval \> 0\) and msgPeriodicMaxLength is set \(\> 0\)\, then only a message of msgPeriodicMaxLength \(from turn end backwards\) will be sent\. Leave this option at the default of 1 if not using periodic message sending \(msgInterval \> 0\)\.
+  
+- **eventRecp** (string) [default: None]
+  
+    The component\(s\) to send \'turnStart\/turnEnd\' messages to \(use \, to separate multiple recepients\)\, leave blank \(NULL\) to not send any messages
+  
+- **statusRecp** (string) [default: None]
+  
+    The component\(s\) to send \'turnSpeakingStatus\' messages to \(use \, to separate multiple recepients\)\, leave blank \(NULL\) to not send any messages
+  
+- **minTurnLengthTurnFrameTimeMessage** (numeric) [default: 0\.0]
+  
+    The minimum turn length in seconds \(\<\= 0 \: infinite\) for turnFrameTime messages\. No Message will be sent if the detected turn is shorter than the given value\. turnStart and turnEnd messages will still be sent though\.
+  
+- **minTurnLength** (numeric) [default: 0\.0]
+  
+    \[NOT YET IMPLEMENTED\!\] The minimum turn length in seconds \(\<\= 0 \: infinite\) for turnFrameTime and turnStart messages\. No Message will be sent if the detected turn is shorter than the given value\. IMPORTANT\: This introduces a lag of the given minimum length for turn start messages\!
+  
+- **maxTurnLength** (numeric) [default: 0\.0]
+  
+    The maximum turn length in seconds \(\<\= 0 \: infinite\)\. A turn end will be favoured by reducing nPost to 1 after this time
+  
+- **maxTurnLengthGrace** (numeric) [default: 1\.0]
+  
+    The grace period to grant\, after maxTurnLength is reached \(in seconds\)\. After a turn length of maxTurnLength \+ maxTurnLengthGrace an immediate turn end will be forced\.
+  
+- **invert** (numeric) [default: 0\.0]
+  
+    Invert the behaviour of turnStart\/turnEnd messages\. Also send a turnStart message at vIdx \= 0\, and a turnEnd message at the end \(EOI\)\.
+  
+- **debug** (numeric) [default: 4\.0]
+  
+    log level to show some turn detector specific debug messages on
+  
+- **timeoutSec** (numeric) [default: 2\.0]
+  
+    turnEnd timeout in seconds \(send turnEnd after timeoutSec seconds no input data\)
+  
+- **eoiFramesMissing** (numeric) [default: 5\.0]
+  
+    set the number of frames that will be subtracted from the last turn end position \(the forced turn end that will be sent when an EOI condition \(end of input\) is encountered\)\. This is necessary\, e\.g\. if you use delta or acceleration coefficients which introduce a lag of a few frames\. Increase this value if SMILExtract hangs at the end of input when using the cTumkwsjSink component or a cFunctionals component\, etc\.
+  
+- **unblockTimeout** (numeric) [default: 60\.0]
+  
+    timeout in frames to wait after a turn block condition \(started via a semaineCallback message\)
+  
+- **blockStatus** (numeric) [default: 0\.0]
+  
+    apply event based speech detection block  for speakingStatus messages \(i\.e\.  the sending of these messages is supressed\)
+  
+- **blockAll** (numeric) [default: 1\.0]
+  
+    apply event based speech detection block for all types\, i\.e\. the voice input is set to 0 by an incoming block message\.
+  
+- **terminateAfterTurns** (numeric) [default: 0\.0]
+  
+    Number of turns after which to terminate processing and exit openSMILE\. Default 0 is for infinite\, i\.e\. never terminate\.
+  
+- **terminatePostSil** (numeric) [default: 0\.0]
+  
+    Amount of silence after last turn of terminateAfterTurns to wait for before actually exiting\. This excludes \(i\.e\. is on top of\) postSil which is required to detect the end of the turn\.
+  
+- **initialBlockTime** (numeric) [default: 1\.0]
+  
+    Initial time \(in seconds\) to block VAD \(useful in conjunction with RNN vad\, or if high noise occurrs after starting VAD\.
+  
+- **loadSegmentsFromFile** (string) [default: None]
+  
+    If set to a filename\, load the segment times from this CSV file \(\; as separator\/ header line\/ columns \'Start\' and \'End\' required\, others are ignored\. The input level data is then ignored\, only the frame timestamps are used to sync and send messages based on the file timestamps\. Not really suitable for live mode \(although it works\, but no sense in using pre\-defined timestamps\.\.\.\)\!
+  

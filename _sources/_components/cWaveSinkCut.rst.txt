@@ -1,0 +1,71 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cWaveSinkCut:
+
+cWaveSinkCut
+------------
+
+Description
+~~~~~~~~~~~
+This component writes data to uncompressed PCM WAVE files\. Only chunks\, based on timings received via smile messages are written to files\. The files may have consecutive numbers appended to the file name\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cWaveSinkCut`
+
+Fields
+~~~~~~
+- **fileBase** (string) [default: output\_segment\_]
+  
+    The base of the wave file name\, if writing multiple output files \(multiOut\=1\)\, or else the filename of the wave file to write to
+  
+- **fileExtension** (string) [default: \.wav]
+  
+    The file extension to use when writing multiple output files \(multiOut\=1\)\, else this option is ignored \(the extension is set via \'fileBase\' then which specifies the full file name\)
+  
+- **fileNameFormatString** (string) [default: \%s\%04d\%s]
+  
+    Specifies how the filename will be formatted \(printf compatible syntax\, three parameters are available in the given order\: fileBase \(string\)\, current index \(integer\)\, fileExtension \(string\)\)\, the default should be reasonable\, it generates filenames such as \'output\_segment\_XXXX\.wav\'\.
+  
+- **startIndex** (numeric) [default: 1\.0]
+  
+    The index of the first file for consecutive numbering of output files \(if multiOut\=1\)
+  
+- **preSil** (numeric) [default: 0\.2]
+  
+    Specifies the amount of silence at the turn beginning in seconds\, i\.e\. the lag of the turn detector\. This is the length of the data that will be added to the current segment prior to the turn start time received in the message from the turn detector component\.
+  
+- **postSil** (numeric) [default: 0\.3]
+  
+    Specifies the amount of silence at the turn end in seconds\. This is the length of the data that will be added to the current segment after to the turn end time received in the message from the turn detector component\.
+  
+- **multiOut** (numeric) [default: 1\.0]
+  
+    1 \= enable multiple file mode\, i\.e\. multiple files segmented by turnStart\/turnEnd messages \; 0 \= write all frames \(only between turnStart\/turnEnd messages\) concatenated to one file\, i\.e\. effectively filtering out non\-turn audio\.
+  
+- **forceSampleRate** (numeric) [default: 16000\.0]
+  
+    force sample rate to given value \(if not set\, it is determined from the reader\'s frame size in bytes\, which may be inaccurate\)
+  
+- **sampleFormat** (string) [default: 16bit]
+  
+    openSMILE uses float for all data internally\. Thus you must specify your desired sample format for the wave files here\. Available formats\:
+
+    -   \'8bit\' \: 8\-bit signed 
+    -   \'16bit\' \: 16\-bit signed
+    -   \'24bit\' \: 24\-bit signed
+    -   \'24bitp\' \: 24\-bit signed packed in 3 bytes
+    -   \'32bit\' \: 32\-bit signed integer
+    -   \'float\' \: 32\-bit float
+  
+- **showSegmentTimes** (numeric) [default: 0\.0]
+  
+    1 \= show start and end times relative to input of segments that are saved by this sink\.
+  
+- **saveSegmentTimes** (string) [default: None]
+  
+    1 \= save turn times \(start\, end\, and filename\) to text file\.
+  

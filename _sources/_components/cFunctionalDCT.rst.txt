@@ -1,0 +1,32 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionalDCT:
+
+cFunctionalDCT
+--------------
+
+Description
+~~~~~~~~~~~
+DCT coefficients
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **firstCoeff** (numeric) [default: 1\.0]
+  
+    The first DCT coefficient to compute \(coefficient 0 corresponds to the DC component\)
+  
+- **lastCoeff** (numeric) [default: 6\.0]
+  
+    The last DCT coefficient to compute
+  
+- **nCoeffs** (numeric) [default: 6\.0]
+  
+    An alternative option to lastCoeff \(this option overwrites lastCoeff\, if it is set\)\: the number DCT coefficient to compute \(lastCoeff \= firstCoeff\+nCoeffs\-1\)\.
+  

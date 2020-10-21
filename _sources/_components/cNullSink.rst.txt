@@ -1,0 +1,18 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cNullSink:
+
+cNullSink
+---------
+
+Description
+~~~~~~~~~~~
+This component reads data vectors from the data memory and \'destroys\' them\, i\.e\. does not write them anywhere\. This component has no configuration options\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cNullSink`
+

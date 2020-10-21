@@ -1,0 +1,60 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFullinputMean:
+
+cFullinputMean
+--------------
+
+Description
+~~~~~~~~~~~
+This component performs mean normalizing on a data series\. A 2\-pass analysis of the data is performed\, which makes this component unusable for on\-line analysis\. In the first pass\, no output is produced and the mean value \(over time\) is computed for each input element\. In the second pass the mean vector is subtracted from all input frames\, and the result is written to the output dataMemory level\. Attention\: Due to the 2\-pass processing the input level must be large enough to hold the whole data sequence\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cFullinputMean`
+
+Fields
+~~~~~~
+- **mvn** (numeric) [default: 0\.0]
+  
+    1 \= perform mean \+ variance \(stddev\) normalisation\, overrides \'meanNorm\' option and forces meanNorm\=amean\.
+  
+- **meanNorm** (string) [default: amean]
+  
+    Type of mean normalisation\: amean\, rqmean\, absmean  \(arithmetic\, root squared\/quadratic\, absolute value mean\)\.
+  
+- **symmSubtract** (numeric) [default: 0\.0]
+  
+    1 \= Perform symmetric subtraction of rqmean or absmean u\. I\.e\. for negative values add u and for positive values subtract u\.
+  
+- **subtractClipToZero** (numeric) [default: 0\.0]
+  
+    1 \= If symmSubtract is enabled and a value would change sign\, clip it to 0\. Otherwise\, clip negative values to 0 when subtracting any kind of mean\. 0 \= do nothing special\.
+  
+- **specEnorm** (numeric) [default: 0\.0]
+  
+    performs spectral magnitude energy normalisation
+  
+- **htkLogEnorm** (numeric) [default: 0\.0]
+  
+    performs HTK compatible energy normalisation on all input fields instead of the default action of mean subtraction\. The energy normalisation subtracts the maximum value of each value in the sequence and adds 1\.
+  
+- **multiLoopMode** (numeric) [default: 0\.0]
+  
+    1 \= Support the new tick loop mode which can have unlimited EOI iterations\. In this mode the means will be collected until the EOI condition is signalled\. During the EOI condition nothing will be done \(except computing means from the remaining data\)\. During the next non EOI condition\, the means will be subtracted from the old input\, and \(if new data is available \- e\.g\. from a next segment\) a new set of means will be computed\. If old and new data is processed\, the cycle begins anew\. If this option is disabled\, the means are subtracted while the first EOI condition is signalled\. This is for compatibility with old behaviour of the tick loop\.
+  
+- **printMeans** (numeric) [default: 0\.0]
+  
+    1 \= print the mean vector once it has been computed\.
+  
+- **printStddevs** (numeric) [default: 0\.0]
+  
+    1 \= print the standard deviation vector once it has been computed \(if MVN\=1 is set\)\.
+  
+- **excludeZeros** (numeric) [default: 0\.0]
+  
+    1 \= exclude 0 values or NaN values from mean\/variance computation and normalistaion\. Use e\.g\. for F0 contours\. Only supported for mean type \'amean\'\.
+  

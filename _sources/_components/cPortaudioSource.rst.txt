@@ -1,0 +1,68 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cPortaudioSource:
+
+cPortaudioSource
+----------------
+
+Description
+~~~~~~~~~~~
+This component handles live audio recording from the soundcard via the PortAudio library
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSource` |rarr| :ref:`cPortaudioSource`
+
+Fields
+~~~~~~
+- **period** (numeric) [default: 0\.0]
+  
+    \(optional\) The period of the input frames \(in seconds\)\, if it cannot be determined from the input file format\. \(if set and \!\= 0\, this will overwrite any automatically set values\, e\.g\. from samplerate and writer\.levelconf etc\. \(NOTE\: this behaviour also depends on the source component\, whether it overwrites period in configureWriter\(\) or whether it keeps the period if it is \!\= 0\.0\)\)
+  
+- **monoMixdown** (numeric) [default: 0\.0]
+  
+    Mix down all recorded channels to 1 mono channel
+  
+- **device** (numeric) [default: \-1\.0]
+  
+    PortAudio device to use \(device number\, see the option \'listDevices\' to get information on device numbers\)
+  
+- **listDevices** (numeric) [default: 0\.0]
+  
+    If set to 1\, openSMILE will list available portaudio devices during initialisation phase and exit immediately after that \(you might get an error message on windows\, which you can ignore\)\.
+  
+- **sampleRate** (numeric) [default: 16000\.0]
+  
+    The sampling rate to use for audio recording \(if supported by device\!\)
+  
+- **channels** (numeric) [default: 1\.0]
+  
+    The number of channels to record \(check your device\'s capabilities\!
+  
+- **selectChannel** (numeric) [default: \-1\.0]
+  
+    Select only the specified channel from \'channels\' that are recorded\. Set to \-1 to grab all channels\.
+  
+- **nBits** (numeric) [default: 16\.0]
+  
+    The number of bits per sample and channel
+  
+- **nBPS** (numeric) [default: 0\.0]
+  
+    The number of bytes per sample and channel \(0\=determine automatically from nBits\)
+  
+- **audioBuffersize** (numeric) [default: 0\.0]
+  
+    The size of the portaudio recording buffer in samples \(overwrites audioBuffersize\_sec\, if set\)
+  
+- **audioBuffersize_sec** (numeric) [default: 0\.05]
+  
+    size of the portaudio recording buffer in seconds\. This value has influence on the system latency\. Setting it too high might introduce a high latency\. A too low value might lead to dropped samples and reduced performance\.
+  
+- **byteSwap** (numeric) [default: 0\.0]
+  
+    1 \= swap bytes\, big endian \<\-\> little endian \(usually not required\)
+  

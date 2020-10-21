@@ -1,0 +1,100 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionalTimes:
+
+cFunctionalTimes
+----------------
+
+Description
+~~~~~~~~~~~
+up\- and down\-level times \+ rise and fall\, left\- and right\-curve times\, duration\, etc\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **upleveltime25** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) compute time where signal is above 0\.25\*range
+  
+- **downleveltime25** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) compute time where signal is below 0\.25\*range
+  
+- **upleveltime50** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) compute time where signal is above 0\.50\*range
+  
+- **downleveltime50** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) compute time where signal is below 0\.50\*range
+  
+- **upleveltime75** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) compute time where signal is above 0\.75\*range
+  
+- **downleveltime75** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) compute time where signal is below 0\.75\*range
+  
+- **upleveltime90** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) compute time where signal is above 0\.90\*range
+  
+- **downleveltime90** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) compute time where signal is below 0\.90\*range
+  
+- **risetime** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) compute time where signal is rising
+  
+- **falltime** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) compute time where signal is falling
+  
+- **leftctime** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) compute time where signal has left curvature
+  
+- **rightctime** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) compute time where signal has right curvature
+  
+- **duration** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) compute duration time\, in frames \(or seconds\, if \(time\)norm\=\=seconds\)
+  
+- **upleveltime[]** (numeric) [default: 0\.9]
+  
+    compute time where signal is above X\*range \: upleveltime\[n\]\=X
+  
+- **downleveltime[]** (numeric) [default: 0\.9]
+  
+    compute time where signal is below X\*range \: downleveltime\[n\]\=X
+  
+- **norm** (string) [default: segment]
+  
+    This option specifies how this component should normalise times \(if it generates output values related to durations\)\:
+
+    -   \'segment\' \(or\: \'turn\'\) \: normalise to the range 0\.\.1\, the result is the relative length wrt\. to the segment length \)
+    -   \'second\'  \(absolute time in seconds\) 
+    -   \'frame\' \(absolute time in number of frames of input level\)
+  
+- **buggySecNorm** (numeric) [default: 1\.0]
+  
+    If set to 1\, enables the old \(prior to version 1\.0\.0 \, 07 May 2010\) second normalisation code which erroneously divides by the number of input frames\. The default is kept at 1 \(enabled\) in order to not break compatibility with old configuration files\, however you are strongly encouraged to change this to 0 in any new configuration you write in order to get the times in actual \(bug\-free\) seconds\!
+  
+- **useRobustPercentileRange** (numeric) [default: 0\.0]
+  
+    Estimate range based on low\/high percentiles \(set by the pctlRangeMargin option\) instead of single max\/min values\.
+  
+- **pctlRangeMargin** (numeric) [default: 0\.05]
+  
+    Minimum percentile \(and 1\-x for maximum percentile\) for range estimation with option useRobustPercentileRange\. Valid range between \> 0 and \< 0\.5\, recommended\: 0\.02\-0\.10 
+  

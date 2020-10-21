@@ -1,0 +1,96 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cPitchSmootherViterbi:
+
+cPitchSmootherViterbi
+---------------------
+
+Description
+~~~~~~~~~~~
+Viterbi algorithm to smooth pitch contours and remove octave jumps\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cPitchSmootherViterbi`
+
+Fields
+~~~~~~
+- **reader2** (object of type :ref:`cDataReader`)
+  
+    Configuration of the dataMemory reader sub\-component which is used to read input frames with a certain lag \(max\. bufferLength\!\)\.
+  
+- **bufferLength** (numeric) [default: 30\.0]
+  
+    The length of the delay buffer in \(input\) frames\. This is the amount of data that will be used for the Viterbi smoothing\, and it is also the lag which the output is behind the input\. The input level buffer must be at least bufferLength\+1 in size\!\.
+  
+- **F0final** (numeric) [default: 1\.0]
+  
+    1 \= Enable output of final \(corrected and smoothed\) F0 \-\- linear scale
+  
+- **F0finalLog** (numeric) [default: 0\.0]
+  
+    1 \= Enable output of final \(corrected and smoothed\) F0 in logarithmic representation \(semitone scale with base note 27\.5 Hz \- a linear F0 equal to and below 29\.136 Hz \(\= 1 on the semitone scale\) will be clipped to an output value of 1\, since 0 is reserved for unvoiced\)\.
+  
+- **F0finalEnv** (numeric) [default: 0\.0]
+  
+    1 \= Enable output of envelope of final smoothed F0 \(i\.e\. there will be no 0 values \(except for the beginning\)\. Envelope method is to hold the last valid sample\, no interpolation is performed\. \[EXPERIMENTAL\!\]
+  
+- **F0finalEnvLog** (numeric) [default: 0\.0]
+  
+    1 \= Enable output of envelope of final smoothed F0 \(i\.e\. there will be no 0 values \(except for end and beginning\)\) in a logarithmic \(semitone\, base note 27\.5 Hz \- a linear F0 equal to and below 29\.136 Hz \(\= 1 on the semitone scale\) will be clipped to an output value of 1\, since 0 is reserved for unvoiced\) frequency scale\. Envelope method is sample and hold\, no interpolation is performed\. \[EXPERIMENTAL\!\]
+  
+- **no0f0** (numeric) [default: 0\.0]
+  
+    1 \= enable \'no zero F0\'\, output data only when F0\>0\, i\.e\. a voiced frame is detected\. This may cause problem with some functionals and framer components\, which don\'t support this variable length data yet\.\.\.
+  
+- **voicingFinalClipped** (numeric) [default: 0\.0]
+  
+    1 \= Enable output of final smoothed and clipped voicing \(pseudo\) probability\. \'Clipped\' means that the voicing probability is set to 0 for unvoiced regions\, i\.e\. where the probability lies below the voicing threshold\.
+  
+- **voicingFinalUnclipped** (numeric) [default: 0\.0]
+  
+    1 \= Enable output of final smoothed\, raw voicing \(pseudo\) probability \(UNclipped\: not set to 0 during unvoiced regions\)\.
+  
+- **F0raw** (numeric) [default: 0\.0]
+  
+    1 \= Enable output of \'F0raw\' copied from input
+  
+- **voicingC1** (numeric) [default: 0\.0]
+  
+    1 \= Enable output of \'voicingC1\' copied from input
+  
+- **voicingClip** (numeric) [default: 0\.0]
+  
+    1 \= Enable output of \'voicingClip\' copied from input
+  
+- **wLocal** (numeric) [default: 2\.0]
+  
+    Viterbi weight for local log\. voice probs\. A higher weight here will favour candidates with a high voicing probability\.
+  
+- **wTvv** (numeric) [default: 10\.0]
+  
+    Viterbi weight for voiced\-voiced transition\. A higher weight here will favour a flatter pitch curve \(less jumps\)
+  
+- **wTvvd** (numeric) [default: 5\.0]
+  
+    Viterbi weight for smoothness of voiced\-voiced transition\. A higher weight here will favour a flatter pitch curve \(less jumps\)
+  
+- **wTvuv** (numeric) [default: 10\.0]
+  
+    Viterbi cost for voiced\-unvoiced transitions\. A higher value will reduce the number of voiced\-unvoiced transitions\.
+  
+- **wThr** (numeric) [default: 4\.0]
+  
+    Viterbi cost bias for voice prob\. crossing the voicing threshold\. A higher value here will force voiced\/unvoiced decisions by the Viterbi algorithm to be more close to the threshold based decision\. A lower value\, e\.g\. 0\, will ignore the voicing threshold completely \(not recommended\)\.
+  
+- **wRange** (numeric) [default: 1\.0]
+  
+    Viterbi weight for frequency range constraint\. A higher value will enforce the given frequency weighting more strictly\, i\.e\. favour pitch frequencies between 100 Hz and 300 Hz\.
+  
+- **wTuu** (numeric) [default: 0\.0]
+  
+    Viterbi cost for unvoiced\-unvoiced transitions\. There should be no need to change the default value of 0\.
+  

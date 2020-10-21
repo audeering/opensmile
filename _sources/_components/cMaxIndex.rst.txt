@@ -1,0 +1,40 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cMaxIndex:
+
+cMaxIndex
+---------
+
+Description
+~~~~~~~~~~~
+This component computes the indices of the features with the maximum absolute values per frame\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cMaxIndex`
+
+Fields
+~~~~~~
+- **nameAppend** (string) [default: maxIndex]
+  
+    A string suffix to append to the input field names \(default\: empty\)
+  
+- **nIndices** (numeric) [default: 1\.0]
+  
+    The number of indices to compute
+  
+- **minFeature** (numeric) [default: 1\.0]
+  
+    Start with this feature in computing the maximum index \(1 \= first feature\)
+  
+- **maxFeature** (numeric) [default: 0\.0]
+  
+    End with this feature in computing the maximum index \(0 \= last feature\)
+  
+- **randNoise** (numeric) [default: 0\.0]
+  
+    If \> 0\, add random noise with given range \(\+\-\'randNoise\'\) to index values\.
+  

@@ -1,0 +1,124 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cHarmonics:
+
+cHarmonics
+----------
+
+Description
+~~~~~~~~~~~
+This component computes statistics of F0 harmonics\. It requires an F0 \(Hertz\) input field and a linear frequency axis magnitude spectrum as input\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cHarmonics`
+
+Fields
+~~~~~~
+- **processArrayFields** (numeric) [default: 0\.0]
+  
+    1 \= process each array field as one vector individually \(and produce one output for each input array field\)\. Only array fields \(i\.e\. fields with more than one element\) are processed if this is set\. \/ 0 \= process complete input frame as one vector\, ignoring field\/element structure
+  
+- **includeSingleElementFields** (numeric) [default: 1\.0]
+  
+    1 \= if in processArrayFields \(1\) mode\, then also include single element fields\.
+  
+- **f0ElementName** (string) [default: F0final]
+  
+    Name of F0 element in input vector to use\.
+  
+- **f0ElementNameIsFull** (numeric) [default: 1\.0]
+  
+    1\/0\= f0ElementName is a partial name \(glob with \*x\*\) or the exact full name\.
+  
+- **magSpecFieldName** (string) [default: pcm\_fftMag]
+  
+    Name of magnitude spectrum field in input vector to use\.
+  
+- **magSpecFieldNameIsFull** (numeric) [default: 0\.0]
+  
+    1\/0\= magSpecFieldName is a partial name \(glob with \*x\*\) or the exact full name\.
+  
+- **formantFrequencyFieldName** (string) [default: None]
+  
+    Name of formant frequency field\. Typcially formantFreqLpc
+  
+- **formantFrequencyFieldNameIsFull** (numeric) [default: 1\.0]
+  
+    1\/0\= formantFrequencyFieldName is a partial name \(glob with \*x\*\) or the exact full name\.
+  
+- **formantBandwidthFieldName** (string) [default: None]
+  
+    Name of formant bandwidth field\. Typically formantBandwidthLpc
+  
+- **formantBandwidthFieldNameIsFull** (numeric) [default: 1\.0]
+  
+    1\/0\= formantBandwidthFieldName is a partial name \(glob with \*x\*\) or the exact full name\.
+  
+- **nHarmonics** (numeric) [default: 100\.0]
+  
+    Maximum number of harmonics to search for \(including F0\) \(approximately Fmax \/ F\_lowest\_f0\)\.
+  
+- **firstHarmonicMagnitude** (numeric) [default: 1\.0]
+  
+    Index of first harmonic magnitude to output \(0 is magnitude of F0\)\.
+  
+- **nHarmonicMagnitudes** (numeric) [default: 0\.0]
+  
+    Number of harmonic magnitudes to output\. 0 to disable\.
+  
+- **outputLogRelMagnitudes** (numeric) [default: 1\.0]
+  
+    1 \= output logarithmic magnitudes \(dB\) normalised by the magnitude of F0 \(0dB\)\, if nHarmonicMagnitudes \> 0\.
+  
+- **outputLinearMagnitudes** (numeric) [default: 0\.0]
+  
+    1 \= output the linear magnitudes as obtained from the FFT for the nHarmonicMagnitudes harmonics \(if nHarmonicMagnitudes \> 0\)\.
+  
+- **harmonicDifferences[]** (string) [default: None]
+  
+    Array that specifies harmonic differences \(ratios in linear scale\) to compute\. Syntax for one element\: H1\-H2 \(ratio of H1 to H2\)\, H0 is fundamental frequency\. A1\,A2\,\.\.\.\,AN is the amplitude \(highest peak in the formant range\) of the N\-th formant\, if formant frequency AND bandwidth information is given in the input \(see formantFrequencyFieldName and formantBandwidthFieldName options\)\.
+  
+- **harmonicDifferencesLog** (numeric) [default: 1\.0]
+  
+    1 \= Harmonic differences in log magnitude scale \(actually differences of the log values then\)\.
+  
+- **harmonicDifferencesRatioLinear** (numeric) [default: 0\.0]
+  
+    1 \= Harmonic differences in linear magnitude scale \(actually ratios of the linear values then\)\.
+  
+- **formantAmplitudes** (numeric) [default: 0\.0]
+  
+    1 \= Enable output of formant amplitudes \(amplitude of highest peak in the formant range\, half bandwidth left and right of formant frequency\)\.
+  
+- **formantAmplitudesLinear** (numeric) [default: 0\.0]
+  
+    1 \= Linear formant amplitude output\, requires formantAmplitudes\=1 \.
+  
+- **formantAmplitudesLogRel** (numeric) [default: 1\.0]
+  
+    1 \= Logarithmic relative to F0 formant amplitude output in dB\, requires formantAmplitudes\=1 \.
+  
+- **formantAmplitudesStart** (numeric) [default: 1\.0]
+  
+    First formant to compute amplitudes for\, 0 is F0\, 1 is first formant\, etc\.
+  
+- **formantAmplitudesEnd** (numeric) [default: \-1\.0]
+  
+    Last formant to compute amplitudes for\. Default \'\-1\' is last formant found in the input\.
+  
+- **computeAcfHnrLogdB** (numeric) [default: 0\.0]
+  
+    1 \= enable HNR \(logarithmic in dB\) from ACF at F0 position \(vs\. total energy\)\. Will be zero for unvoiced frames \(where F0 \= 0\)\.
+  
+- **computeAcfHnrLinear** (numeric) [default: 0\.0]
+  
+    1 \= enable HNR \(linear ACF amplitude ratio\) from ACF at F0 position \(vs\. total energy\)\.  Will be zero for unvoiced frames \(where F0 \= 0\)\.
+  
+- **logRelValueFloorUnvoiced** (numeric) [default: \-201\.0]
+  
+    Sets the value that is returned for LogRel \(relative to F0\) type features when F0\=\=0 \(unvoiced\)\. Logical default is the general floor of \-201\.0\, however if unvoiced regions should always be zero\, in order to be discarded\/ignored e\.g\. by a functionals component\, then this should be set to 0\.0
+  

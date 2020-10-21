@@ -1,0 +1,76 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cVecToWinProcessor:
+
+cVecToWinProcessor
+------------------
+
+Description
+~~~~~~~~~~~
+Base class\: reads in frames \, outputs windows
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVecToWinProcessor`
+
+Fields
+~~~~~~
+- **blocksize** (numeric) [default: 0\.0]
+  
+    The size of data blocks to process in frames \(this sets both blocksizeR and blocksizeW\, and overwrites blocksize\_sec\)
+  
+- **blocksizeR** (numeric) [default: 0\.0]
+  
+    The size of data blocks to read in frames \(overwrites blocksize\)
+  
+- **blocksizeW** (numeric) [default: 0\.0]
+  
+    The size of data blocks to write in frames \(overwrites blocksize\)
+  
+- **blocksize_sec** (numeric) [default: 0\.0]
+  
+    size of data blocks to process in seconds \(this sets both blocksizeR\_sec and blocksizeW\_sec\)
+  
+- **blocksizeR_sec** (numeric) [default: 0\.0]
+  
+    size of data blocks to read in seconds \(overwrites blocksize\_sec\!\)
+  
+- **blocksizeW_sec** (numeric) [default: 0\.0]
+  
+    size of data blocks to write in seconds \(overwrites blocksize\_sec\!\)
+  
+- **forceSampleRate** (numeric) [default: 16000\.0]
+  
+    Set a given sample rate for the output level\. Typically the base period of the input level will be used for this purpose\, but when reading frame\-based data from feature files\, for example\, this information is not available\. This option overwrites the input level base period\, if it is set\.
+  
+- **normaliseAdd** (numeric) [default: 0\.0]
+  
+    1\/0 \(on\/off\) \: normalise frames before adding to eliminate envelope fluctuation artefacts and scaling artefacts\. When this is enabled the output should always be correctly scaled to the range \-1 and \+1\. If this is deactivated perfect reconstruction can only be guaranteed with root\-raised cosine windows and 50 percent overlap\.
+  
+- **useWinAasWinB** (numeric) [default: 0\.0]
+  
+    1 \= use window A as window B \(e\.g\. if win A is a root of window x function\, e\.g\. root raised cosine\)\. The \'windowB\' must be left blank\, and NO windower must be present between the ifft \(or other processing\) and this component\. This component will internally apply window function A before doing the overlap add\. \(NOT YET IMPLEMENTED\)
+  
+- **gain** (numeric) [default: 1\.0]
+  
+    A gain to apply to the output samples\.
+  
+- **windowA** (string) [default: None]
+  
+    Name of cWindower component applied before transforming into the spectral domain\. Leave empty to use constant window \(\=1\)\.
+  
+- **windowB** (string) [default: None]
+  
+    Name of cWindower component applied after transforming back into the time domain\. Leave empty to use constant window \(\=1\)\.
+  
+- **processArrayFields** (numeric) [default: 1\.0]
+  
+    If turned on \(1\)\, process array fields individually\. If turned off \(0\)\, treat the input vector as a single field\/frame\.
+  
+- **noPostEOIprocessing** (numeric) [default: 1\.0]
+  
+    1 \= do not process incomplete windows at end of input
+  

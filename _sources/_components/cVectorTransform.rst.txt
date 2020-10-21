@@ -1,0 +1,112 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cVectorTransform:
+
+cVectorTransform
+----------------
+
+Description
+~~~~~~~~~~~
+this is a base class for vector transforms which require history data or precomputed data \(e\.g\. cepstral mean subtraction\, etc\.\)
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cVectorTransform`
+
+Fields
+~~~~~~
+- **nameAppend** (string) [default: None]
+  
+    A string suffix to append to the input field names \(default\: empty\)
+  
+- **mode** (string) [default: analysis]
+  
+    The mode of operation\:
+
+    -   an\(alysis\) \: analyse all incoming data and compute transform for later use
+    -   tr\(ansformation\) \: use pre\-computed transform loaded from initFile\, no on\-line adaptation
+    -   in\(cremental\) \: use initFile as inital transform\, if given\, update transform on\-line using \'updateMethod\'
+  
+- **initFile** (string) [default: None]
+  
+    The file to load the \(initial\) transformation data from \(see vectorTransform\.cpp for documentation of the file format\)\. Default \(null\) disables loading\, also setting the value to \'\?\' disables loading of the file \(parameters are initialized with 0\, use mode incremental or analysis in this case\.\)
+  
+- **saveFile** (string) [default: None]
+  
+    The file to save transformation data to \(see vectorTransform\.cpp for documentation of the file format\)
+  
+- **saveFileInterval** (numeric) [default: 0\.0]
+  
+    If set to \> 0\, saves transform data update only every N\-th frame\. For 0 it only saves at the end\. Set to 1 to save for every frame \(costly\!\!\)
+  
+- **updateMethod** (string) [default: iavg]
+  
+    Method to use for incrementally updating the transform\. Can be one of the following\:
+
+    -   \'exp\'  exponential\: m1 \= alpha \* m0  \+ \(1\-alpha\) \* x
+    -   \'fix\'\/\'buf\'  compute transform over history buffer of fixed length
+    -   \'ifix\'\/\'ibuf\'  compute transform over history buffer of fixed length and use init data from last turn \(see weight option\)
+    -   \'usr\'  other update method \(usually defined by a descendant component of cVectorTransform\, look for customUpdateMethod option\)
+    -   \'avg\'  cummulative average method with weighted fixed inital values
+    -   \'iavg\'  cummulative average method with weighted variable \(from the last turn\) inital values
+    -   NOTE\: if \'resetOnTurn\'\=\=0 then \'avg\' and \'iavg\' are identical
+  
+- **alpha** (numeric) [default: 0\.995]
+  
+    The weighting factor alpha for exponential transform update
+  
+- **weight** (numeric) [default: 100\.0]
+  
+    The weighting factor for \'avg\'\/\'avgI\'\/\'bufI\' update\, i\.e\. the factor the initial transform parameters are weighted by when building the cummulative average
+  
+- **fixedBuffer** (numeric) [default: 5\.0]
+  
+    The size of the fixed length buffer \[in seconds\] \(for fixed buffer update method\)
+  
+- **fixedBufferFrames** (numeric) [default: 10\.0]
+  
+    The size of the fixed length buffer \[in frames\] \(for fixed buffer update method\)\. Use this when the input level is aperiodic \(e\.g\. functionals\)\.
+  
+- **turnOnlyUpdate** (numeric) [default: 0\.0]
+  
+    1 \= perform transform update only during turns \(between turnStart and turnEnd messages\) \(works for all methods\)
+  
+- **invertTurn** (numeric) [default: 0\.0]
+  
+    1 \= invert the turn state \(i\.e\. changes a \'turnOnly\.\.\.\' option into \'notTurn\' option\)
+  
+- **resetOnTurn** (numeric) [default: 0\.0]
+  
+    1 \= reset transform values at the beginning of each new turn \(only in mode \'analysis\' and \'incremental\'\)
+  
+- **updateMaxSec** (numeric) [default: 0\.0]
+  
+    If update enabled\, only update on the first X seconds of data if the value is \> 0
+  
+- **turnOnlyNormalise** (numeric) [default: 0\.0]
+  
+    1 \= apply the transform only to turns \(in between data will pass through unmodified\) \(\'invertTurn\' will also invert this option\)
+  
+- **turnOnlyOutput** (numeric) [default: 0\.0]
+  
+    1 \= output data to writer level only during a turn \(this will implicitely set turnOnlyNormalise \= 1\) \(\'invertTurn\' will also invert this option\)
+  
+- **htkcompatible** (numeric) [default: 0\.0]
+  
+    A flag that indicates \(if set to 1\) whether last coefficient in \'initFile\' is loaded into means\[0\] \(use this only when reading htk\-compatible cmn init files\, and NOT using htk\-compatible mfccs\)
+  
+- **invertMVNdata** (numeric) [default: 0\.0]
+  
+    1 \= invert the loaded MVN data to \'unstandardise\' to these parameters\. Currently only works with MVn text and old MVN binary data\. mu\' \= \-mu\/sigma and sigma\' \= 1\/sigma \; 
+  
+- **turnStartMessage** (string) [default: turnStart]
+  
+    You can use this option to define a custom message name for the turn start message\, i\.e\. if you want to use voice activity start\/end messages instead
+  
+- **turnEndMessage** (string) [default: turnEnd]
+  
+    You can use this option to define a custom message name for the turn end message\, i\.e\. if you want to use voice activity start\/end messages instead
+  

@@ -1,0 +1,28 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cTransformFFT:
+
+cTransformFFT
+-------------
+
+Description
+~~~~~~~~~~~
+This component performs an FFT on a sequence of real values \(one frame\)\, the output is the complex domain result of the transform\. Use the cFFTmagphase component to compute magnitudes and phases from the complex output\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cTransformFFT`
+
+Fields
+~~~~~~
+- **inverse** (numeric) [default: 0\.0]
+  
+    1 \= perform inverse real FFT
+  
+- **zeroPadSymmetric** (numeric) [default: 1\.0]
+  
+    1 \= zero pad symmetric \(when zero padding to next power of 2\)\, i\.e\. center frame and pad left and right with zeros\. New since version 2\.3\: this is the default\, but should not affect FFT magnitudes at all\, only phase\.
+  

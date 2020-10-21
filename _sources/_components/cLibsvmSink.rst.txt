@@ -1,0 +1,64 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cLibsvmSink:
+
+cLibsvmSink
+-----------
+
+Description
+~~~~~~~~~~~
+This component writes data to a text file in LibSVM feature file format\. For the \'on\-the\-fly\' classification component see \'cLibsvmliveSink\'\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cLibsvmSink`
+
+Fields
+~~~~~~
+- **filename** (string) [default: smileoutput\.lsvm]
+  
+    Output filename of libsvm formant file
+  
+- **lag** (numeric) [default: 0\.0]
+  
+    output data \<lag\> frames behind
+  
+- **append** (numeric) [default: 0\.0]
+  
+    Whether to append to existing file or not \(1\/0 \= yes\/no\)
+  
+- **timestamp** (numeric) [default: 1\.0]
+  
+    1 \= print timestamp attribute \(0 \= no\)
+  
+- **instanceBase** (string) [default: NULL]
+  
+    If not empty\, print instance name attribute \<instanceBase\_Nr\>
+  
+- **instanceName** (string) [default: NULL]
+  
+    If not empty\, print instance name attribute \<instanceName\>
+  
+- **class[]** (string) [default: classX]
+  
+    Optional definition of class\-name strings \(each element is the name of one class\, i\.e\. if you have 7 classes\, the array should have seven entries\; the names will be mapped to class numbers internally\, since the libsvm format requires numbers as class labels\)\. This feature allows for passing ground\-truth information by class name \(using the targetStrAll or targetStr options\) directly on the command\-line and makes post\-editing of feature files obsolete\.
+  
+- **targetNum[]** (numeric) [default: 0\.0]
+  
+    Targets\/Ground truths \(as numbers\/indicies\) for each instance
+  
+- **targetStr[]** (string) [default: classX]
+  
+    Targets\/Ground truths \(as strings\) for each instance
+  
+- **targetNumAll** (numeric) [default: 0\.0]
+  
+    Target\/Ground truth \(as numbers\/indicies\) for all instances
+  
+- **targetStrAll** (string) [default: classX]
+  
+    Target\/Ground truth \(as strings\) for all instances
+  

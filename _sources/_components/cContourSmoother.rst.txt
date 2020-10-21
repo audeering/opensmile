@@ -1,0 +1,36 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cContourSmoother:
+
+cContourSmoother
+----------------
+
+Description
+~~~~~~~~~~~
+This component smooths data contours by applying a moving average filter of configurable length\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cWindowProcessor` |rarr| :ref:`cContourSmoother`
+
+Fields
+~~~~~~
+- **blocksize** (numeric) [default: 1\.0]
+  
+    The size of data blocks to process in frames \(this sets both blocksizeR and blocksizeW\, and overwrites blocksize\_sec\)
+  
+- **nameAppend** (string) [default: sma]
+  
+    A string suffix to append to the input field names \(default\: empty\)
+  
+- **smaWin** (numeric) [default: 3\.0]
+  
+    The size of the moving average window\. A larger window means more smoothing\.
+  
+- **noZeroSma** (numeric) [default: 0\.0]
+  
+    1 \= exclude frames where the element value is 0 from smoothing \(i\.e\. 0 input will be 0 output\, and zeros around non\-zero values will not be included in the computation of the running average\)\.
+  

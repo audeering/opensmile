@@ -1,0 +1,60 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionalExtremes:
+
+cFunctionalExtremes
+-------------------
+
+Description
+~~~~~~~~~~~
+extreme values \(max\, min\, range\, maxPos\, minPos\, \.\.\.\)
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **max** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of maximum value
+  
+- **min** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of minimum value
+  
+- **range** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of range \(max\-min\)
+  
+- **maxpos** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of position of maximum value \(relative to the input segment length\, in seconds\, or in frames\, see the \'norm\' option or the \'masterTimeNorm\' option of the cFunctionals parent component\)
+  
+- **minpos** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of position of minimum value \(relative to the input segment length\, in seconds\, or in frames\, see the \'norm\' option or the \'masterTimeNorm\' option of the cFunctionals parent component\)
+  
+- **amean** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean
+  
+- **maxameandist** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of \(max\-arithmetic\_mean\)
+  
+- **minameandist** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of \(arithmetic\_mean\-min\)
+  
+- **norm** (string) [default: frames]
+  
+    This option specifies how this component should normalise times \(if it generates output values related to durations\)\:
+
+    -   \'segment\' \(or\: \'turn\'\) \: normalise to the range 0\.\.1\, the result is the relative length wrt\. to the segment length \)
+    -   \'second\'  \(absolute time in seconds\) 
+    -   \'frame\' \(absolute time in number of frames of input level\)
+  

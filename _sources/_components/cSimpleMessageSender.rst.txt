@@ -1,0 +1,68 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cSimpleMessageSender:
+
+cSimpleMessageSender
+--------------------
+
+Description
+~~~~~~~~~~~
+This is an example of a cDataSink descendant\. It reads data from the data memory and prints it to the console\. This component is intended as a template for developers\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cSimpleMessageSender`
+
+Fields
+~~~~~~
+- **messageRecp** (string) [default: None]
+  
+    A comma separated list of message receipients \(component names\)\. If you leave this empty\, no messages will be sent\.
+  
+- **messageName** (string) [default: demo\_message]
+  
+    The name of the message that will be sent\.
+  
+- **messageType** (string) [default: simpleMessage]
+  
+    The type of the message that will be sent\.
+  
+- **dataElementName** (string) [default: None]
+  
+    The name of the input level data element to send periodically or base the event decisions on\. If left empty\, the first element will be used\.
+  
+- **sendPeriodically** (numeric) [default: 0\.0]
+  
+    1 \= Enable sending of periodic messages for each sample of the input data element\. 2 \= ignore dataElementName and send all elements in the input data \(up to the first 8 elements if useJsonFormat is not set\)\.
+  
+- **useJsonFormat** (numeric) [default: 0\.0]
+  
+    1 \= Send messages in JSON format\. This allows sending arbitrary large inputs if sendPeriodically is set to 2\.
+  
+- **enableDebugReceiver** (numeric) [default: 1\.0]
+  
+    1\/0 \= enable\/disable the debug print functionality for received\(\!\) messages\.
+  
+- **enableDebugSender** (numeric) [default: 1\.0]
+  
+    1\/0 \= enable\/disable the debug print functionality for sent messages \(before sending\)\.
+  
+- **showCustDataAsText** (numeric) [default: 0\.0]
+  
+    1\/0 \= enable\/disable printing of \(non NULL\) custData field as text string in debug message logs\.
+  
+- **showCustData2AsText** (numeric) [default: 0\.0]
+  
+    1\/0 \= enable\/disable printing of \(non NULL\) custData2 field as text string in debug message logs\.
+  
+- **threshold** (numeric) [default: 0\.0]
+  
+    The threshold for triggering an event on the input data element\.
+  
+- **condition** (string) [default: eq]
+  
+    The condition to apply to the element with dataElementName to trigger event based messages\. Choose one of the following\: eq\, gteq\, gt\, leeq\, le for the conditions \=\, \>\=\, \>\, \<\=\, \<\. The event will be triggered always when the condition is met\. Add the suffix \_s to the condition name\, to trigger the event only the first time the condition changes from false to true\. The condition is applied as\: \<input\_value\> \<cond\> \<threshold\>\.
+  

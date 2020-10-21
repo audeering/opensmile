@@ -1,0 +1,36 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionalLpc:
+
+cFunctionalLpc
+--------------
+
+Description
+~~~~~~~~~~~
+LP coefficients as functionals
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **lpGain** (numeric) [default: 0\.0]
+  
+    Output of LP gain \(1\=yes \/ 0\=no\)\.
+  
+- **lpc** (numeric) [default: 1\.0]
+  
+    Output of LP coefficients \(1\=yes \/ 0\=no\)\.
+  
+- **firstCoeff** (numeric) [default: 0\.0]
+  
+    The first LP coefficient to compute\. The first coefficient is coeff 0 \(default\)
+  
+- **order** (numeric) [default: 5\.0]
+  
+    The order of the linear prediction \(i\.e\. the max number of coefficients\, starting at coefficient number 0\)\.
+  

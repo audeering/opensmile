@@ -1,0 +1,64 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionalOnset:
+
+cFunctionalOnset
+----------------
+
+Description
+~~~~~~~~~~~
+relative position of the first onset and the last offset based on simple thresholding\. Number of onsets and offsets can also be computed\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **threshold** (numeric) [default: 0\.0]
+  
+    The absolute threshold used for onset\/offset detection \(i\.e\. the first onset will be where the input value is above the threshold for the first time\)
+  
+- **thresholdOnset** (numeric) [default: 0\.0]
+  
+    A separate threshold only for onset detection\. This will override the \'threshold\' option\, if set
+  
+- **thresholdOffset** (numeric) [default: 0\.0]
+  
+    A separate threshold only for offset detection\. This will override the \'threshold\' option\, if set
+  
+- **useAbsVal** (numeric) [default: 0\.0]
+  
+    1\/0\=yes\/no \: apply thresholds to absolute input value instead of original input value
+  
+- **onsetPos** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of relative position \(relative to the input segment length\, in seconds\, or in frames\, see the \'norm\' option or the \'masterTimeNorm\' option of the cFunctionals parent component\) of first onset found \[output name\: onsetPos\]
+  
+- **offsetPos** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of position of last offset found \(relative to the input segment length\, in seconds\, or in frames\, see the \'norm\' option or the \'masterTimeNorm\' option of the cFunctionals parent component\) \[output name\: offsetPos\]
+  
+- **numOnsets** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of the number of onsets found \[output name\: numOnsets\]
+  
+- **numOffsets** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of the number of offsets found \(this is usually redundant and the same as numOnsets\, use this only for special applications where it may make sense to use it\) \[output name\: numOffsets\]
+  
+- **onsetRate** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of on\-set rate\, i\.e\. the number of onsets per second\.
+  
+- **norm** (string) [default: segment]
+  
+    This option specifies how this component should normalise times \(if it generates output values related to durations\)\:
+
+    -   \'segment\' \(or\: \'turn\'\) \: normalise to the range 0\.\.1\, the result is the relative length wrt\. to the segment length \)
+    -   \'second\'  \(absolute time in seconds\) 
+    -   \'frame\' \(absolute time in number of frames of input level\)
+  

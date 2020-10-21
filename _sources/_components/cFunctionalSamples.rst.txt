@@ -1,0 +1,24 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionalSamples:
+
+cFunctionalSamples
+------------------
+
+Description
+~~~~~~~~~~~
+sampled values at equidistant frames
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **samplepos[]** (numeric) [default: 0\.0]
+  
+    Array of positions of samples to copy to the output\. The size of this array determines the number of sample frames that will be passed to the output\. The given positions must be in the range from 0 to 1\, indicating the relative position whithin the input segment\, where 0 is the beginning and 1 the end of the segment\.
+  

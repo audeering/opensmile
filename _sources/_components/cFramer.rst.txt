@@ -1,0 +1,18 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFramer:
+
+cFramer
+-------
+
+Description
+~~~~~~~~~~~
+This component creates frames from single dimensional input stream\. It is possible to specify the frame step and frame size independently\, thus allowing for overlapping frames or non continuous frames\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cWinToVecProcessor` |rarr| :ref:`cFramer`
+

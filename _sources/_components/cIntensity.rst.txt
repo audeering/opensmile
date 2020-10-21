@@ -1,0 +1,32 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cIntensity:
+
+cIntensity
+----------
+
+Description
+~~~~~~~~~~~
+This component computes simplified frame intensity \(narrow band approximation\)\. IMPORTANT\: It expects UNwindowed raw PCM frames as input\!\! A Hamming window is internally applied and the resulting signal is squared bevore applying loudness compression\, etc\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cIntensity`
+
+Fields
+~~~~~~
+- **nameAppend** (string) [default: None]
+  
+    A string suffix to append to the input field names \(default\: empty\)
+  
+- **intensity** (numeric) [default: 1\.0]
+  
+    1 \= enable the output of intensity I \(mean of squared input values multiplied by a Hamming window\)
+  
+- **loudness** (numeric) [default: 0\.0]
+  
+    1 \= enable the output of loudness L \: L \= \(I\/I0\)\^0\.3 \; I0 \= 0\.000001 \(for sample values normalised to the range \-1\.\.1\)
+  

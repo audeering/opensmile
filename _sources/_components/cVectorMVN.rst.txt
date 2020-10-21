@@ -1,0 +1,56 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cVectorMVN:
+
+cVectorMVN
+----------
+
+Description
+~~~~~~~~~~~
+This component extends the base class cVectorTransform and implements mean\/variance normalisation\. You can use this component to perform on\-line cepstral mean normalisation\. See cFullinputMean for off\-line cepstral mean normalisation\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cVectorTransform` |rarr| :ref:`cVectorMVN`
+
+Fields
+~~~~~~
+- **nameAppend** (string) [default: None]
+  
+    A string suffix to append to the input field names \(default\: empty\)
+  
+- **meanEnable** (numeric) [default: 1\.0]
+  
+    1 \= enable normalisation to 0 mean
+  
+- **stdEnable** (numeric) [default: 1\.0]
+  
+    1 \= enable standardisation to stddev 1
+  
+- **normEnable** (numeric) [default: 0\.0]
+  
+    1 \= enable normalisation \(scaling\) to range \-1 to \+1\, if meanEnable\=1 \(x\-mean\)\/\(\(max\-min\)\*0\.5\)\, or to range 0\.\.1 if meanEnable\=0  \(x\-min\)\/\(max\-min\) \; \(this can NOT be used in conjunction with stdEnable\)
+  
+- **minMaxNormEnable** (numeric) [default: 0\.0]
+  
+    1 \= enable normalisation \(scaling\) to range \-1 to \+1 with only min and max values\: x\=2\*\(x\-min\)\/\(max\-min\)\-1
+  
+- **spectralFlooring** (numeric) [default: 0\.0]
+  
+    1 \= enable spectral subtraction by flooring all spectral bins below the mean \(to the value of \'specFloor\'\) and not touching bins above the mean \(except if you set subtractMeans\=1\)\. \(works only if meanEnable\=1 is the only normalisation option set\)
+  
+- **subtractMeans** (numeric) [default: 0\.0]
+  
+    \(only relevant if spectralFlooring\=1\) \: 1 \= if input values are above the mean\, subtract the mean \(else floor to \'specFloor\'\)\.
+  
+- **specFloor** (numeric) [default: 1e\-10]
+  
+    The value to which bins will be set that are floored\.
+  
+- **htkLogEnorm** (numeric) [default: 0\.0]
+  
+    1 \= enable HTK compatible log energy normalisation \(this also sets normEnable\=1\, meanEnable\=0\)
+  

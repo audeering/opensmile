@@ -1,0 +1,71 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cPitchShs:
+
+cPitchShs
+---------
+
+Description
+~~~~~~~~~~~
+This component computes the fundamental frequency via the Sub\-Harmonic\-Sampling \(SHS\) method \(this is related to the Harmonic Product Spectrum method\)\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cPitchBase` |rarr| :ref:`cPitchShs`
+
+Fields
+~~~~~~
+- **voicingCutoff** (numeric) [default: 0\.7]
+  
+    This sets the voicing \(pseudo\) probability threshold for pitch detection\. Frames with voicing probability values above this threshold will be considered as voiced\.
+  
+- **inputFieldSearch** (string) [default: Mag\_logScale]
+  
+    A part of the name to find the pitch detectors input field by \(\'Mag\' searches e\.g\. for \*Mag\*\, and will match fftMag fields\)
+  
+- **octaveCorrection** (numeric) [default: 0\.0]
+  
+    1 \= enable low\-level octave correction tuned for the SHS algorithm \(will affect F0C1\, voicingC1 and F0raw output fields\) \[EXPERIMENTAL\! MAY BREAK CORRECT PITCH DETECTION\!\]
+  
+- **shsWriter** (object of type :ref:`cDataWriterShs`)
+  
+    Configuration of the dataMemory writer sub\-component which is used to dump the SHS spectrum\.
+  
+- **nHarmonics** (numeric) [default: 15\.0]
+  
+    Number of harmonics to consider for subharmonic sampling \(feasible values\: 5\-15\)
+  
+- **compressionFactor** (numeric) [default: 0\.85]
+  
+    The factor for successive compression of sub\-harmonics
+  
+- **greedyPeakAlgo** (numeric) [default: 0\.0]
+  
+    1 \= use new algorithm to return all maximum score candidates regardless of their order\. The old algorithm added new candidates only if they were higher scored as the first one\. Enabling this seems to require different viterbi parameters for smoothing though\, so use with caution\! Default behaviour is \'off\' so that we remain backwards\-compatible\.
+  
+- **shsSpectrumOutput** (numeric) [default: 0\.0]
+  
+    If set to 1\, then the sub\-harmonic summation spectra frames will be written to the level specified by shsWriter\.dmLevel\.
+  
+- **lfCut** (numeric) [default: 0\.0]
+  
+    \> 0 \= remove low frequency information up to given frequency from input spectrum by zeroing all bins below\.
+  
+.. _cDataWriterShs:
+
+cDataWriterShs
+--------------
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataWriter` |rarr| :ref:`cDataWriterShs`
+
+Fields
+~~~~~~
+- **dmLevel** (string) [default: \_\_\_shs\_\_dummy\_\_]
+  
+    The data memory level this writer will write data to\. You can specify any name here\, this writer will register and create a level of this name in the dataMemory during initialisation of openSMILE\. Please be aware of the fact that only one writer can write to a data memory level\, therefore you are not allowed to use the same name again in a \'dmLevel\' option of any other component in the same config\.
+  

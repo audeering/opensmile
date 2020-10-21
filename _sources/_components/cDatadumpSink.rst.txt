@@ -1,0 +1,32 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cDatadumpSink:
+
+cDatadumpSink
+-------------
+
+Description
+~~~~~~~~~~~
+This component writes dataMemory data to a raw binary file \(e\.g\. for matlab import\)\. The binary file consists of 32\-bit float values representing the data values\, concatenated frame by frame along the time axis\. The first two float values in the file are the file header\, indicating the dimension of the matrix \(1\: size of frames\, 2\: number of frames in file\)\. The total file size in bytes is thus \<size of frames\>x\<number of frames\>x4 \+ 2\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cDatadumpSink`
+
+Fields
+~~~~~~
+- **filename** (string) [default: datadump\.dat]
+  
+    The filename of the output file \(if it doesn\'t exist it will be created\)\.
+  
+- **lag** (numeric) [default: 0\.0]
+  
+    output data \<lag\> frames behind
+  
+- **append** (numeric) [default: 0\.0]
+  
+    1 \= append to an existing file\, or create a new file\; 0 \= overwrite an existing file\, or create a new file
+  

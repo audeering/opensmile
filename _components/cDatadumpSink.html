@@ -1,0 +1,394 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cDatadumpSink &mdash; openSMILE Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/audeering.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="cDbA" href="cDbA.html" />
+    <link rel="prev" title="cDataWriter" href="cDataWriter.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          <a href="../index.html">
+          
+            
+            <img src="../_static/openSMILE-logoSlogan-white.svg" class="logo" alt="Logo"/>
+          
+          
+            
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About openSMILE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get-started.html">Get started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Reference section</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#smilextract-command-line-options">SMILExtract command-line options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#opensmile-architecture">openSMILE architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#configuration-files">Configuration files</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../reference.html#components">Components</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="cAcf.html">cAcf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cAmdf.html">cAmdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cArffSink.html">cArffSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cArffSink.html#arffclass">arffClass</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cArffSink.html#arfftarget">arffTarget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cArffSource.html">cArffSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cBowProducer.html">cBowProducer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cCens.html">cCens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cChroma.html">cChroma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cContourSmoother.html">cContourSmoother</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cCsvSink.html">cCsvSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cCsvSource.html">cCsvSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataMemory.html">cDataMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataMemory.html#cdatamemorylevel">cDataMemoryLevel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataPrintSink.html">cDataPrintSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataProcessor.html">cDataProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataReader.html">cDataReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataSelector.html">cDataSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataSink.html">cDataSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataSource.html">cDataSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataWriter.html">cDataWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataWriter.html#cdatamemorylevel">cDataMemoryLevel</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">cDatadumpSink</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#type-hierarchy">Type hierarchy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fields">Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cDbA.html">cDbA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDeltaRegression.html">cDeltaRegression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cEnergy.html">cEnergy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExampleSink.html">cExampleSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExampleSource.html">cExampleSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExternalAudioSource.html">cExternalAudioSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExternalMessageInterface.html">cExternalMessageInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExternalSink.html">cExternalSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExternalSource.html">cExternalSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFFTmagphase.html">cFFTmagphase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFFmpegSource.html">cFFmpegSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFormantLpc.html">cFormantLpc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFormantSmoother.html">cFormantSmoother</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFramer.html">cFramer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFullinputMean.html">cFullinputMean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFullturnMean.html">cFullturnMean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalCrossings.html">cFunctionalCrossings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalDCT.html">cFunctionalDCT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalExtremes.html">cFunctionalExtremes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalLpc.html">cFunctionalLpc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalMeans.html">cFunctionalMeans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalModulation.html">cFunctionalModulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalMoments.html">cFunctionalMoments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalOnset.html">cFunctionalOnset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalPeaks.html">cFunctionalPeaks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalPeaks2.html">cFunctionalPeaks2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalPercentiles.html">cFunctionalPercentiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalRegression.html">cFunctionalRegression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalSamples.html">cFunctionalSamples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalSegments.html">cFunctionalSegments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalTimes.html">cFunctionalTimes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionals.html">cFunctionals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cHarmonics.html">cHarmonics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cHtkSink.html">cHtkSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cHtkSource.html">cHtkSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cIntensity.html">cIntensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cLibsvmLiveSink.html">cLibsvmLiveSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cLibsvmSink.html">cLibsvmSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cLpc.html">cLpc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cLsp.html">cLsp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cMZcr.html">cMZcr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cMaxIndex.html">cMaxIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cMelspec.html">cMelspec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cMfcc.html">cMfcc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cMonoMixdown.html">cMonoMixdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cNullSink.html">cNullSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchACF.html">cPitchACF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchBase.html">cPitchBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchDirection.html">cPitchDirection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchJitter.html">cPitchJitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchShs.html">cPitchShs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchShs.html#cdatawritershs">cDataWriterShs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchSmoother.html">cPitchSmoother</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchSmootherViterbi.html">cPitchSmootherViterbi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPlp.html">cPlp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPortaudioDuplex.html">cPortaudioDuplex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPortaudioSink.html">cPortaudioSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPortaudioSource.html">cPortaudioSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPortaudioWavplayer.html">cPortaudioWavplayer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPreemphasis.html">cPreemphasis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cRnnProcessor.html">cRnnProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cRnnSink.html">cRnnSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cRnnVad2.html">cRnnVad2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSignalGenerator.html">cSignalGenerator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSimpleMessageSender.html">cSimpleMessageSender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSmileResample.html">cSmileResample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSpecResample.html">cSpecResample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSpecScale.html">cSpecScale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSpectral.html">cSpectral</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSvmSink.html">cSvmSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cTonefilt.html">cTonefilt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cTonespec.html">cTonespec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cTransformFFT.html">cTransformFFT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cTurnDetector.html">cTurnDetector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVadV1.html">cVadV1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cValbasedSelector.html">cValbasedSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVecToWinProcessor.html">cVecToWinProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorBinaryOperation.html">cVectorBinaryOperation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorConcat.html">cVectorConcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorMVN.html">cVectorMVN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorOperation.html">cVectorOperation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorPreemphasis.html">cVectorPreemphasis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorProcessor.html">cVectorProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorTransform.html">cVectorTransform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWaveSink.html">cWaveSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWaveSinkCut.html">cWaveSinkCut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWaveSource.html">cWaveSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWinToVecProcessor.html">cWinToVecProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWindowProcessor.html">cWindowProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWindower.html">cWindower</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#smileapi-c-api-and-wrappers">SMILEapi C API and wrappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#feature-names">Feature names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#feature-extraction-algorithms">Feature extraction algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developer’s documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgement.html">Acknowledgement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">openSMILE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../reference.html">Reference section</a> &raquo;</li>
+        
+      <li>cDatadumpSink</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/_components/cDatadumpSink.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cdatadumpsink">
+<span id="id1"></span><h1>cDatadumpSink<a class="headerlink" href="#cdatadumpsink" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>This component writes dataMemory data to a raw binary file (e.g. for matlab import). The binary file consists of 32-bit float values representing the data values, concatenated frame by frame along the time axis. The first two float values in the file are the file header, indicating the dimension of the matrix (1: size of frames, 2: number of frames in file). The total file size in bytes is thus &lt;size of frames&gt;x&lt;number of frames&gt;x4 + 2.</p>
+</div>
+<div class="section" id="type-hierarchy">
+<h2>Type hierarchy<a class="headerlink" href="#type-hierarchy" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="cDataSink.html#cdatasink"><span class="std std-ref">cDataSink</span></a> → <a class="reference internal" href="#cdatadumpsink"><span class="std std-ref">cDatadumpSink</span></a></p>
+</div>
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p><strong>filename</strong> (string) [default: datadump.dat]</p>
+<blockquote>
+<div><p>The filename of the output file (if it doesn’t exist it will be created).</p>
+</div></blockquote>
+</li>
+<li><p><strong>lag</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>output data &lt;lag&gt; frames behind</p>
+</div></blockquote>
+</li>
+<li><p><strong>append</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>1 = append to an existing file, or create a new file; 0 = overwrite an existing file, or create a new file</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cDbA.html" class="btn btn-neutral float-right" title="cDbA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cDataWriter.html" class="btn btn-neutral float-left" title="cDataWriter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2013-2020 audEERING GmbH and 2008-2013 TU München, MMK
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

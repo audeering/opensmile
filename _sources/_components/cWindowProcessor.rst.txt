@@ -1,0 +1,24 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cWindowProcessor:
+
+cWindowProcessor
+----------------
+
+Description
+~~~~~~~~~~~
+filter dataProcessor\, filters each element in a dataMemory level independently
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cWindowProcessor`
+
+Fields
+~~~~~~
+- **noPostEOIprocessing** (numeric) [default: 0\.0]
+  
+    1 \= do not process incomplete windows at the end of the input
+  

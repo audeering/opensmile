@@ -1,0 +1,52 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cDeltaRegression:
+
+cDeltaRegression
+----------------
+
+Description
+~~~~~~~~~~~
+This component computes delta regression coefficients using the regression equation from the HTK book\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cWindowProcessor` |rarr| :ref:`cDeltaRegression`
+
+Fields
+~~~~~~
+- **blocksize** (numeric) [default: 1\.0]
+  
+    The size of data blocks to process in frames \(this sets both blocksizeR and blocksizeW\, and overwrites blocksize\_sec\)
+  
+- **nameAppend** (string) [default: de]
+  
+    A string suffix to append to the input field names \(default\: empty\)
+  
+- **deltawin** (numeric) [default: 2\.0]
+  
+    Specifies the size of half of the delta regression window \(If set to 0\, a simple difference x\[n\]\-x\[n\-1\] will be computed\)
+  
+- **absOutput** (numeric) [default: 0\.0]
+  
+    1\/0 \= on\/off \: Output absolute value of delta regression or difference function \(i\.e\. do full wave rectification on output signal\)\.
+  
+- **halfWaveRect** (numeric) [default: 0\.0]
+  
+    1\/0 \= on\/off \: Do half\-wave rectification on output values \(i\.e\. keep only positive values and set negative values to 0\)\. Please note that \'halfWaveRect\' overrides the \'absOutput\' option\.
+  
+- **onlyInSegments** (numeric) [default: 0\.0]
+  
+    1\/0 \= on\/off \: Don\'t compute deltas at segment boundaries\. Segments are bounded by one or more NaN values\, or zeros\, if zeroSegBound\=1 \(default\)
+  
+- **zeroSegBound** (numeric) [default: 1\.0]
+  
+    1\/0 \= on\/off \: Consider zeros as segment boundaries \(in conjunction with onlyInSegments option\)\.
+  
+- **relativeDelta** (numeric) [default: 0\.0]
+  
+    1\/0 \= on\/off \: Compute relative deltas\, instead of standard deltas\: delta\[n\] \= \(x\[n\] \- x\[n\-1\]\) \/ \|x\[n\-1\]\| if x\[n\-1\] \!\= 0 else delta\[n\] \= 0
+  

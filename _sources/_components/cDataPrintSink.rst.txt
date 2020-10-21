@@ -1,0 +1,32 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cDataPrintSink:
+
+cDataPrintSink
+--------------
+
+Description
+~~~~~~~~~~~
+This component prints data as text to stdout or log\, optionally in a standard parseable result format\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cDataPrintSink`
+
+Fields
+~~~~~~
+- **parseable** (numeric) [default: 0\.0]
+  
+    1 \= Print parseable output to stdout\. 0 \= Print human readable output to stdout or log \(depending on the value of useLog\)\.
+  
+- **useLog** (numeric) [default: 0\.0]
+  
+    1 \= Use the log for human readable output\. 0 \= use stdout\.
+  
+- **printTimeMeta** (numeric) [default: 0\.0]
+  
+    1 \= Include TimeMetaInfo \(tmeta\) in the output\. 0 \= do not include TimeMetaInfo\.
+  

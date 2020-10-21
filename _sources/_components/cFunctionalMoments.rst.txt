@@ -1,0 +1,48 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionalMoments:
+
+cFunctionalMoments
+------------------
+
+Description
+~~~~~~~~~~~
+statistical moments \(standard deviation\, variance\, skewness\, kurtosis\)
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **variance** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of variance
+  
+- **stddev** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of standard deviation
+  
+- **skewness** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of skewness
+  
+- **kurtosis** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of kurtosis
+  
+- **amean** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean
+  
+- **stddevNorm** (numeric) [default: 0\.0]
+  
+    \(2\)\/1\/0\=\(enable compatible\)\/enable\/disable output of standard deviation normalised to the absolute value of the arithmetic mean \(stddev\/abs\(mean\)\, also referred to as \'coefficient of variance\'\)\. NOTE\: in older pre 2\.2\-final versions of openSMILE\, this option computed stddev\/mean without the abs\(\) operation\. To enable a behaviour compatible to this\, set this option to the value 2\.
+  
+- **doRatioLimit** (numeric) [default: 0\.0]
+  
+    \(1\/0\) \= yes\/no\. Apply soft limiting of stddevNorm ratio feature in order to avoid high uncontrolled output values if the denominator is close to 0\. For strict compatibility with pre 2\.2 openSMILE releases \(also release candidates 2\.2rc1\)\, set it to 0 \(current default\)
+  

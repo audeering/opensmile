@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Developer’s documentation &mdash; openSMILE Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/audeering.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Acknowledgement" href="acknowledgement.html" />
+    <link rel="prev" title="cWindower" href="_components/cWindower.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          <a href="index.html">
+          
+            
+            <img src="_static/openSMILE-logoSlogan-white.svg" class="logo" alt="Logo"/>
+          
+          
+            
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About openSMILE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-started.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference section</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer’s documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#writing-components">Writing components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started">Getting started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-component-types">Basic component types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-plugins">Writing plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">openSMILE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Developer’s documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/developer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="developers-documentation">
+<span id="developer-s-documentation"></span><h1>Developer’s documentation<a class="headerlink" href="#developers-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="writing-components">
+<span id="id1"></span><h2>Writing components<a class="headerlink" href="#writing-components" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="getting-started">
+<h3>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h3>
+<p>In the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory, some examples for various component types are
+provided which you may use as a starting point. These files contain some
+helpful documentation as comments in the source.</p>
+<p>In order to create a new component cMySmileComponent, you typically need to
+make at least the following changes:</p>
+<ul class="simple">
+<li><p>provide a main component implementation file in an appropriate subfolder of
+<code class="docutils literal notranslate"><span class="pre">src</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">src/dsp/mySmileComponent.cpp</span></code></p></li>
+<li><p>put the corresponding header file in an appropriate sub-folder of
+<code class="docutils literal notranslate"><span class="pre">src/include</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">src/include/dsp/mySmileComponent.hpp</span></code></p></li>
+<li><p>in <code class="docutils literal notranslate"><span class="pre">src/include/core/componentList.hpp</span></code>:</p>
+<ul>
+<li><p>include your header file at the top, e.g.
+<code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;dsp/mySmileComponent.hpp&gt;</span></code></p></li>
+<li><p>include the <code class="docutils literal notranslate"><span class="pre">registerComponent</span></code> method of your class in the
+<code class="docutils literal notranslate"><span class="pre">componentlist</span></code> variable, e.g. <code class="docutils literal notranslate"><span class="pre">cMySmileComponent::registerComponent,</span></code></p></li>
+</ul>
+</li>
+<li><p>add the path of your component cpp file to the <code class="docutils literal notranslate"><span class="pre">opensmile_SOURCES</span></code>
+variable in CMakeLists.txt, e.g. <code class="docutils literal notranslate"><span class="pre">src/dsp/mySmileComponent.cpp</span></code></p></li>
+<li><p>if your component has special external build dependencies, you may need to
+make corresponding additions to CMakeLists.txt</p></li>
+</ul>
+<p>You may use the Perl script <code class="docutils literal notranslate"><span class="pre">clonecomp.pl</span></code> to copy the definition of an
+existing component:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">perl</span> <span class="n">clonecomp</span><span class="o">.</span><span class="n">pl</span> <span class="o">&lt;</span><span class="n">inputCompBase</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">yourCompBase</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">inputCompName</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">yourCompName</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>This will create corresponding cpp and hpp files.</p>
+<p>For a complete list of openSMILE components, run <code class="docutils literal notranslate"><span class="pre">SMILExtract</span> <span class="pre">-L</span></code>.
+Each component is a descendant of cSmileComponent. This base class encapsulates
+all the functionality required for accessing the configuration data, managing
+the configuration and finalisation process of all components, and running
+components (‘ticking’).</p>
+</div>
+<div class="section" id="basic-component-types">
+<h3>Basic component types<a class="headerlink" href="#basic-component-types" title="Permalink to this headline">¶</a></h3>
+<p>Generally speaking, there are three basic types of components used in openSMILE:</p>
+<ol class="arabic">
+<li><p><strong>Data Sources</strong> (cDataSource descendants, see <code class="docutils literal notranslate"><span class="pre">exampleSource.cpp</span></code>)</p>
+<p>A data source contains a writer sub-component (cDataWriter), which is
+responsible for writing data to exactly one level of the data memory
+(see cDataProcessor description below).</p>
+<p>Implement a descendant of this component if you want to add a new input
+format, e.g. MP3 or feature file import (HTK, ARFF, etc.).</p>
+</li>
+<li><p><strong>Data Processors</strong> (cDataProcessor descendants, see <code class="docutils literal notranslate"><span class="pre">exampleProcessor.cpp</span></code>)</p>
+<p>A data processor contains both reader and writer components (cDataReader
+and cDataWriter). The general purpose of a data processor is to read data
+from the data memory (from one or more levels) and write data to one single
+level (NOTE: each writer has exclusive access to exactly one level, i.e.
+each level is written to by exactly one writer and thus by exactly one data
+processor or data source component).</p>
+<p>This component is the one you most likely want to inherit if you want to
+implement new features. Please also see below, for special kinds of data
+processors for common processing tasks!</p>
+</li>
+<li><p><strong>Data Sinks</strong> (cDataSink descendants, see <code class="docutils literal notranslate"><span class="pre">exampleSink.cpp</span></code>)</p>
+<p>A data sinks contains a reader sub-component (cDataReader), which is
+responsible for the ‘read’ interface to a specific data memory level (or
+multiple levels).</p>
+<p>Implement a descendant of this component if you want to add support for
+more data output formats (e.g. sending data over a network, real-time
+visualisation of data via a GUI, etc.).</p>
+</li>
+</ol>
+<p>Since Data Processors are very general components, three special descendants
+have been implemented:</p>
+<ul>
+<li><p><strong>cVectorProcessor</strong></p>
+<p>This class allows an easy frame by frame processing of data (mostly
+processing of feature frames in the spectral domain). Input framesize can be
+different from the output framesize, thus it is very flexible. Algorithms
+such as signal window function, FFT, Mfcc, Chroma, etc. are implemented
+using cVectorProcessor as base. See <code class="docutils literal notranslate"><span class="pre">exampleVectorProcessor.cpp</span></code> as an
+example to start with.</p>
+</li>
+<li><p><strong>cWindowProcessor</strong></p>
+<p>This class allows processing of signal windows (e.g. filters, functionals,
+etc.). The main functionality provided is automatic overlapping of signal
+windows, i.e. for having access to past and future samples in a certain
+window, yet offering the possibility of block processing for efficient
+algorithms. See <code class="docutils literal notranslate"><span class="pre">preemphasis.cpp</span></code> for an example.</p>
+</li>
+<li><p><strong>cWinToVecProcessor</strong></p>
+<p>This class takes data from a signal window and produces a single value or
+vector of values (frame) for this window. You can specify an overlap (via
+frameStep and frameSize). This class is used for windowing the input
+wave-form signal, but can also be inherited for implementing data summaries
+(i.e. statistical functionals). See framer.cpp/hpp for an example
+implementation of a descendant class.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="writing-plugins">
+<span id="id2"></span><h2>Writing plugins<a class="headerlink" href="#writing-plugins" title="Permalink to this headline">¶</a></h2>
+<p>openSMILE allows to be extended using plugins that add additional
+components at runtime. Adjust the CMake build script in the
+<code class="docutils literal notranslate"><span class="pre">plugindev</span></code> directory for building your plugin.</p>
+<p>The main source file of a plugin is the <code class="docutils literal notranslate"><span class="pre">plugindev/pluginMain.cpp</span></code>
+file. This file includes the individual component files, similar to the
+component list in the <code class="docutils literal notranslate"><span class="pre">componentManager.cpp</span></code> file which manages the
+openSMILE built-in components.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="acknowledgement.html" class="btn btn-neutral float-right" title="Acknowledgement" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="_components/cWindower.html" class="btn btn-neutral float-left" title="cWindower" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2013-2020 audEERING GmbH and 2008-2013 TU München, MMK
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

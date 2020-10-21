@@ -1,0 +1,64 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cSvmSink:
+
+cSvmSink
+--------
+
+Description
+~~~~~~~~~~~
+This is an example of a cDataSink descendant\. It reads data from the data memory and prints it to the console\. This component is intended as a template for developers\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cSvmSink`
+
+Fields
+~~~~~~
+- **model** (string) [default: None]
+  
+    The name of the model file\.
+  
+- **printParseableResult** (numeric) [default: 0\.0]
+  
+    1 \= print easily parseable classification\/regression result to stdout
+  
+- **printResult** (numeric) [default: 0\.0]
+  
+    1 \= print classification\/regression result to log
+  
+- **saveResult** (string) [default: None]
+  
+    filename of text file the result\(s\) will be saved to
+  
+- **instanceName** (string) [default: None]
+  
+    If set\, print instance name field to CSV \(first column\) when saveResult\=1\, with the given value\.
+  
+- **append** (numeric) [default: 0\.0]
+  
+    1 \= append to CSV file\, in case of saveResult\=1\, instead of overwriting the file \(default\)\.
+  
+- **resultRecp** (string) [default: None]
+  
+    List of component\(s\) to send \'classificationResult\' messages to \(use \, to separate multiple recepients\)\, leave blank \(NULL\) to not send any messages
+  
+- **resultMessageName** (string) [default: svm\_result]
+  
+    Freely defineable name that is sent with \'classificationResult\' message
+  
+- **showStatsDebug** (numeric) [default: 0\.0]
+  
+    1 \= show internal values for debugging and sanity checks\.
+  
+- **ignoreLogitModel** (numeric) [default: 0\.0]
+  
+    1 \= don\'t use a logistic model for probability estimates\, if one is contained in the model\.
+  
+- **winningClassMethodName** (string) [default: vote]
+  
+    prob \= use probabilties instead of votes to determine the winning class\, if a logistic model is used\. vote \= use the standard majority voting based on the distance
+  

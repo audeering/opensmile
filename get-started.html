@@ -1,0 +1,1804 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Get started &mdash; openSMILE Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/audeering.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Reference section" href="reference.html" />
+    <link rel="prev" title="About openSMILE" href="about.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          <a href="index.html">
+          
+            
+            <img src="_static/openSMILE-logoSlogan-white.svg" class="logo" alt="Logo"/>
+          
+          
+            
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About openSMILE</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Get started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#obtaining-and-installing-opensmile">Obtaining and Installing openSMILE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compiling-from-source">Compiling from source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-on-linux-mac">Compiling on Linux/Mac</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-on-linux-mac-with-portaudio-and-opencv-support">Compiling on Linux/Mac with PortAudio and OpenCV support</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installing-portaudio">Installing PortAudio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installing-opencv">Installing OpenCV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compiling-opensmile-on-linux-mac-with-opencv-video-support">Compiling openSMILE on Linux/Mac with OpenCV video support</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-on-windows">Compiling on Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-on-windows-with-portaudio-and-opencv-support">Compiling on Windows with PortAudio and OpenCV support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-customised-builds">Creating customised builds</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#release-debug-builds">Release/debug builds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#static-dynamic-linking">Static/dynamic linking</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-for-android-and-creating-the-sample-android-app">Compiling for Android and creating the sample Android app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-for-ios-and-creating-an-ios-app">Compiling for iOS and creating an iOS App</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#build-opensmile-static-library">Build openSMILE static library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integrate-opensmile-library-into-an-xcode-project">Integrate openSMILE library into an Xcode project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-smileapi-and-opensmile-classes-in-objective-c">Using SMILEapi and openSMILE classes in Objective-C</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-smileapi-and-opensmile-classes-in-swift">Using SMILEapi and openSMILE classes in Swift</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#extracting-your-first-features">Extracting your first features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#default-feature-sets">Default feature sets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-options-for-all-standard-configuration-files">Common options for all standard configuration files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chroma-features">Chroma features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mfcc-features">MFCC features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plp-features">PLP features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prosodic-features">Prosodic features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extracting-features-for-emotion-recognition">Extracting features for emotion recognition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-interspeech-2009-emotion-challenge-feature-set">The INTERSPEECH 2009 Emotion Challenge feature set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-interspeech-2010-paralinguistic-challenge-feature-set">The INTERSPEECH 2010 Paralinguistic Challenge feature set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-interspeech-2011-speaker-state-challenge-feature-set">The INTERSPEECH 2011 Speaker State Challenge feature set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-interspeech-2012-speaker-trait-challenge-feature-set">The INTERSPEECH 2012 Speaker Trait Challenge feature set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-interspeech-2013-compare-challenge-feature-set">The INTERSPEECH 2013 ComParE Challenge feature set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-mediaeval-2012-tum-feature-set-for-violent-video-scenes-detection">The MediaEval 2012 TUM feature set for violent video scenes detection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-opensmile-openear-emobase-set">The openSMILE/openEAR ‘emobase’ set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-large-opensmile-emotion-feature-set">The large openSMILE emotion feature set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-opensmile-emobase2010-reference-set">The openSMILE ‘emobase2010’ reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#audio-visual-features-based-on-interspeech-2010-audio-features">Audio-visual features based on INTERSPEECH 2010 audio features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-portaudio-for-live-recording-playback">Using PortAudio for live recording/playback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extracting-features-with-opencv">Extracting features with OpenCV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualising-data-with-gnuplot">Visualising data with Gnuplot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference section</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer’s documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">openSMILE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Get started</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/get-started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="get-started">
+<span id="id1"></span><h1>Get started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h1>
+<p>Now we describe how to get started with openSMILE. First, we will explain
+how to obtain and install openSMILE. If you already have a working installation
+of openSMILE you can skip directly to
+Section <a class="reference internal" href="#extracting-your-first-features"><span class="std std-ref">Extracting your first features</span></a>, where we explain how to use
+openSMILE for your first feature extraction task.</p>
+<p>To make your life a bit simpler and to provide common feature sets to
+the research community for various tasks, a number of sample configuration files
+are provided. These are explained in Section <a class="reference internal" href="#default-feature-sets"><span class="std std-ref">Default feature sets</span></a>.
+Included are all the baseline feature sets for the INTERSPEECH 2009–2013 affect
+and paralinguistics challenges.</p>
+<p>In Section <a class="reference internal" href="#using-portaudio-for-live-recording-playback"><span class="std std-ref">Using PortAudio for live recording/playback</span></a>, we will teach you
+how to use the PortAudio interface components to set up a simple audio recorder
+and player, as well as a full live feature extraction system.</p>
+<p>Section <a class="reference internal" href="#extracting-features-with-opencv"><span class="std std-ref">Extracting features with OpenCV</span></a> will help you getting started
+with video feature extraction and synchronised audio-visual feature extraction.</p>
+<p>Finally, Section <a class="reference internal" href="#visualising-data-with-gnuplot"><span class="std std-ref">Visualising data with Gnuplot</span></a> outlines how you can plot
+extracted features using the open-source tool gnuplot.</p>
+<div class="section" id="obtaining-and-installing-opensmile">
+<span id="id2"></span><h2>Obtaining and Installing openSMILE<a class="headerlink" href="#obtaining-and-installing-opensmile" title="Permalink to this headline">¶</a></h2>
+<p>The latest (and also previous) releases of openSMILE can be found at
+<a class="reference external" href="https://github.com/audeering/opensmile/releases">https://github.com/audeering/opensmile/releases</a>. Releases include Intel x64
+binaries for Windows, Linux and MacOS. You can also build and modify openSMILE
+yourself if desired. Starting with version 3.0, the source code is hosted on
+GitHub. Sources of older releases are included in the release archives.
+Building from source code is the recommended way for Linux/Unix and MacOS
+systems, and is mandatory if you require external dependencies such as PortAudio
+or FFmpeg, or your platform is x86, ARM or Android/iOS.</p>
+<p>Release packages contain the main executable <code class="docutils literal notranslate"><span class="pre">SMILExtract</span></code> for Linux and
+a corresponding <code class="docutils literal notranslate"><span class="pre">SMILExtract.exe</span></code> for Windows in the <code class="docutils literal notranslate"><span class="pre">bin/</span></code> folder.
+Sample configuration files are contained in the <code class="docutils literal notranslate"><span class="pre">config/</span></code> folder and scripts
+for visualisation and other tasks such as model building are included in the
+<code class="docutils literal notranslate"><span class="pre">scripts/</span></code> folder.</p>
+<p>To test if your release works, change into the <code class="docutils literal notranslate"><span class="pre">bin/</span></code> folder and type</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<p>in the shell/command prompt. If you see the usage information, everything is
+working.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The binaries contained in releases are statically linked, i.e. the shared
+API <em>libopensmile</em> is linked into the binary.
+The binaries only depend on libc6 and pthreads. The downside of this method is
+that you cannot use openSMILE plugins with these binaries. In order to use plugins,
+you must compile the source code yourself to obtain a binary linked dynamically
+to libopensmile (see Section <a class="reference internal" href="#compiling-on-linux-mac"><span class="std std-ref">Compiling on Linux/Mac</span></a>). As no binary
+release with PortAudio support is provided for Linux, you must compile from the
+source code in order to use PortAudio recording/playback (see
+Section <a class="reference internal" href="#compiling-on-linux-mac-with-portaudio-and-opencv-support"><span class="std std-ref">Compiling on Linux/Mac with PortAudio and OpenCV support</span></a>).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>No binaries are provided for openSMILE with OpenCV support. In order to use
+video features, you must compile from source on a machine with OpenCV installed.
+Compilation on both Windows and Linux is supported.  See
+Sections <a class="reference internal" href="#compiling-opensmile-on-linux-mac-with-opencv-video-support"><span class="std std-ref">Compiling openSMILE on Linux/Mac with OpenCV video support</span></a> and
+<a class="reference internal" href="#compiling-on-windows-with-portaudio-and-opencv-support"><span class="std std-ref">Compiling on Windows with PortAudio and OpenCV support</span></a>.</p>
+</div>
+</div>
+<div class="section" id="compiling-from-source">
+<span id="id3"></span><h2>Compiling from source<a class="headerlink" href="#compiling-from-source" title="Permalink to this headline">¶</a></h2>
+<p>The core of openSMILE compiles without any third-party dependencies,
+except for <em>pthreads</em> on Unix systems. The core version is a
+command-line feature extractor only. You cannot perform live audio
+recording/playback with this version. If you require additional
+functionality, you can build openSMILE with the following external
+dependencies:</p>
+<ul class="simple">
+<li><p>PortAudio: live audio recording/playback on Linux, Windows and MacOS</p></li>
+<li><p>FFmpeg: reading from audio files other than uncompressed WAVE</p></li>
+<li><p>OpenCV: feature extraction from images</p></li>
+<li><p>OpenSL ES: live audio recording on Android</p></li>
+<li><p>CoreAudio: live audio recording/playback on iOS</p></li>
+</ul>
+<div class="section" id="compiling-on-linux-mac">
+<span id="id4"></span><h3>Compiling on Linux/Mac<a class="headerlink" href="#compiling-on-linux-mac" title="Permalink to this headline">¶</a></h3>
+<p>This section describes how to compile and install openSMILE on Unix-like
+systems step-by-step. You need to have the following packages installed:
+<code class="docutils literal notranslate"><span class="pre">git</span></code>, <code class="docutils literal notranslate"><span class="pre">make</span></code>, GNU C and C++ compiler <code class="docutils literal notranslate"><span class="pre">gcc</span></code> and <code class="docutils literal notranslate"><span class="pre">g++</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">cmake</span></code>.
+Make sure that you use recent versions of all packages. gcc versions
+below 4.8 are known to be incompatible with openSMILE. Instead of gcc, you
+may also use a version of Clang that supports C++11. CMake 3.5.1 or
+higher is required. To run the scripts for visualisation, you may want to
+install <code class="docutils literal notranslate"><span class="pre">perl5</span></code> and <code class="docutils literal notranslate"><span class="pre">gnuplot</span></code>. Please refer
+to your distribution’s documentation on how to install packages. You
+will also need root privileges to install new packages. We recommend
+that you use the latest Ubuntu or Debian Linux where packages can be
+easily installed using the command
+<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">package-name</span></code>.</p>
+<p>Start by cloning the source code from GitHub:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">audeering</span><span class="o">/</span><span class="n">opensmile</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Alternatively, you may download and unpack the source as ZIP file from
+<a class="reference external" href="https://github.com/audeering/opensmile/archive/master.zip">https://github.com/audeering/opensmile/archive/master.zip</a>.</p>
+<p>Then change to the newly created directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">opensmile</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">build_flags.sh</span></code>, you can customize which components get included
+in the build (for example, in order to build with PortAudio support).
+You can also switch between debug and release builds, or specify Clang
+as an alternative compiler.</p>
+<p>You can start the build process by executing</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bash</span> <span class="n">build</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>or, if the above doesn’t work</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="n">build</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>This will configure and build the <code class="docutils literal notranslate"><span class="pre">libopensmile</span></code> library and the
+<code class="docutils literal notranslate"><span class="pre">SMILExtract</span></code> binary. After successful compilation, you may want to
+add the <code class="docutils literal notranslate"><span class="pre">build/progsrc/smilextract</span></code> directory to your path or copy the
+binary <code class="docutils literal notranslate"><span class="pre">build/progsrc/smilextract/SMILExtract</span></code> to a directory in your
+search path. Finally, start by running</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<p>to show help on the usage of the SMILExtract tool.</p>
+</div>
+<div class="section" id="compiling-on-linux-mac-with-portaudio-and-opencv-support">
+<span id="id5"></span><h3>Compiling on Linux/Mac with PortAudio and OpenCV support<a class="headerlink" href="#compiling-on-linux-mac-with-portaudio-and-opencv-support" title="Permalink to this headline">¶</a></h3>
+<p>This section describes how to install PortAudio and OpenCV, and
+compile openSMILE with these dependencies.</p>
+<div class="section" id="installing-portaudio">
+<span id="id6"></span><h4>Installing PortAudio<a class="headerlink" href="#installing-portaudio" title="Permalink to this headline">¶</a></h4>
+<p>PortAudio version 19 is required. If you’re running Ubuntu/Debian, we
+recommend installing it through the official repositories:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">portaudio19</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+<p>If you are using a different distribution, you might have to compile
+PortAudio yourself. In this case, please follow the official
+instructions on <a class="reference external" href="http://www.portaudio.com">http://www.portaudio.com</a>.</p>
+</div>
+<div class="section" id="installing-opencv">
+<span id="id7"></span><h4>Installing OpenCV<a class="headerlink" href="#installing-opencv" title="Permalink to this headline">¶</a></h4>
+<p>You need OpenCV version 2.2 or higher as prerequisite. Recent versions
+of Ubuntu provide OpenCV through the standard repositories. To install,
+just execute</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libopencv</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>in a shell. This will also take care of the dependencies.</p>
+<p>If you are, however, using a different distribution, you might have to
+compile OpenCV yourself. In this case, make sure to compile OpenCV with
+FFmpeg support, as otherwise openSMILE will not be able to open and
+decode video files.</p>
+<p>Don’t forget to execute <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">make</span> <span class="pre">install</span></code> at the end of the
+installation to install OpenCV. After the installation you might need to
+update your library paths in <code class="docutils literal notranslate"><span class="pre">/etc/ld.so.conf</span></code> and add the line
+<code class="docutils literal notranslate"><span class="pre">/usr/local/lib</span></code>, if it is not already there.</p>
+</div>
+<div class="section" id="compiling-opensmile-on-linux-mac-with-opencv-video-support">
+<span id="id8"></span><h4>Compiling openSMILE on Linux/Mac with OpenCV video support<a class="headerlink" href="#compiling-opensmile-on-linux-mac-with-opencv-video-support" title="Permalink to this headline">¶</a></h4>
+<p>After you have successfully installed OpenCV, openSMILE can be compiled
+with support for video input through OpenCV. In <code class="docutils literal notranslate"><span class="pre">build_flags.sh</span></code>, set
+<code class="docutils literal notranslate"><span class="pre">WITH_OPENCV</span></code> to <code class="docutils literal notranslate"><span class="pre">ON</span></code> and run <code class="docutils literal notranslate"><span class="pre">build.sh</span></code>.</p>
+<p>After the build process is complete, you can verify with “./SMILExtract
+-L” that cOpenCVSource appears in the component list. If you get an
+error message that some of the libopencv*.so libraries are not found
+when you run SMILExtract, type this command in the shell before you run
+SMILExtract:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">LD_LIBRARY_PATH</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="compiling-on-windows">
+<span id="id9"></span><h3>Compiling on Windows<a class="headerlink" href="#compiling-on-windows" title="Permalink to this headline">¶</a></h3>
+<p>For compiling openSMILE on Microsoft Windows (7 and higher are
+supported), we recommend using Visual Studio. Make sure you have Visual
+Studio 2019 installed. You will also need CMake version 3.15 or later
+and make sure it is available in your <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable.</p>
+<p>From the start menu, open Visual Studio 2019 <span class="math notranslate nohighlight">\(\rightarrow\)</span>
+x64 Native Tools Command Prompt for VS 2019 and change into the openSMILE
+source folder:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">opensmile</span>
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">build_flags.ps1</span></code>, you can customize which components get included
+in the build (for example, in order to build with PortAudio support).
+You can also switch between debug and release builds.</p>
+<p>You can start the build process by executing</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">powershell</span> <span class="o">-</span><span class="n">ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-</span><span class="n">File</span> <span class="n">build</span><span class="o">.</span><span class="n">ps1</span>
+</pre></div>
+</div>
+<p>This will configure and build the <code class="docutils literal notranslate"><span class="pre">SMILExtract.exe</span></code> binary.
+After successful compilation, you may want to
+add the <code class="docutils literal notranslate"><span class="pre">build/progsrc/smilextract</span></code> directory to your path or copy the
+binary <code class="docutils literal notranslate"><span class="pre">build/progsrc/smilextract/SMILExtract.exe</span></code> to a directory in your
+search path. Finally, start by running</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<p>to show help on the usage of the SMILExtract tool.</p>
+</div>
+<div class="section" id="compiling-on-windows-with-portaudio-and-opencv-support">
+<span id="id10"></span><h3>Compiling on Windows with PortAudio and OpenCV support<a class="headerlink" href="#compiling-on-windows-with-portaudio-and-opencv-support" title="Permalink to this headline">¶</a></h3>
+<p>If you want to compile openSMILE with any external dependencies such as
+PortAudio or OpenCV, we recommend to use vcpkg <a class="footnote-reference brackets" href="#id38" id="id11">3</a> to install the
+needed libraries. First, obtain the latest version of vcpkg by checking
+out the GitHub repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Microsoft</span><span class="o">/</span><span class="n">vcpkg</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">vcpkg</span>
+</pre></div>
+</div>
+<p>or, download the repository as a ZIP file and unpack it. Then, run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\\<span class="n">bootstrap</span><span class="o">-</span><span class="n">vcpkg</span><span class="o">.</span><span class="n">bat</span>
+</pre></div>
+</div>
+<p>to build vcpkg. Run the following command with admin rights to integrate
+vcpkg into Visual Studio:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\\<span class="n">vcpkg</span> <span class="n">integrate</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>Install any required dependencies via vcpkg by running</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\\<span class="n">vcpkg</span> <span class="n">install</span> <span class="o">*</span><span class="n">package</span><span class="o">*</span><span class="p">:</span><span class="o">*</span><span class="n">triplet</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>where <em>package</em> is “portaudio” or “opencv[ffmpeg]”, and <em>triplet</em> is one
+of “x86-windows”, “x86-windows-static”, “x64-windows” and
+“x64-windows-static”. Which triplet to choose depends on the target
+platform you want to compile for and whether you want to link
+statically or dynamically to the dependencies. Finally, in
+<code class="docutils literal notranslate"><span class="pre">build_flags.ps1</span></code>, uncomment the line defining the
+<code class="docutils literal notranslate"><span class="pre">CMAKE_TOOLCHAIN_FILE</span></code> variable and adjust its value to point to the
+<code class="docutils literal notranslate"><span class="pre">vcpkg.cmake</span></code> file in your vcpkg installation directory.</p>
+<p>Now, follow the usual steps for building on Windows.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As of 23 July 2018, the current version of the vcpkg package for
+OpenCV has a bug <a class="footnote-reference brackets" href="#id39" id="id12">4</a> that leads to FFmpeg components not being
+included in debug builds. Attempting to analyse video using
+cOpenCVSource will fail in this case. As a workaround, compile
+openSMILE as a release build.</p>
+</div>
+</div>
+<div class="section" id="creating-customised-builds">
+<span id="id13"></span><h3>Creating customised builds<a class="headerlink" href="#creating-customised-builds" title="Permalink to this headline">¶</a></h3>
+<p>Through its modular architecture, it is possible to create customised
+builds of openSMILE by including or excluding many components and
+dependencies in order to obtain as small and efficient binaries as
+possible. When compiling for Linux or Mac, you can view and modify the
+available build options in the <code class="docutils literal notranslate"><span class="pre">build_flags.sh</span></code> file. On Windows,
+use the <code class="docutils literal notranslate"><span class="pre">build_flags.ps1</span></code> file instead.</p>
+<div class="section" id="release-debug-builds">
+<span id="id14"></span><h4>Release/debug builds<a class="headerlink" href="#release-debug-builds" title="Permalink to this headline">¶</a></h4>
+<p>If you intend to run openSMILE in a debugger or want to see debug (DBG)
+messages in the openSMILE log, you should build openSMILE using the
+debug configuration. To do this, set the <code class="docutils literal notranslate"><span class="pre">CMAKE_BUILD_TYPE</span></code> option to
+<code class="docutils literal notranslate"><span class="pre">Debug</span></code>. The generated binary will then include extensive debugging
+information and the command-line option <code class="docutils literal notranslate"><span class="pre">-d</span></code> of SMILExtract is
+enabled.</p>
+</div>
+<div class="section" id="static-dynamic-linking">
+<span id="id15"></span><h4>Static/dynamic linking<a class="headerlink" href="#static-dynamic-linking" title="Permalink to this headline">¶</a></h4>
+<p>By default, SMILExtract will be linked statically to libopensmile. This
+has the advantage that you only need to ship and install a single
+portable file (you may still need to install any external dependencies,
+though). Note, however, that openSMILE plugins will not work with
+statically linked binaries. If you require plugin support, you need to
+create dynamically linked binaries by setting the <code class="docutils literal notranslate"><span class="pre">STATIC_LINK</span></code> option
+to <code class="docutils literal notranslate"><span class="pre">OFF</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On Linux/Mac, if you move the <code class="docutils literal notranslate"><span class="pre">SMILExtract</span></code> and
+<code class="docutils literal notranslate"><span class="pre">libopensmile.so</span></code> binaries from their build directory to another
+location, you may have to update your library path to include the
+path to the directory containing <code class="docutils literal notranslate"><span class="pre">libopensmile.so</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">LD_LIBRARY_PATH</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">destination</span><span class="o">/</span><span class="nb">dir</span>
+</pre></div>
+</div>
+<p>You need to do this every time you reboot, log-on or start a new
+shell. To avoid this, check your distribution’s documentation on how
+to add environment variables to your shell’s configuration files.
+For the bash shell, usually a file called <code class="docutils literal notranslate"><span class="pre">.profile</span></code> or
+<code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> exists in your home directory to which you can add the
+two export commands listed above.</p>
+<p>On Windows, it is usually sufficient to keep the
+<code class="docutils literal notranslate"><span class="pre">opensmile.dll</span></code> library in the same folder as <code class="docutils literal notranslate"><span class="pre">SMILExtract.exe</span></code>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="compiling-for-android-and-creating-the-sample-android-app">
+<span id="id16"></span><h3>Compiling for Android and creating the sample Android app<a class="headerlink" href="#compiling-for-android-and-creating-the-sample-android-app" title="Permalink to this headline">¶</a></h3>
+<p>This chapter explains how to compile openSMILE for Android.</p>
+<p>Change into  the directory <code class="docutils literal notranslate"><span class="pre">progsrc/android-template</span></code> and run the
+following command to generate the JNI interface using SWIG:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">gradlew</span> <span class="n">opensmile</span><span class="p">:</span><span class="n">swig</span>
+</pre></div>
+</div>
+<p>Then, build the aar library using Gradle</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">gradlew</span> <span class="n">opensmile</span><span class="p">:</span><span class="n">assemble</span> <span class="o">-</span><span class="n">P</span><span class="p">{</span><span class="n">YOUR</span> <span class="n">PARAMETERS</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>and integrate the aar into your app by moving it to
+<code class="docutils literal notranslate"><span class="pre">src/main/libs</span></code> of your app and adding</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">repositories</span> <span class="o">{</span>
+    <span class="n">flatDir</span> <span class="o">{</span>
+        <span class="n">dirs</span> <span class="s2">&quot;src/main/libs&quot;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">dependencies</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="n">Implementation</span> <span class="nl">group:</span> <span class="s1">&#39;com.audeering.opensmile&#39;</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">&#39;opensmile-debug&#39;</span><span class="o">,</span> <span class="nl">ext:</span> <span class="s1">&#39;aar&#39;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>into the build.gradle.</p>
+<p>Alternatively, you may build the sample app directly using Gradle:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">gradlew</span> <span class="n">app</span><span class="p">:</span><span class="n">assembleUseSource</span> <span class="o">-</span><span class="n">P</span><span class="p">{</span><span class="n">YOUR</span> <span class="n">PARAMETERS</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Regarding the parameters, please refer to <code class="docutils literal notranslate"><span class="pre">build_flags.sh</span></code> and
+<code class="docutils literal notranslate"><span class="pre">gradle.properties</span></code>.</p>
+</div>
+<div class="section" id="compiling-for-ios-and-creating-an-ios-app">
+<span id="compiling-for-ios-and-creating-the-sample-ios-app"></span><h3>Compiling for iOS and creating an iOS App<a class="headerlink" href="#compiling-for-ios-and-creating-an-ios-app" title="Permalink to this headline">¶</a></h3>
+<p>This section outlines the steps required to build openSMILE for iOS
+and call SMILEapi functions from within Objective-C or Swift.
+The minimum supported iOS version is 11.0.</p>
+<div class="section" id="build-opensmile-static-library">
+<h4>Build openSMILE static library<a class="headerlink" href="#build-opensmile-static-library" title="Permalink to this headline">¶</a></h4>
+<p>Run the following command in the openSMILE directory to build a
+openSMILE as a universal library for iOS:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bash</span> <span class="n">buildIosUniversalLib</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>If successful, the openSMILE libraries should have been created
+under <code class="docutils literal notranslate"><span class="pre">./build_ios/ALL</span></code>.</p>
+</div>
+<div class="section" id="integrate-opensmile-library-into-an-xcode-project">
+<h4>Integrate openSMILE library into an Xcode project<a class="headerlink" href="#integrate-opensmile-library-into-an-xcode-project" title="Permalink to this headline">¶</a></h4>
+<p>Apply the following settings in your Xcode project.</p>
+<p>Under Build Settings -&gt; Header Search Paths, add the following
+header paths:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">../../</span><span class="n">src</span><span class="o">/</span><span class="n">include</span>
+<span class="o">../../</span><span class="n">progsrc</span><span class="o">/</span><span class="n">include</span><span class="o">/</span>
+<span class="o">../../</span><span class="n">build_ios</span><span class="o">/</span><span class="n">ALL</span><span class="o">/</span><span class="n">include</span>
+</pre></div>
+</div>
+<p>Under Build Settings -&gt; Library Search Paths, add the following
+library paths:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">../../</span><span class="n">build_ios</span><span class="o">/</span><span class="n">ALL</span>
+</pre></div>
+</div>
+<p>Under Build Settings -&gt; Preprocessor Macros, set the following
+defines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">__IOS__</span>
+</pre></div>
+</div>
+<p>Under Build Phases -&gt; Link Binary With Libraries, add the following
+libraries:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">build_ios</span><span class="o">/</span><span class="n">ALL</span><span class="o">/</span><span class="n">libopensmile</span><span class="o">.</span><span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-smileapi-and-opensmile-classes-in-objective-c">
+<h4>Using SMILEapi and openSMILE classes in Objective-C<a class="headerlink" href="#using-smileapi-and-opensmile-classes-in-objective-c" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic">
+<li><p>Create a new Objective-C file in Xcode and change its extension
+from “.m” to “.mm”.</p></li>
+<li><p>#import the SMILEapi header and any other headers you need:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#import &lt;smileapi/SMILEapi.h&gt;</span>
+<span class="c1">#import &lt;core/configManager.hpp&gt;</span>
+<span class="c1">#import &lt;core/componentManager.hpp&gt;</span>
+<span class="c1">#import &lt;ios/coreAudioSource.hpp&gt;</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>You may now call SMILEapi functions in your code. The iOS sample
+project under <code class="docutils literal notranslate"><span class="pre">progsrc/ios-template</span></code> can serve as a
+reference, see also files
+<code class="docutils literal notranslate"><span class="pre">progsrc/ios-template/usingSmileLib/SmileIos/OpenSmile.h</span></code> and
+<code class="docutils literal notranslate"><span class="pre">progsrc/ios-template/usingSmileLib/SmileIos/OpenSmile.mm</span></code>.</p>
+</div>
+<div class="section" id="using-smileapi-and-opensmile-classes-in-swift">
+<span id="using-opensmile-classes-in-swift-code"></span><h4>Using SMILEapi and openSMILE classes in Swift<a class="headerlink" href="#using-smileapi-and-opensmile-classes-in-swift" title="Permalink to this headline">¶</a></h4>
+<p>The SMILEapi functions are pure C functions. There are two options
+for using these APIs in Swift.</p>
+<ul class="simple">
+<li><p>You can call them directly from within Swift.</p></li>
+<li><p>You can write an Objective-C wrapper class and integrate it into
+a Swift project. The iOS template project uses this approach.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="extracting-your-first-features">
+<span id="id17"></span><h2>Extracting your first features<a class="headerlink" href="#extracting-your-first-features" title="Permalink to this headline">¶</a></h2>
+<p>Now, that you have either successfully downloaded and installed the
+binary version of openSMILE or have compiled the source code yourself,
+you are ready to extract your first features. To check if you can run
+SMILExtract, type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<p>If you see the usage information and version number of openSMILE, then
+everything is set up correctly. To check if your SMILExtract binary
+supports live audio recording and playback, type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">H</span> <span class="n">cPortaudio</span>
+</pre></div>
+</div>
+<p>If you see various configuration option of the cPortaudio components,
+then your binary supports live audio I/O. If you see only three lines
+with messages, then you do not have live audio support. To check if your
+SMILExtract binary supports video features via OpenCV, type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">H</span> <span class="n">cOpenCV</span>
+</pre></div>
+</div>
+<p>If you see various configuration option of the cPortaudio components,
+then your binary supports live audio I/O.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may have to prefix a “./” on Unix like systems if SMILExtract
+is not in your path but in the current directory instead.</p>
+</div>
+<p>Now we will start using SMILExtract to extract very simple audio
+features from a wave file. You can use your own wave files if you like,
+or use the files provided in the <code class="docutils literal notranslate"><span class="pre">example-audio</span></code> directory.</p>
+<p>For a quick start, we will use a sample configuration file provided with
+the openSMILE distribution. Type the following command in the top-level
+directory of the openSMILE package (if you start openSMILE in a
+different directory you must adjust the paths to the config file and the
+wave file):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">config</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="n">demo1_energy</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">I</span> <span class="n">example</span><span class="o">-</span><span class="n">audio</span><span class="o">/</span><span class="n">opensmile</span><span class="o">.</span><span class="n">wav</span> <span class="o">-</span><span class="n">O</span> <span class="n">opensmile</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p>If you get only <code class="docutils literal notranslate"><span class="pre">(MSG)</span></code> type messages, and you see
+<code class="docutils literal notranslate"><span class="pre">Processing</span> <span class="pre">finished!</span></code> in the last output line, then openSMILE ran
+successfully. If something fails, you will get an <code class="docutils literal notranslate"><span class="pre">(ERROR)</span></code> message.</p>
+<p>Now, if openSMILE ran successfully, open the file
+<code class="docutils literal notranslate"><span class="pre">opensmile.energy.csv</span></code> in a text editor to see the result. You can also
+plot the result graphically using gnuplot. This is discussed in
+Section <a class="reference internal" href="#visualising-data-with-gnuplot"><span class="std std-ref">Visualising data with Gnuplot</span></a>.</p>
+<p>Next, we will generate the configuration file from the above simple
+example ourselves to learn how openSMILE configuration files are
+written. openSMILE can generate configuration file templates for simple
+scenarios. We will use this function to generate our first configuration
+file which will be capable of reading a wave file, computing frame
+energy, and saving the output to a CSV file. First, create a directory
+<code class="docutils literal notranslate"><span class="pre">myconfig</span></code> (without navigating into it) which will hold your
+configuration files. Now type the following (without newlines) to
+generate the first configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">cfgFileTemplate</span> <span class="o">-</span><span class="n">configDflt</span> <span class="n">cWaveSource</span><span class="p">,</span><span class="n">cFramer</span><span class="p">,</span><span class="n">cEnergy</span><span class="p">,</span><span class="n">cCsvSink</span> <span class="o">-</span><span class="n">l</span> <span class="mi">1</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">myconfig</span><span class="o">/</span><span class="n">demo1</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">-cfgFileTemplate</span></code> option instructs openSMILE to generate a
+configuration file template, while the <code class="docutils literal notranslate"><span class="pre">-configDflt</span></code> option is used to
+specify a comma separated list of components which shall be part of the
+generated configuration. The <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">1</span></code> option sets the log-level to one,
+to suppress any messages, which should not be in the configuration file
+(you will still get ERROR messages on log-level one, e.g. messages
+informing you that components you have specified do not exist, etc.).
+The template text would be printed to the terminal, thus we use <code class="docutils literal notranslate"><span class="pre">2&gt;</span></code> to
+dump it to the file <code class="docutils literal notranslate"><span class="pre">myconfig/demo1.conf</span></code>. If you want to add comments
+describing the individual option lines in the generated configuration
+file, add the option <code class="docutils literal notranslate"><span class="pre">-cfgFileDescriptions</span></code> to the above command-line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">cfgFileTemplate</span> <span class="o">-</span><span class="n">cfgFileDescriptions</span> <span class="o">-</span><span class="n">configDflt</span> <span class="n">cWaveSource</span><span class="p">,</span><span class="n">cFramer</span><span class="p">,</span><span class="n">cEnergy</span><span class="p">,</span><span class="n">cCsvSink</span> <span class="o">-</span><span class="n">l</span> <span class="mi">1</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">myconfig</span><span class="o">/</span><span class="n">demo1_descriptions</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>The newly generated file consists of two logical parts. The first part
+looks like this (please note, that comments in the examples are started
+by <code class="docutils literal notranslate"><span class="pre">;</span></code> or <code class="docutils literal notranslate"><span class="pre">//</span></code> and may only start at the beginning of a line):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> ;= component manager configuration (= list of enabled components!) =
+
+[componentInstances:cComponentManager]
+ // this line configures the default data memory:
+instance[dataMemory].type = cDataMemory
+instance[waveSource].type = cWaveSource
+instance[framer].type = cFramer
+instance[energy].type = cEnergy
+instance[csvSink].type = cCsvSink
+// Here you can control the amount of detail displayed for the
+// data memory level configuration. 0 is no information at all,
+// 5 is maximum detail.
+printLevelStats = 1
+// You can set the number of parallel threads (experimental):
+nThreads = 1
+</pre></div>
+</div>
+<p>It contains the configuration of the component manager, which determines
+what components are instantiated when you call SMILExtract. There always
+has to be one cDataMemory component (which handles the data flow within
+openSMILE), followed by other components. The name given in <code class="docutils literal notranslate"><span class="pre">[]</span></code>
+specifies the name of the component instance, which must be unique within
+one configuration.</p>
+<p>The next part contains the component configuration sections, where each
+begins with a section header:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">waveSource</span><span class="p">:</span><span class="n">cWaveSource</span><span class="p">]</span>
+<span class="o">...</span>
+<span class="p">[</span><span class="n">framer</span><span class="p">:</span><span class="n">cFramer</span><span class="p">]</span>
+<span class="o">...</span>
+<span class="p">[</span><span class="n">energy</span><span class="p">:</span><span class="n">cEnergy</span><span class="p">]</span>
+<span class="o">...</span>
+<span class="p">[</span><span class="n">csvSink</span><span class="p">:</span><span class="n">cCsvSink</span><span class="p">]</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>The section header follows this format:
+<code class="docutils literal notranslate"><span class="pre">[instanceName:componentType]</span></code>. The template component configuration
+sections are generated with all available values set to their default
+values. This functionality currently is still experimental, because some
+values might override other values, or have a different meaning if
+explicitly specified. Thus, you should carefully check all the available
+options, and list only those in the configuration file which you
+require. Even if in some cases you might use the default values (such as
+the number of spectral bands, etc.) it is considered good practice to
+include these in the configuration file. This will ensure compatibility
+with future versions, in case the defaults - for whatever reason - might
+change. Moreover, it will increase the readability of your configuration
+files because all parameters can be viewed in one place without looking
+up the defaults in this manual.</p>
+<p>Next, you have to configure the component connections. This can be done
+by assigning so called data memory “levels” to the dataReader and
+dataWriter components which are always contained in each source, sink,
+or processing component by modifying the <code class="docutils literal notranslate"><span class="pre">reader.dmLevel</span></code> and
+<code class="docutils literal notranslate"><span class="pre">writer.dmLevel</span></code> lines. You can choose arbitrary names for the writer
+levels here, since the dataWriters register and create the level you
+specify as <code class="docutils literal notranslate"><span class="pre">writer.dmLevel</span></code> in the data memory. You then connect the
+components by assigning the desired read level to <code class="docutils literal notranslate"><span class="pre">reader.dmLevel</span></code>.
+Thereby the following rules apply: for one level only <strong>one</strong> writer may
+exist, i.e. only one component can write to a level; however, there is
+no limit to the number of components that read from a level, and one
+component can read from more than one level if you specify multiple
+level names separated by a <code class="docutils literal notranslate"><span class="pre">;</span></code>, such as
+<code class="docutils literal notranslate"><span class="pre">reader.dmLevel</span> <span class="pre">=</span> <span class="pre">energy;loudness</span></code> to read data from the levels
+<code class="docutils literal notranslate"><span class="pre">energy</span></code> and <code class="docutils literal notranslate"><span class="pre">loudness</span></code>. Data is thereby concatenated column wise.</p>
+<p>For our sample configuration, the cWaveSource component should read the
+input PCM stream in wave form into memory. The cFramer component should
+then create frames of 25ms length every 10ms from that representation.
+To do so, we change the following lines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">waveSource</span><span class="p">:</span><span class="n">cWaveSource</span><span class="p">]</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">dmLevel</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="n">XXXX</span><span class="o">&gt;&gt;</span>
+</pre></div>
+</div>
+<p>to</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">waveSource</span><span class="p">:</span><span class="n">cWaveSource</span><span class="p">]</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">dmLevel</span> <span class="o">=</span> <span class="n">wave</span>
+</pre></div>
+</div>
+<p>and the framer section</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">framer</span><span class="p">:</span><span class="n">cFramer</span><span class="p">]</span>
+<span class="n">reader</span><span class="o">.</span><span class="n">dmLevel</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="n">XXXX</span><span class="o">&gt;&gt;</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">dmLevel</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="n">XXXX</span><span class="o">&gt;&gt;</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>to (note, that we removed a few superfluous frameSize* options and
+changed frameStep to 0.010000):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">framer</span><span class="p">:</span><span class="n">cFramer</span><span class="p">]</span>
+<span class="n">reader</span><span class="o">.</span><span class="n">dmLevel</span> <span class="o">=</span> <span class="n">wave</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">dmLevel</span> <span class="o">=</span> <span class="n">waveframes</span>
+<span class="n">copyInputName</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">frameMode</span> <span class="o">=</span> <span class="n">fixed</span>
+<span class="n">frameSize</span> <span class="o">=</span> <span class="mf">0.025000</span>
+<span class="n">frameStep</span> <span class="o">=</span> <span class="mf">0.010000</span>
+<span class="n">frameCenterSpecial</span> <span class="o">=</span> <span class="n">left</span>
+<span class="n">noPostEOIprocessing</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Next, we generate the cEnergy component, which will read the audio frames
+created by the cFramer component, and compute the signal log energy.
+The cCsvSink component will then write the results from the cEnergy component
+to a file in CSV format. Thus, we change the corresponding lines to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">energy</span><span class="p">:</span><span class="n">cEnergy</span><span class="p">]</span>
+<span class="n">reader</span><span class="o">.</span><span class="n">dmLevel</span> <span class="o">=</span> <span class="n">waveframes</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">dmLevel</span> <span class="o">=</span> <span class="n">energy</span>
+<span class="o">...</span>
+<span class="n">rms</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">log</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="o">...</span>
+<span class="p">[</span><span class="n">csvSink</span><span class="p">:</span><span class="n">cCsvSink</span><span class="p">]</span>
+<span class="n">reader</span><span class="o">.</span><span class="n">dmLevel</span> <span class="o">=</span> <span class="n">energy</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="n">myenergy</span><span class="o">.</span><span class="n">csv</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>We are now ready to run SMILExtract with our own configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">myconfig</span><span class="o">/</span><span class="n">demo1</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>This will open the file “input.wav” in the current directory (be sure to
+copy a suitable wave file and rename it to “input.wav”), do the feature
+extraction, and save the result to “myenergy.csv”. The result should be
+the same as with the sample configuration file.</p>
+<p>If you want to be able to pass the input file name and the output file
+name on the SMILExtract command-line, you have to add a command to the
+configuration file to define a custom command-line option. To do this,
+change the filename lines of the wave source and the csv sink to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">waveSource</span><span class="p">:</span><span class="n">cWaveSource</span><span class="p">]</span>
+<span class="o">...</span>
+<span class="n">filename</span> <span class="o">=</span> \<span class="n">cm</span><span class="p">[</span><span class="n">inputfile</span><span class="p">(</span><span class="n">I</span><span class="p">):</span><span class="n">file</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">wave</span> <span class="n">file</span><span class="p">]</span>
+<span class="o">...</span>
+<span class="p">[</span><span class="n">csvSink</span><span class="p">:</span><span class="n">cCsvSink</span><span class="p">]</span>
+<span class="o">...</span>
+<span class="n">filename</span> <span class="o">=</span> \<span class="n">cm</span><span class="p">[</span><span class="n">outputfile</span><span class="p">(</span><span class="n">O</span><span class="p">):</span><span class="n">file</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">output</span> <span class="n">CSV</span> <span class="n">file</span><span class="p">]</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>You can now run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">myconfig</span><span class="o">/</span><span class="n">demo1</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">I</span> <span class="n">example</span><span class="o">-</span><span class="n">audio</span><span class="o">/</span><span class="n">opensmile</span><span class="o">.</span><span class="n">wav</span> <span class="o">-</span><span class="n">O</span> <span class="n">opensmile</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p>This concludes the introductory section. We hope that you now understand
+the basics of how to use and configure openSMILE, and are ready to take
+a look at the more complex examples which are explained in
+Section <a class="reference internal" href="#default-feature-sets"><span class="std std-ref">Default feature sets</span></a>. Among these are also standard baseline
+feature sets of international research competitions. The section also
+explains several command-line options that the standard feature set
+configuration files provide and that can be used to influence parameters of
+the data input and output.</p>
+</div>
+<div class="section" id="default-feature-sets">
+<span id="id18"></span><h2>Default feature sets<a class="headerlink" href="#default-feature-sets" title="Permalink to this headline">¶</a></h2>
+<p>For common tasks from the Music Information Retrieval and Speech
+Processing fields we provide some sample configuration files in the
+<code class="docutils literal notranslate"><span class="pre">config/</span></code> directory for the following frequently used feature sets.
+These also contain the baseline acoustic feature sets of the 2009–2013
+INTERSPEECH challenges on affect and paralinguistics:</p>
+<ul class="simple">
+<li><p>Chroma features for key and chord recognition</p></li>
+<li><p>MFCC for speech recognition</p></li>
+<li><p>PLP for speech recognition</p></li>
+<li><p>Prosody (Pitch and loudness)</p></li>
+<li><p>The INTERSPEECH 2009 Emotion Challenge feature set</p></li>
+<li><p>The INTERSPEECH 2010 Paralinguistic Challenge feature set</p></li>
+<li><p>The INTERSPEECH 2011 Speaker State Challenge feature set</p></li>
+<li><p>The INTERSPEECH 2012 Speaker Trait Challenge feature set</p></li>
+<li><p>The INTERSPEECH 2013 ComParE feature set</p></li>
+<li><p>The MediaEval 2012 TUM feature set for violent scenes detection.</p></li>
+<li><p>Three reference sets of features for emotion recognition (older sets,
+obsoleted by the new INTERSPEECH challenge sets)</p></li>
+<li><p>Audio-visual features based on INTERSPEECH 2010 Paralinguistic
+Challenge audio features.</p></li>
+</ul>
+<p>These configuration files can be used as they are, or as a basis for
+your own feature files.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you publish results with features extracted by openSMILE,
+we would appreciate it if you share your configuration files with
+the research community, by uploading them to your personal web-pages
+and providing the URL in the paper, for example. Please also
+indicate which official version of openSMILE you have used to allow
+others to reproduce your results.</p>
+</div>
+<div class="section" id="common-options-for-all-standard-configuration-files">
+<span id="common-option-for-all-standard-configuration-files"></span><h3>Common options for all standard configuration files<a class="headerlink" href="#common-options-for-all-standard-configuration-files" title="Permalink to this headline">¶</a></h3>
+<p>Since version 2.2, most standard feature extraction configuration files
+include a standard interface for specifying command-line options for
+audio input and for feature output in various formats (WEKA Arff, HTK
+binary, CSV text). Common configuration file includes are used for this
+purpose and can be found in the folder <code class="docutils literal notranslate"><span class="pre">config/shared</span></code>.</p>
+<p>The options are defined in the configuration files themselves, see
+Section <a class="reference internal" href="reference.html#configuration-files"><span class="std std-ref">Configuration files</span></a> for details on this mechanism
+and the syntax. In order to view the available options for a configuration file,
+use the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">config</span><span class="o">/</span><span class="n">putconfigfilenamehere</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">ccmdHelp</span>
+</pre></div>
+</div>
+<p>The following options are available for audio input for all standard
+configuration files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">inputfile</span><span class="p">,</span> <span class="o">-</span><span class="n">I</span>  <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>       <span class="n">Path</span> <span class="ow">and</span> <span class="n">name</span> <span class="n">of</span> <span class="nb">input</span> <span class="n">audio</span> <span class="n">file</span><span class="o">.</span>
+
+<span class="o">-</span><span class="n">start</span>          <span class="o">&lt;</span><span class="n">t</span> <span class="ow">in</span> <span class="n">seconds</span><span class="o">&gt;</span>   <span class="n">Where</span> <span class="n">to</span> <span class="n">start</span> <span class="n">analysis</span><span class="p">,</span> <span class="n">relative</span>
+                                   <span class="n">to</span> <span class="n">the</span> <span class="n">beginning</span> <span class="n">of</span> <span class="n">the</span> <span class="n">file</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span>
+
+<span class="o">-</span><span class="n">end</span>            <span class="o">&lt;</span><span class="n">t</span> <span class="ow">in</span> <span class="n">seconds</span><span class="o">&gt;</span>   <span class="n">Where</span> <span class="n">to</span> <span class="n">end</span> <span class="n">analysis</span><span class="p">,</span> <span class="n">relative</span>
+                                   <span class="n">to</span> <span class="n">beginning</span> <span class="n">of</span> <span class="n">file</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span>
+                                   <span class="n">Default</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">is</span> <span class="n">end</span> <span class="n">of</span> <span class="n">file</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>These options are defined in
+<code class="docutils literal notranslate"><span class="pre">config/shared/standard_wave_input.conf.inc</span></code>.</p>
+<p>The following options are available for controlling the buffer and
+segmentation behaviour:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">frameModeFunctionalsConf</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>   <span class="n">Include</span><span class="p">,</span> <span class="n">which</span> <span class="n">configures</span> <span class="n">the</span> <span class="n">frame</span>
+                                     <span class="n">mode</span> <span class="n">setting</span> <span class="k">for</span> <span class="nb">all</span> <span class="n">functionals</span>
+                                     <span class="n">components</span><span class="o">.</span>
+   <span class="n">Default</span><span class="p">:</span> <span class="n">shared</span><span class="o">/</span><span class="n">FrameModeFunctionals</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">inc</span>
+
+<span class="o">-</span><span class="n">bufferModeRbConf</span> <span class="n">shared</span><span class="o">/</span><span class="n">BufferModeRb</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">inc</span>
+<span class="o">-</span><span class="n">bufferModeRbLagConf</span> <span class="n">shared</span><span class="o">/</span><span class="n">BufferModeRbLag</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">inc</span>
+<span class="o">-</span><span class="n">bufferModeConf</span> <span class="n">shared</span><span class="o">/</span><span class="n">BufferMode</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">inc</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">frameModeFunctionalsConf</span></code> is the most important option. It controls
+the time units on which the functionals components operate. The
+following examples (contents of the included file) illustrate the four
+most common use-cases.</p>
+<ol class="upperalpha simple">
+<li><p>Summary over complete input:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">frameMode</span> <span class="o">=</span> <span class="n">full</span>
+<span class="n">frameSize</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">frameStep</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">frameCenterSpecial</span> <span class="o">=</span> <span class="n">left</span>
+</pre></div>
+</div>
+<p>B. Multiple summaries over fixed size (sliding) windows (5 seconds long,
+shifted forward at intervals of 2 seconds):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">frameMode</span> <span class="o">=</span> <span class="n">fixed</span>
+<span class="n">frameSize</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">frameStep</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">frameCenterSpecial</span> <span class="o">=</span> <span class="n">left</span>
+</pre></div>
+</div>
+<p>C. Summaries over a given list of segments (4.2 seconds to 5.6 seconds,
+7.0 to 9.0 seconds, 10 seconds to end of file):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">frameMode</span> <span class="o">=</span> <span class="nb">list</span>
+<span class="n">frameList</span> <span class="o">=</span> <span class="mf">4.2</span><span class="n">s</span><span class="o">-</span><span class="mf">5.6</span><span class="n">s</span><span class="p">,</span><span class="mf">7.0</span><span class="n">s</span><span class="o">-</span><span class="mi">9</span><span class="n">s</span><span class="p">,</span><span class="mi">10</span><span class="n">s</span><span class="o">-</span><span class="n">E</span>
+<span class="n">frameCenterSpecial</span> <span class="o">=</span> <span class="n">left</span>
+</pre></div>
+</div>
+<p>D. Summaries over variable segments, which are detected on-the-fly by a
+cTurnDetector component, and received via smile messages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">frameMode</span> <span class="o">=</span> <span class="n">var</span>
+<span class="n">frameCenterSpecial</span> <span class="o">=</span> <span class="n">left</span>
+</pre></div>
+</div>
+<p>A cTurnDetector component must be present in the configuration with the
+messageRecp option pointing to all functionals components in the
+configuration. See the online help of cTurnDetector for details, or
+<code class="docutils literal notranslate"><span class="pre">config/emobase/emobase_live4.conf</span></code> for a simple example.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">bufferMode</span></code> configuration files set the size of the dataMemory
+level output buffers for general components which process frame-by-frame
+(<code class="docutils literal notranslate"><span class="pre">bufferModeRbConf</span></code>), for components which operate with lagged data
+(e.g., F0 after Viterbi smoothing) (<code class="docutils literal notranslate"><span class="pre">bufferModeRbLagConf</span></code>), and for
+components which produce output that is to be summarised over time by
+other components (e.g., functionals, or classifiers that use context)
+(<code class="docutils literal notranslate"><span class="pre">bufferModeConf</span></code>). The buffer size configured by the latter must
+match the frameMode setting in frameModeFunctionalsConf, i.e., the
+buffer specified in bufferModeConf must be at least the size of the
+requested unit of segmentation (frameMode). In case the complete input
+is to be summarised (frameMode=full), the output buffer must be
+configured to grow dynamically (growDyn=1) and not act as as
+ring/cyclical buffer (isRb=0), e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">writer</span><span class="o">.</span><span class="n">levelconf</span><span class="o">.</span><span class="n">growDyn</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">levelconf</span><span class="o">.</span><span class="n">isRb</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">levelconf</span><span class="o">.</span><span class="n">nT</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>The value of <code class="docutils literal notranslate"><span class="pre">nT</span></code> is not relevant, it just sets the initial size of
+the buffer (in number of LLD frames). This configuration is not suitable
+for live mode, as it will occupy infinite amounts of RAM over time and
+will make the openSMILE process crash at some point in time.</p>
+<p>Thus, for live demos, the buffer size must be constrained and the
+maximum size of segments to summarise features over must also be
+constrained. In variable mode (when receiving messages from
+cTurnDetector), this is achieved by the maximum turn length settings in
+cTurnDetector. Otherwise, the frameSize setting e.g. should be less then
+the buffer size (nT). An example for a ring-buffer configuration for
+live mode would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">writer</span><span class="o">.</span><span class="n">levelconf</span><span class="o">.</span><span class="n">growDyn</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">levelconf</span><span class="o">.</span><span class="n">isRb</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">levelconf</span><span class="o">.</span><span class="n">nT</span> <span class="o">=</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+<p>This corresponds to a buffer size of 10 seconds, if the frame rate of
+LLD features is 10ms, which is the default in almost all configurations.</p>
+<p>The following options are available for controlling the output data
+formats (for configurations which provide feature summaries via
+statistical functionals, such as all INTERSPEECH and AVEC challenge
+sets):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=============================</span>
+<span class="o">-</span><span class="n">instname</span>         <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>      <span class="n">Usually</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">filename</span><span class="p">,</span> <span class="n">saved</span> <span class="ow">in</span>
+                                  <span class="n">first</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">CSV</span> <span class="ow">and</span> <span class="n">ARFF</span> <span class="n">output</span><span class="o">.</span>
+                                  <span class="n">Default</span> <span class="ow">is</span> <span class="s2">&quot;unknown&quot;</span><span class="o">.</span>
+
+<span class="o">=============================</span>
+<span class="o">-</span><span class="n">lldcsvoutput</span><span class="p">,</span> <span class="o">-</span><span class="n">D</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>    <span class="n">Enables</span> <span class="n">LLD</span> <span class="n">frame</span><span class="o">-</span><span class="n">wise</span> <span class="n">output</span> <span class="n">to</span> <span class="n">CSV</span><span class="o">.</span>
+
+<span class="o">-</span><span class="n">appendcsvlld</span>     <span class="o">&lt;</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">&gt;</span>         <span class="n">Set</span> <span class="n">to</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">append</span> <span class="n">to</span> <span class="n">existing</span> <span class="n">CSV</span>
+                                  <span class="n">output</span> <span class="n">file</span><span class="o">.</span> <span class="n">Default</span> <span class="ow">is</span> <span class="n">overwrite</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span>
+
+<span class="o">-</span><span class="n">timestampcsvlld</span>  <span class="o">&lt;</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">&gt;</span>         <span class="n">Set</span> <span class="n">to</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">disable</span> <span class="n">timestamp</span> <span class="n">output</span>
+                                  <span class="n">to</span> <span class="n">CSV</span> <span class="ow">in</span> <span class="n">second</span> <span class="n">column</span><span class="o">.</span> <span class="n">Default</span> <span class="ow">is</span> <span class="mf">1.</span>
+
+<span class="o">-</span><span class="n">headercsvlld</span>     <span class="o">&lt;</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">&gt;</span>         <span class="n">Set</span> <span class="n">to</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">disable</span> <span class="n">header</span> <span class="n">output</span> <span class="p">(</span><span class="mi">1</span><span class="n">st</span>
+                                  <span class="n">line</span><span class="p">)</span> <span class="n">to</span> <span class="n">CSV</span><span class="o">.</span> <span class="n">Default</span> <span class="ow">is</span> <span class="mi">1</span> <span class="p">(</span><span class="n">enabled</span><span class="p">)</span>
+
+<span class="o">=============================</span>
+<span class="o">-</span><span class="n">lldhtkoutput</span>     <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>    <span class="n">Enables</span> <span class="n">LLD</span> <span class="n">frame</span><span class="o">-</span><span class="n">wise</span> <span class="n">output</span> <span class="n">to</span>
+                                  <span class="n">HTK</span> <span class="nb">format</span><span class="o">.</span>
+
+<span class="o">=============================</span>
+<span class="o">-</span><span class="n">lldarffoutput</span><span class="p">,</span> <span class="o">-</span><span class="n">D</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>   <span class="n">Enables</span> <span class="n">LLD</span> <span class="n">frame</span><span class="o">-</span><span class="n">wise</span> <span class="n">output</span> <span class="n">to</span> <span class="n">ARFF</span><span class="o">.</span>
+
+<span class="o">-</span><span class="n">appendarfflld</span>     <span class="o">&lt;</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">&gt;</span>        <span class="n">Set</span> <span class="n">to</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">append</span> <span class="n">to</span> <span class="n">existing</span> <span class="n">ARFF</span>
+                                  <span class="n">output</span> <span class="n">file</span><span class="o">.</span> <span class="n">Default</span> <span class="ow">is</span> <span class="n">overwrite</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span>
+
+<span class="o">-</span><span class="n">timestamparfflld</span>  <span class="o">&lt;</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">&gt;</span>        <span class="n">Set</span> <span class="n">to</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">disable</span> <span class="n">timestamp</span> <span class="n">output</span>
+                                  <span class="n">to</span> <span class="n">ARFF</span> <span class="ow">in</span> <span class="n">second</span> <span class="n">column</span><span class="o">.</span> <span class="n">Default</span> <span class="mf">1.</span>
+
+<span class="o">-</span><span class="n">lldarfftargetsfile</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>      <span class="n">Specify</span> <span class="n">the</span> <span class="n">configuration</span> <span class="n">include</span><span class="p">,</span> <span class="n">that</span>
+                                  <span class="n">defines</span> <span class="n">the</span> <span class="n">target</span> <span class="n">fields</span> <span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+                                  <span class="n">Default</span><span class="p">:</span> <span class="n">shared</span><span class="o">/</span><span class="n">arff_targets_conf</span><span class="o">.</span><span class="n">inc</span>
+
+<span class="o">=============================</span>
+<span class="o">-</span><span class="n">output</span><span class="p">,</span> <span class="o">-</span><span class="n">O</span>       <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>    <span class="n">The</span> <span class="n">default</span> <span class="n">output</span> <span class="n">option</span><span class="o">.</span> <span class="n">To</span> <span class="n">ARFF</span>
+                                  <span class="n">file</span> <span class="nb">format</span><span class="p">,</span> <span class="k">for</span> <span class="n">feature</span> <span class="n">summaries</span><span class="o">.</span>
+
+<span class="o">-</span><span class="n">appendarff</span>       <span class="o">&lt;</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">&gt;</span>         <span class="n">Set</span> <span class="n">to</span> <span class="mi">0</span> <span class="n">to</span> <span class="ow">not</span> <span class="n">append</span> <span class="n">to</span> <span class="n">existing</span> <span class="n">ARFF</span>
+                                  <span class="n">output</span> <span class="n">file</span><span class="o">.</span> <span class="n">Default</span> <span class="ow">is</span> <span class="n">append</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span>
+
+<span class="o">-</span><span class="n">timestamparff</span>    <span class="o">&lt;</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">&gt;</span>         <span class="n">Set</span> <span class="n">to</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">enable</span> <span class="n">timestamp</span> <span class="n">output</span>
+                                  <span class="n">to</span> <span class="n">ARFF</span> <span class="ow">in</span> <span class="n">second</span> <span class="n">column</span><span class="o">.</span> <span class="n">Default</span> <span class="mf">0.</span>
+
+<span class="o">-</span><span class="n">arfftargetsfile</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>         <span class="n">Specify</span> <span class="n">the</span> <span class="n">configuration</span> <span class="n">include</span><span class="p">,</span> <span class="n">that</span>
+                                  <span class="n">defines</span> <span class="n">the</span> <span class="n">target</span> <span class="n">fields</span> <span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+                                  <span class="n">Default</span><span class="p">:</span> <span class="n">shared</span><span class="o">/</span><span class="n">arff_targets_conf</span><span class="o">.</span><span class="n">inc</span>
+
+<span class="o">=============================</span>
+<span class="o">-</span><span class="n">csvoutput</span>        <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>    <span class="n">The</span> <span class="n">default</span> <span class="n">output</span> <span class="n">option</span><span class="o">.</span> <span class="n">To</span> <span class="n">CSV</span>
+                                  <span class="n">file</span> <span class="nb">format</span><span class="p">,</span> <span class="k">for</span> <span class="n">feature</span> <span class="n">summaries</span><span class="o">.</span>
+
+<span class="o">-</span><span class="n">appendcsv</span>        <span class="o">&lt;</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">&gt;</span>         <span class="n">Set</span> <span class="n">to</span> <span class="mi">0</span> <span class="n">to</span> <span class="ow">not</span> <span class="n">append</span> <span class="n">to</span> <span class="n">existing</span> <span class="n">CSV</span>
+                                  <span class="n">output</span> <span class="n">file</span><span class="o">.</span> <span class="n">Default</span> <span class="ow">is</span> <span class="n">append</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span>
+
+<span class="o">-</span><span class="n">timestampcsv</span>     <span class="o">&lt;</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">&gt;</span>         <span class="n">Set</span> <span class="n">to</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">disable</span> <span class="n">timestamp</span> <span class="n">output</span>
+                                  <span class="n">to</span> <span class="n">CSV</span> <span class="ow">in</span> <span class="n">second</span> <span class="n">column</span><span class="o">.</span> <span class="n">Default</span> <span class="mf">1.</span>
+
+<span class="o">-</span><span class="n">headercsv</span>        <span class="o">&lt;</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">&gt;</span>         <span class="n">Set</span> <span class="n">to</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">disable</span> <span class="n">header</span> <span class="n">output</span> <span class="p">(</span><span class="mi">1</span><span class="n">st</span>
+                                  <span class="n">line</span><span class="p">)</span> <span class="n">to</span> <span class="n">CSV</span><span class="o">.</span> <span class="n">Default</span> <span class="ow">is</span> <span class="mi">1</span> <span class="p">(</span><span class="n">enabled</span><span class="p">)</span>
+
+<span class="o">=============================</span>
+<span class="o">-</span><span class="n">htkoutput</span>       <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>     <span class="n">Enables</span> <span class="n">output</span> <span class="n">to</span> <span class="n">HTK</span> <span class="nb">format</span> <span class="n">of</span>
+                                  <span class="n">feature</span> <span class="n">summaries</span> <span class="p">(</span><span class="n">functionals</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>These options are defined in
+<code class="docutils literal notranslate"><span class="pre">config/shared/standard_data_output.conf.inc</span></code>.</p>
+<p>For configurations which provide Low-Level-Descriptor (LLD) features
+only (i.e. which do not summarise features by means of statistical
+functionals over time), the following output options are available:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=============================</span>
+<span class="o">-</span><span class="n">csvoutput</span>        <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>    <span class="n">The</span> <span class="n">default</span> <span class="n">output</span> <span class="n">option</span><span class="o">.</span> <span class="n">To</span> <span class="n">CSV</span>
+                                  <span class="n">file</span> <span class="nb">format</span><span class="p">,</span> <span class="k">for</span> <span class="n">frame</span><span class="o">-</span><span class="n">wise</span> <span class="n">LLD</span><span class="o">.</span>
+
+<span class="o">-</span><span class="n">appendcsv</span>        <span class="o">&lt;</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">&gt;</span>         <span class="n">Set</span> <span class="n">to</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">append</span> <span class="n">to</span> <span class="n">existing</span> <span class="n">CSV</span>
+                                  <span class="n">output</span> <span class="n">file</span><span class="o">.</span> <span class="n">Default</span> <span class="ow">is</span> <span class="n">overwrite</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span>
+
+<span class="o">-</span><span class="n">timestampcsv</span>     <span class="o">&lt;</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">&gt;</span>         <span class="n">Set</span> <span class="n">to</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">disable</span> <span class="n">timestamp</span> <span class="n">output</span>
+                                  <span class="n">to</span> <span class="n">CSV</span> <span class="ow">in</span> <span class="n">second</span> <span class="n">column</span><span class="o">.</span> <span class="n">Default</span> <span class="mf">1.</span>
+
+<span class="o">-</span><span class="n">headercsv</span>        <span class="o">&lt;</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">&gt;</span>         <span class="n">Set</span> <span class="n">to</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">disable</span> <span class="n">header</span> <span class="n">output</span> <span class="p">(</span><span class="mi">1</span><span class="n">st</span>
+                                  <span class="n">line</span><span class="p">)</span> <span class="n">to</span> <span class="n">CSV</span><span class="o">.</span> <span class="n">Default</span> <span class="ow">is</span> <span class="mi">1</span> <span class="p">(</span><span class="n">enabled</span><span class="p">)</span>
+
+<span class="o">=============================</span>
+<span class="o">-</span><span class="n">output</span><span class="p">,</span> <span class="o">-</span><span class="n">O</span>       <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>    <span class="n">Default</span> <span class="n">output</span> <span class="n">to</span> <span class="n">HTK</span> <span class="nb">format</span> <span class="n">of</span>
+                                  <span class="n">feature</span> <span class="n">summaries</span> <span class="p">(</span><span class="n">functionals</span><span class="p">)</span><span class="o">.</span>
+
+<span class="o">=============================</span>
+<span class="o">-</span><span class="n">arffoutput</span>       <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>    <span class="n">The</span> <span class="n">default</span> <span class="n">output</span> <span class="n">option</span><span class="o">.</span> <span class="n">To</span> <span class="n">ARFF</span>
+                                  <span class="n">file</span> <span class="nb">format</span><span class="p">,</span> <span class="k">for</span> <span class="n">frame</span><span class="o">-</span><span class="n">wise</span> <span class="n">LLD</span><span class="o">.</span>
+
+<span class="o">-</span><span class="n">appendarff</span>       <span class="o">&lt;</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">&gt;</span>         <span class="n">Set</span> <span class="n">to</span> <span class="mi">0</span> <span class="n">to</span> <span class="ow">not</span> <span class="n">append</span> <span class="n">to</span> <span class="n">existing</span> <span class="n">ARFF</span>
+                                  <span class="n">output</span> <span class="n">file</span><span class="o">.</span> <span class="n">Default</span> <span class="ow">is</span> <span class="n">append</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span>
+
+<span class="o">-</span><span class="n">timestamparff</span>    <span class="o">&lt;</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">&gt;</span>         <span class="n">Set</span> <span class="n">to</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">disable</span> <span class="n">timestamp</span> <span class="n">output</span>
+                                  <span class="n">to</span> <span class="n">ARFF</span> <span class="ow">in</span> <span class="n">second</span> <span class="n">column</span><span class="o">.</span> <span class="n">Default</span> <span class="mf">1.</span>
+
+<span class="o">-</span><span class="n">arfftargetsfile</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>         <span class="n">Specify</span> <span class="n">the</span> <span class="n">configuration</span> <span class="n">include</span><span class="p">,</span> <span class="n">that</span>
+                                  <span class="n">defines</span> <span class="n">the</span> <span class="n">target</span> <span class="n">fields</span> <span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+                                  <span class="n">Default</span><span class="p">:</span> <span class="n">shared</span><span class="o">/</span><span class="n">arff_targets_conf</span><span class="o">.</span><span class="n">inc</span>
+</pre></div>
+</div>
+<p>These options are defined in
+<code class="docutils literal notranslate"><span class="pre">config/shared/standard_data_output_lldonly.conf.inc</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since version 2.2 you can specify a ’?’ instead of a filename.
+This will disable the corresponding output component, i.e., it will
+not write an output file. In the standard data output interface all
+filenames default to ’?’, except for the standard output options (-O)
+which default to <code class="docutils literal notranslate"><span class="pre">output.htk</span></code> or <code class="docutils literal notranslate"><span class="pre">output.arff</span></code>.</p>
+</div>
+<p>All configuration files which support the standard data output format
+can be used in the Windows batch feature extraction GUI (Visual Studio
+project in <code class="docutils literal notranslate"><span class="pre">progsrc/openSMILEbatchGUI/</span></code>). This tool allows to run
+openSMILE on several files in a folder automatically. It allows to
+select audio files and specify the file output type via a graphical
+interface.</p>
+</div>
+<div class="section" id="chroma-features">
+<span id="id19"></span><h3>Chroma features<a class="headerlink" href="#chroma-features" title="Permalink to this headline">¶</a></h3>
+<p>The configuration file <code class="docutils literal notranslate"><span class="pre">config/chroma/chroma_fft.conf</span></code> computes musical
+Chroma features (for 12 semi-tones) from a short-time FFT spectrogram
+(window-size 50ms, rate 10ms, Gauss-window). The spectrogram is scaled
+to a semi-tone frequency axis scaling using triangular filters. To use
+this configuration, type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">config</span><span class="o">/</span><span class="n">chroma</span><span class="o">/</span><span class="n">chroma_fft</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">I</span> <span class="nb">input</span><span class="o">.</span><span class="n">wav</span> <span class="o">-</span><span class="n">O</span> <span class="n">chroma</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p>The resulting CSV file contains the Chroma features as ascii float
+values separated by ‘;’, one frame per line. This configuration uses the
+‘cTonespec’ component to compute the semitone spectrum. We also provide
+a configuration using the experimental ‘cTonefilt’ as a replacement for
+‘cTonespec’ in the file <code class="docutils literal notranslate"><span class="pre">config/chroma/chroma_filt.conf</span></code>.</p>
+<p>We also provide a sample configuration for computing a single vector
+which contains the mean value of the Chroma features computed over the
+complete input sequence. Such a vector can be used for recognising the
+musical key of a song. The configuration is provided in
+<code class="docutils literal notranslate"><span class="pre">config/chroma/chroma_fft.sum.conf</span></code>. It uses the ‘cFunctionals’ component to
+compute the mean values of the Chroma contours. Use it with the
+following command-line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">config</span><span class="o">/</span><span class="n">chroma</span><span class="o">/</span><span class="n">chroma_fft</span><span class="o">.</span><span class="n">sum</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">I</span> <span class="nb">input</span><span class="o">.</span><span class="n">wav</span> <span class="o">-</span><span class="n">O</span> <span class="n">chroma</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">chroma.csv</span></code> will contain a single line with 12 values separated by
+‘;’, representing the mean Chroma values.</p>
+</div>
+<div class="section" id="mfcc-features">
+<span id="id20"></span><h3>MFCC features<a class="headerlink" href="#mfcc-features" title="Permalink to this headline">¶</a></h3>
+<p>For extracting MFCC features (HTK compatible) the following four files
+are provided (they are named after the corresponding HTK parameter kinds
+they represent):</p>
+<dl class="simple">
+<dt>MFCC12_0_D_A.conf</dt><dd><p>This configuration extracts Mel-frequency Cepstral Coefficients from
+25ms audio frames (sampled at a rate of 10ms) (Hamming window). It
+computes 13 MFCC (0-12) from 26 Mel-frequency bands, and applies a
+cepstral liftering filter with a weight parameter of 22. 13 delta
+and 13 acceleration coefficients are appended to the MFCC.</p>
+</dd>
+<dt>MFCC12_E_D_A.conf</dt><dd><p>This configuration is the same as MFCC12_0_D_A.conf, except that
+the log-energy is appended to the MFCC 1-12 instead of the 0-th
+MFCC.</p>
+</dd>
+<dt>MFCC12_0_D_A_Z.conf</dt><dd><p>This configuration is the same as MFCC12_0_D_A.conf, except that
+the features are mean normalised with respect to the full input
+sequence (usually a turn or sub-turn segment).</p>
+</dd>
+<dt>MFCC12_E_D_A_Z.conf</dt><dd><p>This configuration is the same as MFCC12_E_D_A.conf, except that
+the features are mean normalised with respect to the full input
+sequence (usually a turn or sub-turn segment).</p>
+</dd>
+</dl>
+<p>The frame size is set to 25ms at a rate of 10ms. A Hamming function is
+used to window the frames and a pre-emphasis with <span class="math notranslate nohighlight">\(k=0.97\)</span> is
+applied. The MFCC 0/1-12 are computed from 26 Mel-bands computed from
+the FFT power spectrum. The frequency range of the Mel-spectrum is set
+from 0 to 8kHz. These configuration files provide the <code class="docutils literal notranslate"><span class="pre">-I</span></code> and <code class="docutils literal notranslate"><span class="pre">-O</span></code>
+options. The output file format is the HTK parameter file format. For
+other file formats you must change the ‘cHtkSink’ component type in the
+configuration file to the type you want. A sample command-line is given
+here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">config</span><span class="o">/</span><span class="n">mfcc</span><span class="o">/</span><span class="n">MFCC12_E_D_A</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">I</span> <span class="nb">input</span><span class="o">.</span><span class="n">wav</span> <span class="o">-</span><span class="n">O</span> <span class="n">output</span><span class="o">.</span><span class="n">mfcc</span><span class="o">.</span><span class="n">htk</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plp-features">
+<span id="id21"></span><h3>PLP features<a class="headerlink" href="#plp-features" title="Permalink to this headline">¶</a></h3>
+<p>For extracting PLP cepstral coefficients (PLP-CC) (HTK compatible) the
+following four files are provided (they are named after the
+corresponding HTK parameter kinds they represent):</p>
+<dl class="simple">
+<dt>PLP_0_D_A.conf</dt><dd><p>This configuration extracts Mel-frequency Cepstral Coefficients from
+25ms audio frames (sampled at a rate of 10ms) (Hamming window). It
+computes 6 PLP (0-5) from 26 Mel-frequency bands using a predictor
+order of 5, and applies a cepstral liftering filter with a weight
+parameter of 22. 6 delta and 6 acceleration coefficients are
+appended to the PLP-CC.</p>
+</dd>
+<dt>PLP_E_D_A.conf</dt><dd><p>This configuration is the same as PLP_0_D_A.conf, except that the
+log-energy is appended to the PLP 1-5 instead of the 0-th PLP.</p>
+</dd>
+<dt>PLP_0_D_A_Z.conf</dt><dd><p>This configuration is the same as PLP_0_D_A.conf, except that the
+features are mean normalised with respect to the full input sequence
+(usually a turn or sub-turn segment).</p>
+</dd>
+<dt>PLP_E_D_A_Z.conf</dt><dd><p>This configuration is the same as PLP_E_D_A.conf, except that the
+features are mean normalised with respect to the full input sequence
+(usually a turn or sub-turn segment).</p>
+</dd>
+</dl>
+<p>The frame size is set to 25ms at a rate of 10ms. A Hamming function is
+used to window the frames and a pre-emphasis with <span class="math notranslate nohighlight">\(k=0.97\)</span> is
+applied. The PLP 0/1-5 are computed from 26 auditory Mel-bands
+(compression factor 0.33) computed from the FFT power spectrum. The
+predictor order of the linear predictor is 5. The frequency range of the
+Mel-spectrum is set from 0 to 8kHz. These configuration files provide
+the <code class="docutils literal notranslate"><span class="pre">-I</span></code> and <code class="docutils literal notranslate"><span class="pre">-O</span></code> options. The output file format is the HTK
+parameter file format. For other file formats you must change the
+‘cHtkSink’ component type in the configuration file to the type you
+want. A sample command-line is given here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">config</span><span class="o">/</span><span class="n">plp</span><span class="o">/</span><span class="n">PLP_E_D_A</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">I</span> <span class="nb">input</span><span class="o">.</span><span class="n">wav</span> <span class="o">-</span><span class="n">O</span> <span class="n">output</span><span class="o">.</span><span class="n">plp</span><span class="o">.</span><span class="n">htk</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="prosodic-features">
+<span id="id22"></span><h3>Prosodic features<a class="headerlink" href="#prosodic-features" title="Permalink to this headline">¶</a></h3>
+<p>Example configuration files for extracting prosodic features are
+provided in the files</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">config/prosody/prosodyAcf.conf</span></code>, and <code class="docutils literal notranslate"><span class="pre">config/prosody/prosodyShs.conf</span></code>.</p>
+</div></blockquote>
+<p>These files extract the fundamental frequency (F0), the voicing
+probability, and the loudness contours. The file <code class="docutils literal notranslate"><span class="pre">prosodyAcf.conf</span></code>
+uses the ‘cPitchACF’ component to extract the fundamental frequency via
+an autocorrelation and cepstrum based method. The file
+<code class="docutils literal notranslate"><span class="pre">prosodyShs.conf</span></code> uses the ‘cPitchShs’ component to extract the
+fundamental frequency via the sub-harmonic sampling algorithm (SHS).
+Both configurations set the CSV format as output format. A sample
+command-line is given here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">config</span><span class="o">/</span><span class="n">prosody</span><span class="o">/</span><span class="n">prosodyShs</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">I</span> <span class="nb">input</span><span class="o">.</span><span class="n">wav</span> <span class="o">-</span><span class="n">O</span> <span class="n">prosody</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extracting-features-for-emotion-recognition">
+<span id="id23"></span><h3>Extracting features for emotion recognition<a class="headerlink" href="#extracting-features-for-emotion-recognition" title="Permalink to this headline">¶</a></h3>
+<p>Since openSMILE is used by the openEAR
+project <a class="reference internal" href="bibliography.html#eyben2009itm" id="id24">[EWollmerS09]</a> for emotion recognition,
+various standard feature sets for emotion recognition are available as
+openSMILE configuration files.</p>
+<div class="section" id="the-interspeech-2009-emotion-challenge-feature-set">
+<span id="id25"></span><h4>The INTERSPEECH 2009 Emotion Challenge feature set<a class="headerlink" href="#the-interspeech-2009-emotion-challenge-feature-set" title="Permalink to this headline">¶</a></h4>
+<p>The INTERSPEECH 2009 Emotion Challenge feature set
+(see <a class="reference internal" href="bibliography.html#schuller2009ti2" id="id26">[SSB09]</a>) is defined in
+<code class="docutils literal notranslate"><span class="pre">config/is09-13/IS09_emotion.conf</span></code>. It contains 384 features as statistical
+functionals applied to low-level descriptor contours. The features are
+saved in Arff format (for WEKA), whereby new instances are appended to
+an existing file (this is used for batch processing, where openSMILE is
+repeatedly called to extract features from multiple files to a single
+feature file). The names of the 16 low-level descriptors, as they appear
+in the Arff file, are documented in the following list:</p>
+<dl class="simple">
+<dt>pcm_RMSenergy</dt><dd><p>Root-mean-square signal frame energy</p>
+</dd>
+<dt>mfcc</dt><dd><p>Mel-Frequency cepstral coefficients 1-12</p>
+</dd>
+<dt>pcm_zcr</dt><dd><p>Zero-crossing rate of time signal (frame-based)</p>
+</dd>
+<dt>voiceProb</dt><dd><p>The voicing probability computed from the ACF.</p>
+</dd>
+<dt>F0</dt><dd><p>The fundamental frequency computed from the Cepstrum.</p>
+</dd>
+</dl>
+<p>The suffix <strong>_sma</strong> appended to the names of the low-level descriptors
+indicates that they were smoothed by a moving average filter with window
+length 3. The suffix <strong>_de</strong> appended to <strong>_sma</strong> suffix indicates
+that the current feature is a 1st order delta coefficient (differential)
+of the smoothed low-level descriptor. The names of the 12 functionals,
+as they appear in the Arff file, are documented in the following list:</p>
+<dl class="simple">
+<dt>max</dt><dd><p>The maximum value of the contour</p>
+</dd>
+<dt>min</dt><dd><p>The minimum value of the contour</p>
+</dd>
+<dt>range</dt><dd><p>= max-min</p>
+</dd>
+<dt>maxPos</dt><dd><p>The absolute position of the maximum value (in frames)</p>
+</dd>
+<dt>minPos</dt><dd><p>The absolute position of the minimum value (in frames)</p>
+</dd>
+<dt>amean</dt><dd><p>The arithmetic mean of the contour</p>
+</dd>
+<dt>linregc1</dt><dd><p>The slope (m) of a linear approximation of the contour</p>
+</dd>
+<dt>linregc2</dt><dd><p>The offset (t) of a linear approximation of the contour</p>
+</dd>
+<dt>linregerrQ</dt><dd><p>The quadratic error computed as the difference of the linear
+approximation and the actual contour</p>
+</dd>
+<dt>stddev</dt><dd><p>The standard deviation of the values in the contour</p>
+</dd>
+<dt>skewness</dt><dd><p>The skewness (3rd order moment).</p>
+</dd>
+<dt>kurtosis</dt><dd><p>The kurtosis (4th order moment).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="the-interspeech-2010-paralinguistic-challenge-feature-set">
+<span id="id27"></span><h4>The INTERSPEECH 2010 Paralinguistic Challenge feature set<a class="headerlink" href="#the-interspeech-2010-paralinguistic-challenge-feature-set" title="Permalink to this headline">¶</a></h4>
+<p>The INTERSPEECH 2010 Paralinguistic Challenge feature set (see
+Proceedings of INTERSPEECH 2010) is represented by the configuration
+file <code class="docutils literal notranslate"><span class="pre">config/is09-13/IS10_paraling.conf</span></code>. The set contains 1582 features which
+result from a base of 34 low-level descriptors (LLD) with 34
+corresponding delta coefficients appended, and 21 functionals applied to
+each of these 68 LLD contours (1428 features). In addition, 19
+functionals are applied to the 4 pitch-based LLD and their four delta
+coefficient contours (152 features). Finally the number of pitch onsets
+(pseudo syllables) and the total duration of the input are appended (2
+features).</p>
+<p>The features are saved in Arff format (for WEKA), whereby new instances
+are appended to an existing file (this is used for batch processing,
+where openSMILE is repeatedly called to extract features from multiple
+files to a single feature file). The names of the 34 low-level
+descriptors, as they appear in the Arff file, are documented in the
+following list:</p>
+<dl class="simple">
+<dt>pcm_loudness</dt><dd><p>The loudness as the normalised intensity raised to a power of 0.3.</p>
+</dd>
+<dt>mfcc</dt><dd><p>Mel-Frequency cepstral coefficients 0-14</p>
+</dd>
+<dt>logMelFreqBand</dt><dd><p>logarithmic power of Mel-frequency bands 0 - 7 (distributed over a
+range from 0 to 8kHz)</p>
+</dd>
+<dt>lspFreq</dt><dd><p>The 8 line spectral pair frequencies computed from 8 LPC
+coefficients.</p>
+</dd>
+<dt>F0finEnv</dt><dd><p>The envelope of the smoothed fundamental frequency contour.</p>
+</dd>
+<dt>voicingFinalUnclipped</dt><dd><p>The voicing probability of the final fundamental frequency
+candidate. Unclipped means, that it was not set to zero when is
+falls below the voicing threshold.</p>
+</dd>
+</dl>
+<p>The suffix <strong>_sma</strong> appended to the names of the low-level descriptors
+indicates that they were smoothed by a moving average filter with window
+length 3. The suffix <strong>_de</strong> appended to <strong>_sma</strong> suffix indicates
+that the current feature is a 1st order delta coefficient (differential)
+of the smoothed low-level descriptor. The names of the 21 functionals,
+as they appear in the Arff file, are documented in the following list:</p>
+<dl class="simple">
+<dt>maxPos</dt><dd><p>The absolute position of the maximum value (in frames)</p>
+</dd>
+<dt>minPos</dt><dd><p>The absolute position of the minimum value (in frames)</p>
+</dd>
+<dt>amean</dt><dd><p>The arithmetic mean of the contour</p>
+</dd>
+<dt>linregc1</dt><dd><p>The slope (m) of a linear approximation of the contour</p>
+</dd>
+<dt>linregc2</dt><dd><p>The offset (t) of a linear approximation of the contour</p>
+</dd>
+<dt>linregerrA</dt><dd><p>The linear error computed as the difference of the linear
+approximation and the actual contour</p>
+</dd>
+<dt>linregerrQ</dt><dd><p>The quadratic error computed as the difference of the linear
+approximation and the actual contour</p>
+</dd>
+<dt>stddev</dt><dd><p>The standard deviation of the values in the contour</p>
+</dd>
+<dt>skewness</dt><dd><p>The skewness (3rd order moment).</p>
+</dd>
+<dt>kurtosis</dt><dd><p>The kurtosis (4th order moment).</p>
+</dd>
+<dt>quartile1</dt><dd><p>The first quartile (25% percentile)</p>
+</dd>
+<dt>quartile2</dt><dd><p>The first quartile (50% percentile)</p>
+</dd>
+<dt>quartile3</dt><dd><p>The first quartile (75% percentile)</p>
+</dd>
+<dt>iqr1-2</dt><dd><p>The inter-quartile range: quartile2-quartile1</p>
+</dd>
+<dt>iqr2-3</dt><dd><p>The inter-quartile range: quartile3-quartile2</p>
+</dd>
+<dt>iqr1-3</dt><dd><p>The inter-quartile range: quartile3-quartile1</p>
+</dd>
+<dt>percentile1.0</dt><dd><p>The outlier-robust minimum value of the contour, represented by the
+1% percentile.</p>
+</dd>
+<dt>percentile99.0</dt><dd><p>The outlier-robust maximum value of the contour, represented by the
+99% percentile.</p>
+</dd>
+<dt>pctlrange0-1</dt><dd><p>The outlier robust signal range ‘max-min’ represented by the range
+of the 1% and the 99% percentile.</p>
+</dd>
+<dt>upleveltime75</dt><dd><p>The percentage of time the signal is above (75% * range + min).</p>
+</dd>
+<dt>upleveltime90</dt><dd><p>The percentage of time the signal is above (90% * range + min).</p>
+</dd>
+</dl>
+<p>The four pitch related LLD (and corresponding delta coefficients) are as
+follows (all are 0 for unvoiced regions, thus functionals are only
+applied to voiced regions of these contours):</p>
+<dl class="simple">
+<dt>F0final</dt><dd><p>The smoothed fundamental frequency contour</p>
+</dd>
+<dt>jitterLocal</dt><dd><p>The local (frame-to-frame) Jitter (pitch period length deviations)</p>
+</dd>
+<dt>jitterDDP</dt><dd><p>The differential frame-to-frame Jitter (the ‘Jitter of the Jitter’)</p>
+</dd>
+<dt>shimmerLocal</dt><dd><p>The local (frame-to-frame) Shimmer (amplitude deviations between
+pitch periods)</p>
+</dd>
+</dl>
+<p>19 functionals are applied to these 4+4 LLD, i.e. the set of 21
+functionals mentioned above without the minimum value (the 1%
+percentile) and the range.</p>
+</div>
+<div class="section" id="the-interspeech-2011-speaker-state-challenge-feature-set">
+<span id="id28"></span><h4>The INTERSPEECH 2011 Speaker State Challenge feature set<a class="headerlink" href="#the-interspeech-2011-speaker-state-challenge-feature-set" title="Permalink to this headline">¶</a></h4>
+<p>The configuration file for this set can be found in
+<code class="docutils literal notranslate"><span class="pre">config/is09-13/IS11_speaker_state.conf</span></code>.</p>
+<p>Details on the feature set will be added to the openSMILE book soon.
+Meanwhile, we refer to the Challenge paper:</p>
+<blockquote>
+<div><p>Björn Schuller, Anton Batliner, Stefan Steidl, Florian Schiel, Jarek
+Krajewski: “The INTERSPEECH 2011 Speaker State Challenge”, Proc.
+INTERSPEECH 2011, ISCA, Florence, Italy, pp. 3201-3204,
+28.-31.08.2011.</p>
+</div></blockquote>
+</div>
+<div class="section" id="the-interspeech-2012-speaker-trait-challenge-feature-set">
+<span id="id29"></span><h4>The INTERSPEECH 2012 Speaker Trait Challenge feature set<a class="headerlink" href="#the-interspeech-2012-speaker-trait-challenge-feature-set" title="Permalink to this headline">¶</a></h4>
+<p>The configuration file for this set can be found in
+<code class="docutils literal notranslate"><span class="pre">config/is09-13/IS12_speaker_trait.conf</span></code>.</p>
+<p>Details on the feature set will be added to the openSMILE book soon.
+Meanwhile, we refer to the Challenge paper:</p>
+<blockquote>
+<div><p>Björn Schuller, Stefan Steidl, Anton Batliner, Elmar Nöth,
+Alessandro Vinciarelli, Felix Burkhardt, Rob van Son, Felix
+Weninger, Florian Eyben, Tobias Bocklet, Gelareh Mohammadi, Benjamin
+Weiss: “The INTERSPEECH 2012 Speaker Trait Challenge”, Proc.
+INTERSPEECH 2012, ISCA, Portland, OR, USA, 09.-13.09.2012.</p>
+</div></blockquote>
+</div>
+<div class="section" id="the-interspeech-2013-compare-challenge-feature-set">
+<span id="id30"></span><h4>The INTERSPEECH 2013 ComParE Challenge feature set<a class="headerlink" href="#the-interspeech-2013-compare-challenge-feature-set" title="Permalink to this headline">¶</a></h4>
+<p>The configuration file for this set can be found in
+<code class="docutils literal notranslate"><span class="pre">config/is09-13/IS13_ComParE.conf</span></code>. A configuration that extracts only the
+low-level descriptors of the ComParE feature set is provided in
+<code class="docutils literal notranslate"><span class="pre">config/is09-13/IS13_ComParE_lld.conf</span></code>. A configuration for the vocaliations
+(laughter, etc.) sub-challenge can be found in the file
+<code class="docutils literal notranslate"><span class="pre">config/is09-13/IS13_ComParE_Voc.conf</span></code>.</p>
+<p>Details on the feature set will be added to the openSMILE book soon.
+Meanwhile, we refer to the Challenge paper:</p>
+<blockquote>
+<div><p>Björn Schuller, Stefan Steidl, Anton Batliner, Alessandro
+Vinciarelli, Klaus Scherer, Fabien Ringeval, Mohamed Chetouani,
+Felix Weninger, Florian Eyben, Erik Marchi, Marcello Mortillaro,
+Hugues Salamin, Anna Polychroniou, Fabio Valente, Samuel Kim: “The
+INTERSPEECH 2013 Computational Paralinguistics Challenge: Social
+Signals, Conflict, Emotion, Autism”, to appear in Proc. INTERSPEECH
+2013, ISCA, Lyon, France, 2013.</p>
+</div></blockquote>
+</div>
+<div class="section" id="the-mediaeval-2012-tum-feature-set-for-violent-video-scenes-detection">
+<span id="the-mediaeval-2012-tum-feature-set-for-violent-video-scene-detection"></span><h4>The MediaEval 2012 TUM feature set for violent video scenes detection<a class="headerlink" href="#the-mediaeval-2012-tum-feature-set-for-violent-video-scenes-detection" title="Permalink to this headline">¶</a></h4>
+<p>The feature set for the work on violent scenes detection in popular
+Hollywood style movies as presented in:</p>
+<blockquote>
+<div><p>Florian Eyben, Felix Weninger, Nicolas Lehment, Gerhard Rigoll,
+Björn Schuller: “Violent Scenes Detection with Large, Brute-forced
+Acoustic and Visual Feature Sets”, Proc. MediaEval 2012 Workshop,
+Pisa, Italy, 04.-05.10.2012.</p>
+</div></blockquote>
+<p>can be found for various settings in
+<code class="docutils literal notranslate"><span class="pre">config/mediaeval12</span></code>.</p>
+<p>The file <code class="docutils literal notranslate"><span class="pre">MediaEval_Audio_IS12based_subwin2.conf</span></code> contains the
+configuration which extracts the static audio features from 2 second
+sub-windows.</p>
+<p><code class="docutils literal notranslate"><span class="pre">MediaEval_Audio_IS12based_subwin2_step0.5.conf</span></code> extracts the same
+features, but for overlapping 2 second windows with a shift of 0.5
+seconds. For the video features the file
+<code class="docutils literal notranslate"><span class="pre">MediaEval_VideoFunctionals.conf</span></code> is provided, which requires a CSV
+file containing the low-level descriptors (can be extracted with OpenCV)
+as input and outputs and ARFF file with the video features as used in
+the paper.</p>
+</div>
+<div class="section" id="the-opensmile-openear-emobase-set">
+<span id="id31"></span><h4>The openSMILE/openEAR ‘emobase’ set<a class="headerlink" href="#the-opensmile-openear-emobase-set" title="Permalink to this headline">¶</a></h4>
+<p>The old baseline set (see the ‘emobase2’ set for the new baseline set)
+of 988 acoustic features for emotion recognition can be extracted using
+the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">config</span><span class="o">/</span><span class="n">emobase</span><span class="o">/</span><span class="n">emobase</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">I</span> <span class="nb">input</span><span class="o">.</span><span class="n">wav</span> <span class="o">-</span><span class="n">O</span> <span class="n">output</span><span class="o">.</span><span class="n">arff</span>
+</pre></div>
+</div>
+<p>This will produce an ARFF file with a header containing all the feature
+names and one instance, containing a feature vector for the given input
+file. To append more instances to the same ARFF file, simply run the
+above command again for different (or the same) input files. The ARFF
+file will have a dummy class label called emotion, containing one class
+<em>unknown</em> by default. To change this behaviour and assign custom classes
+and class labels to an individual instance, use a command-line like the
+following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">config</span><span class="o">/</span><span class="n">emobase</span><span class="o">/</span><span class="n">emobase</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">I</span> <span class="n">inputN</span><span class="o">.</span><span class="n">wav</span> <span class="o">-</span><span class="n">O</span> <span class="n">output</span><span class="o">.</span><span class="n">arff</span> <span class="o">-</span><span class="n">instname</span> <span class="n">inputN</span> <span class="o">-</span><span class="n">classes</span> <span class="p">{</span><span class="n">anger</span><span class="p">,</span><span class="n">fear</span><span class="p">,</span><span class="n">disgust</span><span class="p">}</span> <span class="o">-</span><span class="n">classlabel</span> <span class="n">anger</span>
+</pre></div>
+</div>
+<p>Thereby the parameter <code class="docutils literal notranslate"><span class="pre">-classes</span></code> specifies the list of nominal classes
+including the {} characters, or can be set to <em>numeric</em> for a numeric
+(regression) class. The parameter <code class="docutils literal notranslate"><span class="pre">-classlabel</span></code> specifies the class
+label/value of the instance computed from the currently given input
+(-I). For further information on these parameters, please take a look at
+the configuration file <code class="docutils literal notranslate"><span class="pre">emobase.conf</span></code> where these command-line
+parameters are defined.</p>
+<p>The feature set specified by <code class="docutils literal notranslate"><span class="pre">emobase.conf</span></code> contains the following
+low-level descriptors (LLD): Intensity, Loudness, 12 MFCC, Pitch
+(<span class="math notranslate nohighlight">\(F_0\)</span>), Probability of voicing, <span class="math notranslate nohighlight">\(F_0\)</span> envelope, 8 LSF (Line
+Spectral Frequencies), Zero-Crossing Rate. Delta regression coefficients
+are computed from these LLD, and the following functionals are applied
+to the LLD and the delta coefficients: Max./Min. value and respective
+relative position within input, range, arithmetic mean, 2 linear
+regression coefficients and linear and quadratic error, standard
+deviation, skewness, kurtosis, quartile 1–3, and 3 inter-quartile
+ranges.</p>
+</div>
+<div class="section" id="the-large-opensmile-emotion-feature-set">
+<span id="id32"></span><h4>The large openSMILE emotion feature set<a class="headerlink" href="#the-large-opensmile-emotion-feature-set" title="Permalink to this headline">¶</a></h4>
+<p>For extracting a larger feature set with more functionals and more LLD
+enabled (6552 features in total), use the configuration file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">/</span><span class="n">misc</span><span class="o">/</span><span class="n">emo_large</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>Please read the configuration file and the header of the generated arff file in
+conjunction with the matching parts in the component reference section
+(<a class="reference internal" href="reference.html#components"><span class="std std-ref">Components</span></a>) for details on the contained
+feature set. A documentation has to be yet written, volunteers are welcome!</p>
+</div>
+<div class="section" id="the-opensmile-emobase2010-reference-set">
+<span id="id33"></span><h4>The openSMILE ‘emobase2010’ reference set<a class="headerlink" href="#the-opensmile-emobase2010-reference-set" title="Permalink to this headline">¶</a></h4>
+<p>This feature set is based on the INTERSPEECH 2010 Paralinguistic
+Challenge feature set. It is represented by the file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">/</span><span class="n">emobase</span><span class="o">/</span><span class="n">emobase2010</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>A few tweaks have been made regarding the normalisation of duration and
+positional features. This feature set contains a greatly enhanced set of
+low-level descriptors, as well as a carefully selected list of
+functionals compared to the older ‘emobase’ set. This feature set is
+recommended as a reference for comparing new emotion recognition feature
+sets and approaches to, since it represents a current state-of-the-art
+feature set for affect and paralinguistic recognition.</p>
+<p>The set contains 1582 features (same as the INTERSPEECH 2010
+Paralinguistic Challenge set) which result from a base of 34 low-level
+descriptors (LLD) with 34 corresponding delta coefficients appended, and
+21 functionals applied to each of these 68 LLD contours (1428 features).
+In addition, 19 functionals are applied to the 4 pitch-based LLD and
+their four delta coefficient contours (152 features). Finally the number
+of pitch onsets (pseudo syllables) and the total duration of the input
+are appended (2 features). The only difference to the INTERSPEECH 2010
+Paralinguistic Challenge set is the normalisation of the ‘maxPos’ and
+‘minPos’ features which are normalised to the segment length in the
+present set.</p>
+</div>
+<div class="section" id="audio-visual-features-based-on-interspeech-2010-audio-features">
+<span id="id34"></span><h4>Audio-visual features based on INTERSPEECH 2010 audio features<a class="headerlink" href="#audio-visual-features-based-on-interspeech-2010-audio-features" title="Permalink to this headline">¶</a></h4>
+<p>The folder <code class="docutils literal notranslate"><span class="pre">config/audiovisual</span></code> contains two configuration files for video
+features (video.conf) and synchronised audio-visual feature extraction
+(audiovideo.conf). These files are used for the examples in
+Section <a class="reference internal" href="#extracting-features-with-opencv"><span class="std std-ref">Extracting features with OpenCV</span></a>. The audio features and the set
+of functionals which is applied to both the audio and the video low-level
+features is taken from the INTERSPEECH 2010 Paralinguistic Challenge feature set
+(Section <a class="reference internal" href="#the-interspeech-2010-paralinguistic-challenge-feature-set"><span class="std std-ref">The INTERSPEECH 2010 Paralinguistic Challenge feature set</span></a> for
+details).</p>
+<p>The video features contain RGB and HSV colour histograms, local binary
+patterns (LBP), and an optical flow histogram. They can either be
+extracted from the complete image or only the facial region. The latter
+is automatically detected via the OpenCV face detector. The face
+detection can be controlled in the configuration file
+<code class="docutils literal notranslate"><span class="pre">audiovideo.conf</span></code> in the section</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">openCVSource</span><span class="p">:</span><span class="n">cOpenCVSource</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>with the option <code class="docutils literal notranslate"><span class="pre">extract_face</span></code>. The number of histogram bins can also
+be changed in this section.</p>
+</div>
+</div>
+</div>
+<div class="section" id="using-portaudio-for-live-recording-playback">
+<span id="id35"></span><h2>Using PortAudio for live recording/playback<a class="headerlink" href="#using-portaudio-for-live-recording-playback" title="Permalink to this headline">¶</a></h2>
+<p>The components <code class="docutils literal notranslate"><span class="pre">cPortaudioSource</span></code> and <code class="docutils literal notranslate"><span class="pre">cPortaudioSink</span></code> can be used
+as replacements for <code class="docutils literal notranslate"><span class="pre">cWaveSource</span></code> and <code class="docutils literal notranslate"><span class="pre">cWaveSink</span></code>. They
+produce/expect data in the same format as the wave components.</p>
+<p>Two sample configuration files are provided which illustrate the basic
+use of PortAudio for recording live audio to file
+(<code class="docutils literal notranslate"><span class="pre">config/demo/audiorecorder.conf</span></code>) and for playing live audio from a
+file (<code class="docutils literal notranslate"><span class="pre">config/demo/audioplayer.conf</span></code>).</p>
+<p>Using these configurations is very simple. To record audio to a file,
+type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">config</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="n">audiorecorder</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">sampleRate</span> <span class="mi">44100</span> <span class="o">-</span><span class="n">channels</span> <span class="mi">2</span> <span class="o">-</span><span class="n">O</span> <span class="n">output</span><span class="o">.</span><span class="n">wav</span>
+</pre></div>
+</div>
+<p>To stop the recording, quit the program with Ctrl+C. To play the
+recorded audio use this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">config</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="n">audioplayer</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">I</span> <span class="n">output</span><span class="o">.</span><span class="n">wav</span>
+</pre></div>
+</div>
+<p>On top of these two simple examples, a live feature extraction example
+is provided, which captures live audio and extracts prosodic features
+(pitch and loudness contours) from the input. The features are saved to
+a CSV file. To use this configuration, type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">config</span><span class="o">/</span><span class="n">prosody</span><span class="o">/</span><span class="n">liveProsodyAcf</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>The recording has started once you see the message</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">MSG</span><span class="p">)</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">in</span> <span class="n">cComponentManager</span> <span class="p">:</span> <span class="n">starting</span> <span class="n">single</span> <span class="n">thread</span> <span class="n">processing</span> <span class="n">loop</span>
+</pre></div>
+</div>
+<p>You can now speak a sample sentence or play some music in front of your
+microphone. When you are done, press Ctrl+C to terminate openSMILE. A
+CSV file called <code class="docutils literal notranslate"><span class="pre">prosody.csv</span></code> has now been created in the current
+directory (use the <code class="docutils literal notranslate"><span class="pre">-O</span></code> command-line option to change the file name).
+You can now plot the loudness and pitch contours using gnuplot, for
+example, as is described in the next section.</p>
+</div>
+<div class="section" id="extracting-features-with-opencv">
+<span id="id36"></span><h2>Extracting features with OpenCV<a class="headerlink" href="#extracting-features-with-opencv" title="Permalink to this headline">¶</a></h2>
+<p>openSMILE can extract audio and video features simultaneously and
+time-synchronised. An example is provided in the configuration file
+<code class="docutils literal notranslate"><span class="pre">config/audiovisual/audiovideo.conf</span></code>.</p>
+<p>For this example to work, you need:</p>
+<ul class="simple">
+<li><p>a video file in a supported format (rule of thumb: if FFmpeg can open
+it, OpenCV/openSMILE can too)</p></li>
+<li><p>the audio track of the video file in a separate file (.wav format)</p></li>
+</ul>
+<p>You can use MPlayer or FFmpeg, for example, to extract the audio track
+of the video. The analysis with openSMILE can then be started by
+executing (all on a single line):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./SMILExtract -C config/audiovisual/audiovideo.conf <span class="se">\</span>
+  -V VIDEO_FILE -A AUDIO_FILE -N NAME -a AGE <span class="se">\</span>
+  -g GENDER -e ETHNICITY -O VIDEO_ARFF -P AUDIO_ARFF
+</pre></div>
+</div>
+<p>in a shell, whereas the following replacements should be done:</p>
+<ul class="simple">
+<li><p>AUDIO_FILE and VIDEO_FILE should be replaced by the path to the
+respective audio (.wav) and video input files (can contain the audio
+track, it is ignored by OpenCV)</p></li>
+<li><p>NAME denotes the title for the arff instance and can be freely chosen
+from alphanumeric characters and the underscore character.</p></li>
+<li><p>AGE, GENDER and ETHNICITY represent the ground-truth class labels for
+this particular pair of audio/video, if you want them to be included
+in an ARFF file, which you use to train a classifier.</p></li>
+<li><p>VIDEO_ARFF and AUDIO_ARFF should be replaced by the desired
+filename for the respective output arffs.</p></li>
+</ul>
+<p>After execution, two new files will have been created: VIDEO_ARFF and
+AUDIO_ARFF which contain the audio and video descriptors respectively,
+time synchronised. If those files already exist, the content is appended
+accordingly.</p>
+</div>
+<div class="section" id="visualising-data-with-gnuplot">
+<span id="id37"></span><h2>Visualising data with Gnuplot<a class="headerlink" href="#visualising-data-with-gnuplot" title="Permalink to this headline">¶</a></h2>
+<p>In order to visualise feature contours with gnuplot, you must have and gnuplot
+4.6 or newer installed. On Linux gnuplot can be either installed via your
+distribution’s package manager (On Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span>
+<span class="pre">gnuplot-nox</span></code>), or compiled from the source (<a class="reference external" href="http://www.gnuplot.info">http://www.gnuplot.info</a>). For
+Windows, gnuplot binaries are available from the project web page.</p>
+<p>A set of example gnuplot scripts is included with openSMILE in the directory
+<code class="docutils literal notranslate"><span class="pre">scripts/gnuplot</span></code>. The set of these scripts is by far not complete, but we
+feel this is not necessary. These script serve as templates which you can easily
+adjust for you own tasks. They handle the CSV files generated by openSMILE and
+plot them with default gnuplot settings.</p>
+<p>The following commands give a step-by-step guide on how to plot Chroma features
+and an auditory spectrum (<em>Note</em>: we assume that you execute these commands in
+the top-level directory of the openSMILE distribution, otherwise you may need to
+adjust the paths):</p>
+<p>First, you must extract chroma features from some sample music file,
+e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">config</span><span class="o">/</span><span class="n">chroma</span><span class="o">/</span><span class="n">chroma_fft</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">I</span> <span class="n">example</span><span class="o">-</span><span class="n">audio</span><span class="o">/</span><span class="n">opensmile</span><span class="o">.</span><span class="n">wav</span> <span class="o">-</span><span class="n">O</span> <span class="n">chroma</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p>Then you can plot them with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">scripts</span><span class="o">/</span><span class="n">gnuplot</span>
+<span class="n">gnuplot</span> <span class="n">plotchroma</span><span class="o">.</span><span class="n">plt</span>
+</pre></div>
+</div>
+<p>This results in a file <code class="file docutils literal notranslate"><span class="pre">chroma.png</span></code> which is included in
+<a class="reference internal" href="#fig-gnuplot-chroma"><span class="std std-numref">Fig. 1</span></a>.</p>
+<div class="figure align-center" id="id40">
+<span id="fig-gnuplot-chroma"></span><img alt="Chroma features extracted with openSMILE." src="_images/chroma.png" />
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Chroma features extracted with openSMILE.</span><a class="headerlink" href="#id40" title="Permalink to this image">¶</a></p>
+</div>
+<p>For a spectrogram showing the magnitude in decibel, follow these steps:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> \
+    <span class="o">-</span><span class="n">C</span> <span class="n">config</span><span class="o">/</span><span class="n">spectrum</span><span class="o">/</span><span class="n">spectrogram</span><span class="o">.</span><span class="n">conf</span> \
+    <span class="o">-</span><span class="n">I</span> <span class="n">example</span><span class="o">-</span><span class="n">audio</span><span class="o">/</span><span class="n">opensmile</span><span class="o">.</span><span class="n">wav</span> \
+    <span class="o">-</span><span class="n">csvoutput</span> <span class="n">spectrogram</span><span class="o">.</span><span class="n">csv</span> \
+    <span class="o">-</span><span class="n">dB</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Then you can plot them with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">scripts</span><span class="o">/</span><span class="n">gnuplot</span>
+<span class="n">gnuplot</span> <span class="n">plotspectrogram</span><span class="o">.</span><span class="n">plt</span>
+</pre></div>
+</div>
+<p>This results in a file <code class="file docutils literal notranslate"><span class="pre">spectrogram.png</span></code> which is included in
+<a class="reference internal" href="#fig-gnuplot-spectrogram"><span class="std std-numref">Fig. 2</span></a>.</p>
+<div class="figure align-center" id="id41">
+<span id="fig-gnuplot-spectrogram"></span><img alt="Spectrogram features extracted with openSMILE." src="_images/spectrogram.png" />
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Spectrogram features extracted with openSMILE.</span><a class="headerlink" href="#id41" title="Permalink to this image">¶</a></p>
+</div>
+<p>To plot feature contours such as pitch or energy, first extract some
+sample contours using the <code class="docutils literal notranslate"><span class="pre">prosodyAcf.conf</span></code> configuration, for example
+(you can also use the live feature extractor configuration, mentioned in
+the previous section):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">C</span> <span class="n">config</span><span class="o">/</span><span class="n">prosody</span><span class="o">/</span><span class="n">prosodyAcf</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">I</span> <span class="n">example</span><span class="o">-</span><span class="n">audio</span><span class="o">/</span><span class="n">opensmile</span><span class="o">.</span><span class="n">wav</span> <span class="o">-</span><span class="n">csvoutput</span> <span class="n">prosody</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p>Next, you can plot the loudness and voice probability contours with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">scripts</span><span class="o">/</span><span class="n">gnuplot</span>
+<span class="n">gnuplot</span> <span class="n">plotcontour</span><span class="o">.</span><span class="n">plt</span>
+</pre></div>
+</div>
+<p>This results in a file <code class="file docutils literal notranslate"><span class="pre">contour.png</span></code> which is included in
+<a class="reference internal" href="#fig-gnuplot-contour"><span class="std std-numref">Fig. 3</span></a>.</p>
+<div class="figure align-center" id="id42">
+<span id="fig-gnuplot-contour"></span><img alt="Pitch contour features extracted with openSMILE." src="_images/contour.png" />
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Pitch contour features extracted with openSMILE.</span><a class="headerlink" href="#id42" title="Permalink to this image">¶</a></p>
+</div>
+<p>To plot other features of your CSV output, have a look into the plotting script
+and change the selected columns to be printed. At the moment the fourth column
+(pitch contour) is not selected.</p>
+<p>Plotting of features in real-time when performing on-line feature
+extraction is currently not supported. However, since features are
+extracted incrementally anyways, it is possible to write a custom output
+plugin, which passes the data to some plotting application in real-time,
+or plots the data directly using some GUI API.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id38"><span class="brackets"><a class="fn-backref" href="#id11">3</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/Microsoft/vcpkg">https://github.com/Microsoft/vcpkg</a></p>
+</dd>
+<dt class="label" id="id39"><span class="brackets"><a class="fn-backref" href="#id12">4</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/Microsoft/vcpkg/issues/2799">https://github.com/Microsoft/vcpkg/issues/2799</a></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="reference.html" class="btn btn-neutral float-right" title="Reference section" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="about.html" class="btn btn-neutral float-left" title="About openSMILE" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2013-2020 audEERING GmbH and 2008-2013 TU München, MMK
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

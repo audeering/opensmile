@@ -1,0 +1,48 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cRnnSink:
+
+cRnnSink
+--------
+
+Description
+~~~~~~~~~~~
+This is an example of a cDataSink descendant\. It reads data from the data memory and prints it to the console\. This component is intended as a template for developers\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cRnnSink`
+
+Fields
+~~~~~~
+- **netfile** (string) [default: None]
+  
+    The file which contains the trained network created by rnnlib
+  
+- **actoutput** (string) [default: None]
+  
+    A text file to which the raw output activations will be saved\. Each frame will be saved on a separate line \(this is rnnlib\'s activation output format transposed\)\.
+  
+- **classoutput** (string) [default: None]
+  
+    A text file to which the winning class label will be saved \(task \= classification or transcription\)\. The result for each frame will be saved on a separate line\.
+  
+- **classlabels** (string) [default: None]
+  
+    Give a string of comma separated \(NO spaces allowed\!\!\) class names \(e\.g\. class1\,class2\,class3\) for a classification or transcription task
+  
+- **ctcDecode** (numeric) [default: 1\.0]
+  
+    1\/0 \= yes\/no \: Do basic ctc \(transcription\) decoding\, i\.e\. remove duplicate labels and \(TODO\: compute label alignments\.\)
+  
+- **printConnections** (numeric) [default: 0\.0]
+  
+    1\/0 \= yes\/no \: print human readable information on the network layers on connections
+  
+- **printInputStats** (numeric) [default: 0\.0]
+  
+    1\/0 \= yes\/no \: print input weight sums \(can be used for feature selection\.\.\.\)
+  

@@ -1,0 +1,116 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cLibsvmLiveSink:
+
+cLibsvmLiveSink
+---------------
+
+Description
+~~~~~~~~~~~
+This component classifies data from dataMemory \'on\-the\-fly\' using the LibSVM or LibLINEAR library\. Loading of ASCII and binary LibSVM models is supported\, as well as application of LibSVM scale files and openSMILE feature selection lists\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cLibsvmLiveSink`
+
+Fields
+~~~~~~
+- **model[]** (string) [default: svm\.model]
+  
+    LibSVM or LibLINEAR model file\(s\) to load \(see isLibLinearModel option for libLinear\)\.
+  
+- **scale[]** (string) [default: None]
+  
+    LibSVM scale file\(s\) to load
+  
+- **fselection[]** (string) [default: None]
+  
+    Feature selection file\(s\) to apply \(leave empty to use all features\)\. The feature selection files must contain the exact names of the selected features\, one feature per line\.
+  
+- **nIgnoreEndSelection** (numeric) [default: 0\.0]
+  
+    number of string lines to ignore at the \*end\* of the feature selection file \(only works for string\/name lists\, not for index lists\!\)
+  
+- **classes[]** (string) [default: None]
+  
+    Class name lookup file\(s\)\, which map the libsvm class indicies to actual class names \(leave empty to display libsvm class numbers\/indicies\) \[note\: currently only ONE class name lookup file is supported\!\]
+  
+- **predictProbability** (numeric) [default: 0\.0]
+  
+    1 \= predict class probabilities \(confidences\) \(0 \= no\)
+  
+- **printParseableResult** (numeric) [default: 0\.0]
+  
+    1 \= print easily parsable classification\/regression result to stdout
+  
+- **printResult** (numeric) [default: 0\.0]
+  
+    1 \= print classification\/regression result to log
+  
+- **saveResult** (string) [default: None]
+  
+    filename of text file the result\(s\) will be saved to
+  
+- **saveResultCsv** (string) [default: None]
+  
+    filename of CSV format file the result\(s\) will be saved to
+  
+- **resultCsvAppend** (numeric) [default: 0\.0]
+  
+    1 \= append to csv result file\, 0 \= overwrite existing file
+  
+- **resultRecp** (string) [default: None]
+  
+    List of component\(s\) to send \'classificationResult\' messages to \(use \, to separate multiple recepients\)\, leave blank \(NULL\) to not send any messages
+  
+- **resultMessageName** (string) [default: svm\_result]
+  
+    Freely definable name that is sent with \'classificationResult\' message
+  
+- **forceScale** (numeric) [default: 1\.0]
+  
+    1 \= for the input values\, enforce the range specified in the scale file by clipping out\-of\-range values \(after scaling\)\.
+  
+- **lag** (numeric) [default: 0\.0]
+  
+    read data \<lag\> frames behind \(should always remain 0 for this component\.\.\.\?\)
+  
+- **useThread** (numeric) [default: 0\.0]
+  
+    1 \= load the model and do the classification in a background thread\, the data frames \(inputs\) will be stored in a queue and processed sequentially by the background thread \(parallel processing is not implemented yet\!\)\.
+  
+- **loadModelBg** (numeric) [default: 1\.0]
+  
+    1 \= if useThread\=\=1 \(and only then\.\.\.\) load the libsvm model and scale files in the background thread\. openSMILE will start to run the tick loop\, but classify incoming frames only after the model has been loaded\. Up to then all incoming frames are discarded\.
+  
+- **waitForModelLoaded** (numeric) [default: 1\.0]
+  
+    1 \= if useThread\=\=1 and loadModelBg\=\=1\, then wait for the model to be loaded before processing data\. If sert to 0\, and incoming data while the model is loaded will be discarded \(use 0 for real\-time operation\)
+  
+- **threadQueSize** (numeric) [default: 0\.0]
+  
+    max\. number of frames to keep in queue \(Set to 0 for an infinite number of frames\)\.
+  
+- **multiModelMode** (numeric) [default: 0\.0]
+  
+    1 \= classify input data with all loaded models \*in parallel\* \(you will have nModels output messages then\)\. 0 \= classify with first model by default\. Switching of models is possible via a \'svmSinkSetModel\' smile message\.
+  
+- **batchMode** (numeric) [default: 0\.0]
+  
+    1 \= similar to multiModelMode\=1\, classify using all models\, however only one result message \(containing multiple individual results\) will be generated\.
+  
+- **noVerify** (numeric) [default: 0\.0]
+  
+    1 \= \*DON\'T\* verify whether the support vector dimension matches the feature selection list dimension and the scale file dimension\.
+  
+- **modelResultName[]** (string) [default: None]
+  
+    Array of custom names sent as \'custData2\' pointer with the classificationResult message for corresponding models\. The dimensions of this array should match the dimensions of the \'model\' array\.
+  
+- **bgThreadPriority** (numeric) [default: 0\.0]
+  
+    The thread priority of the background predictor thread \(currently only supported on windows\)\, values \-15 \(idle\) to 15 \(real\-time\)\, while 0 is normal\. This should be lower as or equal to the priority of the openSMILE main thread\!
+  

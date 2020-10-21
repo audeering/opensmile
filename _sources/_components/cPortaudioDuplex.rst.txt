@@ -1,0 +1,56 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cPortaudioDuplex:
+
+cPortaudioDuplex
+----------------
+
+Description
+~~~~~~~~~~~
+dataProcessor for full\-duplex playback and recording of live audio using PortAudio library
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cPortaudioDuplex`
+
+Fields
+~~~~~~
+- **monoMixdownPB** (numeric) [default: 0\.0]
+  
+    mix down all channels to 1 mono channel \(for playback\)
+  
+- **monoMixdownREC** (numeric) [default: 0\.0]
+  
+    mix down all channels to 1 mono channel \(for recording\)
+  
+- **device** (numeric) [default: \-1\.0]
+  
+    PortAudio device to use \(device number\)
+  
+- **listDevices** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) list available portaudio devices during initialisation phase
+  
+- **sampleRate** (numeric) [default: 44100\.0]
+  
+    recording AND playback sample rate \(WARNING\: no sample rate conversion of input level data will be performed prior to playback\!\)
+  
+- **nBits** (numeric) [default: 0\.0]
+  
+    number of bits per sample and channel to use for playback \(0\=pass float values to portaudio\)  \[ NOT IMPLEMENTED YET \]
+  
+- **channels** (numeric) [default: 1\.0]
+  
+    number of channels to record
+  
+- **audioBuffersize** (numeric) [default: 1000\.0]
+  
+    size of port audio playback\&recording buffer in samples
+  
+- **audioBuffersize_sec** (numeric) [default: 0\.05]
+  
+    size of port audio playback\&recording buffer in seconds
+  

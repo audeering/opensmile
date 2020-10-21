@@ -1,0 +1,40 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cAmdf:
+
+cAmdf
+-----
+
+Description
+~~~~~~~~~~~
+This component computes the Average Magnitude Difference Function \(AMDF\) for each input frame\. Various methods for padding or warping at the border exist\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cAmdf`
+
+Fields
+~~~~~~
+- **nameAppend** (string) [default: amdf]
+  
+    A string suffix to append to the input field names \(default\: empty\)
+  
+- **nLag** (numeric) [default: 0\.0]
+  
+    If nLag \> 0\, compute AMDF up to maximum lag \'nLag\' \(or maximum possible lag limited by framesize\)\. If nLag\=0\, then always the maximum framesize will be used \(this is the default\)\. If nLag \< 0\, then nLag\=framesize\/\(\(\-1\)\*nLag\) will be used\.
+  
+- **method** (string) [default: limit]
+  
+    The AMDF computation method \(i\.e\. the handling of border conditions\)\:
+
+    -    \'limit\' \:  compute AMDF only in regions where the shifted windows overlap
+    -    \'warp\' \: compute cyclical AMDF by warping of input
+    -    \'zeropad\' \: zero pad missing samples
+  
+- **invert** (numeric) [default: 0\.0]
+  
+    1 \= invert the AMDF output values \(literally \'1\-amdf\'\)\, i\.e\. so that the behaviour of the AMDF output corresponds more to that of an autocorrelation function\.
+  

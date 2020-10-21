@@ -1,0 +1,32 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cVectorPreemphasis:
+
+cVectorPreemphasis
+------------------
+
+Description
+~~~~~~~~~~~
+This component performs per frame pre\-emphasis without an inter\-frame state memory\. \(This is the way HTK does pre\-emphasis\)\. Pre\-emphasis\: y\(t\) \= x\(t\) \- k\*x\(t\-1\) \; de\-emphasis \: y\(t\) \= x\(t\) \+ k\*x\(t\-1\)
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cVectorPreemphasis`
+
+Fields
+~~~~~~
+- **k** (numeric) [default: 0\.97]
+  
+    The pre\-emphasis coefficient k in y\[n\] \= x\[n\] \- k\*x\[n\-1\]
+  
+- **f** (numeric) [default: 0\.0]
+  
+    The pre\-emphasis frequency f in Hz \: k \= exp\( \-2\*pi \* f\/samplingFreq\. \) \(this option will override k\)
+  
+- **de** (numeric) [default: 0\.0]
+  
+    1 \= perform de\- instead of pre\-emphasis
+  

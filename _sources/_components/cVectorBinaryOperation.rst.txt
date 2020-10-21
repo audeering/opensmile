@@ -1,0 +1,52 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cVectorBinaryOperation:
+
+cVectorBinaryOperation
+----------------------
+
+Description
+~~~~~~~~~~~
+This component performs element\-wise binary operations on vectors \(\+\, \-\, \*\, \/\, \^\, min\, max\)\. Requires both fields to have the same dimensions\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorBinaryOperation`
+
+Fields
+~~~~~~
+- **fieldNames[]** (string) [default: None]
+  
+    An array of exact \(case\-sensitive\) names of features \/ data elements to process \(for subtraction\, division and power\, there must be exactly two fields\)\. All the data vectors must have the same dimension\.
+  
+- **operation** (string) [default: add]
+  
+    A string which specifies the type of element\-wise operation to perform\:
+
+    -   add \= add vectors
+    -   sub \= subtract vector 2 to vector 1 \(in the order given by the \'fieldNames\' parameter\)\, 0
+    -   mul \= multiply vectors 
+    -   div \= divide vector 1 by vector 2\, 0
+    -   pow \= take values of vector 1 to the power of values of vector 2
+    -   min \= take the min
+    -   max \= take the max\.
+  
+- **newName** (string) [default: None]
+  
+    New name to assign to the resulting features \/ data elements \(optional\)\.
+  
+- **powOnlyPos** (numeric) [default: 0\.0]
+  
+    if \'operation\' \= \'pow\'\, do not take negative values to the power of \'param1\'\; instead\, output 0\. This is necessary to avoid \'nan\' values if the exponent is rational\. 
+  
+- **dummyMode** (numeric) [default: 0\.0]
+  
+    1 \= don\'t set up output level names\. Use this option temporarily\, to get a working set\-up where you can read the input level names\, to set up your selection list\.
+  
+- **divZeroOutputVal1** (numeric) [default: 1\.0]
+  
+    1 \= In case of \'div\' operation\, output value1 in case of value2 \=\= 0 \(\= division by zero\)\. 0 \= output 0 when division by zero\.
+  

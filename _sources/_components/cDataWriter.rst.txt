@@ -1,0 +1,83 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cDataWriter:
+
+cDataWriter
+-----------
+
+Description
+~~~~~~~~~~~
+This is the dataMemory interface component that writes vector or matrix data to a dataMemory level\. A writer can write only to a single level in the dataMemory\, this level cannot be changed during the run\-time phase\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **dmInstance** (string) [default: dataMemory]
+  
+    The cDataMemory instance this writer shall connect to\. This allows for complex configurations with multiple\, independent data memories\. For most applications the default \'dataMemory\' should be reasonable\. This is also the assumed default when automatically generating a configuration file\.
+  
+- **dmLevel** (string) [default: None]
+  
+    The data memory level this writer will write data to\. You can specify any name here\, this writer will register and create a level of this name in the dataMemory during initialisation of openSMILE\. Please be aware of the fact that only one writer can write to a data memory level\, therefore you are not allowed to use the same name again in a \'dmLevel\' option of any other component in the same config\.
+  
+- **levelconf** (object of type :ref:`cDataMemoryLevel`)
+  
+    This structure specifies an optional configuration of this data memory level\.
+    -   If this is given\, it will overwrite any defaults or inherited values from input levels\. For details see the help on the configuration type \'cDataMemoryLevel\'\.
+  
+.. _cDataMemoryLevel:
+
+cDataMemoryLevel
+----------------
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **name** (string) [default: None]
+  
+    The name of this data memory level\, must be unique within one data memory instance\.
+  
+- **type** (string) [default: float]
+  
+    The data type of the level \[can be\: \'float\' or \'int\'\(eger\) \, currently only float is supported by the majority of processing components \]
+  
+- **isRb** (numeric) [default: 1\.0]
+  
+    Flag that indicates whether this level is a ring\-buffer level \(1\) or not \(0\)\. I\.e\. this level stores the last \'nT\' frames\, and discards old data as new data comes in \(if the old data has already been read by all registered readers\; if this is not the case\, the level will report that it is full to the writer attempting the write operation\)
+  
+- **nT** (numeric) [default: 100\.0]
+  
+    The size of the level buffer in frames \(this overwrites the \'lenSec\' option\)
+  
+- **T** (numeric) [default: 0\.0]
+  
+    The frame period of this level in seconds\. Use a frame period of 0 for a\-periodic levels \(i\.e\. data that does not occur periodically\)
+  
+- **lenSec** (numeric) [default: 0\.0]
+  
+    The size of the level buffer in seconds
+  
+- **frameSizeSec** (numeric) [default: 0\.0]
+  
+    The size of one frame in seconds\. \(This is generally NOT equal to 1\/T\, because frames may overlap\)
+  
+- **growDyn** (numeric) [default: 0\.0]
+  
+    Supported currently only if \'ringbuffer\=0\'\. If this option is set to 1\, the level grows dynamically\, if more memory is needed\. You can use this to store live input of arbitrary length in memory\. However\, be aware that if openSMILE runs for a long time\, it will allocate more and more memory\!
+  
+- **noHang** (numeric) [default: 1\.0]
+  
+    This option controls the \'hang\' behaviour for ring\-buffer levels\, i\.e\. the behaviour exhibited\, when the level is full because data from the ring\-buffer has not been marked as read because not all readers registered to read from this level have read data\. Valid options are\, 0\, 1\, 2 \:
+
+    -   0 \= always wait for readers\, mark the level as full and make writes fail until all readers have read at least the next frame from this level
+    -   1 \= don\'t wait for readers\, if no readers are registered\, i\.e\. this level is a dead\-end \(this is the default\) \/ 2 \= never wait for readers\, writes to this level will always succeed \(reads to non existing data regions might then fail\)\, use this option with a bit of caution\.
+  

@@ -1,0 +1,84 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionalPercentiles:
+
+cFunctionalPercentiles
+----------------------
+
+Description
+~~~~~~~~~~~
+percentile values and inter\-percentile ranges \(including quartiles\, etc\.\)\. This component sorts the input array and then chooses the value at the index closest to p\*buffer\_len for the p\-th percentile \(p\=0\.\.1\)\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **quartiles** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of all quartiles \(overrides individual settings quartile1\, quartile2\, and quartile3\)
+  
+- **quartile1** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of quartile1 \(0\.25\)
+  
+- **quartile2** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of quartile2 \(0\.50\)
+  
+- **quartile3** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of quartile3 \(0\.75\)
+  
+- **iqr** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of all inter\-quartile ranges \(overrides individual settings iqr12\, iqr23\, and iqr13\)
+  
+- **iqr12** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of inter\-quartile range 1\-2 \(quartile2\-quartile1\)
+  
+- **iqr23** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of inter\-quartile range 2\-3 \(quartile3\-quartile2\)
+  
+- **iqr13** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of inter\-quartile range 1\-3 \(quartile3\-quartile1\)
+  
+- **iqq** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of all inter\-quartile quotients \(ratios\) \(overrides individual settings iqq12\, iqq23\, and iqq13\)
+  
+- **iqq12** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of inter\-quartile quotient q1\/q2
+  
+- **iqq23** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of inter\-quartile quotient q2\/q3
+  
+- **iqq13** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of inter\-quartile quotient q1\/q3
+  
+- **percentile[]** (numeric) [default: 0\.9]
+  
+    Array of p\*100 percent percentiles to compute\. p \= 0\.\.1\. Array size indicates the number of total percentiles to compute \(excluding quartiles\)\, duplicate entries are not checked for and not removed  \: percentile\[n\] \= p \(p\=0\.\.1\)
+  
+- **pctlrange[]** (string) [default: 0\-1]
+  
+    Array that specifies which inter percentile ranges to compute\. A range is specified as \'n1\-n2\' \(where n1 and n2 are the indicies of the percentiles as they appear in the percentile\[\] array\, starting at 0 with the index of the first percentile\)
+  
+- **pctlquotient[]** (string) [default: 0\-1]
+  
+    Array that specifies which inter percentile quotients to compute\. A quotient is specified as \'n1\-n2\' \(where n1 and n2 are the indicies of the percentiles as they appear in the percentile\[\] array\, starting at 0 with the index of the first percentile\)\. The quotient is computed as n1\/n2\.
+  
+- **interp** (numeric) [default: 1\.0]
+  
+    If set to 1\, percentile values will be linearly interpolated\, instead of being rounded to the nearest index in the sorted array
+  

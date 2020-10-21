@@ -1,0 +1,18 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cExternalMessageInterface:
+
+cExternalMessageInterface
+-------------------------
+
+Description
+~~~~~~~~~~~
+This component forwards component messages to external code via callbacks\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+

@@ -1,0 +1,68 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionalModulation:
+
+cFunctionalModulation
+---------------------
+
+Description
+~~~~~~~~~~~
+Modulation Spectrum
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **stftWinSizeSec** (numeric) [default: 4\.0]
+  
+    Window size of Short Time Fourier Transformation in seconds\. Set to 0 to use \(zero\-padded to next power of 2\) full input segment\. If the input is smaller than \'stftWinSizeSec\'\, it will be zero padded to \'stftWinSizeSec\'\. Segments will further be zero padded to the next higher power of 2 \(in frames\)\.
+  
+- **stftWinStepSec** (numeric) [default: 0\.0]
+  
+    Step size of Short Time Fourier Transformation in seconds\. Default 0\.0 will set the step size to the same as the window size\.
+  
+- **stftWinSizeFrames** (numeric) [default: 400\.0]
+  
+    Window size of Short Time Fourier Transformation in input frames\. Set to 0 to use \(zero\-padded to next power of 2\) full input segment\. If the input is smaller than \'stftWinSizeSec\'\, it will be zero padded to \'stftWinSizeSec\'\. Segments will further be zero padded to the next higher power of 2\. If this option is set\, it overrides stftWinSizeSec\.
+  
+- **stftWinStepFrames** (numeric) [default: 0\.0]
+  
+    Window size of Short Time Fourier Transformation in input frames\. Default 0 will set the step size to the same as the window size\.
+  
+- **fftWinFunc** (string) [default: ham]
+  
+    STFT window function\.
+  
+- **modSpecResolution** (numeric) [default: 0\.5]
+  
+    Output resolution \(in Hz\) of modulation spectrum \(interpolated from stft\)\. This is preferred over num bins\, but if num bins is set\, it will override this option\.
+  
+- **modSpecNumBins** (numeric) [default: 50\.0]
+  
+    Alternative to specifying the resolution\, specifies the number of bins\. Overrides \'modSpecResolution\'\, if set\.
+  
+- **modSpecMinFreq** (numeric) [default: 0\.5]
+  
+    Lower bound of modulation spectrum \(in Hz\)\.
+  
+- **modSpecMaxFreq** (numeric) [default: 20\.0]
+  
+    Upper bound of modulation spectrum \(in Hz\)\.
+  
+- **showModSpecScale** (numeric) [default: 0\.0]
+  
+    \(1\/0 \= yes\/no\) Print the frequency axis of the modulation spectrum during initialisation\.
+  
+- **removeNonZeroMean** (numeric) [default: 0\.0]
+  
+    \(1\/0 \= yes\/no\) Remove the mean of all non\-zero values \(use for F0 modulation spectrum for example\)\.
+  
+- **ignoreLastFrameIfTooShort** (numeric) [default: 1\.0]
+  
+    \(1\/0 \= yes\/no\) If stftWinSize is not 0 \(i\.e\. not using full input length\)\, ignore the last window if it is smaller than 2\/3 of stftWinSize\.
+  

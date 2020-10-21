@@ -1,0 +1,88 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cWindower:
+
+cWindower
+---------
+
+Description
+~~~~~~~~~~~
+This component applies applies window function to pcm frames\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cWindower`
+
+Fields
+~~~~~~
+- **gain** (numeric) [default: 1\.0]
+  
+    This option allows you to specify a scaling factor by which window function \(which is by default normalised to max\. 1\) should be multiplied by 
+  
+- **offset** (numeric) [default: 0\.0]
+  
+    This specifies an offset which will be added to the samples after multiplying with the window function
+  
+- **xscale** (numeric) [default: 1\.0]
+  
+    \(NOT YET IMPLEMENTED\!\) A scale factor applied to the y\-axis when computing the window\. A factor of 2 will compute the window over twice the window length\, and then clip it to the window\, i\.e\. only the left half of the window function will be the actual window\. In case of xscale\=0\.5\, for example\, the second half of the actual window will be zero\, while the first half is the window function\. Use in conjunction with \'xshift\' paramter\.
+  
+- **xshift** (numeric) [default: 0\.0]
+  
+    Specifies a shift of the window center to the left \(negative\) or right \(positive\) as percentage of the window length \(ignoring xscale parameter\)\. Allowed range is from \-100\% to \+100\%\.
+  
+- **winFunc** (string) [default: Han]
+  
+    Window function\:
+
+    -   Hann \[Han\] \(\= raised cosine window\; use this\, if you want to resynthesis from the spectral domain\, also use 50\% overlap in the framer\!\)\,
+    -   Hamming \[Ham\]\,
+    -   Rectangular \[Rec\]\,
+    -   Gauss \[Gau\]\,
+    -   Sine \/ Cosine \[Sin\]\,
+    -   Triangular \[Tri\]\,
+    -   Bartlett \[Bar\]\,
+    -   Bartlett\-Hann \[BaH\]\,
+    -   Blackmann \[Bla\]\,
+    -   Blackmann\-Harris \[BlH\]\,
+    -   Lanczos \[Lac\]
+  
+- **sigma** (numeric) [default: 0\.4]
+  
+    Standard deviation for the Gaussian window relative to half the window length\. I\.e\. at N\/2 \- \(N\/2 \* sigma\) the window amplitude will be 0\.5\.
+  
+- **alpha0** (numeric) [default: 0\.0]
+  
+    alpha0 for Blackmann\(\-Harris\) \/ Bartlett\-Hann windows \(optional\!\)
+  
+- **alpha1** (numeric) [default: 0\.0]
+  
+    alpha1 for Blackmann\(\-Harris\) \/ Bartlett\-Hann windows \(optional\!\)
+  
+- **alpha2** (numeric) [default: 0\.0]
+  
+    alpha2 for Blackmann\(\-Harris\) \/ Bartlett\-Hann windows \(optional\!\)
+  
+- **alpha3** (numeric) [default: 0\.0]
+  
+    alpha3 for Blackmann\-Harris window \(optional\!\)
+  
+- **alpha** (numeric) [default: 0\.16]
+  
+    alpha for the Blackmann window
+  
+- **fade** (numeric) [default: 0\.0]
+  
+    Fade percentage \(0 \- 0\.5\) for fading edges to 0 with a half raised cosine function \(0 \= no fade\, default\)
+  
+- **squareRoot** (numeric) [default: 0\.0]
+  
+    1 \= use square root of \'winFunc\' as actual window function \(e\.g\. to get a root raised cosine window\)\.
+  
+- **saveWindowToFile** (string) [default: None]
+  
+    Save window to text file \(comma separated coefficients\) of given name\. If NULL \(default\) nothing will be saved\.
+  

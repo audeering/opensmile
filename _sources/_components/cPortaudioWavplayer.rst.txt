@@ -1,0 +1,56 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cPortaudioWavplayer:
+
+cPortaudioWavplayer
+-------------------
+
+Description
+~~~~~~~~~~~
+This component can play wavefiles directly to a portaudio output device\. Multiple wave files can be specified as inputs and they can be played via smile messages containing the index of the sample to play\. Concurrent play requests will be discarded \(TODO\: mix the output\)\. All wave files must have the same sampling rate\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **monoMixdown** (numeric) [default: 0\.0]
+  
+    mix down all channels to 1 mono channel
+  
+- **device** (numeric) [default: \-1\.0]
+  
+    PortAudio device to use \(device number\)
+  
+- **listDevices** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) list available portaudio devices during initialisation phase
+  
+- **sampleRate** (numeric) [default: 0\.0]
+  
+    force output sample rate \(0\=determine sample rate from input level\)
+  
+- **wavefile[]** (string) [default: None]
+  
+    The filenames of the wavesample\(s\) to play \(triggered via smile message or numbers read from the input level\)\.
+  
+- **keyword[]** (string) [default: None]
+  
+    List of keywords or classnames \(in same order as wave files\)
+  
+- **indices[]** (numeric) [default: \-1\.0]
+  
+    List of class indicies for classification results \(same order as wave files\)
+  
+- **semaineCallbackRcpt** (string) [default: None]
+  
+    Reciepient of SEMAINE callback message for echo feedback supression \(start speaking \/ stop speaking messages\, i\.e\. when player starts playing\/stops playing\)\.
+  
+- **audioBuffersize** (numeric) [default: 1000\.0]
+  
+    size of port audio playback buffer in samples \(overwrites audioBuffersize\_sec\, if set\)
+  

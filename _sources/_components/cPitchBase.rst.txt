@@ -1,0 +1,72 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cPitchBase:
+
+cPitchBase
+----------
+
+Description
+~~~~~~~~~~~
+Base class for all pitch classes\, no functionality on its own\!
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cPitchBase`
+
+Fields
+~~~~~~
+- **processArrayFields** (numeric) [default: 0\.0]
+  
+    1 \= process each array field as one vector individually \(and produce one output for each input array field\)\. Only array fields \(i\.e\. fields with more than one element\) are processed if this is set\. \/ 0 \= process complete input frame as one vector\, ignoring field\/element structure
+  
+- **maxPitch** (numeric) [default: 620\.0]
+  
+    Maximum detectable pitch in Hz
+  
+- **minPitch** (numeric) [default: 52\.0]
+  
+    Minimum detectable pitch in Hz
+  
+- **nCandidates** (numeric) [default: 3\.0]
+  
+    The number of F0 candidates to output \[1\-20\] \(0 disables ouput of candidates AND their voicing probs\.\)
+  
+- **scores** (numeric) [default: 1\.0]
+  
+    1\/0 \= on\/off\: output of F0 candidates scores\, if available
+  
+- **voicing** (numeric) [default: 1\.0]
+  
+    1\/0 \= on\/off\: output of voicing probability for F0 candidates
+  
+- **F0C1** (numeric) [default: 0\.0]
+  
+    1\/0 \= on\/off\: output of raw best F0 candidate without thresholding in unvoiced segments
+  
+- **voicingC1** (numeric) [default: 0\.0]
+  
+    1\/0 \= on\/off\: output of output voicing \(pseudo\) probability for best candidate
+  
+- **F0raw** (numeric) [default: 0\.0]
+  
+    1\/0 \= on\/off\: output of raw F0 \(best candidate\)\, \> 0 only for voiced segments \(using voicingCutoff threshold\)
+  
+- **voicingClip** (numeric) [default: 0\.0]
+  
+    1\/0 \= on\/off\: output of voicing of raw F0 \(best candidate\)\, \> 0 only for voiced segments \(using voicingCutoff threshold\)
+  
+- **voicingCutoff** (numeric) [default: 1\.0]
+  
+    This sets the voicing \(pseudo\) probability threshold for pitch detection\. Frames with voicing probability values above this threshold will be considered as voiced\.
+  
+- **inputFieldSearch** (string) [default: Mag]
+  
+    A part of the name to find the pitch detectors input field by \(\'Mag\' searches e\.g\. for \*Mag\*\, and will match fftMag fields\)
+  
+- **octaveCorrection** (numeric) [default: 0\.0]
+  
+    If this pitch detector algorithm offers algorithm specific low\-level octave correction\, enable it
+  

@@ -1,0 +1,28 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cExampleSink:
+
+cExampleSink
+------------
+
+Description
+~~~~~~~~~~~
+This is an example of a cDataSink descendant\. It reads data from the data memory and prints it to the console\. This component is intended as a template for developers\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cExampleSink`
+
+Fields
+~~~~~~
+- **filename** (string) [default: None]
+  
+    The name of a text file to dump values to \(this file will be overwritten\, if it exists\)
+  
+- **lag** (numeric) [default: 0\.0]
+  
+    Output data \<lag\> frames behind
+  

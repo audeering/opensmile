@@ -1,0 +1,24 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cLsp:
+
+cLsp
+----
+
+Description
+~~~~~~~~~~~
+This component computes LSP \(line spectral pair frequencies\, also known as LSF\) from LPC coefficients by partial factorisation of the LPC polynomial\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cLsp`
+
+Fields
+~~~~~~
+- **processArrayFields** (numeric) [default: 0\.0]
+  
+    1 \= process each array field as one vector individually \(and produce one output for each input array field\)\. Only array fields \(i\.e\. fields with more than one element\) are processed if this is set\. \/ 0 \= process complete input frame as one vector\, ignoring field\/element structure
+  

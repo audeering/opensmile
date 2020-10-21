@@ -1,0 +1,49 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cDataSelector:
+
+cDataSelector
+-------------
+
+Description
+~~~~~~~~~~~
+This component copies data from one level to another\, thereby selecting frame fields and elements by their element\/field name\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cDataSelector`
+
+Fields
+~~~~~~
+- **selFile** (string) [default: None]
+  
+    The name of the data selection file to load\. The file is a text file containing one element name or range of indices per line of the elements which should be selected \(case\-sensitive\!\)\. \(Note\: the first two lines make up a header\; the first line is either \'str\' or \'idx\'\, the second line is number of following lines in the file\, next each line contains one feature name or index range of the features to select\)
+  
+- **selected[]** (string) [default: None]
+  
+    This is an alternative to loading \'selFile\'\. An array of exact \(case\-sensitive\) names of features \/ data elements to select\.
+  
+- **selectedRange[]** (string) [default: None]
+  
+    This is an alternative to loading \'selFile\'\. It specifies the selected elements\(\!\) by element index ranges\. Each array element contains one range in the format of \<start\>\-\<end\>\, where \<start\> and \<end\> are the indicies of the startt and end features to \*select\* in this range\. \'\$\' specifies the last element\, and \'1\' indicates the first element\. If the \'\-\' is missing\, only a single element will be selected\, not a range\. NOTE\: the \'newNames\' option does not work in conjunction with this element selection method\!
+  
+- **newNames[]** (string) [default: None]
+  
+    An array of new names to assign to the selected features \/ data elements \(optional\)\. The order thereby corresponds to the order of data element names in the input\.
+  
+- **elementMode** (numeric) [default: 1\.0]
+  
+    1 \= select elements exactly as given in \'selected\' array or in \'selFile\' \(in this case\, only full element names are allowed \(i\.e\. mfcc\[1\]\, mfcc\[2\] instead of mfcc\, mfcc\[\]\, or mfcc\[1\-2\]
+    -   0 \= automatically copy arrays or partial arrays\, e\.g\. if field\[1\-4\] or only \'field\' is given as name in the selction array\/file\, then the partial \(1\-4\) or complete field will be copied to the output
+  
+- **dummyMode** (numeric) [default: 0\.0]
+  
+    1 \= don\'t set up output level names\. Use this option temporarily\, to get a working set\-up where you can read the input level names\, to set up your selection list\.
+  
+- **outputSingleField** (string) [default: None]
+  
+    If this is set to a string\, the output will be a single field \(with the name set by this string\) for all the elements in the input\.
+  

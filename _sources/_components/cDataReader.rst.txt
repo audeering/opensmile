@@ -1,0 +1,36 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cDataReader:
+
+cDataReader
+-----------
+
+Description
+~~~~~~~~~~~
+This is the dataMemory interface component that reads data as vector or matrix from dataMemory component\. It is used internally by all dataProcessor\, dataSource\, and dataSink components\. A cDataReader can read from one or more data memory levels\. In the latter case a single vector is returned which consists of all individual vectors concattenated\. Reading from multiple levels implies waiting for data on the \'slowest\' level\, since only completely concattenated frames are read\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **dmInstance** (string) [default: dataMemory]
+  
+    The name of the dataMemory instance this reader should connect to\.
+  
+- **dmLevel[]** (string) [default: None]
+  
+    The level in the data memory instance specified by \'dmInstance\' which to read from\. If this array element contains more than one element\, this reader will read data from multiple input levels\, and concattenate the data to generate a single frame\/vector\. It is a good practice to have unique field names in all levels that you wish to concatenate\. Note\: If reading from multiple levels\, the reader can only return a successfully read frame\, if data is available for reading on all input levels\. If data is missing on one level\, the reader cannot output data\, even if data is present on the other levels\.
+  
+- **forceAsyncMerge** (numeric) [default: 0\.0]
+  
+    1\/0 \= yes\/no \: force framewise merging of levels with differing frame period\, if multiple levels are specified in dmLevel
+  
+- **errorOnFullInputIncomplete** (numeric) [default: 1\.0]
+  
+    1\/0 \= yes\/no \: 1 \= abort with an error if full input matrix reading is activated \(frameSize\=0 \& frameStep\=0 \=\> frameMode\=full\) and beginning of matrix \(curR\) is not 0\, \(if this option is set to 0\, only a warning is shown\)
+  

@@ -1,0 +1,80 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cSpecScale:
+
+cSpecScale
+----------
+
+Description
+~~~~~~~~~~~
+This component performs linear\/non\-linear axis scaling of FFT magnitude spectra with spline interpolation\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cSpecScale`
+
+Fields
+~~~~~~
+- **processArrayFields** (numeric) [default: 0\.0]
+  
+    1 \= process each array field as one vector individually \(and produce one output for each input array field\)\. Only array fields \(i\.e\. fields with more than one element\) are processed if this is set\. \/ 0 \= process complete input frame as one vector\, ignoring field\/element structure
+  
+- **scale** (string) [default: log]
+  
+    The target scale\, one of the following\:
+
+    -   \'log\(arithmic\)\' \(logarithmic\, see \'logScaleBase\'\)
+    -   \'oct\(ave\)\' \(octave scale \= logarithmic with base 2\)
+    -   \'sem\(itone\)\' \(musical semi\-tone scale\)
+    -   \'lin\(ear\)\' \(linear scale\)
+    -   \'bar\(k\)\' \(bark scale\)
+    -   \'bao\' \(old \- pre 2\.0 \- approximation of bark scale\)
+    -   \'mel\' \(mel frequency scale\)
+  
+- **sourceScale** (string) [default: lin]
+  
+    The source scale \(currently only \'lin\(ear\)\' is supported\, all other options \(as found for target scale\) are experimental\)
+  
+- **logScaleBase** (numeric) [default: 2\.0]
+  
+    The base for log scales \(a log base of 2\.0 \- the default \- corresponds to an octave target scale\)
+  
+- **logSourceScaleBase** (numeric) [default: 2\.0]
+  
+    The base for log source scales \(a log base of 2\.0 \- the default \- corresponds to an octave target scale\)
+  
+- **firstNote** (numeric) [default: 55\.0]
+  
+    The first note \(in Hz\) for a semi\-tone scale
+  
+- **interpMethod** (string) [default: spline]
+  
+    The interpolation method for rescaled spectra\: \'none\'\, \'spline\'
+  
+- **minF** (numeric) [default: 25\.0]
+  
+    The minimum frequency of the target scale
+  
+- **maxF** (numeric) [default: \-1\.0]
+  
+    The maximum frequency of the target scale \(\-1\.0 \: set to maximum frequency of the source spectrum\)
+  
+- **nPointsTarget** (numeric) [default: 0\.0]
+  
+    The number of frequency points in target spectrum \(\<\= 0 \: same as input spectrum\)
+  
+- **specSmooth** (numeric) [default: 0\.0]
+  
+    1 \= perform spectral smoothing before applying the scale transformation
+  
+- **specEnhance** (numeric) [default: 0\.0]
+  
+    1 \= do spectral peak enhancement before applying smoothing \(if enabled\) and scale transformation
+  
+- **auditoryWeighting** (numeric) [default: 0\.0]
+  
+    1 \= enable post\-scale auditory weighting \(this is currently only supported for octave \(log2\) scales\)
+  

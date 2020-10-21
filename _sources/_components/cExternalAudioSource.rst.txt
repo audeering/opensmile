@@ -1,0 +1,52 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cExternalAudioSource:
+
+cExternalAudioSource
+--------------------
+
+Description
+~~~~~~~~~~~
+This component reads audio input that is passed to the component programmatically\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSource` |rarr| :ref:`cExternalAudioSource`
+
+Fields
+~~~~~~
+- **blocksize** (numeric) [default: 0\.0]
+  
+    The maximum size of audio sample buffers that can be passed to this component at once in samples \(per channel\, overwrites blocksize\_sec\, if set\)
+  
+- **blocksize_sec** (numeric) [default: 0\.05]
+  
+    The maximum size of sample buffers that can be passed to this component at once in seconds\.
+  
+- **period** (numeric) [default: 0\.0]
+  
+    \(optional\) The period of the input frames \(in seconds\)\, if it cannot be determined from the input file format\. \(if set and \!\= 0\, this will overwrite any automatically set values\, e\.g\. from samplerate and writer\.levelconf etc\. \(NOTE\: this behaviour also depends on the source component\, whether it overwrites period in configureWriter\(\) or whether it keeps the period if it is \!\= 0\.0\)\)
+  
+- **sampleRate** (numeric) [default: 16000\.0]
+  
+    The sampling rate of the external audio input
+  
+- **channels** (numeric) [default: 1\.0]
+  
+    The number of channels of the external audio input
+  
+- **nBits** (numeric) [default: 16\.0]
+  
+    The number of bits per sample and channel of the external audio input
+  
+- **nBPS** (numeric) [default: 0\.0]
+  
+    The number of bytes per sample and channel of the external audio input \(0\=determine automatically from nBits\)
+  
+- **fieldName** (string) [default: pcm]
+  
+    Name of dataMemory field data is written to\.
+  

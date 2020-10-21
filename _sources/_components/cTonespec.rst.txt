@@ -1,0 +1,48 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cTonespec:
+
+cTonespec
+---------
+
+Description
+~~~~~~~~~~~
+This component computes \(or rather estimates\) a semi\-tone spectrum from an FFT magnitude spectrum\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cTonespec`
+
+Fields
+~~~~~~
+- **nameAppend** (string) [default: note]
+  
+    A string suffix to append to the input field names \(default\: empty\)
+  
+- **nOctaves** (numeric) [default: 6\.0]
+  
+    The number of octaves the spectrum should span
+  
+- **firstNote** (numeric) [default: 55\.0]
+  
+    The frequency of the first note \(in Hz\)
+  
+- **filterType** (string) [default: gau]
+  
+    The shape of the semitone filter\:
+
+    -   tri \(triangular\)
+    -   trp \(triangular\-powered\)
+    -   gau \(gaussian\)
+  
+- **usePower** (numeric) [default: 0\.0]
+  
+    Compute the semi\-tone spectrum from the power spectrum instead of the magnitudes \(\= square input values\)
+  
+- **dbA** (numeric) [default: 1\.0]
+  
+    apply built\-in dbA weighting to \(power\) spectrum \(1\/0 \= yes\/no\)
+  

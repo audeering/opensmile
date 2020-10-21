@@ -1,0 +1,122 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionals:
+
+cFunctionals
+------------
+
+Description
+~~~~~~~~~~~
+computes functionals from input frames\, this component uses various cFunctionalXXXX sub\-components\, which implement the actual functionality
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cWinToVecProcessor` |rarr| :ref:`cFunctionals`
+
+Fields
+~~~~~~
+- **Extremes** (object of type :ref:`cFunctionalExtremes`)
+  
+    functional sub\-config of type cFunctionalExtremes
+  
+- **Means** (object of type :ref:`cFunctionalMeans`)
+  
+    functional sub\-config of type cFunctionalMeans
+  
+- **Peaks** (object of type :ref:`cFunctionalPeaks`)
+  
+    functional sub\-config of type cFunctionalPeaks
+  
+- **Peaks2** (object of type :ref:`cFunctionalPeaks2`)
+  
+    functional sub\-config of type cFunctionalPeaks2
+  
+- **Segments** (object of type :ref:`cFunctionalSegments`)
+  
+    functional sub\-config of type cFunctionalSegments
+  
+- **Onset** (object of type :ref:`cFunctionalOnset`)
+  
+    functional sub\-config of type cFunctionalOnset
+  
+- **Moments** (object of type :ref:`cFunctionalMoments`)
+  
+    functional sub\-config of type cFunctionalMoments
+  
+- **Crossings** (object of type :ref:`cFunctionalCrossings`)
+  
+    functional sub\-config of type cFunctionalCrossings
+  
+- **Percentiles** (object of type :ref:`cFunctionalPercentiles`)
+  
+    functional sub\-config of type cFunctionalPercentiles
+  
+- **Regression** (object of type :ref:`cFunctionalRegression`)
+  
+    functional sub\-config of type cFunctionalRegression
+  
+- **Samples** (object of type :ref:`cFunctionalSamples`)
+  
+    functional sub\-config of type cFunctionalSamples
+  
+- **Times** (object of type :ref:`cFunctionalTimes`)
+  
+    functional sub\-config of type cFunctionalTimes
+  
+- **DCT** (object of type :ref:`cFunctionalDCT`)
+  
+    functional sub\-config of type cFunctionalDCT
+  
+- **Lpc** (object of type :ref:`cFunctionalLpc`)
+  
+    functional sub\-config of type cFunctionalLpc
+  
+- **Modulation** (object of type :ref:`cFunctionalModulation`)
+  
+    functional sub\-config of type cFunctionalModulation
+  
+- **functionalsEnabled[]** (string) [default: None]
+  
+    Array that defines the enabled functionals
+    -    The following functionals are available \(sub\-components\) \(Attention\: the names are case\-SENSITIVE\!\)\:
+
+    -     \(\#\) 	\(name\)    		\(description\)
+    -      1\.	Extremes 		  extreme values \(max\, min\, range\, maxPos\, minPos\, \.\.\.\)
+    -      2\.	Means 		  various mean values \(arithmetic\, geometric\, quadratic\, \.\.\.\)
+    -      3\.	Peaks 		  number of peaks and various measures associated with peaks\, such as mean of peaks\, mean distance between peaks\, etc\. Peak finding is based on \: x\(t\-1\) \< x\(t\) \> x\(t\+1\)\.
+    -      4\.	Peaks2 		  number of peaks and various measures associated with peaks\, such as mean of peaks\, mean distance between peaks\, etc\. Peak finding is based on \: x\(t\-1\) \< x\(t\) \> x\(t\+1\) plus an advanced post filtering of low relative amplitude peaks\. See source code for brief description of peak picking algorithm\. This component provides a new and improved algorithm for peak detection\, as compared to cFunctionalPeaks component\.
+    -      5\.	Segments 		  number of segments based on simple delta thresholding
+    -      6\.	Onset 		  relative position of the first onset and the last offset based on simple thresholding\. Number of onsets and offsets can also be computed\.
+    -      7\.	Moments 		  statistical moments \(standard deviation\, variance\, skewness\, kurtosis\)
+    -      8\.	Crossings 		  zero\-crossing rate\, mean crossing rate\, dc offset\, min\, and max value
+    -      9\.	Percentiles 		  percentile values and inter\-percentile ranges \(including quartiles\, etc\.\)\. This component sorts the input array and then chooses the value at the index closest to p\*buffer\_len for the p\-th percentile \(p\=0\.\.1\)\.
+    -      10\.	Regression 		  linear and quadratic regression coefficients and corresponding linear and quadratic regression errors\. Linear regression line\: y \= m\*x \+ t \; quadratic regression parabola\: y \= a\*x\^2 \+ b\*x \+ c \. Algorithm used\: Minimum mean square error\, direct analytic solution\. This component also computes the centroid of the contour\.
+    -      11\.	Samples 		sampled values at equidistant frames
+    -      12\.	Times 		  up\- and down\-level times \+ rise and fall\, left\- and right\-curve times\, duration\, etc\.
+    -      13\.	DCT 		  DCT coefficients
+    -      14\.	Lpc 		  LP coefficients as functionals
+    -      15\.	Modulation 		  Modulation Spectrum
+  
+- **nonZeroFuncts** (numeric) [default: 0\.0]
+  
+    If this is set to 1\, functionals are only applied to input values unequal 0\. If this is set to 2\, functionals are only applied to input values greater than 0\.
+  
+- **functNameAppend** (string) [default: None]
+  
+    Specifies a string prefix to append to the functional name \(which is appended to the input feature name\)
+  
+- **masterTimeNorm** (string) [default: segment]
+  
+    This option specifies how all components should normalise times\, if they generate output values related to durations\. You can change the \'norm\' parameter of individual functional components to overwrite this master value\. You can choose one of the following normalisation methods\:
+
+    -   \'segment\' \(or\: \'turn\'\) \: normalise to the range 0\.\.1\, the result indicates relative turn length \)
+    -   \'second\'  \(absolute time in seconds\) 
+    -   \'frame\' \(absolute time in number of frames of input level\)
+  
+- **preserveFields** (numeric) [default: 0\.0]
+  
+    If set to 1\, preserves the field structure \(and metadata\, TODO\!\)\, of the input vector structure\. If set to 0 \(default\) the output will only have fields with a single element\.
+  

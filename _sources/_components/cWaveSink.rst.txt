@@ -1,0 +1,43 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cWaveSink:
+
+cWaveSink
+---------
+
+Description
+~~~~~~~~~~~
+This component saves data to an uncompressed PCM WAVE file
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cWaveSink`
+
+Fields
+~~~~~~
+- **blocksize_sec** (numeric) [default: 1\.0]
+  
+    The size of the data blocks to read at once\, in seconds
+  
+- **filename** (string) [default: output\.wav]
+  
+    The filename of the PCM wave file to write data to\. Set to \'\?\' to disable this sink component\.
+  
+- **sampleFormat** (string) [default: 16bit]
+  
+    openSMILE uses float for all data internally\. Thus you must specify your desired sample format for the wave files here\. Available formats\:
+
+    -   \'8bit\' \: 8\-bit signed 
+    -   \'16bit\' \: 16\-bit signed
+    -   \'24bit\' \: 24\-bit signed
+    -   \'24bitp\' \: 24\-bit signed packed in 3 bytes
+    -   \'32bit\' \: 32\-bit signed integer
+    -   \'float\' \: 32\-bit float
+  
+- **flushData** (numeric) [default: 0\.0]
+  
+    1\/0 \(on\/off\) \: flush data to disk and update wave header after writing a frame to the output file \(default behaviour is to flush only when the file is closed and openSMILE is being terminated via Ctrl\+C or at the end\-of\-input in offline mode\)
+  

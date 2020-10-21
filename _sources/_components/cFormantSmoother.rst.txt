@@ -1,0 +1,80 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFormantSmoother:
+
+cFormantSmoother
+----------------
+
+Description
+~~~~~~~~~~~
+This component performs temporal formant smoothing\. Input\: candidates produced by a formant\*\* component AND\(\!\) \- appended \- an F0final or voicing field \(which is 0 for unvoiced frames and non\-zero for voiced frames\)\. Output\: Smoothed formant frequency contours\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cFormantSmoother`
+
+Fields
+~~~~~~
+- **processArrayFields** (numeric) [default: 0\.0]
+  
+    1 \= process each array field as one vector individually \(and produce one output for each input array field\)\. Only array fields \(i\.e\. fields with more than one element\) are processed if this is set\. \/ 0 \= process complete input frame as one vector\, ignoring field\/element structure
+  
+- **medianFilter0** (numeric) [default: 0\.0]
+  
+    If \> 0\, applies median filtering of candidates as the FIRST processing step\; the filter length is the value of \'medianFilter0\' if \> 0
+  
+- **postSmoothing** (numeric) [default: 0\.0]
+  
+    If \> 0\, applies post processing \(median and spike remover\) over \'postSmoothing\' frames \(0\=no smoothing or use default set by postSmoothingMethod\)
+  
+- **postSmoothingMethod** (string) [default: simple]
+  
+    The post processing method to use\. One of the following\:
+
+    -   \'none\' disable post smoothing
+    -   \'simple\' simple post smoothing using only 1 frame delay \(will smooth out 1 frame octave spikes\)
+    -   \'median\' will apply a median filter to the output values \(length \= value of \'postProcessing\'\)
+  
+- **F0field** (string) [default: F0final]
+  
+    The input field containing either F0final or voicingFinalClipped \(i\.e\. a field who\'s value is 0 for unvoiced frames and \!\= 0 otherwise\)\, \(the name you give here is a partial name\, i\.e\. the actual field names will be matched against \*\'F0field\'\*\)\. Note\: do not use the \*Env\* \(envelope\) fields here\, they are \!\= 0 for unvoiced frames\!
+  
+- **formantBandwidthField** (string) [default: formantBand]
+  
+    The input field containing formant bandwidths \(the name you give here is a partial name\, i\.e\. the actual field names will be matched against \*formantBandwidthField\*\)
+  
+- **formantFreqField** (string) [default: formantFreq]
+  
+    The input field containing formant frequencies \(the name you give here is a partial name\, i\.e\. the actual field names will be matched against \*formantFreqField\*\)
+  
+- **formantFrameIntensField** (string) [default: formantFrameIntens]
+  
+    The input field containing formant frame intensity \(the name you give here is a partial name\, i\.e\. the actual field names will be matched against \*formantFrameIntensField\*\)
+  
+- **intensity** (numeric) [default: 0\.0]
+  
+    If set to 1\, output formant intensity
+  
+- **nFormants** (numeric) [default: 5\.0]
+  
+    This sets the maximum number of smoothed formants to output \(set to 0 to disable the output of formants and bandwidths\)
+  
+- **formants** (numeric) [default: 1\.0]
+  
+    If set to 1\, output formant frequencies \(also see \'nFormants\' option\)
+  
+- **bandwidths** (numeric) [default: 0\.0]
+  
+    If set to 1\, output formant bandwidths \(also see \'nFormants\' option\)
+  
+- **saveEnvs** (numeric) [default: 0\.0]
+  
+    If set to 1\, output formant frequency and bandwidth envelopes instead\(\!\) of the actual data \(i\.e\. the last value of a voiced frame is used for the following unvoiced frames\)\.
+  
+- **no0f0** (numeric) [default: 0\.0]
+  
+    \'no zero F0\'\: if set to 1\, output data only when F0\>0\, i\.e\. a voiced frame is detected\. This may cause problem with some functionals and framer components\, which don\'t support this variable length data yet\.\.\.
+  

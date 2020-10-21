@@ -1,0 +1,32 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cVectorProcessor:
+
+cVectorProcessor
+----------------
+
+Description
+~~~~~~~~~~~
+dataProcessor\, where each array field is processed individually as a vector
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor`
+
+Fields
+~~~~~~
+- **processArrayFields** (numeric) [default: 1\.0]
+  
+    1 \= process each array field as one vector individually \(and produce one output for each input array field\)\. Only array fields \(i\.e\. fields with more than one element\) are processed if this is set\. \/ 0 \= process complete input frame as one vector\, ignoring field\/element structure
+  
+- **includeSingleElementFields** (numeric) [default: 0\.0]
+  
+    1 \= if in processArrayFields \(1\) mode\, then also include single element fields\.
+  
+- **preserveFieldNames** (numeric) [default: 1\.0]
+  
+    1 \= when processArrrayFields is disabled \(0\)\, then still preserve the input field partitioning and names in the output\, but just process the whole vector instead of fields\. This was the default in old versions\, but now it can be controlled\. This is what you would usually want\, except if you want\/need to combine inputs to a single large array field\.
+  

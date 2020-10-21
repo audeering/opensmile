@@ -1,0 +1,144 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cSpectral:
+
+cSpectral
+---------
+
+Description
+~~~~~~~~~~~
+This component computes spectral features such as flux\, roll\-off\, centroid\, and user defined band energies \(rectangular summation of FFT magnitudes\)\, etc\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cSpectral`
+
+Fields
+~~~~~~
+- **squareInput** (numeric) [default: 1\.0]
+  
+    1\/0 \= square input values \(e\.g\. if input is magnitude and not power spectrum\)
+  
+- **bands[]** (string) [default: 250\-650]
+  
+    bands\[n\] \= LoFrq\[Hz\]\-HiFrq\[Hz\]  \(e\.g\. 0\-250\)\, compute energy in this spectral band \(only integer frequencies are allowed\!\)
+  
+- **normBandEnergies** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) normalise the band energies to the total frame energy \(\-\> relative band energies\)\. Also affects \'harmonicity\'\, normalises the average min to max variations in the spectrum by the total frame energy \(sum of magnitudes or squares\)\.
+  
+- **rollOff[]** (numeric) [default: 0\.9]
+  
+    rollOff\[n\] \= X  \(X in the range 0\.\.1\)\, compute X\*100 percent spectral roll\-off point
+  
+- **specDiff** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of spectral difference \(root\-mean\-square of absolute differences over all bins\)
+  
+- **specPosDiff** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of spectral positive difference \(sum of squared positive differences normalised by number of bins and then sqrt taken\)
+  
+- **flux** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of spectral flux
+  
+- **fluxCentroid** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of spectral flux centroid \(in Hz\)\, i\.e\. the frequency with currently the most flux around it\.
+  
+- **fluxAtFluxCentroid** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of spectral flux only at and around \(\+\- 2 bins\) the centroid of flux \(as computed by the \'fluxCentroid\' option\)\.
+  
+- **centroid** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of spectral centroid
+  
+- **maxPos** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of position of spectral maximum
+  
+- **minPos** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of position of spectral minimum
+  
+- **entropy** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of spectral entropy
+  
+- **standardDeviation** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of spectral standard deviation \(root of variance\)
+  
+- **variance** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of spectral variance \(mpeg7\: spectral spread\)
+  
+- **skewness** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of spectral skewness
+  
+- **kurtosis** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of spectral kurtosis
+  
+- **slope** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of spectral slope over maximal frequency range
+  
+- **slopes[]** (string) [default: None]
+  
+    slopes\[n\] \= LoFrq\[Hz\]\-HiFrq\[Hz\] \(e\.g\. 0\-5000\)\, computes spectral slope in the given band \(only integer frequencies are allowed\!\)
+  
+- **alphaRatio** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of alpha ratio \(ratio of energy above 1 kHz \(up to 5 kHz\) to energy below 1 kHz\)\.
+  
+- **hammarbergIndex** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of hammarberg index \(ratio of energy peak \(max\) in 0\-2 kHz region and energy peak \(max\) in 2\-5 kHz region\)\.
+  
+- **sharpness** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of psychoacoustic parameter \'sharpness\'\. In order to obtain proper values\, use a bark scale spectrum as input \(see cSpecScale component\)\.
+  
+- **tonality** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of consonance \(ratio of consonance\/dissonance\, based on intervals between spectral peaks\)\. \(NOT YET IMPLEMENTED\)
+  
+- **harmonicity** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of harmonicity \(mean of consecutive local min\-max differences\)\. Optionally normalised by the total frame energy\, if normBandEnergies is set to 1\.
+  
+- **flatness** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) enable computation of spectral flatness \(sfm \= geometric\_mean \/ arithmetic\_mean of spectrum\)\.
+  
+- **logFlatness** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) if flatness is enabled\, output ln\(flatness\)\.
+  
+- **buggyRollOff** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) for backwards feature set compatibility\, enable buggy roll\-off computation \(pre May 2013\, pre 2\.0 release\)\.
+  
+- **oldSlopeScale** (numeric) [default: 1\.0]
+  
+    \(1\/0\=yes\/no\) for backwards feature set compatibility\, enable \(incorrectly\) scaled spectral slope computation \(pre July 2013\, pre 2\.0 final release\)\. Enabled by default\, to preserve compatibility with older feature sets\. Disable in new designs\!
+  
+- **freqRange** (string) [default: 0\-0]
+  
+    range of spectrum to consider for spectral parameter computation \(syntax\: lowerHz\-upperHz\, e\.g\. 0\-8000\; use 0\-0 \(default\) for full range\)
+  
+- **useLogSpectrum** (numeric) [default: 0\.0]
+  
+    \(1\/0\=yes\/no\) Compute the following parameters \(if enabled\) from the log spectrum instead of the power spectrum\: spectral slope\(s\)\, centroid\, maxpos\/minpos\, entropy\, moments\, sharpness\, harmonicity\, flatness\. Please note\, that the band energies are computed from the power spectrum\, but the output will be in dB \(log\) if this option is enabled \(1\)\. Spectral roll\-off and flux will always be computed from the power spectrum \(no log\)\.
+  
+- **specFloor** (numeric) [default: 1e\-07]
+  
+    When using the log Spectrum\, the square\(\!\) of this value is used as a floor value for the power spectrum\.
+  

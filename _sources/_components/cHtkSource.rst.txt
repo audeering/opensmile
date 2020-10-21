@@ -1,0 +1,40 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cHtkSource:
+
+cHtkSource
+----------
+
+Description
+~~~~~~~~~~~
+This component reads data from binary HTK parameter files\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSource` |rarr| :ref:`cHtkSource`
+
+Fields
+~~~~~~
+- **blocksize** (numeric) [default: 10\.0]
+  
+    The size of data blocks to write at once \(to data memory\) in frames
+  
+- **filename** (string) [default: input\.htk]
+  
+    HTK parameter file to read
+  
+- **featureName** (string) [default: htkpara]
+  
+    The name of the array\-field which is to be created in the data memory output level for the data array read from the HTK file
+  
+- **featureFrameSize** (numeric) [default: 0\.0]
+  
+    The size of the feature frames in seconds\.
+  
+- **forceSampleRate** (numeric) [default: 16000\.0]
+  
+    Set a given sample rate for the output level\. Typically the base period of the input level will be used for this purpose\, but when reading frame\-based data from feature files\, for example\, this information is not available\. This option overwrites the input level base period\, if it is set\.
+  

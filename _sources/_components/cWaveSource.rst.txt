@@ -1,0 +1,80 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cWaveSource:
+
+cWaveSource
+-----------
+
+Description
+~~~~~~~~~~~
+This component reads an uncompressed RIFF \(PCM\-WAVE\) file and saves it as a stream to the data memory\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSource` |rarr| :ref:`cWaveSource`
+
+Fields
+~~~~~~
+- **blocksize_sec** (numeric) [default: 1\.0]
+  
+    The size of data blocks to write at once\, in seconds
+  
+- **filename** (string) [default: input\.wav]
+  
+    The filename of the PCM wave file to load\. Only uncompressed RIFF files are supported\. Use a suitable converter \(mplayer\, for example\) to convert other formats to wave\.
+  
+- **properTimestamps** (numeric) [default: 0\.0]
+  
+    1 \= set smileTime for every input sample based on sample time \(a bit inefficient\)\; otherwise the default is to use the current system time at which the samples are read from the file\.
+  
+- **monoMixdown** (numeric) [default: 1\.0]
+  
+    Mix down all channels to 1 mono channel \(1\=on\, 0\=off\)
+  
+- **start** (numeric) [default: 0\.0]
+  
+    The read start point in seconds from the beginning of the file
+  
+- **end** (numeric) [default: \-1\.0]
+  
+    The read end point in seconds from the beginning of file \(\-1 \= read to EoF\)
+  
+- **endrel** (numeric) [default: 0\.0]
+  
+    The read end point in seconds from the END of file \(only if \'end\' \= \-1\, or not set\)
+  
+- **startSamples** (numeric) [default: 0\.0]
+  
+    The read start in samples from the beginning of the file \(this overwrites \'start\'\)
+  
+- **endSamples** (numeric) [default: \-1\.0]
+  
+    The read end in samples from the beginning of the file \(this overwrites \'end\' and \'endrelSamples\'\)
+  
+- **endrelSamples** (numeric) [default: 0\.0]
+  
+    The read end in samples from the END of file \(this overwrites \'endrel\'\)
+  
+- **noHeader** (numeric) [default: 0\.0]
+  
+    1 \= treat the input file as \'raw\' format\, i\.e\. don\'t read the RIFF header\. You must specify the parameters \'sampleRate\'\, \'channels\'\, and possibly \'sampleSize\' if the defaults don\'t match your file format
+  
+- **sampleRate** (numeric) [default: 16000\.0]
+  
+    Set the sampling rate that is assigned to the input data when reading raw files
+  
+- **sampleSize** (numeric) [default: 2\.0]
+  
+    Set the sample size \(in bytes\) when reading raw files
+  
+- **channels** (numeric) [default: 1\.0]
+  
+    Set the number of channels when reading raw files
+  
+- **outFieldName** (string) [default: pcm]
+  
+    Set the name of the output field containing the pcm data
+  

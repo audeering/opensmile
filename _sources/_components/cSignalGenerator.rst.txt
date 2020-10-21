@@ -1,0 +1,74 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cSignalGenerator:
+
+cSignalGenerator
+----------------
+
+Description
+~~~~~~~~~~~
+This component provides a signal source\. This source generates various noise types and pre\-defined signals and value patterns\. See the configuration documentation for a list of currently implemented types\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSource` |rarr| :ref:`cSignalGenerator`
+
+Fields
+~~~~~~
+- **nFields** (numeric) [default: 1\.0]
+  
+    The number of fields in the output vector\, set to \-1 to use the size of the \'nElements\' array or the \'fieldNames\' array\, if no nElements array is given\.
+  
+- **nElements[]** (numeric) [default: 1\.0]
+  
+    An array of number of values\/elements for each field in the output vector \(default is 1\)
+  
+- **fieldNames[]** (string) [default: None]
+  
+    An array of names of fields in the output vector \(default for all\: noiseN\, where N is the field number\)\.
+  
+- **signalType** (string) [default: white]
+  
+    The type of signal\/noise to generate for ALL\(\!\) output fields\. If you want different types of signals for the individual fields\, use multiple noise sources and combine the output vectors in a data reader\.
+    - Currently implemented noise and signal types are\:
+
+    -   \'white\' 	 white gaussian noise\, use parameters \'stddev\' and \'mean\' to tune\.
+    -   \'const\' 	 constant value output\, use \'constant\' parameter to set this value\.
+    -   \'sine\' 	 single sine wave \(range \-1 to \+1\)\, see \'signalPeriod\' or \'frequency\' option and \'phase\'\.
+    -   \'rect\' 	 rectangular periodic signal \(range \-1 to \+1\)\, see \'signalPeriod\' or \'frequency\' option and \'phase\'\.
+  
+- **randSeed** (numeric) [default: 1\.0]
+  
+    Random seed\, for pseudo random gaussian white noise
+  
+- **scale** (numeric) [default: 1\.0]
+  
+    A scaling factor by which the generated signal is multiplied by
+  
+- **const** (numeric) [default: 0\.0]
+  
+    The constant value for the \'constant\' signal type
+  
+- **signalPeriod** (numeric) [default: 1\.0]
+  
+    The period T in seconds for periodic signals \(1\.0\/frequency\)\. Don\'t forget to set the sample period via writer\.levelconf\.T or the \'period\' option\. Don\'t confuse this option with the \'period\' option\!
+  
+- **frequency** (numeric) [default: 1\.0]
+  
+    The frequency in Hz of periodic signals \(1\.0\/signalPeriod\)\. This overrides the \'signalPeriod\' option\, if both are set\.
+  
+- **phase** (numeric) [default: 0\.0]
+  
+    The initial phase of periodic signals in seconds\.
+  
+- **length** (numeric) [default: 3\.0]
+  
+    The length of the signal to generate \(in seconds\)\, \-1\.0 for infinite
+  
+- **lengthFrames** (numeric) [default: \-1\.0]
+  
+    The length of signal to generate \(in frames\)\, \-1 for infinite \(overwrites \'length\'\, if set\)
+  

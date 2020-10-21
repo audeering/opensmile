@@ -1,0 +1,92 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cWinToVecProcessor:
+
+cWinToVecProcessor
+------------------
+
+Description
+~~~~~~~~~~~
+reads input windows\, outputs frame\(s\)
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cWinToVecProcessor`
+
+Fields
+~~~~~~
+- **blocksize** (numeric) [default: 0\.0]
+  
+    The size of data blocks to process in frames \(this sets both blocksizeR and blocksizeW\, and overwrites blocksize\_sec\)
+  
+- **blocksizeR** (numeric) [default: 0\.0]
+  
+    The size of data blocks to read in frames \(overwrites blocksize\)
+  
+- **blocksizeW** (numeric) [default: 0\.0]
+  
+    The size of data blocks to write in frames \(overwrites blocksize\)
+  
+- **blocksize_sec** (numeric) [default: 0\.0]
+  
+    size of data blocks to process in seconds \(this sets both blocksizeR\_sec and blocksizeW\_sec\)
+  
+- **blocksizeR_sec** (numeric) [default: 0\.0]
+  
+    size of data blocks to read in seconds \(overwrites blocksize\_sec\!\)
+  
+- **blocksizeW_sec** (numeric) [default: 0\.0]
+  
+    size of data blocks to write in seconds \(overwrites blocksize\_sec\!\)
+  
+- **allowLastFrameIncomplete** (numeric) [default: 0\.0]
+  
+    If this option is set to 1 \(true\) then in frameMode \'fixed\'\, the last frame will be processed\, even if it is not frameSize frames long\.
+  
+- **frameMode** (string) [default: fixed]
+  
+    Specifies how to create frames\: \'fixed\' \(fixed frame size\, given via \'frameSize\' option\)\, \'full\' \(create one frame at the end of the input only\)\, \'variable\' \(via message\)\, \'list\' \(in config file or external text file\, see frameList and frameListFile options\, UNIMPLEMENTED\)
+  
+- **frameListFile** (string) [default: None]
+  
+    Filename of a file with a list of frame intervals to load \(text file with a comma separated list of intervals\: 1\-10\,11\-20 \, etc\.\, if no interval is specified\, i\.e\. no \- is found then consecutive frames with the given number being the frame length are assumed\; first index is 0\; use the suffix \"s\" after the numbers to specify intervals in seconds \(e\.g\. 0s\-2\.5s\)\; use an \'E\' instead of a number for \'end of sequence\'\)
+  
+- **frameList** (string) [default: None]
+  
+    The list of frame intervals specified directly in the configuration file \(comma separated list of intervals\: 1\-10\,11\-20 \, etc\.\, if no interval is specified\, i\.e\. no \- is found then consecutive frames with the given number being the frame length are assumed\; first index is 0\; use the suffix \"s\" after the numbers to specify intervals in seconds \(e\.g\. 0s\-2\.5s\)\; use an \'E\' instead of a number for \'end of sequence\'\)
+  
+- **frameSize** (numeric) [default: 0\.025]
+  
+    The frame size in seconds \(0\.0 \= full input\, same as frameMode\=full\)
+  
+- **frameStep** (numeric) [default: 0\.0]
+  
+    The frame step \(frame sampling period\) in seconds \(0\.0 \= set to the same value as \'frameSize\'\)
+  
+- **frameSizeFrames** (numeric) [default: 0\.0]
+  
+    The frame size in input level frames \(\=samples for a pcm\/wave input level\) \(overrides frameSize\, if set and \> 0\)
+  
+- **frameStepFrames** (numeric) [default: 0\.0]
+  
+    The frame step in input level frames \(\=samples for a pcm\/wave input level\) \(overrides frameStep\, if set and \> 0\)
+  
+- **frameCenter** (numeric) [default: 0\.0]
+  
+    The frame center in seconds\, i\.e\. where frames are sampled \(0\=left\)
+  
+- **frameCenterFrames** (numeric) [default: 0\.0]
+  
+    The frame sampling center in input level frames \(overrides frameCenter\, if set\)\, \(0\=left\)
+  
+- **frameCenterSpecial** (string) [default: left]
+  
+    The frame sampling center \(overrides the other frameCenter options\, if set\)\. The available special frame sampling points as strings are\: \'mid\' \= middle \(first frame from \-frameSize\/2 to frameSize\/2\)\, \'left\' \= sample at the beginning of the frame \(first frame from 0 to frameSize\)\, \'right\' \= sample at the end of the frame \(first frame from \-frameSize to 0\)
+  
+- **noPostEOIprocessing** (numeric) [default: 1\.0]
+  
+    1 \= do not process incomplete windows at the end of the input
+  

@@ -1,0 +1,128 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cPitchJitter:
+
+cPitchJitter
+------------
+
+Description
+~~~~~~~~~~~
+This component computes Voice Quality parameters Jitter \(pitch period deviations\) and Shimmer \(pitch period amplitude deviations\)\. It requires the raw PCM frames and the corresponding fundamental frequency \(F0\) as inputs\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cPitchJitter`
+
+Fields
+~~~~~~
+- **F0reader** (object of type :ref:`cDataReader`)
+  
+    Configuration of the dataMemory reader sub\-component which is used to read the F0 estimate from a pitch component output \(e\.g\. cPitchShs\)\.
+  
+- **F0field** (string) [default: F0final]
+  
+    The name of the field in \'F0reader\.dmLevel\' containing the F0 estimate \(in Hz\) \(usually F0final or F0raw\) \- full name\, exact match\!
+  
+- **searchRangeRel** (numeric) [default: 0\.1]
+  
+    The relative search range for period deviations \(Jitter\)\: maxT0\, minT0 \= \(1\.0 \+\/\- searchRangeRel\)\*T0
+  
+- **minNumPeriods** (numeric) [default: 2\.0]
+  
+    Minimum number of F0 periods to compute jitter\/shimmer over\. The frame size must be large enough to hold that number of periods for the extraction to be stable\!
+  
+- **minCC** (numeric) [default: 0\.5]
+  
+    Cross correlation threshold below which the periods will be rejected\.
+  
+- **jitterLocal** (numeric) [default: 0\.0]
+  
+    1 \= enable computation of F0 jitter \(period length variations\)\. jitterLocal \= the average absolute difference between consecutive periods\, divided by the average period length of all periods in the frame
+  
+- **jitterDDP** (numeric) [default: 0\.0]
+  
+    1 \= enable computation of F0 jitter \(period length variations\)\. jitterDDP \= the average absolute difference between consecutive differences between consecutive periods\, divided by the average period length of all periods in the frame
+  
+- **jitterLocalEnv** (numeric) [default: 0\.0]
+  
+    1 \= compute envelope of jitterLocal \(i\.e\. fill jitter values in unvoiced frames with value of last voiced segment\)\. Use this in conjunction with statistical functionals such as means\.
+  
+- **jitterDDPEnv** (numeric) [default: 0\.0]
+  
+    1 \= compute envelope of jitterDDP \(i\.e\. fill jitter values in unvoiced frames with value of last voiced segment\)\. Use this in conjunction with statistical functionals such as means\.
+  
+- **shimmerLocal** (numeric) [default: 0\.0]
+  
+    1 \= enable computation of F0 shimmer \(amplitude variations\)\. shimmerLocal \= the average absolute difference between the interpolated peak amplitudes of consecutive periods\, divided by the average peak amplitude of all periods in the frame
+  
+- **shimmerLocalDB** (numeric) [default: 0\.0]
+  
+    1 \= enable computation of F0 shimmer \(amplitude variations\) in decibel \(dB\)\. shimmerLocal \= the average absolute difference between the interpolated peak amplitudes of consecutive periods\, divided by the average peak amplitude of all periods in the frame
+  
+- **shimmerLocalEnv** (numeric) [default: 0\.0]
+  
+    1 \= compute envelope of shimmerLocal \(i\.e\. fill shimmer values in unvoiced frames with value of last voiced segment\)\. Use this in conjunction with statistical functionals such as means\.
+  
+- **shimmerLocalDBEnv** (numeric) [default: 0\.0]
+  
+    1 \= compute envelope of shimmerLocalDB \(i\.e\. fill shimmer values in unvoiced frames with value of last voiced segment\)\. Use this in conjunction with statistical functionals such as means\.
+  
+- **shimmerUseRmsAmplitude** (numeric) [default: 0\.0]
+  
+    1 \= use average rms amplitude instead of peak amplitude\.
+  
+- **harmonicERMS** (numeric) [default: 0\.0]
+  
+    1 \= output of harmonic component RMS energy \(energy average period waveform\)\.
+  
+- **noiseERMS** (numeric) [default: 0\.0]
+  
+    1 \= output of noise component RMS energy \(energy of difference signal between repeated average period waveform and actual signal\)\.
+  
+- **linearHNR** (numeric) [default: 0\.0]
+  
+    1 \= output of harmonics to noise ratio computed from waveform signal \(\= harmonicERMS\/noiseERMS\)
+  
+- **logHNR** (numeric) [default: 0\.0]
+  
+    1 \= output of logarithmic harmonics to noise ratio computed from waveform signal\, using natural logarithm \(base e\) \(logHNR \= log\(harmonicERMS\/noiseERMS\) \)
+  
+- **lgHNRfloor** (numeric) [default: \-100\.0]
+  
+    minimal value logHNR can be\, to avoid very large negative numbers for small harmonic energies\.
+  
+- **onlyVoiced** (numeric) [default: 0\.0]
+  
+    1 \= produce output only for voiced frames\. I\.e\. do not output 0 jitter\/shimmer values for unvoiced frames\. WARNING\: this option is not fully supported by the functionals component\, yet\.
+  
+- **refinedF0** (numeric) [default: 0\.0]
+  
+    1 \= output refined F0 in a field named after the \'F0field\' option\.
+  
+- **sourceQualityMean** (numeric) [default: 0\.0]
+  
+    1 \= compute larynx source quality mean per frame \(similarity of pitch periods\)
+  
+- **sourceQualityRange** (numeric) [default: 0\.0]
+  
+    1 \= compute larynx source quality range per frame \(max \- min similarity of pitch periods\)
+  
+- **usePeakToPeakPeriodLength** (numeric) [default: 0\.0]
+  
+    1 \= use peak to peak period length instead of correlation peak position \(should roughly be the same \- the old version used the correlation peak pos\.\, which is the default\)
+  
+- **periodOutputFile** (string) [default: None]
+  
+    Dump period start\/end\/amplitude\/length to file if this option is set to a filename\.
+  
+- **inputMaxDelaySec** (numeric) [default: 2\.0]
+  
+    The maximum possible delay of the F0 input wrt\. to the waveform in seconds\. This occurs mainly for viterbi smoothing\, for example\. IT IS IMPORTANT that you set this parameter with care \(summing up all delays like bufferLength of the viterbi smoother\, etc\.\)\, otherwise the processing will hang or abort before the actual end of the input\!
+  
+- **useBrokenJitterThresh** (numeric) [default: 1\.0]
+  
+    1 \= enable compatibility with 2\.2 and earlier versions with broken Jitter computation\. Please specify this manually in all new configs \(and update old configs to use value 0\)\, as the default might change from 1 to 0 in future builds\.
+  

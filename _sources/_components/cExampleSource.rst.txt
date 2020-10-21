@@ -1,0 +1,28 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cExampleSource:
+
+cExampleSource
+--------------
+
+Description
+~~~~~~~~~~~
+This is an example of a cDataSource descendant\. It writes random data to the data memory\. This component is intended as a template for developers\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSource` |rarr| :ref:`cExampleSource`
+
+Fields
+~~~~~~
+- **nValues** (numeric) [default: 1\.0]
+  
+    The number of random values to generate
+  
+- **randSeed** (numeric) [default: 1\.0]
+  
+    The random seed
+  

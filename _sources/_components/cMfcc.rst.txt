@@ -1,0 +1,64 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cMfcc:
+
+cMfcc
+-----
+
+Description
+~~~~~~~~~~~
+This component computes Mel\-frequency cepstral coefficients \(MFCC\) from a critical band spectrum \(see \'cMelspec\'\)\. An I\-DCT of type\-II is used from transformation from the spectral to the cepstral domain\. Liftering of cepstral coefficients is supported\. HTK compatible values can be computed\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cMfcc`
+
+Fields
+~~~~~~
+- **nameAppend** (string) [default: mfcc]
+  
+    A string suffix to append to the input field names \(default\: empty\)
+  
+- **firstMfcc** (numeric) [default: 1\.0]
+  
+    The first MFCC to compute
+  
+- **lastMfcc** (numeric) [default: 12\.0]
+  
+    The last MFCC to compute
+  
+- **nMfcc** (numeric) [default: 12\.0]
+  
+    Use this option to specify the number of MFCC\, instead of specifying lastMfcc
+  
+- **melfloor** (numeric) [default: 1e\-08]
+  
+    The minimum value allowed for melspectra when taking the log spectrum \(this parameter will be forced to 1\.0 when htkcompatible\=1\)
+  
+- **doLog** (numeric) [default: 1\.0]
+  
+    This defaults to 1 \(on\)\, set it to 0 to disable the log\(\) operation on the \(power\) spectrum before applying the DCT\. Note\: If disabled\, the output cannot be considered Cepstral coefficients anymore\!
+  
+- **cepLifter** (numeric) [default: 22\.0]
+  
+    Parameter for cepstral \'liftering\'\, set this to 0\.0 to disable cepstral liftering
+  
+- **htkcompatible** (numeric) [default: 1\.0]
+  
+    1 \= append the 0\-th coefficient at the end instead of placing it as the first element of the output vector
+  
+- **inverse** (numeric) [default: 0\.0]
+  
+    1\/0 \= on\/off \: comutation of inverse MFCC \(i\.e\. input is MFCC array\)
+  
+- **nBands** (numeric) [default: 26\.0]
+  
+    number of mel\/bark bands to create when computing the inverse MFCC \(must be the same as the number of bands the forward transform was performed on\)\.
+  
+- **printDctBaseFunctions** (numeric) [default: 0\.0]
+  
+    1\/0 \= on\/off\: print the dct base functions in octave compatible syntax to standard output
+  

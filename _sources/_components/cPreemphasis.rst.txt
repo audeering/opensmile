@@ -1,0 +1,32 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cPreemphasis:
+
+cPreemphasis
+------------
+
+Description
+~~~~~~~~~~~
+This component performs pre\- and de\-emphasis of speech signals using a 1st order difference equation\: y\(t\) \= x\(t\) \- k\*x\(t\-1\)  \(de\-emphasis\: y\(t\) \= x\(t\) \+ k\*x\(t\-1\)\)
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cWindowProcessor` |rarr| :ref:`cPreemphasis`
+
+Fields
+~~~~~~
+- **k** (numeric) [default: 0\.97]
+  
+    The pre\-emphasis coefficient k in y\[n\] \= x\[n\] \- k\*x\[n\-1\]
+  
+- **f** (numeric) [default: 0\.0]
+  
+    The pre\-emphasis frequency f in Hz \: k \= exp\( \-2\*pi \* f\/samplingFreq\. \) \(if set\, f will override k\!\)
+  
+- **de** (numeric) [default: 0\.0]
+  
+    1 \= perform de\-emphasis instead of pre\-emphasis \(i\.e\. y\[n\] \= x\[n\] \+ k\*x\[n\-1\]\)
+  

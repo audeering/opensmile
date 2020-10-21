@@ -1,0 +1,68 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cEnergy:
+
+cEnergy
+-------
+
+Description
+~~~~~~~~~~~
+This component computes logarithmic \(log\) and root\-mean\-square \(rms\) signal energy from PCM frames\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cEnergy`
+
+Fields
+~~~~~~
+- **nameAppend** (string) [default: energy]
+  
+    A string suffix to append to the input field names \(default\: empty\)
+  
+- **processArrayFields** (numeric) [default: 0\.0]
+  
+    1 \= process each array field as one vector individually \(and produce one output for each input array field\)\. Only array fields \(i\.e\. fields with more than one element\) are processed if this is set\. \/ 0 \= process complete input frame as one vector\, ignoring field\/element structure
+  
+- **htkcompatible** (numeric) [default: 0\.0]
+  
+    If set to 1\, enable htk compatible log\-energy output \(this will output log\-energy ONLY\! no rms energy\.\.\.\)
+  
+- **rms** (numeric) [default: 1\.0]
+  
+    1\/0 \= on\/off   output of root\-mean\-square \(RMS\) energy \( \= square root of \( the sum over all input values n\=0\.\.\.N of \(x\[n\]\*x\[n\]\) divided by N\)
+  
+- **energy2** (numeric) [default: 0\.0]
+  
+    1\/0 \= on\/off   output of quadratic energy \(sum of all x\[n\]\^2  divided by N\)
+  
+- **log** (numeric) [default: 1\.0]
+  
+    1\/0 \= on\/off   output logarithmic energy \(log\-energy\)\. E \= log\( sum \(x\[n\]\*x\[n\]\/N \) \; The argument of the log\(\) function is floored to 8\.674676e\-019\. The output unit has the unit of \'neper\' \(which is simlar to decibel\, with the only difference that the natural logarithm \(base e\) is used instead of the base\-10 logarithm\) 
+  
+- **escaleLog** (numeric) [default: 1\.0]
+  
+    scale factor to multiply log energy by
+  
+- **escaleRms** (numeric) [default: 1\.0]
+  
+    scale factor to multiply rms energy by
+  
+- **escaleSquare** (numeric) [default: 1\.0]
+  
+    scale factor to multiply quadratic energy by
+  
+- **ebiasLog** (numeric) [default: 0\.0]
+  
+    bias to add to log energy
+  
+- **ebiasRms** (numeric) [default: 0\.0]
+  
+    bias to add to rms energy
+  
+- **ebiasSquare** (numeric) [default: 0\.0]
+  
+    bias to add to quadratic energy
+  

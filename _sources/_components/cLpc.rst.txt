@@ -1,0 +1,72 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cLpc:
+
+cLpc
+----
+
+Description
+~~~~~~~~~~~
+This component computes linear predictive coding \(LPC\) coefficients from PCM frames\. Burg\'s algorithm and the standard ACF\/Durbin based method are implemented for LPC coefficient computation\. The output of LPC filter coefficients\, reflection coefficients\, residual signal\, and LP spectrum is supported\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cLpc`
+
+Fields
+~~~~~~
+- **method** (string) [default: acf]
+  
+    This option sets the lpc method to use\. Choose between\: \'acf\' acf \(autocorrelation\) method with Levinson\-Durbin algorithm \, \'burg\' Burg method \(N\. Anderson \(1978\)\) 
+  
+- **p** (numeric) [default: 8\.0]
+  
+    Predictor order \(\= number of lpc coefficients\)
+  
+- **saveLPCoeff** (numeric) [default: 1\.0]
+  
+    1 \= save LP coefficients to output
+  
+- **lpGain** (numeric) [default: 0\.0]
+  
+    1 \= save lpc gain \(error\) in output vector
+  
+- **saveRefCoeff** (numeric) [default: 0\.0]
+  
+    1 \= save reflection coefficients to output
+  
+- **residual** (numeric) [default: 0\.0]
+  
+    1 \= compute lpc residual signal and store in output frame
+  
+- **residualGainScale** (numeric) [default: 0\.0]
+  
+    1 \= scale lpc residual signal by lpc gain \(divides each frame by gain\)
+  
+- **forwardFilter** (numeric) [default: 0\.0]
+  
+    1 \= apply forward instead of inverse filter when computing residual
+  
+- **lpSpectrum** (numeric) [default: 0\.0]
+  
+    1 \= compute lp spectrum using \'lpSpecDeltaF\' as frequency resolution or \'lpSpecBins\' bins
+  
+- **forwardLPspec** (numeric) [default: 1\.0]
+  
+    1 \= compute forward filter transfer function as LP spectrum\, instead of old default behaviour of computing spectrum of inverse filter\.
+  
+- **forwardLPspecFloor** (numeric) [default: 1e\-13]
+  
+    Floor value to add to all spectral bins of inverse LP spectrum when inverting the spectrum \(1\/x\) to avoid division by 0\. Default\: 10\^\-13\.
+  
+- **lpSpecDeltaF** (numeric) [default: 10\.0]
+  
+    frequency resolution of lp spectrum \(only applicable if \'lpSpectrum\=1\'\)
+  
+- **lpSpecBins** (numeric) [default: 100\.0]
+  
+    number of bins to compute lp spectrum for \(overrides lpSpecDeltaF\) \(only applicable if \'lpSpectrum\=1\'\)
+  

@@ -1,0 +1,96 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionalMeans:
+
+cFunctionalMeans
+----------------
+
+Description
+~~~~~~~~~~~
+various mean values \(arithmetic\, geometric\, quadratic\, \.\.\.\)
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **amean** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean
+  
+- **absmean** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean of absolute values
+  
+- **qmean** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of quadratic mean
+  
+- **nzamean** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean \(of non\-zero values only\)
+  
+- **nzabsmean** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean of absolute values \(of non\-zero values only\)
+  
+- **nzqmean** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of quadratic mean \(of non\-zero values only\)
+  
+- **nzgmean** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of geometric mean \(of absolute values of non\-zero values only\)
+  
+- **nnz** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of number of non\-zero values \(relative to the input segment length\, in seconds\, or in frames\, see the \'norm\' option or the \'masterTimeNorm\' option of the cFunctionals parent component\)
+  
+- **flatness** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of contour flatness \(ratio of geometric mean and absolute value arithmetic mean\(absmean\)\)\)
+  
+- **posamean** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean of positive values only \(usually you would apply this to a differential signal to measure how much the original signal is rising\)
+  
+- **negamean** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean of negative values only
+  
+- **posqmean** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of quadratic mean of positive values only
+  
+- **posrqmean** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of root of quadratic mean of positive values only
+  
+- **negqmean** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of quadratic mean of negative values only
+  
+- **negrqmean** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of root of quadratic mean of negative values only
+  
+- **rqmean** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of square root of quadratic mean
+  
+- **nzrqmean** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of square root of quadratic mean of non zero values
+  
+- **norm** (string) [default: frames]
+  
+    This option specifies how this component should normalise times \(if it generates output values related to durations\)\:
+
+    -   \'segment\' \(or\: \'turn\'\) \: normalise to the range 0\.\.1\, the result is the relative length wrt\. to the segment length \)
+    -   \'second\'  \(absolute time in seconds\) 
+    -   \'frame\' \(absolute time in number of frames of input level\)
+  

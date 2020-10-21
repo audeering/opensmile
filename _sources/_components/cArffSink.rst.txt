@@ -1,0 +1,130 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cArffSink:
+
+cArffSink
+---------
+
+Description
+~~~~~~~~~~~
+This component writes dataMemory data to an ARFF file \(WEKA\)\. Depending on your config an instance name field\, a frame index\, and a frame time field can be added as well as multiple class\/target attributes\. See the config type documentation for more details\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cArffSink`
+
+Fields
+~~~~~~
+- **errorOnNoOutput** (numeric) [default: 1\.0]
+  
+    1 \= show an error message if no output was written by this sink during this run\.
+  
+- **filename** (string) [default: smileoutput\.arff]
+  
+    The filename of the ARFF file to write to\. An empty filename disables this sink component\.
+  
+- **lag** (numeric) [default: 0\.0]
+  
+    output data \<lag\> frames behind
+  
+- **append** (numeric) [default: 0\.0]
+  
+    1 \= append to an existing file\, or create a new file\; 0 \= overwrite an existing file\, or create a new file
+  
+- **relation** (string) [default: smile]
+  
+    The name of the ARFF relation \(\@relation tag\)
+  
+- **instanceBase** (string) [default: NULL]
+  
+    If this string is not empty and not equal to \'\-\'\, cArffSink prints an instance name attribute \<instanceBase\_Nr\>\, where Nr is the number \(continuous index\) of current instance
+  
+- **instanceName** (string) [default: NULL]
+  
+    If this string is not empty and not equal to \'\-\'\, cArffSink prints an instance name attribute \<instanceName\> for all instances\. instanceName overwrites instanceBase\.
+  
+- **instanceNameFromMetadata** (numeric) [default: 0\.0]
+  
+    1\/0 \= yes\/no\. Use instanceName from metadata\, if available\. If this is not available\, printing of an instance name depends on \'instanceName\' and \'instanceBase\' attributes\.
+  
+- **useTargetsFromMetadata** (numeric) [default: 0\.0]
+  
+    1\/0 \= yes\/no\. Use string of target values\/classes from vector metadata instead of building it from the \'target\' array\. If no metadata is present the target string will be built from the \'target\' array
+  
+- **number** (numeric) [default: 1\.0]
+  
+    \'Synonym\' for the \'frameIndex\' option\: 1 \= print an instance number \(\= frameIndex\) attribute \(continuous index\) \(1\/0 \= yes\/no\)
+  
+- **timestamp** (numeric) [default: 1\.0]
+  
+    \'Synonym\' for the \'frameTime\' option\: 1 \= print a timestamp \(\=frameTime\) attribute \(1\/0 \= yes\/no\)
+  
+- **frameIndex** (numeric) [default: 1\.0]
+  
+    1 \= print an instance number \(\= frameIndex\) attribute \(continuous index\) \(1\/0 \= yes\/no\) \(same as \'number\' option\)
+  
+- **frameTime** (numeric) [default: 1\.0]
+  
+    1 \= print a timestamp \(\=frameTime\) attribute \(1\/0 \= yes\/no\) \(same as \'timestamp\' option\)
+  
+- **frameTimeAdd** (numeric) [default: 0\.0]
+  
+    Add this value to the framTime values \(unit\: seconds\)
+  
+- **frameLength** (numeric) [default: 0\.0]
+  
+    1 \= print a frame length attribute \(1\/0 \= yes\/no\)\.
+  
+- **class[]** (object of type :ref:`arffClass`)
+  
+    This is an array defining the optional class target attributes \(ground\-truths that you want to have included in your arff file along with your features\)\. It is an array for multiple targets\/classes\. See also the \'target\' array\.
+  
+- **printDefaultClassDummyAttribute** (numeric) [default: 1\.0]
+  
+    1\/0 \= yes\/no\, print default class dummy attribute if no class attributes are given in the class\[\] array\. Default is 1 for backward compatibility\. Set to 0 to remove default class attribute\.
+  
+- **target[]** (object of type :ref:`arffTarget`)
+  
+    The ground truth targets \(classes\) for each target \(class\) attribute
+  
+.. _arffClass:
+
+arffClass
+---------
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **name** (string) [default: class]
+  
+    The name of the target attribute
+  
+- **type** (string) [default: numeric]
+  
+    The type of the target attribute\: \'numeric\'\, \'string\'\, or nominal \(\= list of classes\, enclosed in \{\} \)
+  
+.. _arffTarget:
+
+arffTarget
+----------
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **instance[]** (string) [default: NULL]
+  
+    An array containing a target for each instance 
+  
+- **all** (string) [default: NULL]
+  
+    Assign this one target to all processed instances\. You can use this option if you pass only one instance to cArffSink when openSMILE is run\. \(This option is used by a lot batch feature extraction scripts\)
+  

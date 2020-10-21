@@ -1,0 +1,84 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cMelspec:
+
+cMelspec
+--------
+
+Description
+~~~~~~~~~~~
+This component computes an N\-band Mel\/Bark\/Semitone\-frequency spectrum \(critical band spectrum\) by applying overlapping triangular filters equidistant on the Mel\/Bark\/Semitone\-frequency scale to an FFT magnitude or power spectrum\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cMelspec`
+
+Fields
+~~~~~~
+- **nBands** (numeric) [default: 26\.0]
+  
+    The number of Mel\/Bark\/Semitone band filters the filterbank from \'lofreq\'\-\'hifreq\' contains\.
+  
+- **lofreq** (numeric) [default: 20\.0]
+  
+    The lower cut\-off frequency of the filterbank \(Hz\)
+  
+- **hifreq** (numeric) [default: 8000\.0]
+  
+    The upper cut\-off frequency of the filterbank \(Hz\)
+  
+- **usePower** (numeric) [default: 0\.0]
+  
+    Set this to 1\, to use the power spectrum instead of magnitude spectrum\, i\.e\. if set this squares the input data
+  
+- **showFbank** (numeric) [default: 0\.0]
+  
+    If this is set to 1\, the bandwidths and centre frequencies of the filters in the filterbank are printed to openSMILE log output \(console and\/or file\)
+  
+- **htkcompatible** (numeric) [default: 1\.0]
+  
+    1 \= enable htk compatible output \(audio sample scaling \-32767\.\.\+32767 instead of openSMILE\'s \-1\.0\.\.1\.0\)
+  
+- **inverse** (numeric) [default: 0\.0]
+  
+    \[NOT YET FULLY TESTED\] 1 \= compute fft magnitude spectrum from mel spectrum\; Note that if this option is set\, \'nBands\' specifies the number of fft bands to create\!
+  
+- **specScale** (string) [default: mel]
+  
+    The frequency scale to design the critical band filterbank in \(this is the scale in which the filter centre frequencies are placed equi\-distant\)\:
+
+    -  mel \= Mel\-frequency scale \(m \= 1127 ln \(1\+f\/700\)\)
+    -   bark \= Bark scale approximation \(Critical band rate z\)\: z \= \[26\.81 \/ \(1\.0 \+ 1960\/f\)\] \- 0\.53
+    -   bark\_schroed \= Bark scale approximation due to Schroeder \(1977\)\: 6\*ln\( f\/600 \+ \[\(f\/600\)\^2\+1\]\^0\.5 \)
+    -   bark\_speex \= Bark scale approximation as used in Speex codec package
+    -   semi \= semi\-tone scale with first note \(0\) \= \'firstNote\' \(default 27\.5Hz\)  \(s\=12\*log\(f\/firstNote\)\/log\(2\)\) \[experimental\]
+    -   log \= logarithmic scale with base \'logScaleBase\' \(default \= 2\)
+    -   lin\(ear\) \= linear Hz scale\.
+  
+- **bwMethod** (string) [default: lr]
+  
+    The method to use to compute filter bandwidth\:
+
+    -  lr  \: use centre frequencies of left and right neighbours \(standard way for mel\-spectra and mfcc\)
+    -  erb \: bandwidth based on critical bandwidth approximation \(ERB\)\, choose this option for computing HFCC instead of MFCC\.
+    -  custom\: use the \'halfBwTarg\' option to specify a custom effective rectangular bandwidth of the triangular filters \- this bandwidth is constant for all filters and independent of the center frequency\.
+  
+- **halfBwTarg** (numeric) [default: 1\.0]
+  
+    If bwMethod\=\=\'custom\' then this options gives the effective rectangular bandwidth of the triangular filters in the target frequency scale \(default mel\)\. If showFbank\=1 the actual bandwidth in Hz for each center frequency will be printed at startup\.
+  
+- **logScaleBase** (numeric) [default: 2\.0]
+  
+    The base for log scales \(a log base of 2\.0 \- the default \- corresponds to an octave target scale\)
+  
+- **firstNote** (numeric) [default: 27\.5]
+  
+    The first note \(in Hz\) for a semi\-tone scale
+  
+- **overrideFrameSizeSec** (numeric) [default: 0\.0]
+  
+    In case that the original FFT frame size in seconds cannot automatically be read from the input level meta data \(i\.e\. for average spectra in a multi\-frame\-size setting\)\, use this to manually override it and force the filters to be created based on the given frame size assumption\.
+  

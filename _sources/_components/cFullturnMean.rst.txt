@@ -1,0 +1,28 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFullturnMean:
+
+cFullturnMean
+-------------
+
+Description
+~~~~~~~~~~~
+This component performs mean normalizing on a data series\. A 2\-pass analysis of the data is performed\, which makes this component unusable for on\-line analysis\. In the first pass\, no output is produced and the mean value \(over time\) is computed for each input element\. In the second pass the mean vector is subtracted from all input frames\, and the result is written to the output dataMemory level\. Attention\: Due to the 2\-pass processing the input level must be large enough to hold the whole data sequence\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cFullturnMean`
+
+Fields
+~~~~~~
+- **htkLogEnorm** (numeric) [default: 0\.0]
+  
+    performs HTK compatible energy normalisation on all input fields instead of the default action of mean subtraction\. The energy normalisation subtracts the maximum value of each value in the sequence and adds 1\.
+  
+- **messageRecp** (string) [default: None]
+  
+    recipient list for new \(timestamp adjusted\) turnFrameTime message
+  

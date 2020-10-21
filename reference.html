@@ -1,0 +1,1213 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Reference section &mdash; openSMILE Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/audeering.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="cAcf" href="_components/cAcf.html" />
+    <link rel="prev" title="Get started" href="get-started.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          <a href="index.html">
+          
+            
+            <img src="_static/openSMILE-logoSlogan-white.svg" class="logo" alt="Logo"/>
+          
+          
+            
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About openSMILE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-started.html">Get started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reference section</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#smilextract-command-line-options">SMILExtract command-line options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opensmile-architecture">openSMILE architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-command-line-parser">The command-line parser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-configuration-manager">The configuration manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-component-manager">The component manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#incremental-processing">Incremental processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#opensmile-terminology">openSMILE terminology</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-files">Configuration files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#enabling-components">Enabling components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-components">Configuring components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#including-other-configuration-files">Including other configuration files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linking-to-command-line-options">Linking to command-line options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#defining-variables">Defining variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ide-support-for-configuration-files">IDE support for configuration files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#components">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_components/cAcf.html">cAcf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cAmdf.html">cAmdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cArffSink.html">cArffSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cArffSink.html#arffclass">arffClass</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cArffSink.html#arfftarget">arffTarget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cArffSource.html">cArffSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cBowProducer.html">cBowProducer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cCens.html">cCens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cChroma.html">cChroma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cContourSmoother.html">cContourSmoother</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cCsvSink.html">cCsvSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cCsvSource.html">cCsvSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cDataMemory.html">cDataMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cDataMemory.html#cdatamemorylevel">cDataMemoryLevel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cDataPrintSink.html">cDataPrintSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cDataProcessor.html">cDataProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cDataReader.html">cDataReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cDataSelector.html">cDataSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cDataSink.html">cDataSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cDataSource.html">cDataSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cDataWriter.html">cDataWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cDataWriter.html#cdatamemorylevel">cDataMemoryLevel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cDatadumpSink.html">cDatadumpSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cDbA.html">cDbA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cDeltaRegression.html">cDeltaRegression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cEnergy.html">cEnergy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cExampleSink.html">cExampleSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cExampleSource.html">cExampleSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cExternalAudioSource.html">cExternalAudioSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cExternalMessageInterface.html">cExternalMessageInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cExternalSink.html">cExternalSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cExternalSource.html">cExternalSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFFTmagphase.html">cFFTmagphase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFFmpegSource.html">cFFmpegSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFormantLpc.html">cFormantLpc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFormantSmoother.html">cFormantSmoother</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFramer.html">cFramer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFullinputMean.html">cFullinputMean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFullturnMean.html">cFullturnMean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionalCrossings.html">cFunctionalCrossings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionalDCT.html">cFunctionalDCT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionalExtremes.html">cFunctionalExtremes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionalLpc.html">cFunctionalLpc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionalMeans.html">cFunctionalMeans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionalModulation.html">cFunctionalModulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionalMoments.html">cFunctionalMoments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionalOnset.html">cFunctionalOnset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionalPeaks.html">cFunctionalPeaks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionalPeaks2.html">cFunctionalPeaks2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionalPercentiles.html">cFunctionalPercentiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionalRegression.html">cFunctionalRegression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionalSamples.html">cFunctionalSamples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionalSegments.html">cFunctionalSegments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionalTimes.html">cFunctionalTimes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cFunctionals.html">cFunctionals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cHarmonics.html">cHarmonics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cHtkSink.html">cHtkSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cHtkSource.html">cHtkSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cIntensity.html">cIntensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cLibsvmLiveSink.html">cLibsvmLiveSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cLibsvmSink.html">cLibsvmSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cLpc.html">cLpc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cLsp.html">cLsp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cMZcr.html">cMZcr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cMaxIndex.html">cMaxIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cMelspec.html">cMelspec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cMfcc.html">cMfcc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cMonoMixdown.html">cMonoMixdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cNullSink.html">cNullSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cPitchACF.html">cPitchACF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cPitchBase.html">cPitchBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cPitchDirection.html">cPitchDirection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cPitchJitter.html">cPitchJitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cPitchShs.html">cPitchShs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cPitchShs.html#cdatawritershs">cDataWriterShs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cPitchSmoother.html">cPitchSmoother</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cPitchSmootherViterbi.html">cPitchSmootherViterbi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cPlp.html">cPlp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cPortaudioDuplex.html">cPortaudioDuplex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cPortaudioSink.html">cPortaudioSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cPortaudioSource.html">cPortaudioSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cPortaudioWavplayer.html">cPortaudioWavplayer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cPreemphasis.html">cPreemphasis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cRnnProcessor.html">cRnnProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cRnnSink.html">cRnnSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cRnnVad2.html">cRnnVad2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cSignalGenerator.html">cSignalGenerator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cSimpleMessageSender.html">cSimpleMessageSender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cSmileResample.html">cSmileResample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cSpecResample.html">cSpecResample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cSpecScale.html">cSpecScale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cSpectral.html">cSpectral</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cSvmSink.html">cSvmSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cTonefilt.html">cTonefilt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cTonespec.html">cTonespec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cTransformFFT.html">cTransformFFT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cTurnDetector.html">cTurnDetector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cVadV1.html">cVadV1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cValbasedSelector.html">cValbasedSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cVecToWinProcessor.html">cVecToWinProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cVectorBinaryOperation.html">cVectorBinaryOperation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cVectorConcat.html">cVectorConcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cVectorMVN.html">cVectorMVN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cVectorOperation.html">cVectorOperation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cVectorPreemphasis.html">cVectorPreemphasis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cVectorProcessor.html">cVectorProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cVectorTransform.html">cVectorTransform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cWaveSink.html">cWaveSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cWaveSinkCut.html">cWaveSinkCut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cWaveSource.html">cWaveSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cWinToVecProcessor.html">cWinToVecProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cWindowProcessor.html">cWindowProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_components/cWindower.html">cWindower</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#smileapi-c-api-and-wrappers">SMILEapi C API and wrappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#feature-names">Feature names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#feature-extraction-algorithms">Feature extraction algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer’s documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">openSMILE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Reference section</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/reference.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="reference-section">
+<span id="id1"></span><h1>Reference section<a class="headerlink" href="#reference-section" title="Permalink to this headline">¶</a></h1>
+<p>This section (<a class="reference internal" href="#smilextract-command-line-options"><span class="std std-ref">SMILExtract command-line options</span></a>) documents available command-line
+options and describes the general usage of the <code class="docutils literal notranslate"><span class="pre">SMILExtract</span></code> command-line
+tool. A documentation of the configuration file format can be found in
+Section <a class="reference internal" href="#configuration-files"><span class="std std-ref">Configuration files</span></a>.
+If you are interested what is going on inside openSMILE, which components exist
+besides those that are instantiable and connectable via the configuration
+files, and to learn more about the terminology used, then you should read
+Section <a class="reference internal" href="#opensmile-architecture"><span class="std std-ref">openSMILE architecture</span></a> which describes the program
+architecture in detail.
+Section <a class="reference internal" href="#components"><span class="std std-ref">Components</span></a> consists of a comprehensive list of all components
+included with openSMILE and provides detailed documentation for each component.
+Finally, Section <a class="reference internal" href="#smileapi-c-api-and-wrappers"><span class="std std-ref">SMILEapi C API and wrappers</span></a> covers the SMILEapi which
+allows to seamlessly integrate openSMILE into other applications.</p>
+<div class="section" id="smilextract-command-line-options">
+<span id="id2"></span><h2>SMILExtract command-line options<a class="headerlink" href="#smilextract-command-line-options" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">SMILExtract</span></code> binary is a very powerful command-line utility which
+includes all the built-in openSMILE components. Using a single ini-style
+configuration file, various modes of operation can be configured. This
+section describes the command-line options available when calling
+<code class="docutils literal notranslate"><span class="pre">SMILExtract</span></code>. Some options take an optional parameter, denoted by
+<code class="docutils literal notranslate"><span class="pre">[parameter-type]</span></code>, while some require a mandatory
+parameter, denoted by <code class="docutils literal notranslate"><span class="pre">&lt;parameter-type&gt;</span></code>.</p>
+<div class="line-block">
+<div class="line"><strong>Usage:</strong> SMILExtract [-option (value)] …</div>
+<div class="line"><br /></div>
+<div class="line"><strong>-h</strong></div>
+<div class="line-block">
+<div class="line">Show this usage information</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>-C, -configfile</strong>      &lt;<em>string</em>&gt;</div>
+<div class="line-block">
+<div class="line">Path to openSMILE config file.</div>
+<div class="line"><em>Default:</em> ’smile.conf’</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>-l, -loglevel</strong>        &lt;<em>int</em>&gt;</div>
+<div class="line-block">
+<div class="line">Verbosity level of log messages (MSG, WRN, ERR, DBG)
+(0-9). 1: only important messages, 2,3: more
+detailed messages, 4,5: very detailed debug messages
+(if -debug is enabled), 6+: currently unused.</div>
+<div class="line"><em>Default:</em> 2</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>-t, -nticks</strong>          &lt;<em>int</em>&gt;</div>
+<div class="line-block">
+<div class="line">Number of ticks (component loop iterations) to
+process (-1 = infinite) (Note: this only works for
+single thread processing, i.e. nThreads=1 set in the
+config file). This option is not intended for normal
+use. It is for debugging component execution code
+only.</div>
+<div class="line"><em>Default:</em> -1</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>-d, -debug</strong></div>
+<div class="line-block">
+<div class="line">Show debug log-messages (DBG) (this is only available
+if the binary was compiled as a debug build)</div>
+<div class="line"><em>Default:</em> off</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>-L, -components</strong></div>
+<div class="line-block">
+<div class="line">Show full component list (this list includes
+plugins, if they are detected correctly), and exit.</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>-H, -configHelp</strong>      [<em>componentName:string</em>]</div>
+<div class="line-block">
+<div class="line">Show the documentation of configuration options of
+all available components (including plugins) and
+exit. If the optional string parameter is given, then
+only documentation of components beginning with the
+given string will be shown.</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>-configDflt</strong>          [<em>string</em>]</div>
+<div class="line-block">
+<div class="line">Show default configuration file section templates for
+all components available (empty parameter), or
+selected components beginning with the string given
+as parameter. In conjunction with the
+’cfgFileTemplate’ option a comma separated list of
+components can be passed as parameter to
+’configDflt’, to generate a template configuration
+file with the listed components.</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>-cfgFileTemplate</strong></div>
+<div class="line-block">
+<div class="line">Experimental functionality to print a configuration
+file template containing the components specified in
+a comma separated string as argument to the
+’configDflt’ option.</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>-cfgFileDescriptions</strong></div>
+<div class="line-block">
+<div class="line">If this option is set, then option descriptions will
+be included in the generated template configuration
+files.</div>
+<div class="line"><em>Default:</em> off</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>-c, -ccmdHelp</strong></div>
+<div class="line-block">
+<div class="line">Show user defined command-line option help in
+addition to the standard usage information (as
+printed by ’-h’). Since openSMILE provides means to
+define additional command-line options in the
+configuration file, which are available only after
+parsing the configuration file, and additional
+command-line option has been introduced to show a
+help on these options. A typical command-line to
+show this help would be
+<code class="docutils literal notranslate"><span class="pre">SMILExtract</span> <span class="pre">-c</span> <span class="pre">-C</span> <span class="pre">myconfigfile.conf</span></code>.</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>-exportHelp</strong></div>
+<div class="line-block">
+<div class="line">Print detailed documentation of registered config
+types in JSON format. This option is intended for
+external tools that want to consume the on-line help
+content programmatically.</div>
+<div class="line"><em>Default:</em> off</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>-logfile</strong>             &lt;<em>string</em>&gt;</div>
+<div class="line-block">
+<div class="line">Specifies the path and filename of the log file to
+use. Make sure the path of the log-file is writeable.</div>
+<div class="line"><em>Default:</em> ’smile.log’</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>-appendLogfile</strong></div>
+<div class="line-block">
+<div class="line">If this option is specified, openSMILE will append
+log messages to an existing log-file instead of
+overwriting the log-file at every program start
+(which is the default behaviour).</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>-nologfile</strong></div>
+<div class="line-block">
+<div class="line">If this option is specified, openSMILE does not write
+to a log file (use this on a read-only filesystems,
+for example).</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>-noconsoleoutput</strong></div>
+<div class="line-block">
+<div class="line">If this option is specified, no log-output is
+displayed in the console. Logging to the log file is
+not affected by this option, see ’nologfile’ for
+disabling the log-file.</div>
+</div>
+</div>
+</div>
+<div class="section" id="opensmile-architecture">
+<span id="id3"></span><h2>openSMILE architecture<a class="headerlink" href="#opensmile-architecture" title="Permalink to this headline">¶</a></h2>
+<p>The SMILExtract binary is the main application which can run all
+configuration files. If you take a look at the source code of it (which
+is found in <code class="docutils literal notranslate"><span class="pre">opensmile/progsrc/smilextract/SMILExtract.cpp</span></code>), you will see
+that it is fairly short.
+It uses the classes from the openSMILE API to create the components and
+run the configurations. These API functions can be used in custom applications,
+such as GUI front-ends etc. Therefore, they will be described in more detail in
+the developer’s documentation in Section <a class="reference internal" href="developer.html#developer-s-documentation"><span class="std std-ref">Developer’s documentation</span></a>.
+However, to obtain a general understanding what components make openSMILE run,
+how they interact, and in what phases the program execution is split, a brief
+overview is given in this section.</p>
+<p>openSMILE’s application flow can be split into three general phases:</p>
+<dl>
+<dt>Pre-config phase</dt><dd><p>Command-line options are read and the configuration file is parsed.
+Also, usage information is displayed, if requested, and a list of
+built-in components is generated.</p>
+</dd>
+<dt>Configuration phase</dt><dd><p>The component manager is created and instantiates all components
+listed in its <code class="docutils literal notranslate"><span class="pre">instances</span></code> configuration array. The configuration
+process is then split into 3 phases, where components first register
+with the component manager and the data memory, then perform the
+main configuration steps such as opening of input/output files,
+allocation of memory, etc., and finally finalise their configuration
+(e.g. set the names and dimensions of their output fields, etc.).
+Each of the 3 phases is passed through several times, since some
+components may depend on other components having finished their
+configuration (e.g. components that read the output from another
+component and need to know the dimensionality of the output and the
+names of the fields in the output). Errors, due to
+mis-configurations, bogus input values, or inaccessible files, are
+likely to happen during this phase.</p>
+</dd>
+<dt>Execution phase</dt><dd><p>When all components have been initialised successfully, the
+component manager starts the main execution loop (also referred to
+as tick-loop). Every component has a tick() method, which implements
+the main incremental processing functionality and reports on the
+status of the processing via its return value.</p>
+<p>In one iteration of the execution loop, the component manager calls
+all tick() functions in series (<em>Note:</em> the behaviour is different,
+when components are run in multiple threads). The loop is continued
+as long as at least one component’s tick() method returns a non-zero
+value (which indicates that data was processed by this component).</p>
+<p>If all components indicate that they did not process data, it can be
+safely assumed that no more data will arrive and the end of the
+input has been reached (this may be slightly different for on-line
+settings, however, it is up to the source components to return a
+positive return value or pause the execution loop, while they are
+waiting for data).</p>
+<p>When the end of the input is reached, the component manager signals
+the end-of-input condition to the components by running one final
+iteration of the execution loop. After that, the execution loop will
+be ran anew, until all components report a failure status. This
+second phase is referred to end-of-input processing. It is mainly
+used for off-line processing, e.g. to compute features from the last
+(but incomplete) frames, to mean normalise a complete sequence, or
+to compute functionals from a complete sequence.</p>
+</dd>
+</dl>
+<p>openSMILE contains three classes which cannot be instantiated from the
+configuration files. These are the command-line parser
+(ccommand-lineParser), the configuration manager (cConfigManager), and
+the component manager (cComponentManager). We will now briefly describe
+the role of each of these in a short paragraph. The order of the
+paragraph corresponds to the order the classes are created during
+execution of the SMILExtract program.</p>
+<div class="section" id="the-command-line-parser">
+<span id="id4"></span><h3>The command-line parser<a class="headerlink" href="#the-command-line-parser" title="Permalink to this headline">¶</a></h3>
+<p>This class parses the command-line and provides options in an easily
+accessible format to the calling application. Simple command-line syntax
+checks are also performed. After the configuration manager has been
+initialised and the configuration has been parsed, the command-line is
+parsed a second time, to also get the user-defined command-line options
+set in the current configuration file.</p>
+</div>
+<div class="section" id="the-configuration-manager">
+<span id="id5"></span><h3>The configuration manager<a class="headerlink" href="#the-configuration-manager" title="Permalink to this headline">¶</a></h3>
+<p>The configuration manager loads the configuration file, which was
+specified on the SMILExtract command-line. Thereby, configuration
+sections are split and then parsed individually. The configuration
+sections are stored in an abstract representation as ConfigInstance
+classes (the structure of these classes is described by a ConfigType
+class). Thus, it is easy to add additional parsers for formats other
+than the currently implemented ini-style format.</p>
+</div>
+<div class="section" id="the-component-manager">
+<span id="id6"></span><h3>The component manager<a class="headerlink" href="#the-component-manager" title="Permalink to this headline">¶</a></h3>
+<p>The component manager is responsible for instantiating, configuring, and
+executing the components. The details have already been described in the
+above section on openSMILE’s application flow. Moreover, the component
+manger is responsible for enumerating and registering components in
+plugins. Therefore, a directory called <code class="docutils literal notranslate"><span class="pre">plugins</span></code> is scanned for binary
+plugins. The plugins found are registered, and become useable exactly in
+the same way as built-in components. A single plugin binary thereby can
+contain multiple openSMILE components.</p>
+<p>The components instantiated by the component manager are all descendants
+of the cSmileComponent class. They have two basic means of standardised
+communication: a) directly and asynchronously, via smile messages, and
+b) indirectly and synchronously via the data memory.</p>
+<p>Method a) is used to send out-of-line data, such as events and
+configuration changes directly from one smile component to another.
+Classifier components, for example, send a ‘classificationResult’
+message which can be caught by other components (esp. custom plug-ins),
+to change their behaviour or send the message to external sources.</p>
+<p>Method b) is the standard method for handling of data in openSMILE. The
+basic principle is that of a data source producing a frame of data and
+writing it to the data memory. A data processor reads this frame,
+applies some fancy algorithm to it, and writes a modified output frame
+back to a different location in the data memory. This step can be
+repeated for multiple data processors. Finally, a data sink reads the
+frame and passes it to an external source or interprets (classifies) it
+in some way. The advantage of passing data indirectly is that multiple
+components can read the same data, and data from past frames can stored
+efficiently in a central location for later use.</p>
+</div>
+<div class="section" id="incremental-processing">
+<span id="id7"></span><h3>Incremental processing<a class="headerlink" href="#incremental-processing" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-center" id="id22">
+<span id="fig-arch"></span><a class="reference internal image-reference" href="_images/arch.svg"><img alt="Overview on openSMILE's component types and openSMILE's basic architecture." src="_images/arch.svg" width="70%" /></a>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Overview on openSMILE’s component types and openSMILE’s basic
+architecture.</span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
+</div>
+<p>The data-flow in openSMILE is handled by the cDataMemory component. This
+component manages multiple data memory ‘levels’ internally. These levels
+are independent data storage locations, which can be written to by
+exactly one component and read by an arbitrary number of components.
+From the outside (the component side) the levels appear to be a
+<span class="math notranslate nohighlight">\(N x \infty\)</span> matrix, with <span class="math notranslate nohighlight">\(N\)</span> rows, whereby <span class="math notranslate nohighlight">\(N\)</span> is the
+frame size. Components can read/write frames (columns) at/to any
+location in this virtual matrix. Data memory levels can be stored
+internally either as ring-buffers (isRb=1) or regular buffers (isRb=0)
+and their size can be either fixed (growDyn=0) or growing dynamically at
+runtime (growDyn=1). For fixed-size ring buffers, a write operation only
+succeeds if there are empty frames in the buffer (frames that have not been
+written to yet, or frames that have been read by all components reading from
+the level), and a read operation only succeeds if the referred frame index
+lies no more than the ring buffer size in the past. For fixed-size regular
+buffers, writes will succeed until the buffer is full, after that writes will
+always fail. For dynamically growing levels, writes always succeed, except
+when the application is out-of-memory. Be aware that there is no limitation
+on the amount of memory allocated for dynamically growing levels. In almost
+all cases, a fixed-size ring buffer is the recommended level configuration.</p>
+<p><a class="reference internal" href="#fig-arch"><span class="std std-numref">Fig. 4</span></a> shows the overall data-flow architecture of openSMILE,
+where the data memory is the central link between all dataSource,
+dataProcessor, and dataSink components.</p>
+<div class="figure align-center" id="id23">
+<span id="fig-inc1"></span><a class="reference internal image-reference" href="_images/figure1.svg"><img alt="Partially filled buffers." src="_images/figure1.svg" width="70%" /></a>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Incremental processing with ring-buffers. Partially filled buffers.</span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id24">
+<span id="fig-inc2"></span><a class="reference internal image-reference" href="_images/figure2.svg"><img alt="Filled buffers with warped read/write pointers." src="_images/figure2.svg" width="70%" /></a>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Incremental processing with ring-buffers. Filled buffers with warped
+read/write pointers.</span><a class="headerlink" href="#id24" title="Permalink to this image">¶</a></p>
+</div>
+<p>The ring-buffer based incremental processing is illustrated in
+<a class="reference internal" href="#fig-inc1"><span class="std std-numref">Fig. 5</span></a> and <a class="reference internal" href="#fig-inc2"><span class="std std-numref">Fig. 6</span></a>. Three levels are present in this
+setup: wave, frames, and pitch. A cWaveSource component writes samples to the
+‘wave’ level. The write positions in the levels are indicated by a red arrow. A
+cFramer produces frames of size 3 from the wave samples (non-overlapping), and
+writes these frames to the ‘frames’ level. A cPitch (a component with this name
+does not exist, it has been chosen here only for illustration purposes)
+component extracts pitch features from the frames and writes them to the ‘pitch’
+level. In <a class="reference internal" href="#fig-inc2"><span class="std std-numref">Fig. 6</span></a> the buffers have been filled, and the write
+pointers have been warped. Data that lies more than ‘buffersize’ frames in the
+past has been overwritten.</p>
+<div class="figure align-center" id="id25">
+<span id="fig-inc3"></span><a class="reference internal image-reference" href="_images/figure3.svg"><img alt="Incremental computation of high-level features such as statistical functionals." src="_images/figure3.svg" width="70%" /></a>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Incremental computation of high-level features such as statistical
+functionals.</span><a class="headerlink" href="#id25" title="Permalink to this image">¶</a></p>
+</div>
+<p><a class="reference internal" href="#fig-inc3"><span class="std std-numref">Fig. 7</span></a> shows the incremental processing of higher order
+features. Functionals (max and min) over two frames (overlapping) of the
+pitch features are extracted and saved to the level ‘func’.</p>
+<p>The size of the buffers must be set correctly to ensure smooth
+processing for all blocksizes. A ‘blocksize’ thereby is the size of the
+block a reader or writer reads/writes from/to the dataMemory at once. In
+the above example, the read blocksize of the functionals component would
+be 2 because it reads two pitch frames at once. The input level buffer
+of ‘pitch’ must be at least 2 frames long, otherwise the functionals
+component will never be able to read a complete window from this level.</p>
+<p>openSMILE handles automatic adjustment of the buffersizes. Therefore,
+readers and writers must register with the data memory during the
+configuration phase and publish their read and write blocksizes. The
+minimal buffersize is computed based on these values. If the buffersize
+of a level is set smaller than the minimal size, the size will be
+increased to the minimum possible size. If the specified size (via
+configuration options) is larger than the minimal size, the larger size
+will be used.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This automatic buffersize setting only applies to ring-buffers. If
+you use non-ring buffers, or if you want to process the full input
+(e.g. for functionals of the complete input, or mean normalisation)
+it is always recommended to configure a dynamically growing
+non-ring buffer level (see cDataWriter configuration in the
+<a class="reference internal" href="#configuring-components"><span class="std std-ref">Configuring components</span></a> section for details).</p>
+</div>
+</div>
+<div class="section" id="opensmile-terminology">
+<span id="id8"></span><h3>openSMILE terminology<a class="headerlink" href="#opensmile-terminology" title="Permalink to this headline">¶</a></h3>
+<p>In the context of the openSMILE data memory, various terms are used which
+require clarification and a precise definition, such as ‘field’,
+‘element’, ‘frame’, and ‘window’.</p>
+<p>You have learnt about the internal structure of the dataMemory in
+Section <a class="reference internal" href="#incremental-processing"><span class="std std-ref">Incremental processing</span></a>. Thereby a level in the data memory
+represents a unit which contains numeric data, frame meta data, and temporal
+meta data. Temporal meta data is present on the one hand for each frame, thereby
+describing frame timestamps and custom per frame meta information. On the
+other hand, temporal meta data is present globally, describing the global
+frame period and timing mode of the level.</p>
+<p>If we view the numeric contents of the data memory level as a 2D
+<span class="math notranslate nohighlight">\(&lt;\)</span>nFields x nTimestemps<span class="math notranslate nohighlight">\(&gt;\)</span> matrix, where ‘frames’ correspond
+to the columns of this matrix, and ‘windows’ or ‘contours’ correspond
+the rows of this matrix. The frames are also referred to as
+(column-)‘vectors’ in some places. (<em>Note:</em> when exporting data to
+files, the data, viewed as matrix, is transposed, i.e. for text-based
+files (CSV, ARFF), the rows of the file correspond to the frames.) The
+term ‘elements’, as used in openSMILE, refers to the actual elements of
+the frames/vectors. The term ‘field’ refers to a group of elements that
+belong together logically and where all elements have the same name.
+This principle shall be illustrated by an example: A feature frame
+containing the features ‘energy’, ‘F0’, and ‘MFCC’ 1-6, will have
+<span class="math notranslate nohighlight">\(1+1+6=8\)</span> elements, but only <span class="math notranslate nohighlight">\(3\)</span> fields: the field ‘energy’
+with a single element, the field ‘F0’ with a single element, and the
+(array-) field ‘MFCC’ with 6 elements (called ‘MFCC[0]’ – ‘MFCC[1]’).</p>
+</div>
+</div>
+<div class="section" id="configuration-files">
+<span id="id9"></span><h2>Configuration files<a class="headerlink" href="#configuration-files" title="Permalink to this headline">¶</a></h2>
+<p>openSMILE configuration files follow an INI-style file format. The file
+is divided into sections, which are introduced by a section header:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">sectionName</span><span class="p">:</span><span class="n">sectionType</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The section header, as opposed to the standard INI format, always contains two
+parts, the section name (first part) and the section type (second part). The two
+parts of the section header are separated by a colon (:). The section body (the
+part after the header line up to the next header line or the end of the file)
+contains attributes (which are defined by the section type; a description of the
+available types can be seen using the <code class="docutils literal notranslate"><span class="pre">-H</span></code> command-line option as well as in
+Section <a class="reference internal" href="#components"><span class="std std-ref">Components</span></a>). Attributes are given as
+<code class="docutils literal notranslate"><span class="pre">name</span> <span class="pre">=</span> <span class="pre">value</span></code> pairs. An example of a generic configuration file section is
+given here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">instancename</span><span class="p">:</span><span class="n">configType</span><span class="p">]</span>     <span class="o">&lt;--</span> <span class="n">this</span> <span class="n">specifies</span> <span class="n">the</span> <span class="n">header</span>
+<span class="n">variable1</span> <span class="o">=</span> <span class="n">value</span>             <span class="o">&lt;--</span> <span class="n">example</span> <span class="n">of</span> <span class="n">a</span> <span class="n">string</span> <span class="n">variable</span>
+<span class="n">variable2</span> <span class="o">=</span> <span class="mf">7.8</span>               <span class="o">&lt;--</span> <span class="n">example</span> <span class="n">of</span> <span class="n">a</span> <span class="s2">&quot;numeric&quot;</span> <span class="n">variable</span>
+<span class="n">variable3</span> <span class="o">=</span> <span class="n">X</span>                 <span class="o">&lt;--</span> <span class="n">example</span> <span class="n">of</span> <span class="n">a</span> <span class="s2">&quot;char&quot;</span> <span class="n">variable</span>
+<span class="n">subconf</span><span class="o">.</span><span class="n">var1</span> <span class="o">=</span> <span class="n">myname</span>         <span class="o">&lt;--</span> <span class="n">example</span> <span class="n">of</span> <span class="n">a</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">sub</span> <span class="nb">type</span>
+<span class="n">myarr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">value0</span>             <span class="o">&lt;--</span> <span class="n">example</span> <span class="n">of</span> <span class="n">an</span> <span class="n">array</span>
+<span class="n">myarr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">value1</span>
+<span class="n">anotherarr</span> <span class="o">=</span> <span class="n">value0</span><span class="p">;</span><span class="n">value1</span>    <span class="o">&lt;--</span> <span class="n">example</span> <span class="n">of</span> <span class="n">an</span> <span class="n">implicit</span> <span class="n">array</span>
+<span class="n">noarray</span> <span class="o">=</span> <span class="n">value0</span>\<span class="p">;</span><span class="n">value1</span>      <span class="o">&lt;--</span> <span class="n">use</span> \<span class="p">;</span> <span class="n">to</span> <span class="n">quote</span> <span class="n">the</span> <span class="n">separator</span> <span class="s1">&#39;;&#39;</span>
+<span class="n">strArr</span><span class="p">[</span><span class="n">name1</span><span class="p">]</span> <span class="o">=</span> <span class="n">value1</span>        <span class="o">&lt;--</span> <span class="n">associative</span> <span class="n">arrays</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">value</span> <span class="n">pairs</span>
+<span class="n">strArr</span><span class="p">[</span><span class="n">name2</span><span class="p">]</span> <span class="o">=</span> <span class="n">value2</span>
+
+<span class="p">;</span> <span class="n">line</span><span class="o">-</span><span class="n">comments</span> <span class="n">may</span> <span class="n">be</span> <span class="n">expressed</span> <span class="n">by</span> <span class="p">;</span> <span class="o">//</span> <span class="ow">or</span> <span class="c1"># at the beginning</span>
+<span class="o">/*</span> <span class="n">multi</span><span class="o">-</span><span class="n">line</span> <span class="n">comments</span> <span class="p">(</span><span class="n">C</span> <span class="n">style</span><span class="p">):</span>
+   <span class="n">NOTE</span><span class="p">:</span> <span class="n">comments</span> <span class="n">must</span> <span class="n">start</span> <span class="n">at</span> <span class="n">the</span> <span class="n">beginning</span> <span class="n">of</span> <span class="n">a</span> <span class="n">line</span>  <span class="ow">and</span> <span class="n">must</span> <span class="n">end</span>
+   <span class="n">at</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">a</span> <span class="n">line</span><span class="o">.</span> <span class="n">Comments</span> <span class="n">within</span> <span class="n">a</span> <span class="n">line</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">supported</span><span class="o">.</span> <span class="o">*/</span>
+<span class="n">variable4</span> <span class="o">=</span> <span class="n">value</span> <span class="o">//</span> <span class="n">end</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">line</span> <span class="n">comments</span>
+</pre></div>
+</div>
+<p>In principal, config type names can be arbitrary strings. However, for
+consistency, the names of the components and their corresponding
+configuration type names are identical. Thus, to configure a component
+<code class="docutils literal notranslate"><span class="pre">cWaveSource</span></code> you need a configuration section of type
+<code class="docutils literal notranslate"><span class="pre">cWaveSource</span></code>.</p>
+<p>In every openSMILE configuration file, there is one mandatory section
+which configures the component manager. This is the component that
+instantiates and runs all other components. The following sub-section
+describes this section in detail.</p>
+<div class="section" id="enabling-components">
+<span id="id10"></span><h3>Enabling components<a class="headerlink" href="#enabling-components" title="Permalink to this headline">¶</a></h3>
+<p>The components which will be run, can be specified by configuring the
+<code class="docutils literal notranslate"><span class="pre">cComponentManager</span></code> component, as shown in the following listing (the
+section must be called <code class="docutils literal notranslate"><span class="pre">componentInstances</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[componentInstances:cComponentManager]     &lt;-- don&#39;t change this
+; one data memory component must always be specified!
+; the default name is &#39;dataMemory&#39;
+; if you call your data memory instance &#39;dataMemory&#39;,
+; you will not have to specify the reader.dmInstance variables
+; for all other components!
+; NOTE: you may specify more than one data memory component
+; configure the default data memory:
+instance[dataMemory].type = cDataMemory
+; configure a sample data source (name = source1):
+instance[source1].type = cExampleSource
+</pre></div>
+</div>
+<p>The associative array <code class="docutils literal notranslate"><span class="pre">instance</span></code> is used to configure the list of
+components. The component instance names are specified as the array keys
+and are freely definable. They can contain all characters except for ],
+however, it is recommended to only use alphanumeric characters, _, and
+-. The component types (i.e. which component to instantiate), are given
+as value to the <code class="docutils literal notranslate"><span class="pre">type</span></code> option.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For each component instance specified in the <code class="docutils literal notranslate"><span class="pre">instance</span></code> array, a
+configuration section <em>must</em> exist in the file (<em>except for the
+data memory components!</em>), even if it is empty (e.g. if you want to
+use default values only). In this case, you need to specify only
+the header line <code class="docutils literal notranslate"><span class="pre">[name:type]</span></code>.</p>
+</div>
+</div>
+<div class="section" id="configuring-components">
+<span id="id11"></span><h3>Configuring components<a class="headerlink" href="#configuring-components" title="Permalink to this headline">¶</a></h3>
+<p>The parameters of each component can be set in the configuration section
+corresponding to the specific component. For a wave source, for example,
+(which you instantiate with the line</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">instance</span><span class="p">[</span><span class="n">source1</span><span class="p">]</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">cWaveSource</span>
+</pre></div>
+</div>
+<p>in the component manager configuration) you would add the following
+section (note that the name of the configuration section must match the
+name of the component instance, and the name of the configuration type
+must match the component’s type name):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">source1</span><span class="p">:</span><span class="n">cWaveSource</span><span class="p">]</span>
+ <span class="p">;</span> <span class="n">the</span> <span class="n">following</span> <span class="n">sets</span> <span class="n">the</span> <span class="n">level</span> <span class="n">this</span> <span class="n">component</span> <span class="n">writes</span> <span class="n">to</span>
+ <span class="p">;</span> <span class="n">the</span> <span class="n">level</span> <span class="n">will</span> <span class="n">be</span> <span class="n">created</span> <span class="n">by</span> <span class="n">this</span> <span class="n">component</span>
+ <span class="p">;</span> <span class="n">no</span> <span class="n">other</span> <span class="n">components</span> <span class="n">may</span> <span class="n">write</span> <span class="n">to</span> <span class="n">a</span> <span class="n">level</span> <span class="n">having</span> <span class="n">the</span> <span class="n">same</span> <span class="n">name</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">dmLevel</span> <span class="o">=</span> <span class="n">wave</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">wav</span>
+</pre></div>
+</div>
+<p>This sets the file name of the wave source to <code class="docutils literal notranslate"><span class="pre">input.wav</span></code>. Further, it
+specifies that this wave source component should write to a data memory
+level called <code class="docutils literal notranslate"><span class="pre">wave</span></code>. Each openSMILE component, which processes data
+has at least a data reader (of type cDataReader), a data writer (of type
+cDataWriter), or both. These sub-components handle the interface to the
+data memory component(s). The most important option, which is mandatory,
+is <code class="docutils literal notranslate"><span class="pre">dmLevel</span></code>, which specifies the level to write to or to read from.
+Writing is only possible to one level and only one component may write
+to each level. We would like to note at this point that the levels do
+not have to be specified implicitly by configuring the data memory—in
+fact, the data memory is the only component which does not have and does
+not require a section in the configuration file—rather, the levels are
+created implicitly through <code class="docutils literal notranslate"><span class="pre">writer.dmLevel</span> <span class="pre">=</span> <span class="pre">newlevel</span></code>. Reading is
+possible from more than one level. Thereby, the input data will be
+concatenated frame-wise to one single frame containing data from all
+input levels. To specify reading from multiple levels, separate the
+level names with the array separator ’;’, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reader</span><span class="o">.</span><span class="n">dmLevel</span> <span class="o">=</span> <span class="n">level1</span><span class="p">;</span><span class="n">level2</span>
+</pre></div>
+</div>
+<p>The next example shows the configuration of a <code class="docutils literal notranslate"><span class="pre">cFramer</span></code> component
+<code class="docutils literal notranslate"><span class="pre">frame</span></code>, which creates (overlapping) frames from raw wave input, as
+read by the wave source:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">frame</span><span class="p">:</span><span class="n">cFramer</span><span class="p">]</span>
+<span class="n">reader</span><span class="o">.</span><span class="n">dmLevel</span> <span class="o">=</span> <span class="n">wave</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">dmLevel</span> <span class="o">=</span> <span class="n">frames</span>
+<span class="n">frameSize</span> <span class="o">=</span> <span class="mf">0.0250</span>
+<span class="n">frameStep</span> <span class="o">=</span> <span class="mf">0.010</span>
+</pre></div>
+</div>
+<p>The component reads from the level <code class="docutils literal notranslate"><span class="pre">wave</span></code>, and writes to the level
+<code class="docutils literal notranslate"><span class="pre">frames</span></code>. It will create frames of 25ms length at a rate of 10ms. The
+actual frame length in samples depends on the sampling rate, which will
+be read from meta-information contained in the <code class="docutils literal notranslate"><span class="pre">wave</span></code> level. For more
+examples please see Section <a class="reference internal" href="get-started.html#default-feature-sets"><span class="std std-ref">Default feature sets</span></a>.</p>
+</div>
+<div class="section" id="including-other-configuration-files">
+<span id="id12"></span><h3>Including other configuration files<a class="headerlink" href="#including-other-configuration-files" title="Permalink to this headline">¶</a></h3>
+<p>To include other configuration files into the main configuration file
+use the following command on a separate line at the location where you
+want to include the other file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="p">{</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">to</span><span class="o">.</span><span class="n">include</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>This include command can be used anywhere in the configuration file (as
+long it is on a separate line). It simply copies the lines of the
+included file into the main file while loading the configuration file
+into openSMILE .</p>
+</div>
+<div class="section" id="linking-to-command-line-options">
+<span id="id13"></span><h3>Linking to command-line options<a class="headerlink" href="#linking-to-command-line-options" title="Permalink to this headline">¶</a></h3>
+<p>openSMILE allows for defining of new command-line options for the
+<code class="docutils literal notranslate"><span class="pre">SMILExtract</span></code> binary in the configuration file. To do so, use the
+<code class="docutils literal notranslate"><span class="pre">\cm</span></code> command as value, which has the following syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="n">cm</span><span class="p">[</span><span class="n">longoption</span><span class="p">(</span><span class="n">shortoption</span><span class="p">){</span><span class="n">default</span> <span class="n">value</span><span class="p">}:</span><span class="n">description</span> <span class="n">text</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The command may be used as illustrated in the following example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">exampleSection</span><span class="p">:</span><span class="n">exampleType</span><span class="p">]</span>
+<span class="n">myAttrib1</span> <span class="o">=</span> \<span class="n">cm</span><span class="p">[</span><span class="n">longoption</span><span class="p">(</span><span class="n">shortopt</span><span class="p">){</span><span class="n">default</span><span class="p">}:</span><span class="n">descr</span><span class="o">.</span> <span class="n">text</span><span class="p">]</span>
+<span class="n">myAttrib2</span> <span class="o">=</span> \<span class="n">cm</span><span class="p">[</span><span class="n">longoption</span><span class="p">{</span><span class="n">default</span><span class="p">}:</span><span class="n">descr</span><span class="o">.</span> <span class="n">text</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">shortopt</span></code> argument and the <code class="docutils literal notranslate"><span class="pre">default</span> <span class="pre">value</span></code> are optional. Note
+that, however, either <code class="docutils literal notranslate"><span class="pre">default</span></code> and/or <code class="docutils literal notranslate"><span class="pre">descr.</span><span class="pre">text</span></code> are required to
+define a <em>new</em> option. If neither of the two is specified, the option
+will not be added to the command-line parser. You can use this mode to
+reference options that were already added, i.e. if you want to use the
+value of an already existing option which has been defined at a prior
+location in the config file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">exampleSection2</span><span class="p">:</span><span class="n">exampleType</span><span class="p">]</span>
+<span class="n">myAttrib2</span> <span class="o">=</span> \<span class="n">cm</span><span class="p">[</span><span class="n">longoption</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>An example for making a filename configurable via the command-line, is
+given here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> \<span class="n">cm</span><span class="p">[</span><span class="n">filename</span><span class="p">(</span><span class="n">F</span><span class="p">){</span><span class="n">default</span><span class="o">.</span><span class="n">file</span><span class="p">}:</span><span class="n">use</span> <span class="n">this</span> <span class="n">option</span> <span class="n">to</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">filename</span> <span class="k">for</span> <span class="n">the</span> <span class="n">XYZ</span> <span class="n">component</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>You can call <code class="docutils literal notranslate"><span class="pre">SMILExtract</span> <span class="pre">-c</span> <span class="pre">-C</span> <span class="pre">yourconfigfile.conf</span></code> to see your
+command-line options appended to the general usage output.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When specifying command-line options as a value to an option, the
+<code class="docutils literal notranslate"><span class="pre">\cm</span></code> command is the only text allowed at the right side of the
+equal sign! Something like <code class="docutils literal notranslate"><span class="pre">key</span> <span class="pre">=</span> <span class="pre">value</span> <span class="pre">\cm[...]</span></code> is currently
+not allowed. The \cm command may also only appear in the value
+field of an assignment and (since version 2.0) also instead of a
+filename in the config file include command.</p>
+</div>
+</div>
+<div class="section" id="defining-variables">
+<span id="id14"></span><h3>Defining variables<a class="headerlink" href="#defining-variables" title="Permalink to this headline">¶</a></h3>
+<p>This feature is not yet supported, but is planned for addition. This
+should help avoid duplicate values and increase maintainability of
+configuration files. A current workaround is to define a command-line
+option with a given default value instead of a variable.</p>
+</div>
+<div class="section" id="comments">
+<span id="id15"></span><h3>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h3>
+<p>Single line comments may be initiated by the following characters at the
+beginning of the line (only whitespaces may follow the characters):
+<code class="docutils literal notranslate"><span class="pre">;</span> <span class="pre">#</span> <span class="pre">//</span> <span class="pre">%</span></code></p>
+<p>If you want to comment out a partial line, please use <code class="docutils literal notranslate"><span class="pre">//</span></code>. Everything
+following the double slash on this line (and the double slash itself)
+will be considered a comment and will be ignored.</p>
+<p>Multi-line comments are now supported via the C-style sequences <code class="docutils literal notranslate"><span class="pre">/*</span></code>
+and <code class="docutils literal notranslate"><span class="pre">*/</span></code>. In order to avoid parser problems here, please make sure
+these sequences are on a separate line, e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span>
+<span class="p">[</span><span class="n">exampleSection2</span><span class="p">:</span><span class="n">exampleType</span><span class="p">]</span>
+<span class="n">myAttrib2</span> <span class="o">=</span> \<span class="n">cm</span><span class="p">[</span><span class="n">longoption</span><span class="p">]</span>
+<span class="o">*/</span>
+</pre></div>
+</div>
+<p>and not:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span><span class="p">[</span><span class="n">exampleSection2</span><span class="p">:</span><span class="n">exampleType</span><span class="p">]</span>
+<span class="n">myAttrib2</span> <span class="o">=</span> \<span class="n">cm</span><span class="p">[</span><span class="n">longoption</span><span class="p">]</span><span class="o">*/</span>
+</pre></div>
+</div>
+<p>The latter case is supported, however, you must ensure that the closing
+<code class="docutils literal notranslate"><span class="pre">*/</span></code> is <em>not</em> followed by <em>any</em> whitespaces.</p>
+</div>
+<div class="section" id="ide-support-for-configuration-files">
+<span id="id16"></span><h3>IDE support for configuration files<a class="headerlink" href="#ide-support-for-configuration-files" title="Permalink to this headline">¶</a></h3>
+<p>A community-provided extension for Visual Studio Code is available at
+<a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=chausner.opensmile-config-files">https://marketplace.visualstudio.com/items?itemName=chausner.opensmile-config-files</a>.</p>
+<p>The extension integrates the on-line help system of openSMILE into the
+IDE and also provides syntax highlighting, statement completion,
+diagnostics and code navigation features for config files.</p>
+</div>
+</div>
+<div class="section" id="components">
+<span id="id17"></span><h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<p>This section contains a list of all components in openSMILE and available options
+for each component. You may also access the same information via openSMILE’s inbuilt
+help system. From the command-line you can get a list of available components
+(and a short description for each) with the command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">L</span>
+</pre></div>
+</div>
+<p>All available configuration options for a specific component (replace
+cMyComponentName by the actual name), as well as the description of
+their use and meaning, can be obtained with the command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMILExtract</span> <span class="o">-</span><span class="n">H</span> <span class="n">cMyComponentName</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="_components/cAcf.html">cAcf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cAmdf.html">cAmdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cArffSink.html">cArffSink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cArffSink.html#arffclass">arffClass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cArffSink.html#arfftarget">arffTarget</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cArffSource.html">cArffSource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cBowProducer.html">cBowProducer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cCens.html">cCens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cChroma.html">cChroma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cContourSmoother.html">cContourSmoother</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cCsvSink.html">cCsvSink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cCsvSource.html">cCsvSource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cDataMemory.html">cDataMemory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cDataMemory.html#cdatamemorylevel">cDataMemoryLevel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cDataPrintSink.html">cDataPrintSink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cDataProcessor.html">cDataProcessor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cDataReader.html">cDataReader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cDataSelector.html">cDataSelector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cDataSink.html">cDataSink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cDataSource.html">cDataSource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cDataWriter.html">cDataWriter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cDataWriter.html#cdatamemorylevel">cDataMemoryLevel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cDatadumpSink.html">cDatadumpSink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cDbA.html">cDbA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cDeltaRegression.html">cDeltaRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cEnergy.html">cEnergy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cExampleSink.html">cExampleSink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cExampleSource.html">cExampleSource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cExternalAudioSource.html">cExternalAudioSource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cExternalMessageInterface.html">cExternalMessageInterface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cExternalSink.html">cExternalSink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cExternalSource.html">cExternalSource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFFTmagphase.html">cFFTmagphase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFFmpegSource.html">cFFmpegSource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFormantLpc.html">cFormantLpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFormantSmoother.html">cFormantSmoother</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFramer.html">cFramer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFullinputMean.html">cFullinputMean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFullturnMean.html">cFullturnMean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionalCrossings.html">cFunctionalCrossings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionalDCT.html">cFunctionalDCT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionalExtremes.html">cFunctionalExtremes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionalLpc.html">cFunctionalLpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionalMeans.html">cFunctionalMeans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionalModulation.html">cFunctionalModulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionalMoments.html">cFunctionalMoments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionalOnset.html">cFunctionalOnset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionalPeaks.html">cFunctionalPeaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionalPeaks2.html">cFunctionalPeaks2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionalPercentiles.html">cFunctionalPercentiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionalRegression.html">cFunctionalRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionalSamples.html">cFunctionalSamples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionalSegments.html">cFunctionalSegments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionalTimes.html">cFunctionalTimes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cFunctionals.html">cFunctionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cHarmonics.html">cHarmonics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cHtkSink.html">cHtkSink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cHtkSource.html">cHtkSource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cIntensity.html">cIntensity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cLibsvmLiveSink.html">cLibsvmLiveSink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cLibsvmSink.html">cLibsvmSink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cLpc.html">cLpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cLsp.html">cLsp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cMZcr.html">cMZcr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cMaxIndex.html">cMaxIndex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cMelspec.html">cMelspec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cMfcc.html">cMfcc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cMonoMixdown.html">cMonoMixdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cNullSink.html">cNullSink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cPitchACF.html">cPitchACF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cPitchBase.html">cPitchBase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cPitchDirection.html">cPitchDirection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cPitchJitter.html">cPitchJitter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cPitchShs.html">cPitchShs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cPitchShs.html#cdatawritershs">cDataWriterShs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cPitchSmoother.html">cPitchSmoother</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cPitchSmootherViterbi.html">cPitchSmootherViterbi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cPlp.html">cPlp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cPortaudioDuplex.html">cPortaudioDuplex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cPortaudioSink.html">cPortaudioSink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cPortaudioSource.html">cPortaudioSource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cPortaudioWavplayer.html">cPortaudioWavplayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cPreemphasis.html">cPreemphasis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cRnnProcessor.html">cRnnProcessor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cRnnSink.html">cRnnSink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cRnnVad2.html">cRnnVad2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cSignalGenerator.html">cSignalGenerator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cSimpleMessageSender.html">cSimpleMessageSender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cSmileResample.html">cSmileResample</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cSpecResample.html">cSpecResample</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cSpecScale.html">cSpecScale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cSpectral.html">cSpectral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cSvmSink.html">cSvmSink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cTonefilt.html">cTonefilt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cTonespec.html">cTonespec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cTransformFFT.html">cTransformFFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cTurnDetector.html">cTurnDetector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cVadV1.html">cVadV1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cValbasedSelector.html">cValbasedSelector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cVecToWinProcessor.html">cVecToWinProcessor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cVectorBinaryOperation.html">cVectorBinaryOperation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cVectorConcat.html">cVectorConcat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cVectorMVN.html">cVectorMVN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cVectorOperation.html">cVectorOperation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cVectorPreemphasis.html">cVectorPreemphasis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cVectorProcessor.html">cVectorProcessor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cVectorTransform.html">cVectorTransform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cWaveSink.html">cWaveSink</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cWaveSinkCut.html">cWaveSinkCut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cWaveSource.html">cWaveSource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cWinToVecProcessor.html">cWinToVecProcessor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cWindowProcessor.html">cWindowProcessor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_components/cWindower.html">cWindower</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="smileapi-c-api-and-wrappers">
+<span id="id18"></span><h2>SMILEapi C API and wrappers<a class="headerlink" href="#smileapi-c-api-and-wrappers" title="Permalink to this headline">¶</a></h2>
+<p>The command-line SMILExtract application is handy to perform feature
+extraction on a set of files for research purposes or to run openSMILE
+as part of a demonstrator. A seamless integration of openSMILE
+functionality into applications is not possible with this approach,
+however. For these usecases, openSMILE provides a C API called SMILEapi
+which can be called directly from other applications. All functionality
+available in the SMILExtract command-line tool is also available
+programmatically via SMILEapi. In addition, it allows to pass and
+retrieve audio, features or smile messages to and from openSMILE in
+real-time.</p>
+<p>The SMILEapi library is built as part of the normal build process,
+the binaries are created under <code class="docutils literal notranslate"><span class="pre">build/progsrc/smileapi</span></code>.
+By default, it is built as a shared library <code class="docutils literal notranslate"><span class="pre">libSMILEapi.so</span></code>
+(<code class="docutils literal notranslate"><span class="pre">SMILEapi.dll</span></code> on Windows). A static library can be built instead
+by setting the CMake build flag <code class="docutils literal notranslate"><span class="pre">SMILEAPI_STATIC_LINK=ON</span></code>.
+Applications linking to SMILEapi need to include the public header
+<code class="docutils literal notranslate"><span class="pre">progsrc/include/smileapi/SMILEapi.h</span></code> which defines all types and
+functions in the API. For details and usage of the API, see the
+in-line documentation in the header file.</p>
+<p>openSMILE also comes with Python and C# wrappers around SMILEapi.
+These can be found in <code class="docutils literal notranslate"><span class="pre">progsrc/smileapi/python</span></code> and
+<code class="docutils literal notranslate"><span class="pre">progsrc/smileapi/dotnet</span></code>, respectively. The Android and iOS
+sample applications (<code class="docutils literal notranslate"><span class="pre">progsrc/android-template</span></code> and
+<code class="docutils literal notranslate"><span class="pre">progsrc/ios-template</span></code>) are both based on the SMILEapi, as well,
+and can serve as a reference on how to call SMILEapi in mobile apps.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you intend to use openSMILE from within Python and don’t require
+the advanced, low-level functionality that SMILEapi provides, we
+highly recommend to check out the standalone
+[opensmile-python](<a class="reference external" href="https://github.com/audeering/opensmile-python">https://github.com/audeering/opensmile-python</a>)
+Python package. It comes as a pip-installable Python module and
+provides an easier-to-use interface with e.g. support for numpy
+types.</p>
+</div>
+</div>
+<div class="section" id="feature-names">
+<span id="id19"></span><h2>Feature names<a class="headerlink" href="#feature-names" title="Permalink to this headline">¶</a></h2>
+<p>openSMILE follows a strict naming scheme for features (data fields).
+Each component (except the sink components) assigns names to its output
+fields. All cDataProcessor descendants have two options to control the
+naming behaviour, namely ‘nameAppend’ and ‘copyInputName’. ‘nameAppend’
+specifies a suffix which is appended to the field name of the previous
+level. A ‘–’ is inserted between the two names (if ‘nameAppend’ is not
+empty or (null)). ‘copyInputName’ controls whether the input name is
+copied and the suffix ‘nameAppend’ and any internal hard-coded names are
+appended (if it is set to 1), or if the input field name is discarded
+and only the component’s internal names and an appended suffix are used.</p>
+<p>The field naming scheme is illustrated by the following example. Let’s
+assume you start with an input field ‘pcm’. If you then compute delta
+regression coefficients from it, you end up with the name ‘pcm-de’. If
+you apply functionals (extreme values max and min only), then you will
+end up with two new fields: ‘pcm-de-max’ and ‘pcm-de-min’.
+Theoretically, if the ‘copyInputName’ is always set, and a suitable
+suffix to append is specified, the complete processing chain can be
+deducted from the field name. In practice, however, this would lead to
+quite long and redundant feature names, since most speech and music
+features base on framing, windowing, and spectral transformation. Thus,
+most of these components do not append anything to the input name and do
+only copy the input name. In order to discard the ‘pcm’ from the wave
+input level, components that compute features such as mfcc, pitch,
+etc. discard the input name and use only a hard-coded name or a name
+controlled via ‘nameAppend’.</p>
+</div>
+<div class="section" id="feature-extraction-algorithms">
+<h2>Feature extraction algorithms<a class="headerlink" href="#feature-extraction-algorithms" title="Permalink to this headline">¶</a></h2>
+<p>As you might have noted, this document does not describe details of the
+feature extraction algorithms implemented in openSMILE. There are two
+resources to get more details on the algorithms:</p>
+<ol class="arabic simple">
+<li><p>Read the source!</p></li>
+<li><p>Read the book <em>Real-time Speech and Music Classification by Large
+Audio Feature Space Extraction</em> by F. Eyben published by
+Springer <a class="footnote-reference brackets" href="#id21" id="id20">6</a> (eBook ISBN: 978-3-319-27299-3). All important
+algorithms are described in detail there and a precise and most
+up-to-date summary of standard acoustic parameter sets up to ComParE
+2013 and GeMAPS is given. It is also a good reading for people who
+are new to the field of audio analysis and machine learning for
+audio.</p></li>
+</ol>
+<dl class="footnote brackets">
+<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id20">6</a></span></dt>
+<dd><p><a class="reference external" href="http://www.springer.com/de/book/9783319272986">http://www.springer.com/de/book/9783319272986</a></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="_components/cAcf.html" class="btn btn-neutral float-right" title="cAcf" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="get-started.html" class="btn btn-neutral float-left" title="Get started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2013-2020 audEERING GmbH and 2008-2013 TU München, MMK
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

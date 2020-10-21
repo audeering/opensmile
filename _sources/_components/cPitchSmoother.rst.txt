@@ -1,0 +1,76 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cPitchSmoother:
+
+cPitchSmoother
+--------------
+
+Description
+~~~~~~~~~~~
+This component performs temporal pitch smoothing\. Input\: candidates produced by a pitchBase descendant \(e\.g\. cPitchSHS\)\. The voicing cutoff threshold is inherited from the input component\, thus this smoother component does not provide its own threshold option\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cPitchSmoother`
+
+Fields
+~~~~~~
+- **processArrayFields** (numeric) [default: 0\.0]
+  
+    1 \= process each array field as one vector individually \(and produce one output for each input array field\)\. Only array fields \(i\.e\. fields with more than one element\) are processed if this is set\. \/ 0 \= process complete input frame as one vector\, ignoring field\/element structure
+  
+- **medianFilter0** (numeric) [default: 0\.0]
+  
+    Apply median filtering of candidates as the FIRST processing step\; filter length is \'medianFilter0\' if \> 0
+  
+- **postSmoothing** (numeric) [default: 0\.0]
+  
+    Apply post processing \(median and spike remover\) over \'postSmoothing\' frames \(0\=no smoothing or use default set by postSmoothingMethod\)
+  
+- **postSmoothingMethod** (string) [default: simple]
+  
+    Post processing method to use\. One of the following\:
+
+    -   \'none\' disable post smoothing
+    -   \'simple\' simple post smoothing using only 1 frame delay \(will smooth out 1 frame octave spikes\)
+    -   \'median\' will apply a median filter to the output values \(length \= value of \'postProcessing\'\)
+  
+- **octaveCorrection** (numeric) [default: 1\.0]
+  
+    Enable intelligent cross candidate octave correction
+  
+- **F0final** (numeric) [default: 1\.0]
+  
+    1 \= Enable output of final \(corrected and smoothed\) F0
+  
+- **F0finalEnv** (numeric) [default: 0\.0]
+  
+    1 \= Enable output of envelope of final smoothed F0 \(i\.e\. there will be no 0 values \(except for end and beginning\)\)
+  
+- **no0f0** (numeric) [default: 0\.0]
+  
+    1 \= enable \'no zero F0\'\, output data only when F0\>0\, i\.e\. a voiced frame is detected\. This may cause problem with some functionals and framer components\, which don\'t support this variable length data yet\.\.\.
+  
+- **voicingFinalClipped** (numeric) [default: 0\.0]
+  
+    1 \= Enable output of final smoothed and clipped voicing \(pseudo\) probability\. \'Clipped\' means that the voicing probability is set to 0 for unvoiced regions\, i\.e\. where the probability lies below the voicing threshold\.
+  
+- **voicingFinalUnclipped** (numeric) [default: 0\.0]
+  
+    1 \= Enable output of final smoothed\, raw voicing \(pseudo\) probability \(UNclipped\: not set to 0 during unvoiced regions\)\.
+  
+- **F0raw** (numeric) [default: 0\.0]
+  
+    1 \= Enable output of \'F0raw\' copied from input
+  
+- **voicingC1** (numeric) [default: 0\.0]
+  
+    1 \= Enable output of \'voicingC1\' copied from input
+  
+- **voicingClip** (numeric) [default: 0\.0]
+  
+    1 \= Enable output of \'voicingClip\' copied from input
+  

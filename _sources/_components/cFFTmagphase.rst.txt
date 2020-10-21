@@ -1,0 +1,56 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFFTmagphase:
+
+cFFTmagphase
+------------
+
+Description
+~~~~~~~~~~~
+This component computes magnitude and phase of each array in the input level \(it thereby assumes that the arrays contain complex numbers with real and imaginary parts alternating\, as computed by the cTransformFFT component\)\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cFFTmagphase`
+
+Fields
+~~~~~~
+- **inverse** (numeric) [default: 0\.0]
+  
+    If set to 1\, converts magnitude and phase input data to complex frequency domain data
+  
+- **magnitude** (numeric) [default: 1\.0]
+  
+    1\/0 \= compute magnitude yes\/no \(or use magnitude as input to inverse transformation\, must be enabled for inverse\)
+  
+- **phase** (numeric) [default: 0\.0]
+  
+    1\/0 \= compute phase yes\/no \(or use phase as input to inverse transformation\, must be enabled for inverse\)
+  
+- **joinMagphase** (numeric) [default: 0\.0]
+  
+    Output magnitude and phase information to a single array field \(instead of creating two array fields\, one for magnitude and one for phase information\)\. The first half contains magnitude values\, the second half phase values\.
+  
+- **normalise** (numeric) [default: 0\.0]
+  
+    1\/0 \= yes\/no\: normalise FFT magnitudes to input window length\, to obtain spectral densities\.
+  
+- **power** (numeric) [default: 0\.0]
+  
+    1\/0 \= yes\/no\: square FFT magnitudes to obtain power spectrum\.
+  
+- **dBpsd** (numeric) [default: 0\.0]
+  
+    1\/0 \= yes\/no\: output logarithmic \(dB SPL\) power spectral density instead of linear magnitude spectrum \(you should use a Hann window for analysis in this case\)\. Setting this option also sets\/implies \'normalise\=1\' and \'power\=1\'
+  
+- **dBpnorm** (numeric) [default: 90\.302]
+  
+    Value for dB power normalisation when \'dBpsd\=1\' \(in dB SPL\)\. Default is according to MPEG\-1\, psy I model\.
+  
+- **mindBp** (numeric) [default: \-102\.0]
+  
+    Minimum dB power value for flooring when using dBpsd\. \(mindBp \>\= dBpnorm \- 120\.0\) will be enforced\, so mindBp might be higher than set here\, depending on dBpnorm parameter\.
+  

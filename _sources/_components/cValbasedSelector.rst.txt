@@ -1,0 +1,64 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cValbasedSelector:
+
+cValbasedSelector
+-----------------
+
+Description
+~~~~~~~~~~~
+This component copies only those frames from the input to the output that match a certain threshold criterion\, i\.e\. where a specified value N exceeds a certain threshold\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cValbasedSelector`
+
+Fields
+~~~~~~
+- **threshold** (numeric) [default: 1\.0]
+  
+    Threshold for selection \(see also \'invert\' option\)
+  
+- **adaptiveThreshold** (numeric) [default: 0\.0]
+  
+    1\/0 \= on\/off\, use an adaptive threshold given by a running average \(see adaptationLength\[Sec\] option\)\.
+  
+- **adaptationLengthSec** (numeric) [default: 2\.0]
+  
+    Length of running average for adaptive threshold in seconds
+  
+- **adaptationLength** (numeric) [default: 200\.0]
+  
+    Length of running average for adaptive threshold in frames \(if set\, overrides the adaptationLengthSec\; also used as default if neither option is specified\)
+  
+- **debugAdaptiveThreshold** (numeric) [default: 0\.0]
+  
+    If \> 0\, the interval \(in frames\) at which to output the current adaptive threshold to the log at log\-level 3\.
+  
+- **idx** (numeric) [default: 0\.0]
+  
+    The index of element to base the selection decision on\. Currently only 1 element is supported\, NO vector based thresholds etc\. are possible\.
+  
+- **invert** (numeric) [default: 0\.0]
+  
+    1 \= output the frame when element\[idx\] \< threshold \; 0 \= output the frame if element\[idx\] \=\> threshold
+  
+- **allowEqual** (numeric) [default: 0\.0]
+  
+    if this option is set to 1\, output the frame also\, when element\[idx\] \=\= threshold
+  
+- **removeIdx** (numeric) [default: 0\.0]
+  
+    1 \= remove field element\[idx\] in output vector \; 0 \= keep it
+  
+- **zeroVec** (numeric) [default: 0\.0]
+  
+    1 \= instead of not writing output to the output level if selection threshold is not met\, output a vector with all values set to \'outputVal\'\, which is 0 by default \(removeIdx options still has the same effect\)\.
+  
+- **outputVal** (numeric) [default: 0\.0]
+  
+    Value all output elements will be set to when \'zeroVec\=1\'\.
+  

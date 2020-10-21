@@ -1,0 +1,56 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cDataSource:
+
+cDataSource
+-----------
+
+Description
+~~~~~~~~~~~
+This is a base class for components\, which write data to dataMemory\, but do not read from it\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **writer** (object of type :ref:`cDataWriter`)
+  
+    The configuration of the cDataWriter subcomponent\, which handles the dataMemory interface for data output
+  
+- **buffersize** (numeric) [default: 0\.0]
+  
+    The buffer size for the output level in frames \(this overwrites buffersize\_sec\)
+  
+- **buffersize_sec** (numeric) [default: 0\.0]
+  
+    The buffer size for the output level in seconds
+  
+- **blocksize** (numeric) [default: 0\.0]
+  
+    A size of data blocks to write at once\, in frames \(same as blocksizeW for source only components\, this overwrites blocksize\_sec\, if set\)
+  
+- **blocksizeW** (numeric) [default: 0\.0]
+  
+    The size of data blocks to write in frames \(this overwrites blocksize and blocksize\_sec\, if it is set\) \(this option is provided for compatibility only\.\.\. it is exactly the same as \'blocksize\'\)
+  
+- **blocksize_sec** (numeric) [default: 0\.0]
+  
+    The size of data blocks to write at once\, in seconds
+  
+- **blocksizeW_sec** (numeric) [default: 0\.0]
+  
+    The size of data blocks to write at once\, in seconds \(this option overwrites blocksize\_sec\!\) \(this option is provided for compatibility only\.\.\. it is exactly the same as \'blocksize\'\)
+  
+- **period** (numeric) [default: 0\.0]
+  
+    \(optional\) The period of the input frames \(in seconds\)\, if it cannot be determined from the input file format\. \(if set and \!\= 0\, this will overwrite any automatically set values\, e\.g\. from samplerate and writer\.levelconf etc\. \(NOTE\: this behaviour also depends on the source component\, whether it overwrites period in configureWriter\(\) or whether it keeps the period if it is \!\= 0\.0\)\)
+  
+- **basePeriod** (numeric) [default: \-1\.0]
+  
+    \(optional\) The base period of the input data \(in seconds\)\. The default \-1\.0 will force the code to use the value of period \(unless overwritten by configureWriter\(\)\.\)
+  

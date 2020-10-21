@@ -1,0 +1,64 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFormantLpc:
+
+cFormantLpc
+-----------
+
+Description
+~~~~~~~~~~~
+This component computes formant frequencies and bandwidths by solving for the roots of the LPC polynomial\. The formant trajectories can and should be smoothed by the cFormantSmoother component\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cFormantLpc`
+
+Fields
+~~~~~~
+- **processArrayFields** (numeric) [default: 0\.0]
+  
+    1 \= process each array field as one vector individually \(and produce one output for each input array field\)\. Only array fields \(i\.e\. fields with more than one element\) are processed if this is set\. \/ 0 \= process complete input frame as one vector\, ignoring field\/element structure
+  
+- **nFormants** (numeric) [default: \-1\.0]
+  
+    The maximum number of formants to detect \(set to \< 0 to automatically detect the maximum number of possible formants \(nLpcCoeff \- 1\)
+  
+- **saveFormants** (numeric) [default: 1\.0]
+  
+    If set to 1\, output formant frequencies \[field name\: formantFreqLpc\]
+  
+- **saveIntensity** (numeric) [default: 0\.0]
+  
+    If set to 1\, output formant frame intensity \[field name\: formantFrameIntensity\]
+  
+- **saveNumberOfValidFormants** (numeric) [default: 0\.0]
+  
+    If set to 1\, output the number of valid formants \[field name\: nFormants\]
+  
+- **saveBandwidths** (numeric) [default: 0\.0]
+  
+    If set to 1\, output formant bandwidths \[field name\: formantBandwidthLpc\]
+  
+- **minF** (numeric) [default: 50\.0]
+  
+    The minimum of the formant frequency search range
+  
+- **maxF** (numeric) [default: 5500\.0]
+  
+    The maximum detectable formant frequency
+  
+- **useLpSpec** (numeric) [default: 0\.0]
+  
+    Experimental option\: If set to 1\, computes the formants from peaks found in the \'lpSpectrum\' field instead of root solving the lpc coefficient polynomial
+  
+- **medianFilter** (numeric) [default: 0\.0]
+  
+    1 \= enable formant post processing by a median filter of length \'medianFilter\' \(recommended\: 5\) \(will be rounded up to the next odd number\)\; 0 to disable median filter\.
+  
+- **octaveCorrection** (numeric) [default: 0\.0]
+  
+    Experimental option\: 1 \= prevent formant octave jumps \(esp\. when medianFilter is enabled\) by employing simple \'octave\' correction\. 0 \= no correction\.
+  

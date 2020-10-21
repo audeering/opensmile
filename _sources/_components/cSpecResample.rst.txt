@@ -1,0 +1,36 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cSpecResample:
+
+cSpecResample
+-------------
+
+Description
+~~~~~~~~~~~
+This component implements a spectral domain resampling component\. Input frames are complex valued spectral domain data\, which will be shifted and scaled by this component\, and a modified DFT is performed to synthesize samples at the new rate\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cSpecResample`
+
+Fields
+~~~~~~
+- **processArrayFields** (numeric) [default: 0\.0]
+  
+    1 \= process each array field as one vector individually \(and produce one output for each input array field\)\. Only array fields \(i\.e\. fields with more than one element\) are processed if this is set\. \/ 0 \= process complete input frame as one vector\, ignoring field\/element structure
+  
+- **targetFs** (numeric) [default: 16000\.0]
+  
+    The target sampling frequency in Hz
+  
+- **resampleRatio** (numeric) [default: 1\.0]
+  
+    Specifies a fixed resample ratio a \(a\=fsNew\/fsCurrent\)\. If set\, this overrides targetFs
+  
+- **inputFieldPartial** (string) [default: None]
+  
+    The name of the input field to search for\. \(NULL \(default\)\: use full input vector\)
+  

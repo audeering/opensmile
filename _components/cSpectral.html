@@ -1,0 +1,534 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cSpectral &mdash; openSMILE Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/audeering.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="cSvmSink" href="cSvmSink.html" />
+    <link rel="prev" title="cSpecScale" href="cSpecScale.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          <a href="../index.html">
+          
+            
+            <img src="../_static/openSMILE-logoSlogan-white.svg" class="logo" alt="Logo"/>
+          
+          
+            
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About openSMILE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get-started.html">Get started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Reference section</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#smilextract-command-line-options">SMILExtract command-line options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#opensmile-architecture">openSMILE architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#configuration-files">Configuration files</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../reference.html#components">Components</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="cAcf.html">cAcf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cAmdf.html">cAmdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cArffSink.html">cArffSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cArffSink.html#arffclass">arffClass</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cArffSink.html#arfftarget">arffTarget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cArffSource.html">cArffSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cBowProducer.html">cBowProducer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cCens.html">cCens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cChroma.html">cChroma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cContourSmoother.html">cContourSmoother</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cCsvSink.html">cCsvSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cCsvSource.html">cCsvSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataMemory.html">cDataMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataMemory.html#cdatamemorylevel">cDataMemoryLevel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataPrintSink.html">cDataPrintSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataProcessor.html">cDataProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataReader.html">cDataReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataSelector.html">cDataSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataSink.html">cDataSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataSource.html">cDataSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataWriter.html">cDataWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDataWriter.html#cdatamemorylevel">cDataMemoryLevel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDatadumpSink.html">cDatadumpSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDbA.html">cDbA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cDeltaRegression.html">cDeltaRegression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cEnergy.html">cEnergy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExampleSink.html">cExampleSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExampleSource.html">cExampleSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExternalAudioSource.html">cExternalAudioSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExternalMessageInterface.html">cExternalMessageInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExternalSink.html">cExternalSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cExternalSource.html">cExternalSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFFTmagphase.html">cFFTmagphase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFFmpegSource.html">cFFmpegSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFormantLpc.html">cFormantLpc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFormantSmoother.html">cFormantSmoother</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFramer.html">cFramer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFullinputMean.html">cFullinputMean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFullturnMean.html">cFullturnMean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalCrossings.html">cFunctionalCrossings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalDCT.html">cFunctionalDCT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalExtremes.html">cFunctionalExtremes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalLpc.html">cFunctionalLpc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalMeans.html">cFunctionalMeans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalModulation.html">cFunctionalModulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalMoments.html">cFunctionalMoments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalOnset.html">cFunctionalOnset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalPeaks.html">cFunctionalPeaks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalPeaks2.html">cFunctionalPeaks2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalPercentiles.html">cFunctionalPercentiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalRegression.html">cFunctionalRegression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalSamples.html">cFunctionalSamples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalSegments.html">cFunctionalSegments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionalTimes.html">cFunctionalTimes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cFunctionals.html">cFunctionals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cHarmonics.html">cHarmonics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cHtkSink.html">cHtkSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cHtkSource.html">cHtkSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cIntensity.html">cIntensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cLibsvmLiveSink.html">cLibsvmLiveSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cLibsvmSink.html">cLibsvmSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cLpc.html">cLpc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cLsp.html">cLsp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cMZcr.html">cMZcr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cMaxIndex.html">cMaxIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cMelspec.html">cMelspec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cMfcc.html">cMfcc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cMonoMixdown.html">cMonoMixdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cNullSink.html">cNullSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchACF.html">cPitchACF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchBase.html">cPitchBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchDirection.html">cPitchDirection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchJitter.html">cPitchJitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchShs.html">cPitchShs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchShs.html#cdatawritershs">cDataWriterShs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchSmoother.html">cPitchSmoother</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPitchSmootherViterbi.html">cPitchSmootherViterbi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPlp.html">cPlp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPortaudioDuplex.html">cPortaudioDuplex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPortaudioSink.html">cPortaudioSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPortaudioSource.html">cPortaudioSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPortaudioWavplayer.html">cPortaudioWavplayer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cPreemphasis.html">cPreemphasis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cRnnProcessor.html">cRnnProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cRnnSink.html">cRnnSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cRnnVad2.html">cRnnVad2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSignalGenerator.html">cSignalGenerator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSimpleMessageSender.html">cSimpleMessageSender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSmileResample.html">cSmileResample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSpecResample.html">cSpecResample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cSpecScale.html">cSpecScale</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">cSpectral</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#type-hierarchy">Type hierarchy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fields">Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cSvmSink.html">cSvmSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cTonefilt.html">cTonefilt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cTonespec.html">cTonespec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cTransformFFT.html">cTransformFFT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cTurnDetector.html">cTurnDetector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVadV1.html">cVadV1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cValbasedSelector.html">cValbasedSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVecToWinProcessor.html">cVecToWinProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorBinaryOperation.html">cVectorBinaryOperation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorConcat.html">cVectorConcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorMVN.html">cVectorMVN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorOperation.html">cVectorOperation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorPreemphasis.html">cVectorPreemphasis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorProcessor.html">cVectorProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cVectorTransform.html">cVectorTransform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWaveSink.html">cWaveSink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWaveSinkCut.html">cWaveSinkCut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWaveSource.html">cWaveSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWinToVecProcessor.html">cWinToVecProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWindowProcessor.html">cWindowProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cWindower.html">cWindower</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#smileapi-c-api-and-wrappers">SMILEapi C API and wrappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#feature-names">Feature names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference.html#feature-extraction-algorithms">Feature extraction algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developer’s documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgement.html">Acknowledgement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">openSMILE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../reference.html">Reference section</a> &raquo;</li>
+        
+      <li>cSpectral</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/_components/cSpectral.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cspectral">
+<span id="id1"></span><h1>cSpectral<a class="headerlink" href="#cspectral" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>This component computes spectral features such as flux, roll-off, centroid, and user defined band energies (rectangular summation of FFT magnitudes), etc.</p>
+</div>
+<div class="section" id="type-hierarchy">
+<h2>Type hierarchy<a class="headerlink" href="#type-hierarchy" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="cDataProcessor.html#cdataprocessor"><span class="std std-ref">cDataProcessor</span></a> → <a class="reference internal" href="cVectorProcessor.html#cvectorprocessor"><span class="std std-ref">cVectorProcessor</span></a> → <a class="reference internal" href="#cspectral"><span class="std std-ref">cSpectral</span></a></p>
+</div>
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p><strong>squareInput</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>1/0 = square input values (e.g. if input is magnitude and not power spectrum)</p>
+</div></blockquote>
+</li>
+<li><p><strong>bands[]</strong> (string) [default: 250-650]</p>
+<blockquote>
+<div><p>bands[n] = LoFrq[Hz]-HiFrq[Hz]  (e.g. 0-250), compute energy in this spectral band (only integer frequencies are allowed!)</p>
+</div></blockquote>
+</li>
+<li><p><strong>normBandEnergies</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) normalise the band energies to the total frame energy (-&gt; relative band energies). Also affects ‘harmonicity’, normalises the average min to max variations in the spectrum by the total frame energy (sum of magnitudes or squares).</p>
+</div></blockquote>
+</li>
+<li><p><strong>rollOff[]</strong> (numeric) [default: 0.9]</p>
+<blockquote>
+<div><p>rollOff[n] = X  (X in the range 0..1), compute X*100 percent spectral roll-off point</p>
+</div></blockquote>
+</li>
+<li><p><strong>specDiff</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of spectral difference (root-mean-square of absolute differences over all bins)</p>
+</div></blockquote>
+</li>
+<li><p><strong>specPosDiff</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of spectral positive difference (sum of squared positive differences normalised by number of bins and then sqrt taken)</p>
+</div></blockquote>
+</li>
+<li><p><strong>flux</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of spectral flux</p>
+</div></blockquote>
+</li>
+<li><p><strong>fluxCentroid</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of spectral flux centroid (in Hz), i.e. the frequency with currently the most flux around it.</p>
+</div></blockquote>
+</li>
+<li><p><strong>fluxAtFluxCentroid</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of spectral flux only at and around (+- 2 bins) the centroid of flux (as computed by the ‘fluxCentroid’ option).</p>
+</div></blockquote>
+</li>
+<li><p><strong>centroid</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of spectral centroid</p>
+</div></blockquote>
+</li>
+<li><p><strong>maxPos</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of position of spectral maximum</p>
+</div></blockquote>
+</li>
+<li><p><strong>minPos</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of position of spectral minimum</p>
+</div></blockquote>
+</li>
+<li><p><strong>entropy</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of spectral entropy</p>
+</div></blockquote>
+</li>
+<li><p><strong>standardDeviation</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of spectral standard deviation (root of variance)</p>
+</div></blockquote>
+</li>
+<li><p><strong>variance</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of spectral variance (mpeg7: spectral spread)</p>
+</div></blockquote>
+</li>
+<li><p><strong>skewness</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of spectral skewness</p>
+</div></blockquote>
+</li>
+<li><p><strong>kurtosis</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of spectral kurtosis</p>
+</div></blockquote>
+</li>
+<li><p><strong>slope</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of spectral slope over maximal frequency range</p>
+</div></blockquote>
+</li>
+<li><p><strong>slopes[]</strong> (string) [default: None]</p>
+<blockquote>
+<div><p>slopes[n] = LoFrq[Hz]-HiFrq[Hz] (e.g. 0-5000), computes spectral slope in the given band (only integer frequencies are allowed!)</p>
+</div></blockquote>
+</li>
+<li><p><strong>alphaRatio</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of alpha ratio (ratio of energy above 1 kHz (up to 5 kHz) to energy below 1 kHz).</p>
+</div></blockquote>
+</li>
+<li><p><strong>hammarbergIndex</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of hammarberg index (ratio of energy peak (max) in 0-2 kHz region and energy peak (max) in 2-5 kHz region).</p>
+</div></blockquote>
+</li>
+<li><p><strong>sharpness</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of psychoacoustic parameter ‘sharpness’. In order to obtain proper values, use a bark scale spectrum as input (see cSpecScale component).</p>
+</div></blockquote>
+</li>
+<li><p><strong>tonality</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of consonance (ratio of consonance/dissonance, based on intervals between spectral peaks). (NOT YET IMPLEMENTED)</p>
+</div></blockquote>
+</li>
+<li><p><strong>harmonicity</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of harmonicity (mean of consecutive local min-max differences). Optionally normalised by the total frame energy, if normBandEnergies is set to 1.</p>
+</div></blockquote>
+</li>
+<li><p><strong>flatness</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) enable computation of spectral flatness (sfm = geometric_mean / arithmetic_mean of spectrum).</p>
+</div></blockquote>
+</li>
+<li><p><strong>logFlatness</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) if flatness is enabled, output ln(flatness).</p>
+</div></blockquote>
+</li>
+<li><p><strong>buggyRollOff</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) for backwards feature set compatibility, enable buggy roll-off computation (pre May 2013, pre 2.0 release).</p>
+</div></blockquote>
+</li>
+<li><p><strong>oldSlopeScale</strong> (numeric) [default: 1.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) for backwards feature set compatibility, enable (incorrectly) scaled spectral slope computation (pre July 2013, pre 2.0 final release). Enabled by default, to preserve compatibility with older feature sets. Disable in new designs!</p>
+</div></blockquote>
+</li>
+<li><p><strong>freqRange</strong> (string) [default: 0-0]</p>
+<blockquote>
+<div><p>range of spectrum to consider for spectral parameter computation (syntax: lowerHz-upperHz, e.g. 0-8000; use 0-0 (default) for full range)</p>
+</div></blockquote>
+</li>
+<li><p><strong>useLogSpectrum</strong> (numeric) [default: 0.0]</p>
+<blockquote>
+<div><p>(1/0=yes/no) Compute the following parameters (if enabled) from the log spectrum instead of the power spectrum: spectral slope(s), centroid, maxpos/minpos, entropy, moments, sharpness, harmonicity, flatness. Please note, that the band energies are computed from the power spectrum, but the output will be in dB (log) if this option is enabled (1). Spectral roll-off and flux will always be computed from the power spectrum (no log).</p>
+</div></blockquote>
+</li>
+<li><p><strong>specFloor</strong> (numeric) [default: 1e-07]</p>
+<blockquote>
+<div><p>When using the log Spectrum, the square(!) of this value is used as a floor value for the power spectrum.</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cSvmSink.html" class="btn btn-neutral float-right" title="cSvmSink" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cSpecScale.html" class="btn btn-neutral float-left" title="cSpecScale" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2013-2020 audEERING GmbH and 2008-2013 TU München, MMK
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

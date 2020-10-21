@@ -1,0 +1,28 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cMonoMixdown:
+
+cMonoMixdown
+------------
+
+Description
+~~~~~~~~~~~
+This is a simple mixer\, which adds multiple channels \(elements\) to a single channel \(element\)\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cMonoMixdown`
+
+Fields
+~~~~~~
+- **normalise** (numeric) [default: 1\.0]
+  
+    1\/0 \= yes\/no \: divide by the number of channels when adding samples from multiple channels\.
+  
+- **bufsize** (numeric) [default: 1024\.0]
+  
+    number of samples to process at once\. Choose a number \>\> 1 for optimal performance\. Too large buffer sizes may influence the latency\!
+  

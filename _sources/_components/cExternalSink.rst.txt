@@ -1,0 +1,18 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cExternalSink:
+
+cExternalSink
+-------------
+
+Description
+~~~~~~~~~~~
+This component allows external code to programmatically access the data read by this component\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cExternalSink`
+

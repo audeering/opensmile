@@ -1,0 +1,89 @@
+/* audEERING colors */
+
+a {
+    color: #e03c46;
+}
+a:visited {
+    color: #e03c46;
+}
+a:hover {
+    color: #f0989b;
+}
+.wy-menu-vertical a {
+    color: #d9d9d9;
+}
+.wy-side-nav-search>a, .wy-side-nav-search .wy-dropdown>a {
+    color: #ffffff;
+}
+.wy-side-nav-search {
+    background-color: #ab2328;
+}
+.wy-side-nav-search input[type=text] {
+    border-color: #ab2328;
+}
+.wy-nav-top {
+    background-color: #ab2328;
+}
+.wy-menu-vertical a:active {
+    background-color: #ab2328;
+}
+.wy-nav-side {
+    background-color: #3f4444;
+}
+.wy-menu-vertical p.caption {
+    color: rgb(155, 155, 155);
+}
+.rst-content dl:not(.docutils) dt {
+    /* color: #bc0008; */
+    color: #db3940;
+    border-left: solid 3px #db3940;
+    border-top: none;
+    background: #efeff0;
+}
+/* Color of notes */
+.rst-content .note .admonition-title {
+    background: #db3940;
+}
+.rst-content .note {
+    background: #efeff0;
+}
+/* Code blocks */
+.rst-content .highlight {
+    background: #efeff0;
+}
+.rst-content .highlight .gp {
+    color: #db3940;
+}
+/* Link to code and back */
+.rst-content .viewcode-link, .rst-content .viewcode-back {
+    color: #db3940;
+}
+content .viewcode-back {
+    color: #db3940;
+}
+/* Main text color */
+body {
+    color: #393939;
+}
+/* Download box for Jupyter notebooks */
+.notebook {
+    background: #efeff0;
+}
+.notebook a {
+    padding: 12px;
+    padding-bottom: 9px;
+    line-height: 24px;
+    margin-bottom: 24px;
+    display: block;
+    font-size: 1.125rem;
+    color: #393939;
+    font-weight: bold;
+    border-bottom: 3px solid transparent;
+}
+.notebook a::before {
+    content: "⭳ ";
+    color: #e03c46;
+}
+.notebook a:hover {
+    border-bottom: 3px solid #e03c46;
+}

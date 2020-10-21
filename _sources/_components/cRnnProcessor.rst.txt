@@ -1,0 +1,36 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cRnnProcessor:
+
+cRnnProcessor
+-------------
+
+Description
+~~~~~~~~~~~
+BLSTM RNN processor\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cRnnProcessor`
+
+Fields
+~~~~~~
+- **netfile** (string) [default: None]
+  
+    The file which contains the trained network created by rnnlib
+  
+- **jsonNet** (numeric) [default: 0\.0]
+  
+    1\/0 \= yes\/no\. Flag that indicates whether \'netfile\' is in json format \(1\) \(trained with current\) or in rnnlib format \(0\)\.
+  
+- **classlabels** (string) [default: None]
+  
+    Give a string of comma separated \(NO spaces allowed\!\!\) class names \(e\.g\. class1\,class2\,class3\) for a classification or transcription task
+  
+- **printConnections** (numeric) [default: 0\.0]
+  
+    1\/0 \= yes\/no \: print human readable information on the network layers on connections
+  

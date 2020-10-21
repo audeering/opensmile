@@ -1,0 +1,36 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFFmpegSource:
+
+cFFmpegSource
+-------------
+
+Description
+~~~~~~~~~~~
+This component uses FFmpeg to decode audio from media files\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSource` |rarr| :ref:`cFFmpegSource`
+
+Fields
+~~~~~~
+- **blocksize_sec** (numeric) [default: 1\.0]
+  
+    The size of data blocks to write at once\, in seconds
+  
+- **filename** (string) [default: input\.wav]
+  
+    The filename of the media file to load\. The file must contain an audio stream decodable by FFmpeg\.
+  
+- **monoMixdown** (numeric) [default: 1\.0]
+  
+    Mix down all channels to 1 mono channel \(1\=on\, 0\=off\)
+  
+- **outFieldName** (string) [default: pcm]
+  
+    Set the name of the output field\, containing the pcm data
+  

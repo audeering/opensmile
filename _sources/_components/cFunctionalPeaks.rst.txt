@@ -1,0 +1,52 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionalPeaks:
+
+cFunctionalPeaks
+----------------
+
+Description
+~~~~~~~~~~~
+number of peaks and various measures associated with peaks\, such as mean of peaks\, mean distance between peaks\, etc\. Peak finding is based on \: x\(t\-1\) \< x\(t\) \> x\(t\+1\)\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **numPeaks** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of number of peaks \[output name\: numPeaks\]
+  
+- **meanPeakDist** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of mean distance between peaks \(relative to the input segment length\, in seconds\, or in frames\, see the \'norm\' option or the \'masterTimeNorm\' option of the cFunctionals parent component\) \[output name\: meanPeakDist\]
+  
+- **peakMean** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean of peaks \[output name\: peakMean\]
+  
+- **peakMeanMeanDist** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of arithmetic mean of peaks \- arithmetic mean of all values \[output name\: peakMeanMeanDist\]
+  
+- **peakDistStddev** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of standard deviation of inter peak distances \[output name\: peakDistStddev\]
+  
+- **norm** (string) [default: frames]
+  
+    This option specifies how this component should normalise times \(if it generates output values related to durations\)\:
+
+    -   \'segment\' \(or\: \'turn\'\) \: normalise to the range 0\.\.1\, the result is the relative length wrt\. to the segment length \)
+    -   \'second\'  \(absolute time in seconds\) 
+    -   \'frame\' \(absolute time in number of frames of input level\)
+  
+- **overlapFlag** (numeric) [default: 1\.0]
+  
+    1\/0\=yes\/no frames overlap \(i\.e\. compute peaks locally only\)
+  

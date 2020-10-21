@@ -1,0 +1,28 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cDbA:
+
+cDbA
+----
+
+Description
+~~~~~~~~~~~
+This component performs dbX \(dbA\,dbB\,dbC\,\.\.\.\) equal loudness weighting of FFT bin magnitudes\. Currently only dbA weighting is implemented\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cDbA`
+
+Fields
+~~~~~~
+- **curve** (char) [default: A]
+  
+    1 character\, which specifies the type of the curve to use \(supported\: A \; soon supported\: B\,C\) \[NOT YET FULLY IMPLEMENTED\, ONLY A is supported\]
+  
+- **usePower** (numeric) [default: 1\.0]
+  
+    1 \= square the input magnitudes before multiplying with the dX weighting function \(the output will then be a dBX weighted power spectrum\)
+  

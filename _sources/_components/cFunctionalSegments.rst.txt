@@ -1,0 +1,108 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionalSegments:
+
+cFunctionalSegments
+-------------------
+
+Description
+~~~~~~~~~~~
+number of segments based on simple delta thresholding
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **maxNumSeg** (numeric) [default: 20\.0]
+  
+    Maximum number of segments to detect\. Use growDynSegBuffer\=1 to automatically increase this size if more segments are detected\. Use norm\=seconds or norm\=frames in this time to avoid having inconsistent results\.
+  
+- **segmentationAlgorithm** (string) [default: delta]
+  
+    Method to use for segmenting the input contour\. Possible values are\:
+
+    -  delta \: new segments start when the signal changes more than \'rangeRelThreshold\' when the current frame is compared to a running average computed over a length of ravgLng \= Nin\/\(maxNumSeg\/2\) frames \(Nin is the length of the input contour in frames\)\.
+    -  \(m\)\(NA\)relTh \: segment boundaries each time the short term running average \(over 3 frames\) of the signal rises above predefined relative \(to the signal range\) value thresholds \(NA version\: don\'t use running average\, use signal directly instead\; m version\: relative thresholds are relative to the arithmetic mean\)\.
+    -  \(NA\)absTh \: segment boundaries each time the short\-time running average \(3 frames\) of the signal rises above predefined absolute value thresholds \(NA version\: don\'t use running average\, use signal values directly instead\)\.
+    -  chX \: segments are regions of continuous input samples of value X and continuous segments of non\-X samples\, i\.e\. segment boundaries are at changes from X to non\-X values\.
+    -  nonX \: segment boundaries are at changes from X to non\-X\, but only non\-X value sequences are considered as segments\.
+    -  eqX \: segment boundaries are at changes from X to non\-X\, but only equal to X value sequences are considered as segments\.
+    -  ltX \: segment boundaries are at changes from greater equal X to smaller X\, but only smaller X sequences are considered as segments\.
+    -  gtX \:  segment boundaries are at changes from smaller equal X to greater X\, but only greater X sequences are considered as segments\.
+    -  geqX \:  segment boundaries are at changes from greater equal X to smaller X\, but only greater equal X sequences are considered as segments\.
+    -  leqX \: segment boundaries are at changes from smaller equal X to greater X\, but only smaller equal X sequences are considered as segments\.
+    - 
+  
+- **ravgLng** (numeric) [default: 0\.0]
+  
+    If set to a value \> 0\, forces the length of the running average window to this value \(for the delta thresholding method\)\.
+  
+- **thresholds[]** (numeric) [default: 0\.0]
+  
+    An array of thresholds\, used if \'segmentationAlgorithm\' is set to either \'relTh\' or \'absTh\'\. The values specified here are then either relative thresholds \(relative to the range of the input\)\, or absolute value thresholds\.
+  
+- **X** (numeric) [default: 0\.0]
+  
+    The value of X for the \'chX\'\,\'nonX\'\,\'eqX\'\,\'ltX\'\,\'gtX\'\,\'geqX\'\, and \'leqX\' segmentation methods\/algorithms\.
+  
+- **XisRel** (numeric) [default: 0\.0]
+  
+    1\= X is a threshold relative to the range of the input \/ 0\= X is an absolute valued threshold\.
+  
+- **rangeRelThreshold** (numeric) [default: 0\.2]
+  
+    The segment threshold relative to the signal\'s range \(max\-min\)\, when \'segmentationAlgorithm\' is set to \'delta\'\.
+  
+- **numSegments** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of the number of segments \(output is relative to maxNumSeg if norm\=segment or the absolute value if norm\=frames\, and for norm\=seconds the output is the number of segments per second\)
+  
+- **meanSegLen** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of the mean segment length \(relative to the input segment length\, in seconds\, or in frames\, see the \'norm\' option or the \'masterTimeNorm\' option of the cFunctionals parent component\)
+  
+- **maxSegLen** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of the maximum segment length \(relative to the input segment length\, in seconds\, or in frames\, see the \'norm\' option or the \'masterTimeNorm\' option of the cFunctionals parent component\)
+  
+- **minSegLen** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of the minimum segment length \(relative to the input segment length\, in seconds\, or in frames\, see the \'norm\' option or the \'masterTimeNorm\' option of the cFunctionals parent component\)
+  
+- **segLenStddev** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of the standard deviation of the segment lengths \(relative to the input segment length\, in seconds\, or in frames\, see the \'norm\' option or the \'masterTimeNorm\' option of the cFunctionals parent component\)
+  
+- **norm** (string) [default: segment]
+  
+    This option specifies how this component should normalise times \(if it generates output values related to durations\)\:
+
+    -   \'segment\' \(or\: \'turn\'\) \: normalise to the range 0\.\.1\, the result is the relative length wrt\. to the segment length \)
+    -   \'second\'  \(absolute time in seconds\) 
+    -   \'frame\' \(absolute time in number of frames of input level\)
+  
+- **dbgPrint** (numeric) [default: 0\.0]
+  
+    1\= enable debug output with segment boundary begin and end coordinates
+  
+- **segMinLng** (numeric) [default: 3\.0]
+  
+    Minimum segment length in input level frames\. The segmentation algorithms EqX\, NonX\, and ChX always use this value\. The old \(buggy\) versions of these algorithms \(if useOldBuggyChX \= 1\)\, never use this value\, they instead compute it as InputLength\/maxNumSeg \- 1\. All other algorithms compute the value segMinLng as inputLength\/maxNumSeg if this option is not set explicitly\, otherwise they use the value this option is set to \(in this case it overrides maxNumSeg\, i\.e\. the maximum number of segments that can be detected might differ from the value maxNumSeg is set to\)\.
+  
+- **pauseMinLng** (numeric) [default: 2\.0]
+  
+    Minimum length of a pause for the segmentation algorithms EqX and NonX in input level frames\.
+  
+- **useOldBuggyChX** (numeric) [default: 0\.0]
+  
+    1 \= Use old buggy version of the ChX\, EqX and NonX code \(configs up to 12\.06\.2012\)\; available only for compatibility\. Do not use in new configs\!
+  
+- **growDynSegBuffer** (numeric) [default: 0\.0]
+  
+    1 \= Dynamically grow the segment buffer \(i\.e\. maxNumSeg \= infinite\) by maxNumSeg segments at a time if more segments are detected\.
+  

@@ -1,0 +1,78 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cVectorOperation:
+
+cVectorOperation
+----------------
+
+Description
+~~~~~~~~~~~
+This component performs elementary operations on vectors \(i\.e\. basically everything that does not require history or context\, everything that can be performed on single vectors w\/o external data \(except for constant parameters\, etc\.\)\)
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVectorProcessor` |rarr| :ref:`cVectorOperation`
+
+Fields
+~~~~~~
+- **operation** (string) [default: norm]
+  
+    A string which specifies the type of operation to perform\:
+
+    -   norm \= normalise vector length \(euclidean norm\, L2\) to 1
+    -   nr1 \= normalise range to \+1\, \-1
+    -   nr0 \= normalise range to \+1\, 0
+    -   nma \= divide by the maximum absolute value
+    -   mul \= multiply vector by param1
+    -   add \= add param1 to each element
+    -   log \= compute natural logarithm
+    -   lgA \= compute logarithm to base param1
+    -   nl1 \= normalise vector sum \(L1 norm\) to 1
+    -   sqrt \= compute square root
+    -   pow \= take values to the power of param1
+    -   exp \= raise param1 to the power of the vector elements
+    -   ee \= raise the base e to the power of the vector elements
+    -   abs \= take absolute value of each element
+    -   agn \= add Gaussian noise with mean param1 and std\.dev\. param2
+    -   min \= take the min of vector and param1
+    -   max \= take the max of vector and param1
+    -   sum \= compute sum of vector elements\, there will be a single output only
+    -   ssm \= compute sum of squared vector elements\, there will be a single output only
+    -   ll1 \= compute sum of vector elements normalised by the number of vector elements\, there will be a single output only
+    -   ll2 \= compute euclidean length \(root of sum of squares normalised by vector length\)\, there will be a single output only
+    -   fla\(tten\) \= flattening of comb filter energy spectra\, as in 2007 ICASSP Paper and Ballroom dance style recognition\.
+    -   dBp \= convert a power to decibel with 10\*log10\(x\)\.
+    -   dBv \= convert an amplitude\/magnitude\/voltage to decibel with 20\*log10\(x\)
+    -   fconv\_aaa\_bbb \= convert frequency from scale aaa to scale bbb
+    -     lin \= linear \(Hz\)
+    -     bark \= Bark \(Traunmueller\, 1990\)
+    -     mel \= Mel\-scale
+    -     oct \= semitone\/octave scale \(music\)\, param1 \= freq\. of first note in Hz\.
+  
+- **param1** (numeric) [default: 1\.0]
+  
+    parameter 1
+  
+- **param2** (numeric) [default: 1\.0]
+  
+    parameter 2
+  
+- **logfloor** (numeric) [default: 1e\-12]
+  
+    floor for log operation
+  
+- **powOnlyPos** (numeric) [default: 0\.0]
+  
+    if \'operation\' \= \'pow\'\, do not take negative values to the power of \'param1\'\; instead\, output 0\. This is necessary to avoid \'nan\' values if the exponent is rational\. 
+  
+- **nameBase** (string) [default: None]
+  
+    base of output feature name when performing n\-\>1 mapping operations \(currently \'euc\' and \'sum\'\)
+  
+- **appendOperationToName** (numeric) [default: 0\.0]
+  
+    \(1\/0 \= yes\/no\) append the operation name from the \'operation\' option to the feature name\. This will override any nameAppend option \(inherited from cDataProcessor\)\.
+  

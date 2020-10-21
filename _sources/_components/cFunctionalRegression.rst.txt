@@ -1,0 +1,123 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cFunctionalRegression:
+
+cFunctionalRegression
+---------------------
+
+Description
+~~~~~~~~~~~
+linear and quadratic regression coefficients and corresponding linear and quadratic regression errors\. Linear regression line\: y \= m\*x \+ t \; quadratic regression parabola\: y \= a\*x\^2 \+ b\*x \+ c \. Algorithm used\: Minimum mean square error\, direct analytic solution\. This component also computes the centroid of the contour\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+This config type does not inherit from any base type.
+
+Fields
+~~~~~~
+- **linregc1** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of slope m \(linear regression line\)
+  
+- **linregc2** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of offset t \(linear regression line\)
+  
+- **linregerrA** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of linear error between contour and linear regression line
+  
+- **linregerrQ** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of quadratic error between contour and linear regression line
+  
+- **qregc1** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of quadratic regression coefficient 1 \(a\)
+  
+- **qregc2** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of quadratic regression coefficient 2 \(b\)
+  
+- **qregc3** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of quadratic regression coefficient 3 \(c \= offset\)
+  
+- **qregerrA** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of linear error between contour and quadratic regression line \(parabola\)
+  
+- **qregerrQ** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of quadratic error between contour and quadratic regression line \(parabola\)
+  
+- **centroid** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable output of centroid of contour \(this is computed as a by\-product of the regression coefficients\)\.
+  
+- **centroidNorm** (string) [default: segment]
+  
+    normalise time\-scale of centroid to time in seconds \(seconds\)\, frame index \(frame\)\, or relative segment percentage \(segment\)\.
+  
+- **centroidUseAbsValues** (numeric) [default: 1\.0]
+  
+    1\/0\=enable\/disable\. Use absolute values when computing temporal centroid\. Default in pre 2\.2 versions was 0\. In 2\.2 the default changes to 1\!
+  
+- **centroidRatioLimit** (numeric) [default: 1\.0]
+  
+    \(1\/0\) \= yes\/no\. Apply soft limiting of centroid to valid \(segment range\) in order to avoid high uncontrolled output values if the denominator \(absolute mean of values\) is close to 0\. For strict compatibility with pre 2\.2 openSMILE releases \(also release candidates 2\.2rc1\)\, set it to 0\. Default in new versions is 1 \(enabled\)\.
+  
+- **qregls** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of left slope of parabola \(slope of the line from first point on the parabola at t\=0 to the vertex\)\.
+  
+- **qregrs** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of right slope of parabola \(slope of the line from the vertex to the last point on the parabola at t\=N\)\.
+  
+- **qregx0** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of x coordinate of the parabola vertex \(since for very flat parabolas this can be very large\/small\, it is clipped to range \-Nin \- \+Nin \)\.
+  
+- **qregy0** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of y coordinate of the parabola vertex\.
+  
+- **qregyr** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of y coordinate of the last point on the parabola \(t\=N\)\.
+  
+- **qregy0nn** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of y coordinate of the parabola vertex\. This value is unnormalised\, regardless of value of normInput\.
+  
+- **qregc3nn** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of y coordinate of the first point on the parabola \(t\=0\)\. This value is unnormalised\, regardless of value of normInput\.
+  
+- **qregyrnn** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable output of y coordinate of the last point on the parabola \(t\=N\)\. This value is unnormalised\, regardless of value of normInput\.
+  
+- **normRegCoeff** (numeric) [default: 0\.0]
+  
+    If \> 0\, do normalisation of regression coefficients\, slopes\, and coordinates on the time scale\.
+    -  If \=\= 1 \(segment relative scaling\)\, the coefficients are scaled \(multiplied by the contour length\) so that a regression line or parabola approximating the contour can be plotted over an x\-axis range from 0 to 1\, i\.e\. this makes the coefficients independent of the contour length \(a longer contour with a lower slope will then have the same \'m\' \(slope\) linear regression coefficient as a shorter but steeper slope\)\.
+    -  If \=\= 2\, normalisation of time scale to the units of seconds\, i\.e\. slope is value\_delta\/second\.
+    -  Note\: The unnormalised slope is value\_delta\/timestep\.
+  
+- **normInputs** (numeric) [default: 0\.0]
+  
+    1\/0\=enable\/disable normalisation of regression coefficients\, coordinates\, and regression errors on the value scale\. If enabled all input values will be normalised to the range 0\.\.1\. Use this in conjunction with normRegCoeff\.
+  
+- **oldBuggyQerr** (numeric) [default: 1\.0]
+  
+    Set this to 1 \(default\) to output the \(input lengthwise\) unnormalised quadratic regression errors \(if qregerr\* \=\= 1\) for compatibility with older feature sets\. In new setups you should always change from the default to 0 to enable the proper scaling of the quadratic error\!
+  
+- **doRatioLimit** (numeric) [default: 0\.0]
+  
+    \(1\/0\) \= yes\/no\. Apply soft limiting of ratio features \(slopes etc\.\) in order to avoid high uncontrolled output values if the denominator is close to 0\. For strict compatibility with pre 2\.2 openSMILE releases \(also release candidates 2\.2rc1\)\, set it to 0 \(current default\)
+  

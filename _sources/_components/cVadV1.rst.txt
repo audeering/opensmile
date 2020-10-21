@@ -1,0 +1,32 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cVadV1:
+
+cVadV1
+------
+
+Description
+~~~~~~~~~~~
+A voice activity detector based on Line\-Spectral\-Frequencies\, Mel spectra and energy \+ smoothing\. This component requires input of the following type in the following order\: MelSpec\;lsf\;energy\. See vadV1\.hpp for an example config\!
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cVadV1`
+
+Fields
+~~~~~~
+- **threshold** (numeric) [default: \-13\.0]
+  
+    The minimum rms\/log energy threshold to use \(or the actual rms energy threshold\, if disableDynamicVAD\=\=1\)
+  
+- **disableDynamicVAD** (numeric) [default: 0\.0]
+  
+    1\/0 \= yes\/no\, whether dynamic VAD is disabled \(default is enabled\)
+  
+- **debug** (numeric) [default: 0\.0]
+  
+    1\/0 enable\/disable vad debug output
+  

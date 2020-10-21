@@ -1,0 +1,80 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cRnnVad2:
+
+cRnnVad2
+--------
+
+Description
+~~~~~~~~~~~
+BLSTM RNN processor\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataProcessor` |rarr| :ref:`cRnnVad2`
+
+Fields
+~~~~~~
+- **voiceIdx** (numeric) [default: 0\.0]
+  
+    The index of the field which contains the \'voice\' class output activation\. \(0 is the first field\)
+  
+- **agentIdx** (numeric) [default: 1\.0]
+  
+    The index of the field which contains the \'agent\/alien\' class output activation\. \(0 is the first field\)
+  
+- **voiceThresh** (numeric) [default: 0\.4]
+  
+    The threshold to apply to the \'voice\' output activation\.
+  
+- **agentThresh** (numeric) [default: 0\.3]
+  
+    The threshold to apply to the \'agent\' output activation\.
+  
+- **energyIdx** (numeric) [default: 2\.0]
+  
+    The index of the field which contains the energy\/loudness\/intensity\/etc\. value \(set to \-1 to disable\)
+  
+- **f0Idx** (numeric) [default: 3\.0]
+  
+    Index of F0 input field \(set to \-1 to disable\)
+  
+- **agentTurnPastBlock** (numeric) [default: 20\.0]
+  
+    time the VAD will be blocked after receiving an agent speech end message \(in frames\, usually 100fps\) \(use 20 for the SEMAINE speech2speech system\, and 60 for the speech2face system\)\.
+  
+- **alwaysRejectAgent** (numeric) [default: 0\.0]
+  
+    1 \= never detect a speaker turn while the agent is speaking
+  
+- **smartRejectAgent** (numeric) [default: 1\.0]
+  
+    1 \= apply different VAD strategy while agent is speaking
+  
+- **userEavgHold** (numeric) [default: 500\.0]
+  
+    Hold time for user energy envelope and average computation \(10ms frames as unit\)\.
+  
+- **userEavgDecay** (numeric) [default: 500\.0]
+  
+    Decay \(linear\) time for user energy envelope and average computation \(10ms frames as unit\)\.
+  
+- **agentEavgHold** (numeric) [default: 200\.0]
+  
+    Hold time for user energy envelope and average computation \(10ms frames as unit\)\.
+  
+- **agentEavgDecay** (numeric) [default: 200\.0]
+  
+    Decay \(linear\) time for user energy envelope and average computation \(10ms frames as unit\)\.
+  
+- **vadDebug** (numeric) [default: 0\.0]
+  
+    1 \= output energy and VAD statistics for debugging \(set to 2 to always force vad output value to 0 while debugging\)\.
+  
+- **allowEoverride** (numeric) [default: 1\.0]
+  
+    1 \= allow VAD output even if LSTM does not detect voice when the energy is in the range of the user\'s current energy envelope \(NOTE\: this reduces noise robustness\, e\.g\. when moving a headset etc\.\)
+  

@@ -1,0 +1,41 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cHtkSink:
+
+cHtkSink
+--------
+
+Description
+~~~~~~~~~~~
+This component writes dataMemory data to a binary HTK parameter file\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSink` |rarr| :ref:`cHtkSink`
+
+Fields
+~~~~~~
+- **filename** (string) [default: smileoutput\.htk]
+  
+    HTK parameter file to write to \(and create\)
+  
+- **lag** (numeric) [default: 0\.0]
+  
+    If \> 0\, enable output of data \<lag\> frames behind
+  
+- **append** (numeric) [default: 0\.0]
+  
+    1 \= append to existing file \(0 \= don\'t append\)
+  
+- **parmKind** (numeric) [default: 9\.0]
+  
+    HTK parmKind header field \(0\=WAVEFORM\, 1\=LPC\, 2\=LPREFC\, 3\=LPCEPSTRA\, 4\=LPDELCEP\, 5\=IREFC\, 6\=MFCC\, 7\=FBANK \(log\)\, 8\=MELSPEC \(linear\)\, 9\=USER\, 10\=DISCRETE\, 11\=PLPCC \;
+    -   Qualifiers \(added\)\: 64\=\_E\, 128\=\_N\, 256\=\_D\, 512\=\_A\, 1024\=\_C\, 2048\=\_Z\, 4096\=\_K\, 8192\=\_0\)
+  
+- **forcePeriod** (numeric) [default: 0\.01]
+  
+    Set a value here to force the output period to a fixed value \(usually 0\.01\) to avoid broken HTK files for periods \> 0\.06s
+  

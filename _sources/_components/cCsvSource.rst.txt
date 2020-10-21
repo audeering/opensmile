@@ -1,0 +1,44 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cCsvSource:
+
+cCsvSource
+----------
+
+Description
+~~~~~~~~~~~
+This component reads CSV \(Comma seperated value\) files\. It reads all columns as attributes into the data memory\. One line represents one frame\. The first line may contain a header with the feature names \(see header\=yes\/no\/auto option\)\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSource` |rarr| :ref:`cCsvSource`
+
+Fields
+~~~~~~
+- **filename** (string) [default: input\.csv]
+  
+    The CSV file to read
+  
+- **delimChar** (char) [default: \;]
+  
+    The CSV delimiter character to use\. Usually \'\,\' or \'\;\'\.
+  
+- **header** (string) [default: auto]
+  
+    yes\/no\/auto \: wether to read the first line of the CSV file as header \(yes\)\, or treat it as numeric data \(no\)\, or automatically determine from the first field in the first line whether to read the header or not \(auto\)\.
+  
+- **start** (numeric) [default: 0\.0]
+  
+    Start at line \'start\'\, not counting the header line\. The first line after the \(optional\) header line is line 0 \(also the default\)\.
+  
+- **end** (numeric) [default: \-1\.0]
+  
+    Read up to line \'end\'\. The number of the line given here is the last line that will be read\. 0 is the first line in the file \(excluding header\)\. The default \'\-1\' refers to the last line in the file \(this is also the default\)\.
+  
+- **readFrameTime** (numeric) [default: 0\.0]
+  
+    1 \= read frameTime from arff field \'frameTime\'\. The frameTime field is not loaded into dataMemory then\.
+  

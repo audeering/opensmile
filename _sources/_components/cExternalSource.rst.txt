@@ -1,0 +1,40 @@
+.. Auto-generated openSMILE component documentation
+
+.. Include isonum to use |rarr|
+.. include:: <isonum.txt>
+
+.. _cExternalSource:
+
+cExternalSource
+---------------
+
+Description
+~~~~~~~~~~~
+This component reads data that is passed to the component programmatically\.
+
+Type hierarchy
+~~~~~~~~~~~~~~
+:ref:`cDataSource` |rarr| :ref:`cExternalSource`
+
+Fields
+~~~~~~
+- **blocksize** (numeric) [default: 0\.0]
+  
+    The maximum size of data buffers that can be passed to this component at once in samples \(overwrites blocksize\_sec\, if set\)
+  
+- **blocksize_sec** (numeric) [default: 0\.05]
+  
+    The maximum size of data buffers that can be passed to this component at once in seconds\.
+  
+- **period** (numeric) [default: 0\.0]
+  
+    \(optional\) The period of the input frames \(in seconds\)\, if it cannot be determined from the input file format\. \(if set and \!\= 0\, this will overwrite any automatically set values\, e\.g\. from samplerate and writer\.levelconf etc\. \(NOTE\: this behaviour also depends on the source component\, whether it overwrites period in configureWriter\(\) or whether it keeps the period if it is \!\= 0\.0\)\)
+  
+- **fieldNames[]** (string) [default: None]
+  
+    Name of dataMemory fields\, array\.
+  
+- **fieldSizes[]** (numeric) [default: 1\.0]
+  
+    dataMemory field sizes\, array\. Order must match fieldNames\. Default is 1 if this array is not given\. If you specify a field size for one field\, you must specify it for all\.
+  
