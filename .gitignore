@@ -1,0 +1,9 @@
+/.project
+/.vscode
+/build
+/build_android
+/build_ios
+/build_ios_watch
+/doc/sphinx/_build
+/doc/sphinx/_components
+/inst

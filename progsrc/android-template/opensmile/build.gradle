@@ -1,0 +1,90 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+task runSwig(type: Exec) {
+    commandLine 'swig', '-c++', '-java',
+            '-package', 'com.audeering.opensmile',
+            '-outdir', 'src/main/java/com/audeering/opensmile',
+            'opensmile.i'
+}
+
+task swig(type: Exec) {
+    dependsOn runSwig
+    //post-fixing the parameter
+    commandLine 'sed', '-i',
+            's/(data == 0) ? null : new SWIGTYPE_p_float(data, false)/data/g',
+            'src/main/java/com/audeering/opensmile/OpenSMILEJNI.java'
+}
+
+build.dependsOn swig
+assemble.dependsOn swig
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    ndkVersion "21.0.6113669"
+    defaultConfig {
+        externalNativeBuild {
+            cmake {
+                arguments.add("-DSTATIC_LINK=OFF")
+                arguments.add("-DOPENSMILE_ROOT=../../../")
+                arguments.add("-DBUILD_FLAGS=-DBUILD_WITHOUT_EXPERIMENTAL")
+                arguments.add("-DANDROID_PLATFORM=" + project.ANDROID_PLATFORM)
+                arguments.add("-DANDROID_NATIVE_API_LEVEL=" + project.ANDROID_NATIVE_API_LEVEL)
+                arguments.addAll(project.CMAKE_FLAGS.split())
+                project.logger.debug(project.BUILD_FLAGS)
+                arguments.add("-DBUILD_FLAGS=" + project.BUILD_FLAGS)
+                print(arguments)
+
+                cppFlags "-frtti -fexceptions -std=c++11 -Wno-c++11-narrowing -fuse-ld=gold"
+            }
+            ndk {
+                abiFilters project.abiFilters.split()
+                moduleName "opensmile_jni"
+                ldLibs "log"
+            }
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    if (project.doNotStrip) {
+        packagingOptions {
+            doNotStrip "*/x86_64/*.so"
+            doNotStrip "*/armeabi-v7a/*.so"
+            doNotStrip "*/arm64-v8a/*.so"
+            doNotStrip "*/x86/*.so"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0"
+}

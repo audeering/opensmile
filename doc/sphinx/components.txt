@@ -1,0 +1,9 @@
+.. This placeholder file will be overwritten by the 
+   generate-components.py script
+
+.. note::
+
+    This documentation was built without component documentation.
+    To rebuild this document with component documentation, follow 
+    the steps in the file ``doc/sphinx/README.rst`` in your 
+    openSMILE distribution.

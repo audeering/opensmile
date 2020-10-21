@@ -1,0 +1,11 @@
+History of GeMAPS feature set revisions.
+
+v01a: Initial release version with openSMILE 2.2rc1 
+
+v01b (2020-05-29): Important fix for stability of formant features, other minor tweaks
+
+  - Set maxF=5450 for gemapsv01b_formantLpc to fix an issue where component output
+    would depend on compiler optimization behavior.
+  - Switched compatibility option gemapsv01a_fft25.zeroPadSymmetric to new default (1)
+    for gemapsv01a_fft25 and gemapsv01a_fft60.
+  - Disabled compatibility option useBrokenJitterThresh for gemapsv01b_pitchJitter.

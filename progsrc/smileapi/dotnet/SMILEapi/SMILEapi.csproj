@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>AudEERING.openSMILE.SMILEapi</PackageId>
+    <Company>audEERING GmbH</Company>
+    <Product>openSMILE</Product>    
+    <Description>openSMILE SMILEapi .NET wrapper</Description>
+    <Copyright>Copyright 2019-2020 audEERING GmbH</Copyright>
+  </PropertyGroup>
+
+</Project>

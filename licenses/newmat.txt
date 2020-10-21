@@ -1,0 +1,2 @@
+openSMILE uses the newmat library by Robert Davies for matrix operations.
+See src/newmat/LICENSE.txt.

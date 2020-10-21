@@ -1,0 +1,157 @@
+  openSMILE 
+   - open-source Speech and Music Interpretation by Large-space Extraction -
+
+  Copyright (c) audEERING GmbH, Gilching, Germany. All rights reserved. 
+  http://www.audeering.com/
+
+  Copyright (c) 2016-2020, audEERING GmbH
+  Copyright (c) 2013-2015, audEERING UG (haftungsbeschraenkt)
+  Copyright (c) 2008-2013, Institute for Human-Machine Communication, 
+                           Technische Universitaet Muenchen, Germany
+ 
+Licensing terms & your rights
+=============================
+  
+********************************************************************** 
+ If you use openSMILE or any code from openSMILE in your research work,
+ you are kindly asked to acknowledge the use of openSMILE in your 
+ publications. See the file CITING for details.
+**********************************************************************
+
+This audEERING Research License Agreement (license, license agreement, 
+or agreement in the ongoing), is a legal agreement between you 
+and audEERING GmbH, Gilching, Germany (audEERING or we in the following) 
+for the software or data identified above, which may include source code, 
+and any associated materials, text or speech files, 
+associated media and "online" or electronic documentation 
+(together, the "Software").  
+
+By installing, copying, or otherwise using this Software, 
+you agree to be bound by the terms in this license. 
+If you do not agree, you may not install, copy or use the Software. 
+The Software is protected by copyright and other intellectual 
+property laws and is licensed, not sold.
+
+This license grants you the following rights:
+A. You may use, copy, reproduce, and distribute this Software 
+   for any non-commercial purpose, subject to the restrictions 
+   set out below. Some purposes which can be non-commercial are teaching, 
+   academic research, public demonstrations and personal experimentation 
+   or personal home use. You may also distribute this Software with 
+   books or other teaching materials, or publish the Software on websites, 
+   that are intended to teach the use of the Software for academic or 
+   other non-commercial purposes. 
+   You may NOT use or distribute this Software or any derivative works 
+   in any form for commercial purposes, except those outlined in (B). 
+   Examples of commercial purposes are running business operations, 
+   licensing, leasing, or selling the Software, distributing the 
+   Software for use with commercial products (no matter whether free or paid), 
+   using the Software in the creation or use of commercial products or any 
+   other activity which purpose is to procure a commercial gain to you or 
+   others (except for conditions set out in (B)).
+B. Further, you may use the software for commercial research, which meets
+   the following conditions: commercial research which is not directly
+   associated with product development and has the primary purpose of 
+   publishing and sharing results with the academic world; pre-product 
+   evaluations of algorithms and methods, as long as these evaluations
+   are more of an evaluatory, planning, and research nature than 
+   of a product development nature. 
+   Any further commercial use requires you to obtain a commercial
+   license or written approval from audEERING GmbH which grants
+   you extended usage rights for this software. In particular any direct 
+   (software) or indirect (models, features extracted with the software)
+   use of the software, parts of the software, or derivatives in a 
+   product (no matter whether free or paid), is not allowed without 
+   an additional commercial license.
+C. If the software includes source code or data, you may create 
+   derivative works of such portions of the software and distribute the 
+   modified software for non-commercial purposes, as provided herein.
+   If you distribute the software or any derivative works of the Software, 
+   you must distribute them under the same terms and conditions as in this
+   license, and you must not grant other rights to the software or 
+   derivative works that are different from those provided by this 
+   license agreement. 
+   If you have created derivative works of the software, and distribute 
+   such derivative works, you will cause the modified files to carry 
+   prominent notices so that recipients know that they are not receiving 
+   the original software. Such notices must state: 
+   (i) that you have altered the software; 
+   and (ii) the date of any changes as well as your name.
+
+In return for the above rights, you agree:
+1. That you will not remove any copyright or other notices (authors 
+   and citing information, for example) from the software.
+2. That if any of the software is in binary format, you will not attempt 
+   to modify such portions of the software, or to reverse engineer or 
+   decompile them, except and only to the extent authorized by applicable 
+   law. 
+3. That the copyright holders (audEERING) are granted back, 
+   without any restrictions or limitations, a non-exclusive, perpetual, 
+   irrevocable, royalty-free, assignable and sub-licensable license, 
+   to reproduce, publicly perform or display, install, use, modify, post, 
+   distribute, make and have made, sell and transfer your modifications 
+   to and/or derivative works of the software source code or data, 
+   for any purpose.  
+4. That any feedback about the software provided by you to us is voluntarily 
+   given, and audEERING shall be free to use the feedback 
+   as they see fit without obligation or restriction of any kind, 
+   even if the feedback is designated by you as confidential. 
+
+5. THAT THE SOFTWARE COMES "AS IS", WITH NO WARRANTIES. 
+   THIS MEANS NO EXPRESS, IMPLIED OR STATUTORY WARRANTY, INCLUDING 
+   WITHOUT LIMITATION, WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A 
+   PARTICULAR PURPOSE, ANY WARRANTY AGAINST INTERFERENCE WITH YOUR 
+   ENJOYMENT OF THE SOFTWARE OR ANY WARRANTY OF TITLE OR NON-INFRINGEMENT.
+   THERE IS NO WARRANTY THAT THIS SOFTWARE WILL FULFILL ANY OF YOUR 
+   PARTICULAR PURPOSES OR NEEDS. ALSO, YOU MUST PASS THIS DISCLAIMER ON 
+   WHENEVER YOU DISTRIBUTE THE SOFTWARE OR DERIVATIVE WORKS.
+   
+6. THAT NEITHER AUDEERING NOR ANY AUTHOR OR CONTRIBUTOR TO THE 
+   SOFTWARE WILL BE LIABLE FOR ANY DAMAGES RELATED TO THE SOFTWARE OR THIS 
+   LICENSE, INCLUDING DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL OR INCIDENTAL 
+   DAMAGES, TO THE MAXIMUM EXTENT THE LAW PERMITS, NO MATTER WHAT LEGAL 
+   THEORY IT IS BASED ON. ALSO, YOU MUST PASS THIS LIMITATION OF LIABILITY 
+   ON WHENEVER YOU DISTRIBUTE THE SOFTWARE OR DERIVATIVE WORKS.
+   
+7. That we have no duty of reasonable care or lack of negligence, 
+   and we are not obligated to (and will not) provide technical support for 
+   the Software.
+8. That if you breach this license agreement or if you sue anyone over 
+   patents that you think may apply to or read on the software or anyone's 
+   use of the software, this license agreement (and your license and rights 
+   obtained herein) terminate automatically. Upon any such termination, 
+   you shall destroy all of your copies of the software immediately.  
+   Sections 3, 4, 5, 6, 7, 10 and 11 of this license agreement shall survive 
+   any termination of this license agreement.
+9. That the patent rights, if any, granted to you in this license agreement 
+   only apply to the software, not to any derivative works you make.
+10.That the software may be subject to European export or import laws or such 
+   laws in other places. You agree to comply with all such laws and regulations 
+   that may apply to the software after the delivery of the software to you.
+11.That all rights not expressly granted to you in this license agreement 
+   are reserved by audEERING.
+12.That this license agreement shall be construed and controlled by the laws 
+   of the Federal Republic of Germany, without regard to conflicts of law. 
+   If any provision of this license agreement shall be deemed unenforceable 
+   or contrary to law, the rest of this license agreement shall remain in 
+   full effect and interpreted in an enforceable manner that most closely 
+   captures the intent of the original language. 
+
+
+Commerical license options
+==========================
+ 
+For commercial and other licensing options, please contact us at audEERING 
+via e-mail: 
+
+   info@audeering.com 
+
+
+Third-party contributions and dependencies
+==========================================
+
+openSMILE uses a number of third-party components for which you can 
+find the licensing terms in the folder "licenses".
+
+As part of the build process, a number of third-party CMake modules
+are used. Please see the license notices in the folder "cmake".

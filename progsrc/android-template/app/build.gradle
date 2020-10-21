@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion '29.0.3'
+
+    defaultConfig {
+        applicationId "com.audeering.androidtemplate"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            ndk {
+                debuggable = true
+            }
+        }
+        debug {
+            debuggable = true
+            jniDebuggable = true
+            ndk {
+                debuggable = true
+            }
+        }
+    }
+    flavorDimensions "libgen"
+    productFlavors {
+        useAar {
+            dimension "libgen"
+            repositories {
+                flatDir {
+                    dirs 'src/main/libs'
+                }
+            }
+        }
+        useSource {
+            dimension "libgen"
+        }
+    }
+}
+
+dependencies {
+    useSourceImplementation project(path: ':opensmile')
+    // Comment this line in case of using useSource build variant
+    useAarImplementation group: 'com.audeering.opensmile', name: 'opensmile-debug', ext: 'aar'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'javax.vecmath:vecmath:1.5.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0"
+    implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.1'
+}
+repositories {
+    mavenCentral()
+}

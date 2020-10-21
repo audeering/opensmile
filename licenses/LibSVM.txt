@@ -1,0 +1,5 @@
+openSMILE uses LibSVM (by Chih-Chung Chang and Chih-Jen Lin) for 
+classification tasks. It is distributed with openSMILE and is
+included in the src/classifiers/libsvm/ directory.
+See the COPYRIGHT file in that directory for details on license terms
+of LivSVM.

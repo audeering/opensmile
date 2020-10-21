@@ -1,0 +1,8 @@
+History of eGeMAPS feature set revisions.
+
+v01a: Initial release version with openSMILE 2.2rc1 
+
+v01b (2020-05-29): Important fix for stability of formant features, other minor tweaks
+
+  - No changes made in the eGeMAPS-specific parts.
+    For other changes, see the changelog of GeMAPS v01b.

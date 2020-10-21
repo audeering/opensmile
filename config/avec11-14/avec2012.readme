@@ -1,0 +1,9 @@
+
+NOTE:
+
+All AVEC 2012 config files and extractor scripts are in ../../scripts/avec2012/avec2012_*.conf
+(or old name, avec2011_*.conf in older versions)
+
+For standard full segment features (as the other challenges), use avec2011_full.conf
+NOTE: it requires ../scripts/avec2012/labels.inc for the 4 dimensional avec label options
+

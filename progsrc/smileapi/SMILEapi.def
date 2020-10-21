@@ -1,0 +1,22 @@
+LIBRARY SMILEapi
+EXPORTS
+   smile_new
+   smile_initialize
+   smile_run
+   smile_abort
+   smile_reset
+   smile_set_log_callback
+   smile_get_state
+   smile_set_state_callback
+   smile_free
+   smile_extsource_write_data
+   smile_extsource_set_external_eoi
+   smile_extaudiosource_write_data
+   smile_extaudiosource_set_external_eoi
+   smile_extsink_set_data_callback
+   smile_extsink_set_data_callback_ex
+   smile_extsink_get_num_elements
+   smile_extsink_get_element_name
+   smile_extmsginterface_set_msg_callback
+   smile_extmsginterface_set_json_msg_callback
+   smile_error_msg

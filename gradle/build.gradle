@@ -1,0 +1,75 @@
+apply plugin: 'com.android.library'
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.3'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        externalNativeBuild {
+            cmake {
+                arguments.add("-DANDROID_PLATFORM=" + project.ANDROID_PLATFORM)
+                arguments.add("-DANDROID_NATIVE_API_LEVEL=" + project.ANDROID_NATIVE_API_LEVEL)
+                arguments.addAll(project.CMAKE_FLAGS.split())
+                project.logger.debug(project.BUILD_FLAGS)
+                arguments.add("-DBUILD_FLAGS=" + project.BUILD_FLAGS)
+
+                cppFlags "-frtti -fexceptions -std=c++11 -Wno-c++11-narrowing -fuse-ld=gold"
+            }
+            ndk {
+                abiFilters project.abiFilters.split()
+                ldLibs "log"
+            }
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "../CMakeLists.txt"
+        }
+    }
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    if (project.doNotStrip.toBoolean()) {
+        packagingOptions {
+            doNotStrip "*/x86_64/*.so"
+            doNotStrip "*/armeabi-v7a/*.so"
+            doNotStrip "*/arm64-v8a/*.so"
+            doNotStrip "*/x86/*.so"
+        }
+    }
+}
+
+

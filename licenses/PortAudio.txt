@@ -1,0 +1,4 @@
+PortAudio is required for live recording from sound card and for 
+the SEMAINE components.
+You can get the latest version from: http://www.portaudio.com
+However, we cannot guarantee compatibility with the latest versions.

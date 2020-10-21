@@ -1,0 +1,779 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		740747B120DCF753003A70DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7C4E020A5BAF200C529A3 /* AppDelegate.swift */; };
+		740747B220DCF753003A70DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7C4E020A5BAF200C529A3 /* AppDelegate.swift */; };
+		740AA91020E139B90023ECB9 /* iosConfig in Resources */ = {isa = PBXBuildFile; fileRef = 740AA90F20E139B90023ECB9 /* iosConfig */; };
+		740AA91120E139B90023ECB9 /* iosConfig in Resources */ = {isa = PBXBuildFile; fileRef = 740AA90F20E139B90023ECB9 /* iosConfig */; };
+		740AA91220E139B90023ECB9 /* iosConfig in Resources */ = {isa = PBXBuildFile; fileRef = 740AA90F20E139B90023ECB9 /* iosConfig */; };
+		740CAA0E20FC91200049061D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7449325D20AED28100DFF7E3 /* AudioToolbox.framework */; };
+		742A0E9222B8EAAD00919C55 /* libopensmile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C3F287211C7A7500D52288 /* libopensmile.a */; };
+		742A0E9322B8EAAE00919C55 /* libopensmile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C3F287211C7A7500D52288 /* libopensmile.a */; };
+		742A0E9422B8EAB800919C55 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7449325D20AED28100DFF7E3 /* AudioToolbox.framework */; };
+		742A0E9522B8EDAA00919C55 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7C4E220A5BAF200C529A3 /* ViewController.swift */; };
+		742A0E9622B8EDAA00919C55 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7C4E220A5BAF200C529A3 /* ViewController.swift */; };
+		742A0E9722B8EDE500919C55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74D7C4E420A5BAF200C529A3 /* Main.storyboard */; };
+		742A0E9822B8EDE500919C55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74D7C4E420A5BAF200C529A3 /* Main.storyboard */; };
+		74404E4C20FC883A004A5BF2 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74404E4B20FC883A004A5BF2 /* Energy.swift */; };
+		74404E4D20FC883A004A5BF2 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74404E4B20FC883A004A5BF2 /* Energy.swift */; };
+		74404E4E20FC883A004A5BF2 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74404E4B20FC883A004A5BF2 /* Energy.swift */; };
+		7449325E20AED28200DFF7E3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7449325D20AED28100DFF7E3 /* AudioToolbox.framework */; };
+		74C3F288211C7A7500D52288 /* libopensmile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C3F287211C7A7500D52288 /* libopensmile.a */; };
+		74C90C7E20BC395100AAC9EA /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C90C7D20BC395100AAC9EA /* BarView.swift */; };
+		74C90C7F20BC395100AAC9EA /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C90C7D20BC395100AAC9EA /* BarView.swift */; };
+		74C90C8020BC395100AAC9EA /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C90C7D20BC395100AAC9EA /* BarView.swift */; };
+		74D7C4E120A5BAF200C529A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7C4E020A5BAF200C529A3 /* AppDelegate.swift */; };
+		74D7C4E320A5BAF200C529A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7C4E220A5BAF200C529A3 /* ViewController.swift */; };
+		74D7C4E620A5BAF200C529A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74D7C4E420A5BAF200C529A3 /* Main.storyboard */; };
+		74D7C4E820A5BAF300C529A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74D7C4E720A5BAF300C529A3 /* Assets.xcassets */; };
+		74D7C4EB20A5BAF300C529A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74D7C4E920A5BAF300C529A3 /* LaunchScreen.storyboard */; };
+		74D7C4F620A5BAF300C529A3 /* usingSmileLibTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7C4F520A5BAF300C529A3 /* usingSmileLibTests.swift */; };
+		74D7C50120A5BAF300C529A3 /* usingSmileLibUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D7C50020A5BAF300C529A3 /* usingSmileLibUITests.swift */; };
+		74D7C51A20A5BB9200C529A3 /* test.wav in Resources */ = {isa = PBXBuildFile; fileRef = 74D7C51920A5BB9200C529A3 /* test.wav */; };
+		74D7C51B20A5BB9200C529A3 /* test.wav in Resources */ = {isa = PBXBuildFile; fileRef = 74D7C51920A5BB9200C529A3 /* test.wav */; };
+		74D7C51C20A5BB9200C529A3 /* test.wav in Resources */ = {isa = PBXBuildFile; fileRef = 74D7C51920A5BB9200C529A3 /* test.wav */; };
+		74E9D2B122B7C1E6006A95B7 /* OpenSmile.mm in Sources */ = {isa = PBXBuildFile; fileRef = 74E9D2B022B7C1E6006A95B7 /* OpenSmile.mm */; };
+		74E9D2B222B7C1E6006A95B7 /* OpenSmile.mm in Sources */ = {isa = PBXBuildFile; fileRef = 74E9D2B022B7C1E6006A95B7 /* OpenSmile.mm */; };
+		74E9D2B322B7C1E6006A95B7 /* OpenSmile.mm in Sources */ = {isa = PBXBuildFile; fileRef = 74E9D2B022B7C1E6006A95B7 /* OpenSmile.mm */; };
+		74E9D2BA22B7E306006A95B7 /* SMILEapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 74E9D2B922B7E306006A95B7 /* SMILEapi.cpp */; };
+		74E9D2BB22B7E306006A95B7 /* SMILEapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 74E9D2B922B7E306006A95B7 /* SMILEapi.cpp */; };
+		74E9D2BC22B7E306006A95B7 /* SMILEapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 74E9D2B922B7E306006A95B7 /* SMILEapi.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		74D7C4F220A5BAF300C529A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74D7C4D520A5BAF200C529A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74D7C4DC20A5BAF200C529A3;
+			remoteInfo = usingSmileLib;
+		};
+		74D7C4FD20A5BAF300C529A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74D7C4D520A5BAF200C529A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74D7C4DC20A5BAF200C529A3;
+			remoteInfo = usingSmileLib;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		740AA90F20E139B90023ECB9 /* iosConfig */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iosConfig; sourceTree = "<group>"; };
+		74404E4B20FC883A004A5BF2 /* Energy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Energy.swift; sourceTree = "<group>"; };
+		7449325D20AED28100DFF7E3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		74C3F287211C7A7500D52288 /* libopensmile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopensmile.a; path = ../../../build_ios/libopensmile.a; sourceTree = "<group>"; };
+		74C90C7D20BC395100AAC9EA /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
+		74D7C4DD20A5BAF200C529A3 /* usingSmileLib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = usingSmileLib.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74D7C4E020A5BAF200C529A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		74D7C4E220A5BAF200C529A3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		74D7C4E520A5BAF200C529A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		74D7C4E720A5BAF300C529A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		74D7C4EA20A5BAF300C529A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		74D7C4EC20A5BAF300C529A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74D7C4F120A5BAF300C529A3 /* usingSmileLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = usingSmileLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		74D7C4F520A5BAF300C529A3 /* usingSmileLibTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = usingSmileLibTests.swift; sourceTree = "<group>"; };
+		74D7C4F720A5BAF300C529A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74D7C4FC20A5BAF300C529A3 /* usingSmileLibUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = usingSmileLibUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		74D7C50020A5BAF300C529A3 /* usingSmileLibUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = usingSmileLibUITests.swift; sourceTree = "<group>"; };
+		74D7C50220A5BAF300C529A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74D7C51920A5BB9200C529A3 /* test.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = test.wav; sourceTree = "<group>"; };
+		74D7C51D20A5BBAD00C529A3 /* usingSmileLib-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "usingSmileLib-Bridging-Header.h"; sourceTree = "<group>"; };
+		74D7C51E20A5BBAD00C529A3 /* usingSmileLibTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "usingSmileLibTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		74D7C51F20A5BBAD00C529A3 /* usingSmileLibUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "usingSmileLibUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		74E9D2B022B7C1E6006A95B7 /* OpenSmile.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenSmile.mm; sourceTree = "<group>"; };
+		74E9D2B422B7C1FC006A95B7 /* OpenSmile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenSmile.h; sourceTree = "<group>"; };
+		74E9D2B922B7E306006A95B7 /* SMILEapi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SMILEapi.cpp; path = ../../../smileapi/SMILEapi.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		74D7C4DA20A5BAF200C529A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74C3F288211C7A7500D52288 /* libopensmile.a in Frameworks */,
+				7449325E20AED28200DFF7E3 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74D7C4EE20A5BAF300C529A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				742A0E9222B8EAAD00919C55 /* libopensmile.a in Frameworks */,
+				740CAA0E20FC91200049061D /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74D7C4F920A5BAF300C529A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				742A0E9322B8EAAE00919C55 /* libopensmile.a in Frameworks */,
+				742A0E9422B8EAB800919C55 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		740747AE20DCF6F4003A70DA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				74C90C7D20BC395100AAC9EA /* BarView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		740747AF20DCF706003A70DA /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				74D7C4E220A5BAF200C529A3 /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		740747B020DCF71E003A70DA /* SmileIos */ = {
+			isa = PBXGroup;
+			children = (
+				740AA90F20E139B90023ECB9 /* iosConfig */,
+				74E9D2B422B7C1FC006A95B7 /* OpenSmile.h */,
+				74E9D2B022B7C1E6006A95B7 /* OpenSmile.mm */,
+				74E9D2B922B7E306006A95B7 /* SMILEapi.cpp */,
+			);
+			path = SmileIos;
+			sourceTree = "<group>";
+		};
+		74404E4A20FC8816004A5BF2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				74404E4B20FC883A004A5BF2 /* Energy.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		74D7C4D420A5BAF200C529A3 = {
+			isa = PBXGroup;
+			children = (
+				74D7C4DF20A5BAF200C529A3 /* usingSmileLib */,
+				74D7C4F420A5BAF300C529A3 /* usingSmileLibTests */,
+				74D7C4FF20A5BAF300C529A3 /* usingSmileLibUITests */,
+				74D7C4DE20A5BAF200C529A3 /* Products */,
+				74D7C50E20A5BB5100C529A3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		74D7C4DE20A5BAF200C529A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				74D7C4DD20A5BAF200C529A3 /* usingSmileLib.app */,
+				74D7C4F120A5BAF300C529A3 /* usingSmileLibTests.xctest */,
+				74D7C4FC20A5BAF300C529A3 /* usingSmileLibUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		74D7C4DF20A5BAF200C529A3 /* usingSmileLib */ = {
+			isa = PBXGroup;
+			children = (
+				740747B020DCF71E003A70DA /* SmileIos */,
+				740747AE20DCF6F4003A70DA /* View */,
+				740747AF20DCF706003A70DA /* ViewController */,
+				74404E4A20FC8816004A5BF2 /* Model */,
+				74D7C4E020A5BAF200C529A3 /* AppDelegate.swift */,
+				74D7C4E420A5BAF200C529A3 /* Main.storyboard */,
+				74D7C4E920A5BAF300C529A3 /* LaunchScreen.storyboard */,
+				74D7C4E720A5BAF300C529A3 /* Assets.xcassets */,
+				74D7C4EC20A5BAF300C529A3 /* Info.plist */,
+				74D7C51920A5BB9200C529A3 /* test.wav */,
+				74D7C51D20A5BBAD00C529A3 /* usingSmileLib-Bridging-Header.h */,
+				74D7C51E20A5BBAD00C529A3 /* usingSmileLibTests-Bridging-Header.h */,
+				74D7C51F20A5BBAD00C529A3 /* usingSmileLibUITests-Bridging-Header.h */,
+			);
+			path = usingSmileLib;
+			sourceTree = "<group>";
+		};
+		74D7C4F420A5BAF300C529A3 /* usingSmileLibTests */ = {
+			isa = PBXGroup;
+			children = (
+				74D7C4F520A5BAF300C529A3 /* usingSmileLibTests.swift */,
+				74D7C4F720A5BAF300C529A3 /* Info.plist */,
+			);
+			path = usingSmileLibTests;
+			sourceTree = "<group>";
+		};
+		74D7C4FF20A5BAF300C529A3 /* usingSmileLibUITests */ = {
+			isa = PBXGroup;
+			children = (
+				74D7C50020A5BAF300C529A3 /* usingSmileLibUITests.swift */,
+				74D7C50220A5BAF300C529A3 /* Info.plist */,
+			);
+			path = usingSmileLibUITests;
+			sourceTree = "<group>";
+		};
+		74D7C50E20A5BB5100C529A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				74C3F287211C7A7500D52288 /* libopensmile.a */,
+				7449325D20AED28100DFF7E3 /* AudioToolbox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		74D7C4DC20A5BAF200C529A3 /* usingSmileLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74D7C50520A5BAF300C529A3 /* Build configuration list for PBXNativeTarget "usingSmileLib" */;
+			buildPhases = (
+				74D7C4D920A5BAF200C529A3 /* Sources */,
+				74D7C4DA20A5BAF200C529A3 /* Frameworks */,
+				74D7C4DB20A5BAF200C529A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = usingSmileLib;
+			productName = usingSmileLib;
+			productReference = 74D7C4DD20A5BAF200C529A3 /* usingSmileLib.app */;
+			productType = "com.apple.product-type.application";
+		};
+		74D7C4F020A5BAF300C529A3 /* usingSmileLibTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74D7C50820A5BAF300C529A3 /* Build configuration list for PBXNativeTarget "usingSmileLibTests" */;
+			buildPhases = (
+				74D7C4ED20A5BAF300C529A3 /* Sources */,
+				74D7C4EE20A5BAF300C529A3 /* Frameworks */,
+				74D7C4EF20A5BAF300C529A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74D7C4F320A5BAF300C529A3 /* PBXTargetDependency */,
+			);
+			name = usingSmileLibTests;
+			productName = usingSmileLibTests;
+			productReference = 74D7C4F120A5BAF300C529A3 /* usingSmileLibTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		74D7C4FB20A5BAF300C529A3 /* usingSmileLibUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74D7C50B20A5BAF300C529A3 /* Build configuration list for PBXNativeTarget "usingSmileLibUITests" */;
+			buildPhases = (
+				74D7C4F820A5BAF300C529A3 /* Sources */,
+				74D7C4F920A5BAF300C529A3 /* Frameworks */,
+				74D7C4FA20A5BAF300C529A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74D7C4FE20A5BAF300C529A3 /* PBXTargetDependency */,
+			);
+			name = usingSmileLibUITests;
+			productName = usingSmileLibUITests;
+			productReference = 74D7C4FC20A5BAF300C529A3 /* usingSmileLibUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		74D7C4D520A5BAF200C529A3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Taewoo Kim";
+				TargetAttributes = {
+					74D7C4DC20A5BAF200C529A3 = {
+						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					74D7C4F020A5BAF300C529A3 = {
+						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
+						TestTargetID = 74D7C4DC20A5BAF200C529A3;
+					};
+					74D7C4FB20A5BAF300C529A3 = {
+						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
+						TestTargetID = 74D7C4DC20A5BAF200C529A3;
+					};
+				};
+			};
+			buildConfigurationList = 74D7C4D820A5BAF200C529A3 /* Build configuration list for PBXProject "usingSmileLib" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 74D7C4D420A5BAF200C529A3;
+			productRefGroup = 74D7C4DE20A5BAF200C529A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				74D7C4DC20A5BAF200C529A3 /* usingSmileLib */,
+				74D7C4F020A5BAF300C529A3 /* usingSmileLibTests */,
+				74D7C4FB20A5BAF300C529A3 /* usingSmileLibUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		74D7C4DB20A5BAF200C529A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74D7C51A20A5BB9200C529A3 /* test.wav in Resources */,
+				740AA91020E139B90023ECB9 /* iosConfig in Resources */,
+				74D7C4EB20A5BAF300C529A3 /* LaunchScreen.storyboard in Resources */,
+				74D7C4E820A5BAF300C529A3 /* Assets.xcassets in Resources */,
+				74D7C4E620A5BAF200C529A3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74D7C4EF20A5BAF300C529A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				742A0E9822B8EDE500919C55 /* Main.storyboard in Resources */,
+				740AA91120E139B90023ECB9 /* iosConfig in Resources */,
+				74D7C51B20A5BB9200C529A3 /* test.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74D7C4FA20A5BAF300C529A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				742A0E9722B8EDE500919C55 /* Main.storyboard in Resources */,
+				740AA91220E139B90023ECB9 /* iosConfig in Resources */,
+				74D7C51C20A5BB9200C529A3 /* test.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		74D7C4D920A5BAF200C529A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74C90C7E20BC395100AAC9EA /* BarView.swift in Sources */,
+				74D7C4E320A5BAF200C529A3 /* ViewController.swift in Sources */,
+				74404E4C20FC883A004A5BF2 /* Energy.swift in Sources */,
+				74D7C4E120A5BAF200C529A3 /* AppDelegate.swift in Sources */,
+				74E9D2BA22B7E306006A95B7 /* SMILEapi.cpp in Sources */,
+				74E9D2B122B7C1E6006A95B7 /* OpenSmile.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74D7C4ED20A5BAF300C529A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				740747B120DCF753003A70DA /* AppDelegate.swift in Sources */,
+				74C90C7F20BC395100AAC9EA /* BarView.swift in Sources */,
+				74404E4D20FC883A004A5BF2 /* Energy.swift in Sources */,
+				74E9D2BB22B7E306006A95B7 /* SMILEapi.cpp in Sources */,
+				74E9D2B222B7C1E6006A95B7 /* OpenSmile.mm in Sources */,
+				742A0E9522B8EDAA00919C55 /* ViewController.swift in Sources */,
+				74D7C4F620A5BAF300C529A3 /* usingSmileLibTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74D7C4F820A5BAF300C529A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				740747B220DCF753003A70DA /* AppDelegate.swift in Sources */,
+				74C90C8020BC395100AAC9EA /* BarView.swift in Sources */,
+				74404E4E20FC883A004A5BF2 /* Energy.swift in Sources */,
+				74E9D2BC22B7E306006A95B7 /* SMILEapi.cpp in Sources */,
+				74E9D2B322B7C1E6006A95B7 /* OpenSmile.mm in Sources */,
+				742A0E9622B8EDAA00919C55 /* ViewController.swift in Sources */,
+				74D7C50120A5BAF300C529A3 /* usingSmileLibUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		74D7C4F320A5BAF300C529A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74D7C4DC20A5BAF200C529A3 /* usingSmileLib */;
+			targetProxy = 74D7C4F220A5BAF300C529A3 /* PBXContainerItemProxy */;
+		};
+		74D7C4FE20A5BAF300C529A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74D7C4DC20A5BAF200C529A3 /* usingSmileLib */;
+			targetProxy = 74D7C4FD20A5BAF300C529A3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		74D7C4E420A5BAF200C529A3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				74D7C4E520A5BAF200C529A3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		74D7C4E920A5BAF300C529A3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				74D7C4EA20A5BAF300C529A3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		74D7C50320A5BAF300C529A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					__IOS__,
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../opensmile/trunk/src/include\"";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../opensmile/trunk/build_ios\"";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		74D7C50420A5BAF300C529A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = __IOS__;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../opensmile/trunk/src/include\"";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../opensmile/trunk/build_ios\"";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		74D7C50620A5BAF300C529A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 78VFU5FX7N;
+				HEADER_SEARCH_PATHS = (
+					../../src/include,
+					../../progsrc/include/,
+					../../build_ios/ALL/include,
+				);
+				INFOPLIST_FILE = usingSmileLib/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = ../../build_ios/ALL;
+				PRODUCT_BUNDLE_IDENTIFIER = ktw.audeering;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "usingSmileLib/usingSmileLib-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		74D7C50720A5BAF300C529A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 78VFU5FX7N;
+				GCC_PREPROCESSOR_DEFINITIONS = __IOS__;
+				HEADER_SEARCH_PATHS = (
+					../../src/include,
+					../../progsrc/include/,
+					../../build_ios/ALL/include,
+				);
+				INFOPLIST_FILE = usingSmileLib/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = ../../build_ios/ALL;
+				PRODUCT_BUNDLE_IDENTIFIER = ktw.audeering;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "usingSmileLib/usingSmileLib-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		74D7C50920A5BAF300C529A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3AQG5CM6WR;
+				HEADER_SEARCH_PATHS = (
+					../../src/include,
+					../../progsrc/include/,
+					../../build_ios/ALL/include,
+				);
+				INFOPLIST_FILE = usingSmileLibTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = ../../build_ios/ALL;
+				PRODUCT_BUNDLE_IDENTIFIER = audeering.usingSmileLibTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "usingSmileLib/usingSmileLibTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/usingSmileLib.app/usingSmileLib";
+			};
+			name = Debug;
+		};
+		74D7C50A20A5BAF300C529A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3AQG5CM6WR;
+				HEADER_SEARCH_PATHS = (
+					../../src/include,
+					../../progsrc/include/,
+					../../build_ios/ALL/include,
+				);
+				INFOPLIST_FILE = usingSmileLibTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = ../../build_ios/ALL;
+				PRODUCT_BUNDLE_IDENTIFIER = audeering.usingSmileLibTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "usingSmileLib/usingSmileLibTests-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/usingSmileLib.app/usingSmileLib";
+			};
+			name = Release;
+		};
+		74D7C50C20A5BAF300C529A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3AQG5CM6WR;
+				HEADER_SEARCH_PATHS = (
+					../../src/include,
+					../../progsrc/include/,
+					../../build_ios/ALL/include,
+				);
+				INFOPLIST_FILE = usingSmileLibUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = ../../build_ios/ALL;
+				PRODUCT_BUNDLE_IDENTIFIER = audeering.usingSmileLibUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "usingSmileLib/usingSmileLibUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = usingSmileLib;
+			};
+			name = Debug;
+		};
+		74D7C50D20A5BAF300C529A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3AQG5CM6WR;
+				HEADER_SEARCH_PATHS = (
+					../../src/include,
+					../../progsrc/include/,
+					../../build_ios/ALL/include,
+				);
+				INFOPLIST_FILE = usingSmileLibUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = ../../build_ios/ALL;
+				PRODUCT_BUNDLE_IDENTIFIER = audeering.usingSmileLibUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "usingSmileLib/usingSmileLibUITests-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = usingSmileLib;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		74D7C4D820A5BAF200C529A3 /* Build configuration list for PBXProject "usingSmileLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74D7C50320A5BAF300C529A3 /* Debug */,
+				74D7C50420A5BAF300C529A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74D7C50520A5BAF300C529A3 /* Build configuration list for PBXNativeTarget "usingSmileLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74D7C50620A5BAF300C529A3 /* Debug */,
+				74D7C50720A5BAF300C529A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74D7C50820A5BAF300C529A3 /* Build configuration list for PBXNativeTarget "usingSmileLibTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74D7C50920A5BAF300C529A3 /* Debug */,
+				74D7C50A20A5BAF300C529A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74D7C50B20A5BAF300C529A3 /* Build configuration list for PBXNativeTarget "usingSmileLibUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74D7C50C20A5BAF300C529A3 /* Debug */,
+				74D7C50D20A5BAF300C529A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 74D7C4D520A5BAF200C529A3 /* Project object */;
+}

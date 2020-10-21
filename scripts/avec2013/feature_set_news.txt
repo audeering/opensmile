@@ -1,0 +1,9 @@
+
+delta's for voicing only in voiced segments!
+
++ spectral slope and flatness
++ mfcc 11-16
+
+functionals:
++ voiced segment onset rate
+

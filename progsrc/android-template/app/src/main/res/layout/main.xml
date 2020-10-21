@@ -1,0 +1,166 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backg"
+    tools:context=".MainActivity">
+
+    <ProgressBar
+        android:id="@+id/pb"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/lyt_control"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/pb">
+
+        <Button
+            android:id="@+id/btn_end"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:onClick="onBtnEndClicked"
+            android:text="End" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status:"
+        app:layout_constraintTop_toBottomOf="@id/lyt_control" />
+
+    <Button
+        android:id="@+id/btn_sles_rec"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnSlesClicked"
+        android:text="Test OpenSLES"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_status" />
+
+    <Button
+        android:id="@+id/btn_sles_play"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:onClick="onBtnSlesPlayClicked"
+        android:text="Play Audio"
+        app:layout_constraintLeft_toRightOf="@id/btn_sles_rec"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_sles_rec" />
+
+    <Button
+        android:id="@+id/btn_ext_rec"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnExtRecClicked"
+        android:text="Test External Recording"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_sles_rec" />
+
+    <Button
+        android:id="@+id/btn_ext_play"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:onClick="onBtnExtRecPlayClicked"
+        android:text="Play Audio"
+        app:layout_constraintLeft_toRightOf="@id/btn_ext_rec"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_ext_rec" />
+
+    <Button
+        android:id="@+id/btn_ext_source"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnExtSourceClicked"
+        android:text="Test ExternalSource"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_ext_rec" />
+
+    <Button
+        android:id="@+id/btn_ext_show_file"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:onClick="onBtnExtShowFileClicked"
+        android:text="Generated File"
+        app:layout_constraintLeft_toRightOf="@id/btn_ext_source"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_ext_source" />
+
+    <Button
+        android:id="@+id/btn_ext_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnExtMessageClicked"
+        android:text="Test ExternalMessageInterface"
+        app:layout_constraintTop_toBottomOf="@id/btn_ext_source" />
+
+    <Button
+        android:id="@+id/btn_ext_sink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBtnExtSinkClicked"
+        android:text="Test ExternalSink"
+        app:layout_constraintTop_toBottomOf="@id/btn_ext_message" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/layout_logos"
+        app:layout_constraintTop_toBottomOf="@id/btn_ext_sink">
+
+        <TextView
+            android:id="@+id/tv_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:isScrollContainer="true"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbars="vertical"
+            android:textSize="10sp" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layout_logos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffffff"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/imageviewBottomLogo"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+            android:background="#ffffff"
+            android:src="@drawable/longlogo"
+            app:layout_constraintBottom_toTopOf="@id/imageviewBottomChLogo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageviewBottomChLogo"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+            android:background="#ffffffff"
+            android:src="@drawable/chinese_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
