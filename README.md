@@ -15,7 +15,8 @@ It is written purely in C++, has a fast, efficient, and flexible architecture,
 and runs on desktop, mobile and embedded platforms such as Linux, Windows, MacOS, Android, iOS
 and Raspberry Pi.
 
-See also the standalone Python package [pyopensmile](https://github.com/audeering/pyopensmile) 
+See also the standalone
+[opensmile-python](https://github.com/audeering/opensmile-python) package
 for an easy-to-use wrapper if you are working in Python.
 
 Quick start
