@@ -16,14 +16,14 @@ and runs on desktop, mobile and embedded platforms such as Linux, Windows, MacOS
 and Raspberry Pi.
 
 See also the standalone
-[opensmile-python](https://github.com/audeering/opensmile-python) package
+[opensmile](https://github.com/audeering/opensmile-python) Python package
 for an easy-to-use wrapper if you are working in Python.
 
 Quick start
 -----------
 
 For more details on how to customize builds, build for other platforms and use
-openSMILE, see the [usage instructions](https://audeering.github.io/opensmile/usage.html)
+openSMILE, see Section [Get started](https://audeering.github.io/opensmile/get-started.html)
 in the documentation.
 
 ### Linux/MacOS
