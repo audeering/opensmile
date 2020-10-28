@@ -19,6 +19,11 @@ See also the standalone
 [opensmile](https://github.com/audeering/opensmile-python) Python package
 for an easy-to-use wrapper if you are working in Python.
 
+What's new
+----------
+
+Please see our [blog post](https://www.audeering.com/2020/10/26/introducing-opensmile-3-0/) on audeering.com for a summary of the new features in version 3.0.
+
 Quick start
 -----------
 
