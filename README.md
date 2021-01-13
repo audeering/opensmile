@@ -27,6 +27,8 @@ Please see our [blog post](https://www.audeering.com/2020/10/26/introducing-open
 Quick start
 -----------
 
+Releases include pre-compiled Intel x64 binaries for Windows, Linux and MacOS. You can also build and modify openSMILE yourself if desired.
+
 For more details on how to customize builds, build for other platforms and use
 openSMILE, see Section [Get started](https://audeering.github.io/opensmile/get-started.html)
 in the documentation.
