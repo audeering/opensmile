@@ -12,7 +12,7 @@ music applications, e.g. automatic speech recognition, speaker identification,
 emotion recognition, or beat tracking and chord detection.
 
 It is written purely in C++, has a fast, efficient, and flexible architecture, 
-and runs on desktop, mobile and embedded platforms such as Linux, Windows, MacOS, Android, iOS
+and runs on desktop, mobile, and embedded platforms such as Linux, Windows, macOS, Android, iOS
 and Raspberry Pi.
 
 See also the standalone
@@ -27,16 +27,16 @@ Please see our [blog post](https://www.audeering.com/2020/10/26/introducing-open
 Quick start
 -----------
 
-Pre-built x64 binaries for Windows, Linux and macOS are provided on the [Releases](https://github.com/audeering/opensmile/releases) page. Alternatively, you may follow the steps below to build openSMILE yourself, if desired.
+Pre-built x64 binaries for Windows, Linux, and macOS are provided on the [Releases](https://github.com/audeering/opensmile/releases) page. Alternatively, you may follow the steps below to build openSMILE yourself, if desired.
 
-For more details on how to customize builds, build for other platforms and use
+For more details on how to customize builds, build for other platforms, and use
 openSMILE, see Section [Get started](https://audeering.github.io/opensmile/get-started.html)
 in the documentation.
 
 ### Linux/MacOS
 
 Prerequisites:
-- A version of gcc and g++ or Clang need to be installed that supports C++11.
+- A version of gcc and g++ or Clang needs to be installed that supports C++11.
 - CMake 3.5.1 or later needs to be installed and in the PATH.
 
 1. In ``build_flags.sh``, set build flags and options as desired.
@@ -85,8 +85,8 @@ Licensing
 ---------
 
 openSMILE follows a dual-licensing model. Since the main goal of the project 
-is a widespread use of the software to facilitate research in the field of 
-machine learning from audio-visual signals, the source code and binaries are 
+is widespread use of the software to facilitate research in the field of 
+machine learning from audio-visual signals, the source code, and binaries are 
 freely available for private, research, and educational use under an open-source license
 (see [LICENSE](LICENSE)).
 It is not allowed to use the open-source version of openSMILE for any sort of commercial product.
