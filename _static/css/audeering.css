@@ -1,73 +1,253 @@
-/* audEERING colors */
+/***** COLOR DEFINITION **************************************************/
+:root {
+    --black: #3F4444;
+    --white: #FFFFFF;
+    --red: #E13B41;
+    --red-opaque: rgba(225, 59, 65, 0.1);
+    --dark-red: #BB2A30;
+    --light-grey: #F6F6F6;  /* UI CANVAS GREY */
+    --grey: #DCDCDC;  /* LIGHT GREY */
+    --dark-grey: #7D8181;  /* UI INACTIVE GREY */
+    /* Colors not used */
+    /* --darker-grey: #555A5A; 8?
+    /* --grey3: #B9BEBE;  /* UI HIGH GREY */
+    /* --grey5: #555A5A;  /* UI LOW GREY */
+    /* --grey6: #363636; /* UI DARK GREY */
 
+}
+
+/***** PAGE **************************************************************/
+body {
+    /* Main text color */
+    color: var(--black);
+}
+.wy-body-for-nav {
+    /* Background color of whole page */
+    background: var(--white);
+}
+.wy-nav-content {
+    /* background color of content part */
+    background: var(--white);
+}
+.wy-nav-content-wrap {
+    /* Ensure right part of scrren has same color as content */
+    background: none;
+}
+.rst-content dl p, .rst-content dl table,
+.rst-content dl ul, .rst-content dl ol {
+    /* Decrease distance between paragraphs */
+    margin-bottom: 10px !important;
+}
+
+/***** LINKS *************************************************************/
 a {
-    color: #e03c46;
+    color: var(--red);
 }
 a:visited {
-    color: #e03c46;
+    color: var(--red);
 }
 a:hover {
-    color: #f0989b;
+    color: var(--dark-red);
 }
-.wy-menu-vertical a {
-    color: #d9d9d9;
+.fa {
+    /* Fix font of Gitlab/Github link */
+    font: inherit !important;
 }
+
+/***** SEARCH BAR ********************************************************/
 .wy-side-nav-search>a, .wy-side-nav-search .wy-dropdown>a {
-    color: #ffffff;
+    color: var(--white);
 }
 .wy-side-nav-search {
-    background-color: #ab2328;
+    background-color: var(--red);
 }
 .wy-side-nav-search input[type=text] {
-    border-color: #ab2328;
+    border-color: var(--red);
 }
-.wy-nav-top {
-    background-color: #ab2328;
+
+/***** SIDE BAR ***********************************************************/
+.wy-nav-side {
+    /* Background color of TOC menu */
+    background-color: var(--black);
+}
+.wy-menu-vertical a {
+    /* Color of TOC entries */
+    color: var(--grey);
 }
 .wy-menu-vertical a:active {
-    background-color: #ab2328;
+    /* Background color of TOC entries for mouse over */
+    background-color: var(--red);
 }
-.wy-nav-side {
-    background-color: #3f4444;
+.wy-menu-vertical li.on a,
+.wy-menu-vertical li.current>a {
+    /* Background color of selected TOC entry */
+    background-color: var(--white);
+}
+.wy-nav-top {
+    /* Background color of top bar in mobile view */
+    background-color: var(--red);
 }
 .wy-menu-vertical p.caption {
-    color: rgb(155, 155, 155);
+    /* Color of TOC captions */
+    color: var(--dark-grey);
 }
-.rst-content dl:not(.docutils) dt {
-    /* color: #bc0008; */
-    color: #db3940;
-    border-left: solid 3px #db3940;
-    border-top: none;
-    background: #efeff0;
+
+/***** ADMONITIONS (NOTES) ***********************************************/
+.rst-content .admonition {
+    background: var(--light-grey);
 }
-/* Color of notes */
-.rst-content .note .admonition-title {
-    background: #db3940;
+.rst-content .attention {
+    background: var(--red-opaque);
+}
+.rst-content .caution {
+    background: var(--red-opaque);
+}
+.rst-content .danger {
+    background: var(--red-opaque);
+}
+.rst-content .error {
+    background: var(--red-opaque);
+}
+.rst-content .hint {
+    background: var(--light-grey);
+}
+.rst-content .important {
+    background: var(--red-opaque);
 }
 .rst-content .note {
-    background: #efeff0;
+    background: var(--light-grey);
 }
-/* Code blocks */
+.rst-content .tip {
+    background: var(--light-grey);
+}
+.rst-content .warning {
+    background: var(--red-opaque);
+}
+.rst-content .admonition .admonition-title {
+    background: var(--dark-grey);
+}
+.rst-content .attention .admonition-title {
+    background: var(--red);
+}
+.rst-content .caution .admonition-title {
+    background: var(--red);
+}
+.rst-content .danger .admonition-title {
+    background: var(--red);
+}
+.rst-content .error .admonition-title {
+    background: var(--red);
+}
+.rst-content .hint .admonition-title {
+    background: var(--dark-grey);
+}
+.rst-content .important .admonition-title {
+    background: var(--red);
+}
+.rst-content .note .admonition-title {
+    background: var(--dark-grey);
+}
+.rst-content .tip .admonition-title {
+    background: var(--dark-grey);
+}
+.rst-content .warning .admonition-title {
+    background: var(--red);
+}
+
+/****** CODE BLOCKS ******************************************************/
 .rst-content .highlight {
-    background: #efeff0;
+    background: var(--light-grey);
+}
+.rst-content div[class^='highlight'] {
+    border-radius: 3px;
+    border: 0px;
 }
 .rst-content .highlight .gp {
-    color: #db3940;
+    color: var(--red);
 }
 /* Link to code and back */
 .rst-content .viewcode-link, .rst-content .viewcode-back {
-    color: #db3940;
+    color: var(--red);
 }
 content .viewcode-back {
-    color: #db3940;
+    color: var(--red);
 }
-/* Main text color */
-body {
-    color: #393939;
+/* In line code */
+.rst-content code {
+    font-size: 87%;
+    font-weight: bold;
+    padding: 1px;
 }
-/* Download box for Jupyter notebooks */
+.rst-content tt.literal,
+.rst-content tt.literal,
+.rst-content code.literal {
+    color: var(--black);
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+}
+/* Typing */
+.rst-content code.xref {
+    color: var(--black);
+    border: none;
+    background-color: transparent;
+}
+/* Function/Class definition names */
+.rst-content dl:not(.docutils) .descname,
+.rst-content dl:not(.docutils) .descclassname {
+    color: var(--black);
+    font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",Courier,monospace;
+}
+dl.class em,
+dl.function em,
+dl.method em,
+dl.property em {
+    font-style: normal;
+}
+.rst-content dl:not(.docutils) dt {
+    color: var(--red);
+    border-left: solid 3px var(--red);
+    border-top: none;
+    background: var(--light-grey);
+}
+.rst-content dl:not(.docutils) dl dt {
+    color: var(--black);
+    border-left: solid 3px var(--grey);
+    border-top: none;
+    background: var(--light-grey);
+}
+
+/* Remove bullet points from parameter lists */
+.rst-content .section dl.field-list.simple ul li {
+    list-style: none;
+    margin-left: 24px;
+    /* Don't indent first line of text, see */
+    /* https://gitlab.audeering.com/project/altavista-cc/tests/-/issues/19 */
+    text-indent: -24px;
+}
+/* Make heading of example section look like other sections */
+.rst-content dl.class p.rubric,
+.rst-content dl.function p.rubric,
+.rst-content dl.method p.rubric {
+    font-weight: bold;
+    color: var(--black);
+    border-left: solid 3px var(--grey);
+    border-top: none;
+    background: var(--light-grey);
+    display: table;
+    padding: 3px 6px;
+    font-size: 90%;
+}
+/* Fix indention of example box */
+.rst-content dl.class div.highlight,
+.rst-content dl.function div.highlight,
+.rst-content dl.method div.highlight {
+    margin-left: 24px;
+}
+
+/***** DOWNLOAD BOX FOR JUPYTER NOTEBOOKS ********************************/
 .notebook {
-    background: #efeff0;
+    background: var(--light-grey);
 }
 .notebook a {
     padding: 12px;
@@ -76,14 +256,183 @@ body {
     margin-bottom: 24px;
     display: block;
     font-size: 1.125rem;
-    color: #393939;
+    color: var(--black);
     font-weight: bold;
     border-bottom: 3px solid transparent;
 }
 .notebook a::before {
-    content: "⭳ ";
-    color: #e03c46;
+    content: "\2193 ";
+    color: var(--red);
 }
 .notebook a:hover {
-    border-bottom: 3px solid #e03c46;
+    border-bottom: 3px solid var(--red);
+}
+
+/***** TABLES ************************************************************/
+.wy-table-odd td,
+.wy-table-striped tr:nth-child(2n-1) td,
+.rst-content table.docutils:not(.field-list) tr:nth-child(2n-1) td {
+    /* Background color of every second table row */
+    background-color: var(--light-grey);
+}
+.wy-table-bordered-all,
+.rst-content table.docutils {
+    border: 1px solid var(--grey);
+}
+.wy-table thead th,
+.rst-content table.docutils thead th,
+.rst-content table.field-list thead th {
+    border-bottom: solid 2px var(--grey);
+}
+.rst-content table.docutils th {
+    border-color: var(--grey);
+}
+.wy-table-bordered-all td,
+.rst-content table.docutils td {
+    /* Color of table border */
+    border-bottom: 1px solid var(--grey);
+    border-left: 1px solid var(--grey);
+}
+.wy-table-responsive thead th {
+    /* Fix border lines in table headers */
+    border: solid 1px var(--grey);
+    border-bottom: solid 2px var(--grey);
+}
+.wy-table-responsive tbody tr th.stub {
+    /* Fix borders for row headers */
+    border-right: solid 2px var(--grey);
+    border-bottom: solid 1px var(--grey);
+}
+.wy-table-responsive thead tr th.stub {
+    /* Fix borders for row headers */
+    border-right: solid 2px var(--grey);
+}
+/* Allow for line breaks in Tables.
+ * See: https://stackoverflow.com/a/40650120 */
+.wy-table-responsive table td {
+    white-space: normal;
+}
+/* Fix vertical placement in tables */
+.wy-table-responsive table td ol.arabic {
+    margin-bottom: 12px;
+    margin-top: 12px;
+}
+/* Fix margin in table cells */
+.wy-table td p:last-child,
+.rst-content table.docutils td p:last-child,
+.rst-content table.field-list td p:last-child {
+    margin-bottom: 0 !important;
+}
+/* Fix table headers margin */
+.wy-table-responsive thead th p {
+    margin-bottom: 0 !important;
+}
+/* Fix table row headers margin */
+.wy-table-responsive tbody tr th p {
+    margin-bottom: 0 !important;
+}
+
+/***** FIGURE AND TABLE CAPTIONS *****************************************/
+.wy-table caption, .rst-content table.docutils caption,
+.rst-content table.field-list caption, .rst-content div.figure p.caption {
+    font-style: italic;
+    font-size: 100%;
+    font-weight: 100;
+    font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
+    color: var(--black);
+}
+
+/***** JUPYTER SPHINX ****************************************************/
+/* Adjust appearance of jupyter-sphinx code cells */
+/* !important prevents jupyter-sphinx from overwriting them */
+div.jupyter_container {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    /* margin: 0; */
+}
+.jupyter_container div.code_cell {
+    background: var(--light-grey) !important;
+    border: 0px !important;
+    border-radius: 0 !important;
+}
+.jupyter_container div.code_cell pre {
+    padding: 12px !important;
+}
+.jupyter_cell div.cell_output output {
+    padding: 0 !important;
+}
+.jupyter_cell div.cell_output div.output div.highlight {
+    background-color: var(--white);
+    border: 1px solid var(--light-grey);
+}
+.jupyter_container div.highlight-default {
+    padding: 0 !important;
+}
+.jupyter_container div.output pre {
+    padding: 12px !important;
+}
+.jupyter_container div.text_html {
+    padding: 12px !important;
+    padding-top: 6px !important;
+}
+.rst-content .jupyter_container div[class^='highlight'],
+.document .jupyter_container div[class^='highlight'] {
+    padding: 0 !important;
+}
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.text_html table {
+  border: none !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  color: black !important;
+  font-size: 12px !important;
+  table-layout: fixed !important;
+}
+div.text_html thead {
+  border-bottom: 1px solid black !important;
+  vertical-align: bottom !important;
+}
+div.text_html tr,
+div.text_html th,
+div.text_html td {
+  text-align: right !important;
+  vertical-align: middle !important;
+  padding: 0.5em 0.5em !important;
+  line-height: normal !important;
+  white-space: normal !important;
+  max-width: none !important;
+  border: none !important;
+}
+div.text_html th {
+  font-weight: bold !important;
+}
+div.text_html tbody tr:nth-child(odd) {
+  background: #f5f5f5 !important;
+}
+div.text_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2) !important;
+}
+
+/***** COPY-BUTTON *******************************************************/
+/* Disable copy-button in nbsphinx */
+.prompt a.copybtn {
+    display: none !important;
+}
+
+/***** FOOTER ************************************************************/
+footer ul {
+  overflow: hidden;
+  margin-bottom: 10px;
+  padding-top: 2px;
+}
+footer li {
+  margin-right: 20px;
+  font-weight: 700;
+  float: left;
+}
+footer p {
+  margin-bottom: 10px;
 }

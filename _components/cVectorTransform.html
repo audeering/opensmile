@@ -30,11 +30,15 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/audeering.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/audeering.css" type="text/css" />
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="cWaveSink" href="cWaveSink.html" />
-    <link rel="prev" title="cVectorProcessor" href="cVectorProcessor.html" /> 
+    <link rel="prev" title="cVectorProcessor" href="cVectorProcessor.html" />
+    
+  
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -66,7 +70,7 @@
             
             
               <div class="version">
-                3.0
+                3.0.1
               </div>
             
           
@@ -104,7 +108,6 @@
 <li class="toctree-l3"><a class="reference internal" href="cArffSink.html#arffclass">arffClass</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cArffSink.html#arfftarget">arffTarget</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cArffSource.html">cArffSource</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cBowProducer.html">cBowProducer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cCens.html">cCens</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cChroma.html">cChroma</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cContourSmoother.html">cContourSmoother</a></li>
@@ -249,44 +252,15 @@
         
         <div class="rst-content">
         
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="../reference.html">Reference section</a> &raquo;</li>
-        
       <li>cVectorTransform</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../_sources/_components/cVectorTransform.rst.txt" rel="nofollow"> View page source</a>
-          
-        
+              <a href="https://github.com/audeering/opensmile/" class="fa fa-github"> GitHub</a>
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -316,13 +290,13 @@
 <ul class="simple">
 <li><p>an(alysis) : analyse all incoming data and compute transform for later use</p></li>
 <li><p>tr(ansformation) : use pre-computed transform loaded from initFile, no on-line adaptation</p></li>
-<li><p>in(cremental) : use initFile as inital transform, if given, update transform on-line using ‘updateMethod’</p></li>
+<li><p>in(cremental) : use initFile as inital transform, if given, update transform on-line using 'updateMethod'</p></li>
 </ul>
 </div></blockquote>
 </li>
 <li><p><strong>initFile</strong> (string) [default: None]</p>
 <blockquote>
-<div><p>The file to load the (initial) transformation data from (see vectorTransform.cpp for documentation of the file format). Default (null) disables loading, also setting the value to ‘?’ disables loading of the file (parameters are initialized with 0, use mode incremental or analysis in this case.)</p>
+<div><p>The file to load the (initial) transformation data from (see vectorTransform.cpp for documentation of the file format). Default (null) disables loading, also setting the value to '?' disables loading of the file (parameters are initialized with 0, use mode incremental or analysis in this case.)</p>
 </div></blockquote>
 </li>
 <li><p><strong>saveFile</strong> (string) [default: None]</p>
@@ -339,13 +313,13 @@
 <blockquote>
 <div><p>Method to use for incrementally updating the transform. Can be one of the following:</p>
 <ul class="simple">
-<li><p>‘exp’  exponential: m1 = alpha * m0  + (1-alpha) * x</p></li>
-<li><p>‘fix’/’buf’  compute transform over history buffer of fixed length</p></li>
-<li><p>‘ifix’/’ibuf’  compute transform over history buffer of fixed length and use init data from last turn (see weight option)</p></li>
-<li><p>‘usr’  other update method (usually defined by a descendant component of cVectorTransform, look for customUpdateMethod option)</p></li>
-<li><p>‘avg’  cummulative average method with weighted fixed inital values</p></li>
-<li><p>‘iavg’  cummulative average method with weighted variable (from the last turn) inital values</p></li>
-<li><p>NOTE: if ‘resetOnTurn’==0 then ‘avg’ and ‘iavg’ are identical</p></li>
+<li><p>'exp'  exponential: m1 = alpha * m0  + (1-alpha) * x</p></li>
+<li><p>'fix'/'buf'  compute transform over history buffer of fixed length</p></li>
+<li><p>'ifix'/'ibuf'  compute transform over history buffer of fixed length and use init data from last turn (see weight option)</p></li>
+<li><p>'usr'  other update method (usually defined by a descendant component of cVectorTransform, look for customUpdateMethod option)</p></li>
+<li><p>'avg'  cummulative average method with weighted fixed inital values</p></li>
+<li><p>'iavg'  cummulative average method with weighted variable (from the last turn) inital values</p></li>
+<li><p>NOTE: if 'resetOnTurn'==0 then 'avg' and 'iavg' are identical</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -356,7 +330,7 @@
 </li>
 <li><p><strong>weight</strong> (numeric) [default: 100.0]</p>
 <blockquote>
-<div><p>The weighting factor for ‘avg’/’avgI’/’bufI’ update, i.e. the factor the initial transform parameters are weighted by when building the cummulative average</p>
+<div><p>The weighting factor for 'avg'/'avgI'/'bufI' update, i.e. the factor the initial transform parameters are weighted by when building the cummulative average</p>
 </div></blockquote>
 </li>
 <li><p><strong>fixedBuffer</strong> (numeric) [default: 5.0]</p>
@@ -376,12 +350,12 @@
 </li>
 <li><p><strong>invertTurn</strong> (numeric) [default: 0.0]</p>
 <blockquote>
-<div><p>1 = invert the turn state (i.e. changes a ‘turnOnly…’ option into ‘notTurn’ option)</p>
+<div><p>1 = invert the turn state (i.e. changes a 'turnOnly...' option into 'notTurn' option)</p>
 </div></blockquote>
 </li>
 <li><p><strong>resetOnTurn</strong> (numeric) [default: 0.0]</p>
 <blockquote>
-<div><p>1 = reset transform values at the beginning of each new turn (only in mode ‘analysis’ and ‘incremental’)</p>
+<div><p>1 = reset transform values at the beginning of each new turn (only in mode 'analysis' and 'incremental')</p>
 </div></blockquote>
 </li>
 <li><p><strong>updateMaxSec</strong> (numeric) [default: 0.0]</p>
@@ -391,22 +365,22 @@
 </li>
 <li><p><strong>turnOnlyNormalise</strong> (numeric) [default: 0.0]</p>
 <blockquote>
-<div><p>1 = apply the transform only to turns (in between data will pass through unmodified) (‘invertTurn’ will also invert this option)</p>
+<div><p>1 = apply the transform only to turns (in between data will pass through unmodified) ('invertTurn' will also invert this option)</p>
 </div></blockquote>
 </li>
 <li><p><strong>turnOnlyOutput</strong> (numeric) [default: 0.0]</p>
 <blockquote>
-<div><p>1 = output data to writer level only during a turn (this will implicitely set turnOnlyNormalise = 1) (‘invertTurn’ will also invert this option)</p>
+<div><p>1 = output data to writer level only during a turn (this will implicitely set turnOnlyNormalise = 1) ('invertTurn' will also invert this option)</p>
 </div></blockquote>
 </li>
 <li><p><strong>htkcompatible</strong> (numeric) [default: 0.0]</p>
 <blockquote>
-<div><p>A flag that indicates (if set to 1) whether last coefficient in ‘initFile’ is loaded into means[0] (use this only when reading htk-compatible cmn init files, and NOT using htk-compatible mfccs)</p>
+<div><p>A flag that indicates (if set to 1) whether last coefficient in 'initFile' is loaded into means[0] (use this only when reading htk-compatible cmn init files, and NOT using htk-compatible mfccs)</p>
 </div></blockquote>
 </li>
 <li><p><strong>invertMVNdata</strong> (numeric) [default: 0.0]</p>
 <blockquote>
-<div><p>1 = invert the loaded MVN data to ‘unstandardise’ to these parameters. Currently only works with MVn text and old MVN binary data. mu’ = -mu/sigma and sigma’ = 1/sigma ;</p>
+<div><p>1 = invert the loaded MVN data to 'unstandardise' to these parameters. Currently only works with MVn text and old MVN binary data. mu' = -mu/sigma and sigma' = 1/sigma ;</p>
 </div></blockquote>
 </li>
 <li><p><strong>turnStartMessage</strong> (string) [default: turnStart]</p>
@@ -441,24 +415,24 @@
 
   <hr/>
 
+  <div>
+    <p>
+        
+        
+        
+          Built with <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> on 2022/01/04 using the <a href="https://github.com/audeering/sphinx-audeering-theme/">audEERING theme</a>
+        
+    </p>
+  </div>
+
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2013-2020 audEERING GmbH and 2008-2013 TU München, MMK
-
+      &copy; 2013-2022 audEERING GmbH and 2008-2013 TU München, MMK
     </p>
-  </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  </div> 
 
 </footer>
-
         </div>
       </div>
 
@@ -467,16 +441,21 @@
   </div>
   
 
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
 
     
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
     
 
   

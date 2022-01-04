@@ -112,11 +112,11 @@ Fields
   
 - **timeoutSec** (numeric) [default: 2\.0]
   
-    turnEnd timeout in seconds \(send turnEnd after timeoutSec seconds no input data\)
+    turnEnd timeout in seconds \(send turnEnd after timeoutSec seconds no input data\, \<\= 0 \: infinite\)
   
 - **eoiFramesMissing** (numeric) [default: 5\.0]
   
-    set the number of frames that will be subtracted from the last turn end position \(the forced turn end that will be sent when an EOI condition \(end of input\) is encountered\)\. This is necessary\, e\.g\. if you use delta or acceleration coefficients which introduce a lag of a few frames\. Increase this value if SMILExtract hangs at the end of input when using the cTumkwsjSink component or a cFunctionals component\, etc\.
+    set the number of frames that will be subtracted from the last turn end position \(the forced turn end that will be sent when an EOI condition \(end of input\) is encountered\)\. This is necessary\, e\.g\. if you use delta or acceleration coefficients which introduce a lag of a few frames\. Increase this value if SMILExtract hangs at the end of input when using a cFunctionals component\, etc\.
   
 - **unblockTimeout** (numeric) [default: 60\.0]
   

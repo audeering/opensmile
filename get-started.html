@@ -30,11 +30,15 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/audeering.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/audeering.css" type="text/css" />
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Reference section" href="reference.html" />
-    <link rel="prev" title="About openSMILE" href="about.html" /> 
+    <link rel="prev" title="About openSMILE" href="about.html" />
+    
+  
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -66,7 +70,7 @@
             
             
               <div class="version">
-                3.0
+                3.0.1
               </div>
             
           
@@ -173,42 +177,14 @@
         
         <div class="rst-content">
         
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Get started</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="_sources/get-started.rst.txt" rel="nofollow"> View page source</a>
-          
-        
+              <a href="https://github.com/audeering/opensmile/" class="fa fa-github"> GitHub</a>
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -1234,13 +1210,13 @@ command-line is given here:</p>
 <div class="section" id="extracting-features-for-emotion-recognition">
 <span id="id23"></span><h3>Extracting features for emotion recognition<a class="headerlink" href="#extracting-features-for-emotion-recognition" title="Permalink to this headline">¶</a></h3>
 <p>Since openSMILE is used by the openEAR
-project <a class="reference internal" href="bibliography.html#eyben2009itm" id="id24">[EWollmerS09]</a> for emotion recognition,
+project <span id="id24">[<a class="reference internal" href="bibliography.html#id3" title="Florian Eyben, Martin Wöllmer, and Björn Schuller. Openear - introducing the munich open-source emotion and affect recognition toolkit. In Proceedings of the 4th International HUMAINE Association Conference on Affective Computing and Intelligent Interaction 2009 (ACII 2009), volume I, 576–581. IEEE, 2009.">EWollmerS09</a>]</span> for emotion recognition,
 various standard feature sets for emotion recognition are available as
 openSMILE configuration files.</p>
 <div class="section" id="the-interspeech-2009-emotion-challenge-feature-set">
 <span id="id25"></span><h4>The INTERSPEECH 2009 Emotion Challenge feature set<a class="headerlink" href="#the-interspeech-2009-emotion-challenge-feature-set" title="Permalink to this headline">¶</a></h4>
 <p>The INTERSPEECH 2009 Emotion Challenge feature set
-(see <a class="reference internal" href="bibliography.html#schuller2009ti2" id="id26">[SSB09]</a>) is defined in
+(see <span id="id26">[<a class="reference internal" href="bibliography.html#id4" title="Björn Schuller, S. Steidl, and Anton Batliner. The interspeech 2009 emotion challenge. In Interspeech (2009), ISCA, Brighton, UK. 2009.">SSB09</a>]</span>) is defined in
 <code class="docutils literal notranslate"><span class="pre">config/is09-13/IS09_emotion.conf</span></code>. It contains 384 features as statistical
 functionals applied to low-level descriptor contours. The features are
 saved in Arff format (for WEKA), whereby new instances are appended to
@@ -1433,9 +1409,7 @@ INTERSPEECH 2012, ISCA, Portland, OR, USA, 09.-13.09.2012.</p>
 <div class="section" id="the-interspeech-2013-compare-challenge-feature-set">
 <span id="id30"></span><h4>The INTERSPEECH 2013 ComParE Challenge feature set<a class="headerlink" href="#the-interspeech-2013-compare-challenge-feature-set" title="Permalink to this headline">¶</a></h4>
 <p>The configuration file for this set can be found in
-<code class="docutils literal notranslate"><span class="pre">config/is09-13/IS13_ComParE.conf</span></code>. A configuration that extracts only the
-low-level descriptors of the ComParE feature set is provided in
-<code class="docutils literal notranslate"><span class="pre">config/is09-13/IS13_ComParE_lld.conf</span></code>. A configuration for the vocaliations
+<code class="docutils literal notranslate"><span class="pre">config/is09-13/IS13_ComParE.conf</span></code>. A configuration for the vocaliations
 (laughter, etc.) sub-challenge can be found in the file
 <code class="docutils literal notranslate"><span class="pre">config/is09-13/IS13_ComParE_Voc.conf</span></code>.</p>
 <p>Details on the feature set will be added to the openSMILE book soon.
@@ -1752,24 +1726,24 @@ or plots the data directly using some GUI API.</p>
 
   <hr/>
 
+  <div>
+    <p>
+        
+        
+        
+          Built with <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> on 2022/01/04 using the <a href="https://github.com/audeering/sphinx-audeering-theme/">audEERING theme</a>
+        
+    </p>
+  </div>
+
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2013-2020 audEERING GmbH and 2008-2013 TU München, MMK
-
+      &copy; 2013-2022 audEERING GmbH and 2008-2013 TU München, MMK
     </p>
-  </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  </div> 
 
 </footer>
-
         </div>
       </div>
 
@@ -1778,16 +1752,22 @@ or plots the data directly using some GUI API.</p>
   </div>
   
 
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
 
     
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
 
   

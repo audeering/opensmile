@@ -30,11 +30,15 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/audeering.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/audeering.css" type="text/css" />
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="cDataPrintSink" href="cDataPrintSink.html" />
-    <link rel="prev" title="cCsvSource" href="cCsvSource.html" /> 
+    <link rel="prev" title="cCsvSource" href="cCsvSource.html" />
+    
+  
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -66,7 +70,7 @@
             
             
               <div class="version">
-                3.0
+                3.0.1
               </div>
             
           
@@ -104,7 +108,6 @@
 <li class="toctree-l3"><a class="reference internal" href="cArffSink.html#arffclass">arffClass</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cArffSink.html#arfftarget">arffTarget</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cArffSource.html">cArffSource</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cBowProducer.html">cBowProducer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cCens.html">cCens</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cChroma.html">cChroma</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cContourSmoother.html">cContourSmoother</a></li>
@@ -253,44 +256,15 @@
         
         <div class="rst-content">
         
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="../reference.html">Reference section</a> &raquo;</li>
-        
       <li>cDataMemory</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../_sources/_components/cDataMemory.rst.txt" rel="nofollow"> View page source</a>
-          
-        
+              <a href="https://github.com/audeering/opensmile/" class="fa fa-github"> GitHub</a>
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -341,19 +315,14 @@
 <div><p>The name of this data memory level, must be unique within one data memory instance.</p>
 </div></blockquote>
 </li>
-<li><p><strong>type</strong> (string) [default: float]</p>
-<blockquote>
-<div><p>The data type of the level [can be: ‘float’ or ‘int’(eger) , currently only float is supported by the majority of processing components ]</p>
-</div></blockquote>
-</li>
 <li><p><strong>isRb</strong> (numeric) [default: 1.0]</p>
 <blockquote>
-<div><p>Flag that indicates whether this level is a ring-buffer level (1) or not (0). I.e. this level stores the last ‘nT’ frames, and discards old data as new data comes in (if the old data has already been read by all registered readers; if this is not the case, the level will report that it is full to the writer attempting the write operation)</p>
+<div><p>Flag that indicates whether this level is a ring-buffer level (1) or not (0). I.e. this level stores the last 'nT' frames, and discards old data as new data comes in (if the old data has already been read by all registered readers; if this is not the case, the level will report that it is full to the writer attempting the write operation)</p>
 </div></blockquote>
 </li>
 <li><p><strong>nT</strong> (numeric) [default: 100.0]</p>
 <blockquote>
-<div><p>The size of the level buffer in frames (this overwrites the ‘lenSec’ option)</p>
+<div><p>The size of the level buffer in frames (this overwrites the 'lenSec' option)</p>
 </div></blockquote>
 </li>
 <li><p><strong>T</strong> (numeric) [default: 0.0]</p>
@@ -373,15 +342,15 @@
 </li>
 <li><p><strong>growDyn</strong> (numeric) [default: 0.0]</p>
 <blockquote>
-<div><p>Supported currently only if ‘ringbuffer=0’. If this option is set to 1, the level grows dynamically, if more memory is needed. You can use this to store live input of arbitrary length in memory. However, be aware that if openSMILE runs for a long time, it will allocate more and more memory!</p>
+<div><p>Supported currently only if 'ringbuffer=0'. If this option is set to 1, the level grows dynamically, if more memory is needed. You can use this to store live input of arbitrary length in memory. However, be aware that if openSMILE runs for a long time, it will allocate more and more memory!</p>
 </div></blockquote>
 </li>
 <li><p><strong>noHang</strong> (numeric) [default: 1.0]</p>
 <blockquote>
-<div><p>This option controls the ‘hang’ behaviour for ring-buffer levels, i.e. the behaviour exhibited, when the level is full because data from the ring-buffer has not been marked as read because not all readers registered to read from this level have read data. Valid options are, 0, 1, 2 :</p>
+<div><p>This option controls the 'hang' behaviour for ring-buffer levels, i.e. the behaviour exhibited, when the level is full because data from the ring-buffer has not been marked as read because not all readers registered to read from this level have read data. Valid options are, 0, 1, 2 :</p>
 <ul class="simple">
 <li><p>0 = always wait for readers, mark the level as full and make writes fail until all readers have read at least the next frame from this level</p></li>
-<li><p>1 = don’t wait for readers, if no readers are registered, i.e. this level is a dead-end (this is the default) / 2 = never wait for readers, writes to this level will always succeed (reads to non existing data regions might then fail), use this option with a bit of caution.</p></li>
+<li><p>1 = don't wait for readers, if no readers are registered, i.e. this level is a dead-end (this is the default) / 2 = never wait for readers, writes to this level will always succeed (reads to non existing data regions might then fail), use this option with a bit of caution.</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -407,24 +376,24 @@
 
   <hr/>
 
+  <div>
+    <p>
+        
+        
+        
+          Built with <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> on 2022/01/04 using the <a href="https://github.com/audeering/sphinx-audeering-theme/">audEERING theme</a>
+        
+    </p>
+  </div>
+
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2013-2020 audEERING GmbH and 2008-2013 TU München, MMK
-
+      &copy; 2013-2022 audEERING GmbH and 2008-2013 TU München, MMK
     </p>
-  </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  </div> 
 
 </footer>
-
         </div>
       </div>
 
@@ -433,16 +402,21 @@
   </div>
   
 
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
 
     
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
     
 
   

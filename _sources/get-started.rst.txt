@@ -1549,9 +1549,7 @@ The INTERSPEECH 2013 ComParE Challenge feature set
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The configuration file for this set can be found in
-``config/is09-13/IS13_ComParE.conf``. A configuration that extracts only the
-low-level descriptors of the ComParE feature set is provided in
-``config/is09-13/IS13_ComParE_lld.conf``. A configuration for the vocaliations
+``config/is09-13/IS13_ComParE.conf``. A configuration for the vocaliations
 (laughter, etc.) sub-challenge can be found in the file
 ``config/is09-13/IS13_ComParE_Voc.conf``.
 

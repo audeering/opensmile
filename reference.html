@@ -30,11 +30,15 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/audeering.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/audeering.css" type="text/css" />
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="cAcf" href="_components/cAcf.html" />
-    <link rel="prev" title="Get started" href="get-started.html" /> 
+    <link rel="prev" title="Get started" href="get-started.html" />
+    
+  
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -66,7 +70,7 @@
             
             
               <div class="version">
-                3.0
+                3.0.1
               </div>
             
           
@@ -120,7 +124,6 @@
 <li class="toctree-l3"><a class="reference internal" href="_components/cArffSink.html#arffclass">arffClass</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_components/cArffSink.html#arfftarget">arffTarget</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_components/cArffSource.html">cArffSource</a></li>
-<li class="toctree-l3"><a class="reference internal" href="_components/cBowProducer.html">cBowProducer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_components/cCens.html">cCens</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_components/cChroma.html">cChroma</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_components/cContourSmoother.html">cContourSmoother</a></li>
@@ -260,42 +263,14 @@
         
         <div class="rst-content">
         
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Reference section</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="_sources/reference.rst.txt" rel="nofollow"> View page source</a>
-          
-        
+              <a href="https://github.com/audeering/opensmile/" class="fa fa-github"> GitHub</a>
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -434,9 +409,9 @@ content programmatically.</div>
 </div>
 <div class="line"><strong>-logfile</strong>             &lt;<em>string</em>&gt;</div>
 <div class="line-block">
-<div class="line">Specifies the path and filename of the log file to
-use. Make sure the path of the log-file is writeable.</div>
-<div class="line"><em>Default:</em> ’smile.log’</div>
+<div class="line">Specifies the path and filename of a log file.
+Make sure the path of the file is writeable.</div>
+<div class="line"><em>Default:</em> off</div>
 <div class="line"><br /></div>
 </div>
 <div class="line"><strong>-appendLogfile</strong></div>
@@ -447,19 +422,11 @@ overwriting the log-file at every program start
 (which is the default behaviour).</div>
 <div class="line"><br /></div>
 </div>
-<div class="line"><strong>-nologfile</strong></div>
-<div class="line-block">
-<div class="line">If this option is specified, openSMILE does not write
-to a log file (use this on a read-only filesystems,
-for example).</div>
-<div class="line"><br /></div>
-</div>
 <div class="line"><strong>-noconsoleoutput</strong></div>
 <div class="line-block">
 <div class="line">If this option is specified, no log-output is
-displayed in the console. Logging to the log file is
-not affected by this option, see ’nologfile’ for
-disabling the log-file.</div>
+displayed in the console. Logging to the log file,
+if enabled, is not affected by this option.</div>
 </div>
 </div>
 </div>
@@ -581,7 +548,7 @@ efficiently in a central location for later use.</p>
 </div>
 <div class="section" id="incremental-processing">
 <span id="id7"></span><h3>Incremental processing<a class="headerlink" href="#incremental-processing" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-center" id="id22">
+<div class="figure align-default" id="id22">
 <span id="fig-arch"></span><a class="reference internal image-reference" href="_images/arch.svg"><img alt="Overview on openSMILE's component types and openSMILE's basic architecture." src="_images/arch.svg" width="70%" /></a>
 <p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Overview on openSMILE’s component types and openSMILE’s basic
 architecture.</span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
@@ -609,11 +576,11 @@ all cases, a fixed-size ring buffer is the recommended level configuration.</p>
 <p><a class="reference internal" href="#fig-arch"><span class="std std-numref">Fig. 4</span></a> shows the overall data-flow architecture of openSMILE,
 where the data memory is the central link between all dataSource,
 dataProcessor, and dataSink components.</p>
-<div class="figure align-center" id="id23">
+<div class="figure align-default" id="id23">
 <span id="fig-inc1"></span><a class="reference internal image-reference" href="_images/figure1.svg"><img alt="Partially filled buffers." src="_images/figure1.svg" width="70%" /></a>
 <p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Incremental processing with ring-buffers. Partially filled buffers.</span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-center" id="id24">
+<div class="figure align-default" id="id24">
 <span id="fig-inc2"></span><a class="reference internal image-reference" href="_images/figure2.svg"><img alt="Filled buffers with warped read/write pointers." src="_images/figure2.svg" width="70%" /></a>
 <p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Incremental processing with ring-buffers. Filled buffers with warped
 read/write pointers.</span><a class="headerlink" href="#id24" title="Permalink to this image">¶</a></p>
@@ -629,7 +596,7 @@ component extracts pitch features from the frames and writes them to the ‘pitc
 level. In <a class="reference internal" href="#fig-inc2"><span class="std std-numref">Fig. 6</span></a> the buffers have been filled, and the write
 pointers have been warped. Data that lies more than ‘buffersize’ frames in the
 past has been overwritten.</p>
-<div class="figure align-center" id="id25">
+<div class="figure align-default" id="id25">
 <span id="fig-inc3"></span><a class="reference internal image-reference" href="_images/figure3.svg"><img alt="Incremental computation of high-level features such as statistical functionals." src="_images/figure3.svg" width="70%" /></a>
 <p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Incremental computation of high-level features such as statistical
 functionals.</span><a class="headerlink" href="#id25" title="Permalink to this image">¶</a></p>
@@ -852,7 +819,7 @@ into openSMILE .</p>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">shortopt</span></code> argument and the <code class="docutils literal notranslate"><span class="pre">default</span> <span class="pre">value</span></code> are optional. Note
-that, however, either <code class="docutils literal notranslate"><span class="pre">default</span></code> and/or <code class="docutils literal notranslate"><span class="pre">descr.</span><span class="pre">text</span></code> are required to
+that, however, either <code class="docutils literal notranslate"><span class="pre">default</span></code> and/or <code class="docutils literal notranslate"><span class="pre">descr. text</span></code> are required to
 define a <em>new</em> option. If neither of the two is specified, the option
 will not be added to the command-line parser. You can use this mode to
 reference options that were already added, i.e. if you want to use the
@@ -943,7 +910,6 @@ their use and meaning, can be obtained with the command</p>
 <li class="toctree-l1"><a class="reference internal" href="_components/cArffSink.html#arffclass">arffClass</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_components/cArffSink.html#arfftarget">arffTarget</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_components/cArffSource.html">cArffSource</a></li>
-<li class="toctree-l1"><a class="reference internal" href="_components/cBowProducer.html">cBowProducer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_components/cCens.html">cCens</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_components/cChroma.html">cChroma</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_components/cContourSmoother.html">cContourSmoother</a></li>
@@ -1085,9 +1051,9 @@ and can serve as a reference on how to call SMILEapi in mobile apps.</p>
 <p>If you intend to use openSMILE from within Python and don’t require
 the advanced, low-level functionality that SMILEapi provides, we
 highly recommend to check out the standalone
-[opensmile-python](<a class="reference external" href="https://github.com/audeering/opensmile-python">https://github.com/audeering/opensmile-python</a>)
+<a class="reference external" href="https://github.com/audeering/opensmile-python">opensmile</a>
 Python package. It comes as a pip-installable Python module and
-provides an easier-to-use interface with e.g. support for numpy
+provides an easier-to-use interface with e.g. support for NumPy
 types.</p>
 </div>
 </div>
@@ -1161,24 +1127,24 @@ audio.</p></li>
 
   <hr/>
 
+  <div>
+    <p>
+        
+        
+        
+          Built with <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> on 2022/01/04 using the <a href="https://github.com/audeering/sphinx-audeering-theme/">audEERING theme</a>
+        
+    </p>
+  </div>
+
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2013-2020 audEERING GmbH and 2008-2013 TU München, MMK
-
+      &copy; 2013-2022 audEERING GmbH and 2008-2013 TU München, MMK
     </p>
-  </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  </div> 
 
 </footer>
-
         </div>
       </div>
 
@@ -1187,16 +1153,22 @@ audio.</p></li>
   </div>
   
 
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
 
     
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
 
   

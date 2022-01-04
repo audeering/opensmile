@@ -114,9 +114,9 @@ parameter, denoted by ``<parameter-type>``.
 |                          *Default:* off
 |
 | **-logfile**             <*string*>
-|                          Specifies the path and filename of the log file to
-                           use. Make sure the path of the log-file is writeable.
-|                          *Default:* ’smile.log’
+|                          Specifies the path and filename of a log file.
+                           Make sure the path of the file is writeable.
+|                          *Default:* off
 |
 | **-appendLogfile**
 |                          If this option is specified, openSMILE will append
@@ -124,16 +124,10 @@ parameter, denoted by ``<parameter-type>``.
                            overwriting the log-file at every program start
                            (which is the default behaviour).
 |
-| **-nologfile**
-|                          If this option is specified, openSMILE does not write
-                           to a log file (use this on a read-only filesystems,
-                           for example).
-|
 | **-noconsoleoutput**
 |                          If this option is specified, no log-output is
-                           displayed in the console. Logging to the log file is
-                           not affected by this option, see ’nologfile’ for
-                           disabling the log-file.
+                           displayed in the console. Logging to the log file,
+                           if enabled, is not affected by this option.
 
 
 .. _opensmile-architecture:
@@ -778,9 +772,9 @@ and can serve as a reference on how to call SMILEapi in mobile apps.
     If you intend to use openSMILE from within Python and don't require 
     the advanced, low-level functionality that SMILEapi provides, we 
     highly recommend to check out the standalone 
-    [opensmile-python](https://github.com/audeering/opensmile-python) 
+    `opensmile <https://github.com/audeering/opensmile-python>`_
     Python package. It comes as a pip-installable Python module and 
-    provides an easier-to-use interface with e.g. support for numpy 
+    provides an easier-to-use interface with e.g. support for NumPy 
     types.
 
 

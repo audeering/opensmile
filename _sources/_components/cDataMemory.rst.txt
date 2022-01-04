@@ -45,10 +45,6 @@ Fields
   
     The name of this data memory level\, must be unique within one data memory instance\.
   
-- **type** (string) [default: float]
-  
-    The data type of the level \[can be\: \'float\' or \'int\'\(eger\) \, currently only float is supported by the majority of processing components \]
-  
 - **isRb** (numeric) [default: 1\.0]
   
     Flag that indicates whether this level is a ring\-buffer level \(1\) or not \(0\)\. I\.e\. this level stores the last \'nT\' frames\, and discards old data as new data comes in \(if the old data has already been read by all registered readers\; if this is not the case\, the level will report that it is full to the writer attempting the write operation\)

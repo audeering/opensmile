@@ -30,11 +30,15 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/audeering.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/audeering.css" type="text/css" />
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="cLibsvmSink" href="cLibsvmSink.html" />
-    <link rel="prev" title="cIntensity" href="cIntensity.html" /> 
+    <link rel="prev" title="cIntensity" href="cIntensity.html" />
+    
+  
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -66,7 +70,7 @@
             
             
               <div class="version">
-                3.0
+                3.0.1
               </div>
             
           
@@ -104,7 +108,6 @@
 <li class="toctree-l3"><a class="reference internal" href="cArffSink.html#arffclass">arffClass</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cArffSink.html#arfftarget">arffTarget</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cArffSource.html">cArffSource</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cBowProducer.html">cBowProducer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cCens.html">cCens</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cChroma.html">cChroma</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cContourSmoother.html">cContourSmoother</a></li>
@@ -249,44 +252,15 @@
         
         <div class="rst-content">
         
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="../reference.html">Reference section</a> &raquo;</li>
-        
       <li>cLibsvmLiveSink</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../_sources/_components/cLibsvmLiveSink.rst.txt" rel="nofollow"> View page source</a>
-          
-        
+              <a href="https://github.com/audeering/opensmile/" class="fa fa-github"> GitHub</a>
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -296,7 +270,7 @@
 <span id="id1"></span><h1>cLibsvmLiveSink<a class="headerlink" href="#clibsvmlivesink" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>This component classifies data from dataMemory ‘on-the-fly’ using the LibSVM or LibLINEAR library. Loading of ASCII and binary LibSVM models is supported, as well as application of LibSVM scale files and openSMILE feature selection lists.</p>
+<p>This component classifies data from dataMemory 'on-the-fly' using the LibSVM or LibLINEAR library. Loading of ASCII and binary LibSVM models is supported, as well as application of LibSVM scale files and openSMILE feature selection lists.</p>
 </div>
 <div class="section" id="type-hierarchy">
 <h2>Type hierarchy<a class="headerlink" href="#type-hierarchy" title="Permalink to this headline">¶</a></h2>
@@ -362,12 +336,12 @@
 </li>
 <li><p><strong>resultRecp</strong> (string) [default: None]</p>
 <blockquote>
-<div><p>List of component(s) to send ‘classificationResult’ messages to (use , to separate multiple recepients), leave blank (NULL) to not send any messages</p>
+<div><p>List of component(s) to send 'classificationResult' messages to (use , to separate multiple recepients), leave blank (NULL) to not send any messages</p>
 </div></blockquote>
 </li>
 <li><p><strong>resultMessageName</strong> (string) [default: svm_result]</p>
 <blockquote>
-<div><p>Freely definable name that is sent with ‘classificationResult’ message</p>
+<div><p>Freely definable name that is sent with 'classificationResult' message</p>
 </div></blockquote>
 </li>
 <li><p><strong>forceScale</strong> (numeric) [default: 1.0]</p>
@@ -377,7 +351,7 @@
 </li>
 <li><p><strong>lag</strong> (numeric) [default: 0.0]</p>
 <blockquote>
-<div><p>read data &lt;lag&gt; frames behind (should always remain 0 for this component…?)</p>
+<div><p>read data &lt;lag&gt; frames behind (should always remain 0 for this component...?)</p>
 </div></blockquote>
 </li>
 <li><p><strong>useThread</strong> (numeric) [default: 0.0]</p>
@@ -387,7 +361,7 @@
 </li>
 <li><p><strong>loadModelBg</strong> (numeric) [default: 1.0]</p>
 <blockquote>
-<div><p>1 = if useThread==1 (and only then…) load the libsvm model and scale files in the background thread. openSMILE will start to run the tick loop, but classify incoming frames only after the model has been loaded. Up to then all incoming frames are discarded.</p>
+<div><p>1 = if useThread==1 (and only then...) load the libsvm model and scale files in the background thread. openSMILE will start to run the tick loop, but classify incoming frames only after the model has been loaded. Up to then all incoming frames are discarded.</p>
 </div></blockquote>
 </li>
 <li><p><strong>waitForModelLoaded</strong> (numeric) [default: 1.0]</p>
@@ -402,7 +376,7 @@
 </li>
 <li><p><strong>multiModelMode</strong> (numeric) [default: 0.0]</p>
 <blockquote>
-<div><p>1 = classify input data with all loaded models *in parallel* (you will have nModels output messages then). 0 = classify with first model by default. Switching of models is possible via a ‘svmSinkSetModel’ smile message.</p>
+<div><p>1 = classify input data with all loaded models *in parallel* (you will have nModels output messages then). 0 = classify with first model by default. Switching of models is possible via a 'svmSinkSetModel' smile message.</p>
 </div></blockquote>
 </li>
 <li><p><strong>batchMode</strong> (numeric) [default: 0.0]</p>
@@ -412,12 +386,12 @@
 </li>
 <li><p><strong>noVerify</strong> (numeric) [default: 0.0]</p>
 <blockquote>
-<div><p>1 = *DON’T* verify whether the support vector dimension matches the feature selection list dimension and the scale file dimension.</p>
+<div><p>1 = *DON'T* verify whether the support vector dimension matches the feature selection list dimension and the scale file dimension.</p>
 </div></blockquote>
 </li>
 <li><p><strong>modelResultName[]</strong> (string) [default: None]</p>
 <blockquote>
-<div><p>Array of custom names sent as ‘custData2’ pointer with the classificationResult message for corresponding models. The dimensions of this array should match the dimensions of the ‘model’ array.</p>
+<div><p>Array of custom names sent as 'custData2' pointer with the classificationResult message for corresponding models. The dimensions of this array should match the dimensions of the 'model' array.</p>
 </div></blockquote>
 </li>
 <li><p><strong>bgThreadPriority</strong> (numeric) [default: 0.0]</p>
@@ -447,24 +421,24 @@
 
   <hr/>
 
+  <div>
+    <p>
+        
+        
+        
+          Built with <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> on 2022/01/04 using the <a href="https://github.com/audeering/sphinx-audeering-theme/">audEERING theme</a>
+        
+    </p>
+  </div>
+
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2013-2020 audEERING GmbH and 2008-2013 TU München, MMK
-
+      &copy; 2013-2022 audEERING GmbH and 2008-2013 TU München, MMK
     </p>
-  </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  </div> 
 
 </footer>
-
         </div>
       </div>
 
@@ -473,16 +447,21 @@
   </div>
   
 
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
 
     
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
     
 
   
