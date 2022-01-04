@@ -216,9 +216,9 @@ eTickResult cLibsvmSink::myTick(long long t)
   
   // now print the vector:
   int i;
-  fprintf(filehandle,"%ld:%e ",idx++,vec->dataF[0]);
+  fprintf(filehandle,"%ld:%e ",idx++,vec->data[0]);
   for (i=1; i<vec->N; i++) {
-    fprintf(filehandle,"%ld:%e ",idx++,vec->dataF[i]);
+    fprintf(filehandle,"%ld:%e ",idx++,vec->data[i]);
   }
 
   fprintf(filehandle,"%s",NEWLINE);

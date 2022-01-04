@@ -22,8 +22,7 @@ ARFF file output (for WEKA)
 #define COMPONENT_DESCRIPTION_CDATADUMPSINK "This component writes dataMemory data to a raw binary file (e.g. for matlab import). The binary file consists of 32-bit float values representing the data values, concatenated frame by frame along the time axis. The first two float values in the file are the file header, indicating the dimension of the matrix (1: size of frames, 2: number of frames in file). The total file size in bytes is thus <size of frames>x<number of frames>x4 + 2."
 #define COMPONENT_NAME_CDATADUMPSINK "cDatadumpSink"
 
-#undef class
-class DLLEXPORT cDatadumpSink : public cDataSink {
+class cDatadumpSink : public cDataSink {
   private:
     FILE * filehandle;
     const char *filename;

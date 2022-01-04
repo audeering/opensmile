@@ -10,6 +10,7 @@
 #define __SMILE_COMPONENT_HPP
 
 #include <core/smileCommon.hpp>
+#include <core/smileThread.hpp>
 #include <core/configManager.hpp>
 #include <smileutil/JsonClasses.hpp>
 #include <chrono>
@@ -18,9 +19,8 @@
 #define COMPONENT_DESCRIPTION_XXXX  "example description"
 #define COMPONENT_NAME_XXXX         "exampleName"
 
-#undef class
-class DLLEXPORT cComponentManager;
-class DLLEXPORT cSmileComponent;
+class cComponentManager;
+class cSmileComponent;
 
 #define CMSG_textLen      64
 #define CMSG_typenameLen  32
@@ -38,7 +38,7 @@ typedef enum  {
   CUSTDATA_CONTAINER = 1000    // container for object such as a JSON document, msgName will reveal details
 } eSmileMessageCustDataType;
 
-class DLLEXPORT cComponentMessage {
+class cComponentMessage {
 public:
   // Note: since instances of this class may be accessed from other languages via the SMILEapi,
   // all fields must have types with fixed sizes on all supported platforms (e.g. use int instead of long).
@@ -213,7 +213,7 @@ public:
   }
 };
 
-class DLLEXPORT sComponentInfo { public:
+class sComponentInfo { public:
   int registerAgain;
   const char *componentName;
   const char *description;
@@ -239,14 +239,14 @@ class DLLEXPORT sComponentInfo { public:
                                     const char *TP::sdescription;
                                     
 // static declarations in derived class (public)
-#define SMILECOMPONENT_STATIC_DECL  static sComponentInfo * registerComponent(cConfigManager *_confman, cComponentManager *_compman);    \
+#define SMILECOMPONENT_STATIC_DECL  static sComponentInfo * registerComponent(cConfigManager *_confman, cComponentManager *_compman, int _iteration);    \
                                     static cSmileComponent * create(const char *_instname);
                                     
 // static declarations in derived class (protected)
 #define SMILECOMPONENT_STATIC_DECL_PR    static const char *scname;  \
                                          static const char *sdescription;
 
-#define SMILECOMPONENT_REGCOMP(TP)  sComponentInfo * TP::registerComponent(cConfigManager *_confman, cComponentManager *_compman)
+#define SMILECOMPONENT_REGCOMP(TP)  sComponentInfo * TP::registerComponent(cConfigManager *_confman, cComponentManager *_compman, int _iteration)
 #define SMILECOMPONENT_REGCOMP_INIT  if (_confman == NULL) return NULL; \
                                      int rA = 0;
 
@@ -299,8 +299,7 @@ constexpr int NUM_TICK_RESULTS = 6;
 const char *tickResultStr(eTickResult res);
 
 
-#undef class
-class DLLEXPORT cSmileComponent {
+class cSmileComponent {
   private:
     int id_;           // component ID in componentManager
     int EOI_;          // EOI counter, 0 only in first loop, then +1 for every nonEOI/EOI loop pair
@@ -360,19 +359,6 @@ class DLLEXPORT cSmileComponent {
     // Functions to get config values from the config manager from our config instance.
     // The _f functions internally free the string *name. Use these in conjunction with myvprint()...
     // NOTE: Yes, this is ineffective. TODO: smile memory manager, and fixed length text buffer which can be reused (can also grow if needed).
-    void * getExternalPointer(const char *name) const {
-      if (confman_ != NULL) {
-        return confman_->getExternalPointer(name);
-      } else {
-        return NULL;
-      }
-    }
-    void addExternalPointer(const char *name, void * ptr) {
-      if (confman_ != NULL) {
-        confman_->addExternalPointer(name, ptr);
-      }
-    }
-
     double getDouble(const char*name) const {
       return confman_->getDouble_f(myvprint("%s.%s",cfname_,name));
     }

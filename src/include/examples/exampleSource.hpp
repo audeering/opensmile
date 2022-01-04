@@ -24,8 +24,7 @@ writes data to data memory...
 #define COMPONENT_NAME_CEXAMPLESOURCE "cExampleSource"
 #define BUILD_COMPONENT_ExampleSource
 
-#undef class
-class DLLEXPORT cExampleSource : public cDataSource {
+class cExampleSource : public cDataSource {
   private:
     int nValues;
     double randSeed;

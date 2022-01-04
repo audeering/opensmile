@@ -297,13 +297,13 @@ int matrixToPcmDataFloat_d(void *outputBuffer, long __N, cMatrix *_mat, int chan
       out[i*channels] = 0.0;
       for (c=0; c<channels; c++) {
         for (n=0; n<_mat->N; n++) 
-          out[i*channels+c] += (float)(_mat->dataF)[i*(_mat->N)+n];
+          out[i*channels+c] += (float)(_mat->data)[i*(_mat->N)+n];
       }
     } else {
       int minc = channels;
       if (_mat->N < minc) minc = _mat->N;
       for (c=0; c<channels; c++) {
-        out[i*channels+c] = (float)(_mat->dataF)[i*(_mat->N)+c];
+        out[i*channels+c] = (float)(_mat->data)[i*(_mat->N)+c];
       }
     }
   }
@@ -316,7 +316,7 @@ int pcmDataFloatToMatrix_d(const void *inputBuffer, long __N, cMatrix *_mat, int
   int i,c,n;
 
   const float *in = (const float*)inputBuffer;
-  FLOAT_DMEM *out = _mat->dataF;
+  FLOAT_DMEM *out = _mat->data;
 
   for (i=0; i<MIN(_mat->nT,__N); i++) {
     if (mixdown) {

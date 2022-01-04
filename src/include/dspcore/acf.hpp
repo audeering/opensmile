@@ -24,8 +24,7 @@ Autocorrelation Function (ACF)
 #define COMPONENT_DESCRIPTION_CACF "This component computes the autocorrelation function (ACF) by squaring a magnitude spectrum and applying an inverse Fast Fourier Transform. This component must read from a level containing *only* FFT magnitudes in a single field. Use the 'cTransformFFT' and 'cFFTmagphase' components to compute the magnitude spectrum from PCM frames. Computation of the Cepstrum is also supported (this applies a log() function to the magnitude spectra)."
 #define COMPONENT_NAME_CACF "cAcf"
 
-#undef class
-class DLLEXPORT cAcf : public cVectorProcessor {
+class cAcf : public cVectorProcessor {
   private:
     int absCepstrum_;
     int oldCompatCepstrum_;
@@ -51,8 +50,7 @@ class DLLEXPORT cAcf : public cVectorProcessor {
 
 //    virtual void configureField(int idxi, long __N, long nOut) override;
     virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    //virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

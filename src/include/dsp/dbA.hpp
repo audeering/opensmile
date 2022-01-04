@@ -30,8 +30,7 @@ applies dbX weighting to fft magnitudes
 
 extern void computeDBA(FLOAT_DMEM *x, long blocksize, FLOAT_DMEM F0);
 
-#undef class
-class DLLEXPORT cDbA : public cVectorProcessor {
+class cDbA : public cVectorProcessor {
   private:
     int curve;
     int usePower;
@@ -51,8 +50,7 @@ class DLLEXPORT cDbA : public cVectorProcessor {
 
     virtual int dataProcessorCustomFinalise() override;
     virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    //virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

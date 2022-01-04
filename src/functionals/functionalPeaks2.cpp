@@ -910,14 +910,6 @@ long cFunctionalPeaks2::process(FLOAT_DMEM *in,
   return 0;
 }
 
-/*
-long cFunctionalPeaks2::process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout)
-{
-
-  return 0;
-}
-*/
-
 cFunctionalPeaks2::~cFunctionalPeaks2()
 {
   // free the local min/max list

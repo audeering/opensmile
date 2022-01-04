@@ -36,8 +36,7 @@
 #define INTERP_LINEAR     1
 #define INTERP_SPLINE     2
 
-#undef class
-class DLLEXPORT cSpecScale : public cVectorProcessor {
+class cSpecScale : public cVectorProcessor {
   private:
     int scale; // target scale
     int sourceScale;
@@ -68,7 +67,7 @@ class DLLEXPORT cSpecScale : public cVectorProcessor {
     virtual void myFetchConfig() override;
 	  virtual int setupNewNames(long nEl) override;
     virtual int dataProcessorCustomFinalise() override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

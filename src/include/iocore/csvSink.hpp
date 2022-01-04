@@ -22,8 +22,7 @@ Comma Separated Value file output (CSV)
 #define COMPONENT_DESCRIPTION_CCSVSINK "This component exports data in CSV (comma-separated-value) format used in many spreadsheet applications. As the first line of the CSV file a header line may be printed, which contains a delimiter separated list of field names of the output values."
 #define COMPONENT_NAME_CCSVSINK "cCsvSink"
 
-#undef class
-class DLLEXPORT cCsvSink : public cDataSink {
+class cCsvSink : public cDataSink {
   private:
     FILE * filehandle;
     const char *filename;

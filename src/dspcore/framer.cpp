@@ -62,18 +62,10 @@ int cFramer::getMultiplier()
 int cFramer::doProcess(int idxi, cMatrix *row, FLOAT_DMEM*y)
 {
   // copy row to matrix... simple memcpy here
-  memcpy(y,row->dataF,row->nT*sizeof(FLOAT_DMEM));
+  memcpy(y,row->data,row->nT*sizeof(FLOAT_DMEM));
   // return the number of components in y!!
   return row->nT;
 }
-int cFramer::doProcess(int idxi, cMatrix *row, INT_DMEM*y)
-{
-  // copy row to matrix... simple memcpy here
-  memcpy(y,row->dataI,row->nT*sizeof(INT_DMEM));
-  // return the number of components in y!!
-  return row->nT;
-}
-
 
 cFramer::~cFramer()
 {

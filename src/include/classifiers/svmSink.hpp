@@ -27,7 +27,6 @@ this component is also useful for debugging
 #define COMPONENT_DESCRIPTION_CSVMSINK "This is an example of a cDataSink descendant. It reads data from the data memory and prints it to the console. This component is intended as a template for developers."
 #define COMPONENT_NAME_CSVMSINK "cSvmSink"
 
-#undef class
 
 #define SMILESVM_KERNEL_UNKNOWN 0  // unknown or unsupported kernel type
 
@@ -126,7 +125,7 @@ public:
 };
 
 
-class DLLEXPORT cSvmSink : public cDataSink {
+class cSvmSink : public cDataSink {
   private:
     const char * model;
     const char * resultRecp;

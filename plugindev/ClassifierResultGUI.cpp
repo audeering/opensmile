@@ -497,10 +497,10 @@ eTickResult cClassifierResultGUI::myTick(long long t)
 //  pApp->AddPendingEvent();
 // notify the main thread
    
-  if ((int)(vec->dataF[0]) != old) {
-   old = (int)(vec->dataF[0]);
+  if ((int)(vec->data[0]) != old) {
+   old = (int)(vec->data[0]);
    wxCommandEvent myevent(wxEVT_COMMAND_TEXT_UPDATED, VAD_UPDATE_ID);
-   myevent.SetInt((int)(vec->dataF[0]));  // pass some data along the event, a number in this case
+   myevent.SetInt((int)(vec->data[0]));  // pass some data along the event, a number in this case
    pApp->mframe->GetEventHandler()->AddPendingEvent( myevent );
   }
 
@@ -508,13 +508,13 @@ eTickResult cClassifierResultGUI::myTick(long long t)
   // now print the vector:
   int i;
   for (i=0; i<vec->N; i++) {
-    //SMILE_PRINT("  (a=%i vi=%i, tm=%fs) %s.%s = %f",reader->getCurR(),vi,tm,reader->getLevelName().c_str(),vec->name(i),vec->dataF[i]);
-    printf("  %s.%s = %f\n",reader->getLevelName().c_str(),vec->name(i),vec->dataF[i]);
+    //SMILE_PRINT("  (a=%i vi=%i, tm=%fs) %s.%s = %f",reader->getCurR(),vi,tm,reader->getLevelName().c_str(),vec->name(i).c_str(),vec->data[i]);
+    printf("  %s.%s = %f\n",reader->getLevelName().c_str(),vec->name(i).c_str(),vec->data[i]);
   }
   
   if (fHandle != NULL) {
     for (i=0; i<vec->N; i++) {
-      fprintf(fHandle, "%s = %f\n",vec->name(i),vec->dataF[i]);
+      fprintf(fHandle, "%s = %f\n",vec->name(i).c_str(),vec->data[i]);
     }
   }
 */

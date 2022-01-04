@@ -128,9 +128,6 @@ import java.util.Set;
     nOpts += 1;
     filled += 1;
   }
-  opts[filled].name = (char *) "nologfile";
-  opts[filled].value = nullptr;
-  filled++;
 
   for (int iOpts = 0; iOpts < filled; iOpts++)
     __android_log_print(ANDROID_LOG_INFO, "opensmile params:", "%s -> %s", opts[iOpts].name,

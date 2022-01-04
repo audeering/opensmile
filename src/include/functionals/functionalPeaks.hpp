@@ -24,8 +24,7 @@ functionals: number of peaks and various measures associated with peaks
 #define COMPONENT_NAME_CFUNCTIONALPEAKS "cFunctionalPeaks"
 
 
-#undef class
-class DLLEXPORT cFunctionalPeaks : public cFunctionalComponent {
+class cFunctionalPeaks : public cFunctionalComponent {
   private:
     FLOAT_DMEM lastVal, lastlastVal;
 	  int overlapFlag;
@@ -43,7 +42,6 @@ class DLLEXPORT cFunctionalPeaks : public cFunctionalComponent {
     cFunctionalPeaks(const char *_name);
     // inputs: sorted and unsorted array of values, out: pointer to space in output array, You may not return MORE than Nout elements, please return as return value the number of actually computed elements (usually Nout)
     virtual long process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_DMEM *out, long Nin, long Nout) override;
-    //virtual long process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout) override;
 
     virtual long getNoutputValues() override { return nEnab; }
     virtual int getRequireSorted() override { return 0; }

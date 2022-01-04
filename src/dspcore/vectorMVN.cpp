@@ -13,6 +13,7 @@ This component extends the base class cVectorTransform and implements mean/varia
 */
 
 #include <dspcore/vectorMVN.hpp>
+#include <cmath>
 
 #define MODULE "cVectorMVN"
 
@@ -146,7 +147,7 @@ void cVectorMVN::allocTransformData(struct sTfData *tf, int Ndst, int idxi)
   //return 1;
 }
 
-int cVectorMVN::transformDataFloat(const struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi)
+int cVectorMVN::transformData(const struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi)
 {
   long i;
   long N = tf->head.vecSize;
@@ -161,10 +162,10 @@ int cVectorMVN::transformDataFloat(const struct sTfData * tf, const FLOAT_DMEM *
     min = mean+N;
 
     for (i=0; i<MIN(Nsrc,Ndst); i++) {
-      if (!finite(max[i])) {
+      if (!std::isfinite(max[i])) {
         SMILE_IERR(2,"NON-finite value: max at index %i, flooring this value with %f",i,0.0);
         max[i] = 0.0;
-      } else if (!finite(min[i])) {
+      } else if (!std::isfinite(min[i])) {
         SMILE_IERR(2,"NON-finite value: min at index %i, flooring this value with %f",i,0.0);
         min[i] = 0.0;
       } else {
@@ -189,7 +190,7 @@ int cVectorMVN::transformDataFloat(const struct sTfData * tf, const FLOAT_DMEM *
     if (stdEnable) {  // MVN
       if (meanEnable) {
         for (i=0; i<MIN(Nsrc,Ndst); i++) {
-          if (stddev[i] == 0.0 || !finite(stddev[i])) {
+          if (stddev[i] == 0.0 || !std::isfinite(stddev[i])) {
             SMILE_IERR(2,"NON-finite or zero value: stddev at index %i, flooring this value with %f\n",i,STDDEV_FLOOR);
             stddev[i] = STDDEV_FLOOR;
           } else if (stddev[i] <= 0.0) stddev[i] = STDDEV_FLOOR;
@@ -197,7 +198,7 @@ int cVectorMVN::transformDataFloat(const struct sTfData * tf, const FLOAT_DMEM *
         }
       } else {
         for (i=0; i<MIN(Nsrc,Ndst); i++) {
-          if (stddev[i] == 0.0 || !finite(stddev[i])) {
+          if (stddev[i] == 0.0 || !std::isfinite(stddev[i])) {
             SMILE_IERR(2,"NON-finite value: stddev at index %i, flooring this value with %f\n",i,STDDEV_FLOOR);
             stddev[i] = STDDEV_FLOOR;
           }
@@ -257,7 +258,7 @@ int cVectorMVN::transformDataFloat(const struct sTfData * tf, const FLOAT_DMEM *
 
 //TODO: support updates for minMaxNormEnable
 
-int cVectorMVN::updateTransformFloatExp(struct sTfData * tf, const FLOAT_DMEM *src, int idxi)
+int cVectorMVN::updateTransformExp(struct sTfData * tf, const FLOAT_DMEM *src, int idxi)
 {
   long i;
   long N = tf->head.vecSize;
@@ -297,7 +298,7 @@ int cVectorMVN::updateTransformFloatExp(struct sTfData * tf, const FLOAT_DMEM *s
   return 1;
 }
 
-int cVectorMVN::updateTransformFloatBuf(struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *buf, long Nbuf, long wrPtr, int idxi)
+int cVectorMVN::updateTransformBuf(struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *buf, long Nbuf, long wrPtr, int idxi)
 {
   long i;
   long N = tf->head.vecSize;
@@ -406,7 +407,7 @@ int cVectorMVN::updateTransformFloatBuf(struct sTfData * tf, const FLOAT_DMEM *s
 }
 
 
-int cVectorMVN::updateTransformFloatAvg(struct sTfData * tf, const FLOAT_DMEM *src, int idxi)
+int cVectorMVN::updateTransformAvg(struct sTfData * tf, const FLOAT_DMEM *src, int idxi)
 {
   long i;
   long N = tf->head.vecSize;
@@ -447,9 +448,9 @@ int cVectorMVN::updateTransformFloatAvg(struct sTfData * tf, const FLOAT_DMEM *s
   return 1;
 }
 
-int cVectorMVN::updateTransformFloatAvgI(struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *buf, long * _bufferNframes, long Nbuf, long wrPtr, int idxi)
+int cVectorMVN::updateTransformAvgI(struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *buf, long * _bufferNframes, long Nbuf, long wrPtr, int idxi)
 {
-  return updateTransformFloatAvg(tf,src,idxi);
+  return updateTransformAvg(tf,src,idxi);
   /*long i;
   long N = tf->head.vecSize;
   double *mean = tf->head.vectors;

@@ -26,7 +26,6 @@ example plugin: data sink example
 // add this for plugins to compile properly in MSVC++
 #ifdef SMILEPLUGIN
 #ifdef class
-#undef class
 #endif
 #endif
 

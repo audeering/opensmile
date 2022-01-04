@@ -31,8 +31,7 @@ This component extends the base class cVectorTransform and implements mean/varia
 #define STDDEV_FLOOR  0.0000001
 
 
-#undef class
-class DLLEXPORT cVectorMVN : public cVectorTransform {
+class cVectorMVN : public cVectorTransform {
   private:
     FLOAT_DMEM specFloor;
     int spectralFlooring, subtractMeans;
@@ -62,22 +61,20 @@ class DLLEXPORT cVectorMVN : public cVectorTransform {
     /* Do the actual transformation (do NOT use this to calculate parameters!) 
        This function will only be called if not in ANALYSIS mode 
        Please return the number of output samples (0, if you haven't produced output) */
-    virtual int transformDataFloat(const struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-
-    //virtual int transformDataInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int transformData(const struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
     /* Update transform parameters incrementally
        This function will only be called if not in TRANSFORMATIONs mode 
        *buf is a pointer to a buffer if updateMethod is fixedBuffer */
     // return value: 0: no update was performed , 1: successful update
-    virtual int updateTransformFloatExp(struct sTfData * tf, const FLOAT_DMEM *src, int idxi) override;
-    virtual int updateTransformFloatBuf(struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *buf, long Nbuf, long wrPtr, int idxi) override;
-    virtual int updateTransformFloatAvg(struct sTfData * tf, const FLOAT_DMEM *src, int idxi) override;
-    virtual int updateTransformFloatAvgI(struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *buf, long * bufferNframes, long Nbuf, long wrPtr, int idxi) override;
+    virtual int updateTransformExp(struct sTfData * tf, const FLOAT_DMEM *src, int idxi) override;
+    virtual int updateTransformBuf(struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *buf, long Nbuf, long wrPtr, int idxi) override;
+    virtual int updateTransformAvg(struct sTfData * tf, const FLOAT_DMEM *src, int idxi) override;
+    virtual int updateTransformAvgI(struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *buf, long * bufferNframes, long Nbuf, long wrPtr, int idxi) override;
 
     /* generic method, default version will select one of the above methods,
        overwrite to implement your own update strategy ('usr' option) */
-    //virtual int updateTransformFloat(struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *buf, long * bufferNframes, long Nbuf, int idxi) override;
+    //virtual int updateTransform(struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *buf, long * bufferNframes, long Nbuf, int idxi) override;
 
 /////////////////////////////////////////////
     virtual void myFetchConfig() override;
@@ -89,9 +86,8 @@ class DLLEXPORT cVectorMVN : public cVectorTransform {
 
     //virtual int processComponentMessage(cComponentMessage *_msg) override;
     //virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    //virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    //virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    //virtual int flushVectorFloat(FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    //virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    //virtual int flushVector(FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

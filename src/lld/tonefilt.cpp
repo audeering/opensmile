@@ -206,10 +206,10 @@ void cTonefilt::doFilter(int i, cMatrix *row, FLOAT_DMEM*y)
   long n,t;
   double *s = corrS[i]; // sine
   double *c = corrC[i]; // cosine
-  // TOOD: check for type dataF
+  // TOOD: check for type data
   for (t=0; t<nNotes; t++) {
     double f= freq[t];
-    FLOAT_DMEM *x = row->dataF;
+    FLOAT_DMEM *x = row->data;
     long idx = pos[i];
     for (n=0; n<row->nT; n++) {
       // compute correlation with sin+cos
@@ -235,7 +235,7 @@ eTickResult cTonefilt::myTick(long long t)
   cMatrix *mat = reader_->getNextMatrix();
   if (mat == NULL) { return TICK_SOURCE_NOT_AVAIL; } // currently no data available
 
-  if (tmpVec==NULL) tmpVec = new cVector(nNotes*N,mat->type);
+  if (tmpVec==NULL) tmpVec = new cVector(nNotes*N);
 //  printf("vs=%i Nf=%i nn=%i\n",tmpVec->N,Nf,nNotes);
   
   int i;
@@ -245,7 +245,7 @@ eTickResult cTonefilt::myTick(long long t)
     doFilter(i,r,tmpFrame); 
     
     // copy data into main vector
-    memcpy( tmpVec->dataF+i*nNotes, tmpFrame, sizeof(FLOAT_DMEM)*nNotes );
+    memcpy( tmpVec->data+i*nNotes, tmpFrame, sizeof(FLOAT_DMEM)*nNotes );
   }
 
   // generate new tmeta from first and last tmeta

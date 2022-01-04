@@ -27,8 +27,7 @@ Average Magnitude Difference Function (AMDF)
 #define AMDF_WARP     1
 #define AMDF_ZEROPAD  2
 
-#undef class
-class DLLEXPORT cAmdf : public cVectorProcessor {
+class cAmdf : public cVectorProcessor {
   private:
     //int htkcompatible;
     int nLag;
@@ -46,8 +45,7 @@ class DLLEXPORT cAmdf : public cVectorProcessor {
     //virtual int configureWriter(const sDmLevelConfig *c) override;
 
     virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    //virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

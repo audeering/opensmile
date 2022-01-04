@@ -110,23 +110,23 @@ eTickResult cFullturnMean::myTick(long long t)
 
     // 1st pass , get statistics
     long i,j;
-    FLOAT_DMEM *df = mat->dataF;
+    FLOAT_DMEM *df = mat->data;
     if (means == NULL) {
-      means = new cVector( mat->N, mat->type );
+      means = new cVector( mat->N );
     }
     for (j=0; j<mat->N; j++) {
-      means->dataF[j] = df[j];
+      means->data[j] = df[j];
     }
     nMeans = 1;
     
     for (i=1; i<mat->nT; i++) {
       if (eNormMode) {
         for (j=0; j<mat->N; j++) {
-          if (df[j] > means->dataF[j]) means->dataF[j] = df[j];
+          if (df[j] > means->data[j]) means->data[j] = df[j];
         }
       } else {
         for (j=0; j<mat->N; j++) {
-          means->dataF[j] += df[j];
+          means->data[j] += df[j];
         }
         nMeans++;
       }
@@ -137,27 +137,27 @@ eTickResult cFullturnMean::myTick(long long t)
     if (means == NULL) {
       SMILE_IWRN(1,"sequence too short, cannot compute statistics (mean or max value)!");
       long N = reader_->getLevelN();
-      means = new cVector( N, DMEM_FLOAT );
+      means = new cVector( N );
       for (i=0; i<N; i++) {
-        means->dataF[i] = 0;
+        means->data[i] = 0;
       }
       nMeans = 1;
     }
     if (!eNormMode) {
       for (i=0; i<means->N; i++) {
-        means->dataF[i] /= (FLOAT_DMEM)nMeans;
+        means->data[i] /= (FLOAT_DMEM)nMeans;
       }
     }
 
-    df = mat->dataF;
+    df = mat->data;
     for (i=0; i<mat->nT; i++) {
       if (eNormMode) {
         for (j=0; j<mat->N; j++) {
-          df[j] -= means->dataF[j] - (FLOAT_DMEM)1.0;  // x - max + 1 
+          df[j] -= means->data[j] - (FLOAT_DMEM)1.0;  // x - max + 1 
         }
       } else {
         for (j=0; j<mat->N; j++) {
-          df[j] -= means->dataF[j]; 
+          df[j] -= means->data[j]; 
         }
       }
       df += mat->N;

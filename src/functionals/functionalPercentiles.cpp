@@ -417,14 +417,6 @@ long cFunctionalPercentiles::process(FLOAT_DMEM *in,
   return 0;
 }
 
-/*
-long cFunctionalPercentiles::process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout)
-{
-
-  return 0;
-}
-*/
-
 cFunctionalPercentiles::~cFunctionalPercentiles()
 {
   if (pctl != NULL)

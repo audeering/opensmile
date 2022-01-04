@@ -35,8 +35,7 @@ The component is capable of performing the following processing steps:
 
 #define COMPONENT_NAME_CPLP "cPlp"
 
-#undef class
-class DLLEXPORT cPlp : public cVectorProcessor {
+class cPlp : public cVectorProcessor {
   private:
     int htkcompatible;
     int nAuto, nFreq, nScale;
@@ -76,8 +75,7 @@ class DLLEXPORT cPlp : public cVectorProcessor {
     virtual int dataProcessorCustomFinalise() override;
     virtual int setupNamesForField(int i, const char*name, long nEl) override;
 
-    //virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

@@ -118,14 +118,6 @@ long cFunctionalLpc::process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_DMEM *o
   return 0;
 }
 
-/*
-long cFunctionalLpc::process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout)
-{
-
-  return 0;
-}
-*/
-
 cFunctionalLpc::~cFunctionalLpc()
 {
   if (tmpstr != NULL) free(tmpstr);

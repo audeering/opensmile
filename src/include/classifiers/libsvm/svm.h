@@ -56,7 +56,6 @@ Changes from original code:
 #ifndef NOSMILE
 #include <core/smileCommon.hpp>
 #else
-#define DLLEXPORT
 #define BUILD_LIBSVM
 #endif
 
@@ -103,33 +102,33 @@ struct svm_parameter
 	int probability; /* do probability estimates */
 };
 
-DLLEXPORT struct svm_model *svm_train(const struct svm_problem *prob, const struct svm_parameter *param);
-DLLEXPORT void svm_cross_validation(const struct svm_problem *prob, const struct svm_parameter *param, int nr_fold, double *target);
+struct svm_model *svm_train(const struct svm_problem *prob, const struct svm_parameter *param);
+void svm_cross_validation(const struct svm_problem *prob, const struct svm_parameter *param, int nr_fold, double *target);
 
-DLLEXPORT int svm_save_binary_model(const char *model_file_name, const svm_model *model);
-DLLEXPORT struct svm_model *svm_load_binary_model(const char *model_file_name);
+int svm_save_binary_model(const char *model_file_name, const svm_model *model);
+struct svm_model *svm_load_binary_model(const char *model_file_name);
 
-DLLEXPORT struct svm_model *svm_load_ascii_model(const char *model_file_name);
+struct svm_model *svm_load_ascii_model(const char *model_file_name);
 /* autodetect binary/ascii model: */
-DLLEXPORT struct svm_model *svm_load_model(const char *model_file_name);
+struct svm_model *svm_load_model(const char *model_file_name);
 
-DLLEXPORT int svm_save_model(const char *model_file_name, const struct svm_model *model);
+int svm_save_model(const char *model_file_name, const struct svm_model *model);
 
-DLLEXPORT int svm_get_svm_type(const struct svm_model *model);
-DLLEXPORT int svm_get_sv_size(const struct svm_model *model);
-DLLEXPORT int svm_get_nr_class(const struct svm_model *model);
-DLLEXPORT void svm_get_labels(const struct svm_model *model, int *label);
-DLLEXPORT double svm_get_svr_probability(const struct svm_model *model);
+int svm_get_svm_type(const struct svm_model *model);
+int svm_get_sv_size(const struct svm_model *model);
+int svm_get_nr_class(const struct svm_model *model);
+void svm_get_labels(const struct svm_model *model, int *label);
+double svm_get_svr_probability(const struct svm_model *model);
 
-DLLEXPORT void svm_predict_values(const struct svm_model *model, const struct svm_node *x, double* dec_values);
-DLLEXPORT double svm_predict(const struct svm_model *model, const struct svm_node *x);
-DLLEXPORT double svm_predict_probability(const struct svm_model *model, const struct svm_node *x, double* prob_estimates);
+void svm_predict_values(const struct svm_model *model, const struct svm_node *x, double* dec_values);
+double svm_predict(const struct svm_model *model, const struct svm_node *x);
+double svm_predict_probability(const struct svm_model *model, const struct svm_node *x, double* prob_estimates);
 
-DLLEXPORT void svm_destroy_model(struct svm_model *model);
-DLLEXPORT void svm_destroy_param(struct svm_parameter *param);
+void svm_destroy_model(struct svm_model *model);
+void svm_destroy_param(struct svm_parameter *param);
 
-DLLEXPORT const char *svm_check_parameter(const struct svm_problem *prob, const struct svm_parameter *param);
-DLLEXPORT int svm_check_probability_model(const struct svm_model *model);
+const char *svm_check_parameter(const struct svm_problem *prob, const struct svm_parameter *param);
+int svm_check_probability_model(const struct svm_model *model);
 
 #ifdef __cplusplus
 }

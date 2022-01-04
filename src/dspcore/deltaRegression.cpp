@@ -115,9 +115,8 @@ int cDeltaRegression::processBuffer(cMatrix *_in, cMatrix *_out, int _pre, int _
   long n;
   int i;
   FLOAT_DMEM num, delta;
-  if (_in->type!=DMEM_FLOAT) COMP_ERR("dataType (%i) != DMEM_FLOAT not yet supported!",_in->type);
-  FLOAT_DMEM *x=_in->dataF;
-  FLOAT_DMEM *y=_out->dataF;
+  FLOAT_DMEM *x=_in->data;
+  FLOAT_DMEM *y=_out->data;
 
   if (deltawin > 0) {
     if (onlyInSegments) {

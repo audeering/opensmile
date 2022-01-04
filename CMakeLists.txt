@@ -5,12 +5,11 @@ endif()
 project(openSMILE)
 
 option(STATIC_LINK "Build libopensmile as a static lib." ON)
-option(MARCH_NATIVE "Tune compiler optimizations to the processor of this machine. Disable if the compiled binary needs to be portable." ON)
+option(MARCH_NATIVE "Tune compiler optimizations to the processor of this machine. Disable if the compiled binary needs to be portable." OFF)
 option(WITH_PORTAUDIO "Compile with PortAudio support." OFF)
 option(WITH_FFMPEG "Compile with FFmpeg support." OFF)
-option(WITH_OPENSLES "Compile with OpenSL ES support (Android only).")
+option(WITH_OPENSLES "Compile with OpenSL ES support (Android only)." OFF)
 option(WITH_OPENCV "Compile with OpenCV support." OFF)
-option(WITH_JULIUS "Compile with Julius support." OFF)
 set(BUILD_FLAGS "" CACHE STRING "Build flags controlling which components of openSMILE are included in the build.")
 set(PROFILE_GENERATE "" CACHE PATH "Path where to save profile information for profile-guided optimization.")
 set(PROFILE_USE "" CACHE PATH "Path to profile information to use for profile-guided optimization.")
@@ -24,13 +23,15 @@ if(PROFILE_GENERATE AND PROFILE_USE)
 endif()
 
 set(WATCH_PLATFORMS WATCHOS WATCHOSCOMBINED SIMULATOR_WATCHOS)
-if((IS_IOS_PLATFORM) AND (PLATFORM IN_LIST WATCH_PLATFORMS))
+if(IS_IOS_PLATFORM AND (PLATFORM IN_LIST WATCH_PLATFORMS))
     set(IS_IOS_WATCH_PLATFORM ON)
 else()
     set(IS_IOS_WATCH_PLATFORM OFF)
 endif()
 
-# set C++ standard to version 11 for all targets
+# set C and C++ standards for all targets
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -91,10 +92,6 @@ if(APPLE)
     add_definitions(-D__OSX__)
 endif()
 
-if(NOT WIN32)
-    add_definitions(-DHAVE_UNISTD_H -DHAVE_PTHREAD)
-endif()
-
 add_definitions(${BUILD_FLAGS})
 
 # update version information in src/include/core/git_version.hpp
@@ -132,7 +129,7 @@ configure_file(src/include/core/git_version.hpp.in src/include/core/git_version.
 add_subdirectory(src/newmat)
 add_subdirectory(progsrc/smileapi)
 
-if(NOT IS_IOS_WATCH_PLATFORM)
+if(NOT IS_IOS_PLATFORM AND NOT IS_IOS_WATCH_PLATFORM)
     add_subdirectory(progsrc/smilextract)
 endif()
 
@@ -140,7 +137,6 @@ endif()
 
 set(opensmile_SOURCES
     $<TARGET_OBJECTS:newmat>
-    src/classifiers/julius/juliusSink.cpp
     src/classifiers/libsvm/svm.cpp
     src/classifiers/libsvmliveSink.cpp
     src/classifiers/svmSink.cpp
@@ -148,6 +144,7 @@ set(opensmile_SOURCES
     src/core/componentManager.cpp
     src/core/configManager.cpp
     src/core/dataMemory.cpp
+    src/core/dataMemoryLevel.cpp
     src/core/dataProcessor.cpp
     src/core/dataReader.cpp
     src/core/dataSelector.cpp
@@ -159,6 +156,7 @@ set(opensmile_SOURCES
     src/core/smileCommon.cpp
     src/core/smileComponent.cpp
     src/core/smileLogger.cpp
+    src/core/smileThread.cpp
     src/core/vecToWinProcessor.cpp
     src/core/vectorProcessor.cpp
     src/core/vectorTransform.cpp
@@ -245,7 +243,6 @@ set(opensmile_SOURCES
     src/lldcore/pitchSmoother.cpp
     src/lldcore/plp.cpp
     src/lldcore/spectral.cpp
-    src/other/bowProducer.cpp
     src/other/maxIndex.cpp
     src/other/valbasedSelector.cpp
     src/other/vectorConcat.cpp
@@ -257,7 +254,6 @@ set(opensmile_SOURCES
     src/portaudio/portaudioSource.cpp
     src/portaudio/portaudioWavplayer.cpp
     src/android/openslesSource.cpp
-    src/android/jniMessageInterface.cpp
     src/rnn/rnn.cpp
     src/rnn/rnnProcessor.cpp
     src/rnn/rnnSink.cpp
@@ -282,7 +278,6 @@ if(STATIC_LINK)
     target_compile_definitions(opensmile PUBLIC -D__STATIC_LINK)
 else()
     add_library(opensmile SHARED ${opensmile_SOURCES})
-    target_compile_definitions(opensmile PRIVATE -DBUILDING_DLL)
 endif()
 
 target_include_directories(opensmile
@@ -308,7 +303,6 @@ if(NOT WIN32 AND NOT STATIC_LINK)
 endif()
 
 if(WIN32)
-    target_compile_definitions(opensmile PUBLIC -D__VISTA)
     target_link_libraries(opensmile
         PRIVATE
             Ws2_32 # Winsock2 for networking under Windows
@@ -347,20 +341,6 @@ endif()
 
 # allow linking of libopensmile into shared libraries
 set_property(TARGET opensmile PROPERTY POSITION_INDEPENDENT_CODE ON)
-
-if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    target_compile_options(opensmile
-        PRIVATE
-            -ffast-math
-            -ftree-vectorize
-    )
-else()
-    target_compile_options(opensmile
-        PRIVATE
-            /fp:fast
-            /GL
-    )
-endif()
 
 if (MARCH_NATIVE AND NOT MSVC AND NOT ANDROID_NDK AND NOT IS_IOS_PLATFORM)
     target_compile_options(opensmile
@@ -446,13 +426,6 @@ if(WITH_OPENCV)
     target_link_libraries(opensmile PRIVATE ${OpenCV_LIBS})
     target_compile_definitions(opensmile PRIVATE -DHAVE_OPENCV)
 endif(WITH_OPENCV)
-
-# Julius
-if(WITH_JULIUS)
-    find_package(Julius REQUIRED)
-    target_link_libraries(opensmile PRIVATE Julius)
-    target_compile_definitions(opensmile PRIVATE -DHAVE_JULIUSLIB)
-endif(WITH_JULIUS)
 
 install(TARGETS opensmile
     DESTINATION lib

@@ -105,13 +105,13 @@ eTickResult cExampleSink::myTick(long long t)
   // now print the vector:
   int i;
   for (i=0; i<vec->N; i++) {
-    //SMILE_PRINT("  (a=%i vi=%i, tm=%fs) %s.%s = %f",reader->getCurR(),vi,tm,reader->getLevelName().c_str(),vec->name(i),vec->dataF[i]);
-    printf("  %s.%s = %f\n",reader_->getLevelName().c_str(),vec->name(i),vec->dataF[i]);
+    //SMILE_PRINT("  (a=%i vi=%i, tm=%fs) %s.%s = %f",reader->getCurR(),vi,tm,reader->getLevelName().c_str(),vec->name(i).c_str(),vec->data[i]);
+    printf("  %s.%s = %f\n",reader_->getLevelName().c_str(),vec->name(i).c_str(),vec->data[i]);
   }
   
   if (fHandle != NULL) {
     for (i=0; i<vec->N; i++) {
-      fprintf(fHandle, "%s = %f\n",vec->name(i),vec->dataF[i]);
+      fprintf(fHandle, "%s = %f\n",vec->name(i).c_str(),vec->data[i]);
     }
   }
   

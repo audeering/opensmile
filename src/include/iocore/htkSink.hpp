@@ -24,8 +24,7 @@ ARFF file output (for WEKA)
 #define COMPONENT_NAME_CHTKSINK "cHtkSink"
 
 
-#undef class
-class DLLEXPORT cHtkSink : public cDataSink {
+class cHtkSink : public cDataSink {
   private:
     FILE * filehandle;
     int vax;

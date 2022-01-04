@@ -31,8 +31,7 @@ LPC, compute LPC coefficients from wave data (PCM) frames
 #define LPC_METHOD_BURG   5
 
 
-#undef class
-class DLLEXPORT cLpc : public cVectorProcessor {
+class cLpc : public cVectorProcessor {
   private:
     int p;
     int saveLPCoeff, saveRefCoeff;
@@ -67,8 +66,7 @@ class DLLEXPORT cLpc : public cVectorProcessor {
     virtual void myFetchConfig() override;
     virtual int setupNamesForField(int i, const char*name, long nEl) override;
 
-    virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

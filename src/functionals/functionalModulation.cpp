@@ -563,14 +563,6 @@ long cFunctionalModulation::process(FLOAT_DMEM *in,
 
 // FURTHER TODO: functionalsVecToVec..
 
-/*
-long cFunctionalModulation::process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout)
-{
-
-  return 0;
-}
-*/
-
 cFunctionalModulation::~cFunctionalModulation()
 {
   if (tmpstr_ != NULL) {

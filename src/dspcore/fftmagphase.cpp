@@ -108,7 +108,7 @@ int cFFTmagphase::setupNamesForField(int i, const char*name, long nEl)
 
   if (inverse) {
     // TODO: find Mag and Phase fields by name, build lookup table and create only a single output for the Mag field, ignore the phase field...
-    // TODO2: cache in processVectorFloat, or method to access the phase field when the magnitude field is processed...
+    // TODO2: cache in processVector, or method to access the phase field when the magnitude field is processed...
     // OR: do not derive from cVectorProcessor...?
     // ASSUMPTION: The first field is the magnitudes, and the second the phases, both same size, we use only the first here!
     if (i == 0) {
@@ -176,11 +176,11 @@ int cFFTmagphase::setupNamesForField(int i, const char*name, long nEl)
 
 
 // a derived class should override this method, in order to implement the actual processing
-int cFFTmagphase::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cFFTmagphase::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   long n;
   if (Nsrc <= 0) return 0;
-  // TODO : seperate magnitude and phase is still broken, as processVectorFloat does not allow for a single input field and more than one output fields...
+  // TODO : seperate magnitude and phase is still broken, as processVector does not allow for a single input field and more than one output fields...
 
   // TODO: nyquist phase
   if (inverse) { // inverse is only possible from joint Mag & phase array fields... TODO: check this!

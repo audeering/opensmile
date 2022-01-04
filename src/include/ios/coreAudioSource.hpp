@@ -19,8 +19,7 @@
 #define COMPONENT_DESCRIPTION_CCOREAUDIOSOURCE "This component receives recording data from cIosRecorder class."
 #define COMPONENT_NAME_CCOREAUDIOSOURCE "cCoreAudioSource"
 
-#undef class
-class DLLEXPORT cCoreAudioSource : public cExternalAudioSource, public cIosExternalSourceDelegate
+class cCoreAudioSource : public cExternalAudioSource, public cIosExternalSourceDelegate
 {
  private:
     cIosRecorder* recorder;

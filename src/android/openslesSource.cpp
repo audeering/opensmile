@@ -225,7 +225,7 @@ int cOpenslesSource::myFinaliseInstance() {
   int ret = cDataSource::myFinaliseInstance();
   if (ret) {
     if (threadMatrix_ == NULL)
-      threadMatrix_ = new cMatrix(nChannelsEffective_, audioBuffersize_ / nChannelsEffective_, DMEM_FLOAT, true);
+      threadMatrix_ = new cMatrix(nChannelsEffective_, audioBuffersize_ / nChannelsEffective_, true);
   }
   return ret;
 }
@@ -383,13 +383,13 @@ void cOpenslesSource::performAgc(cMatrix * samples)
     return;
   // apply gain to audio buffer
   for (int i = 0; i < samples->nT; i++) {
-    samples->dataF[i] *= agcGain_;
+    samples->data[i] *= agcGain_;
   }
   // get frame peak
   FLOAT_DMEM peak = 0.0;
   for (int i = 0; i < samples->nT; i++) {
-    if (fabs(samples->dataF[i]) > peak) {
-      peak = fabs(samples->dataF[i]);
+    if (fabs(samples->data[i]) > peak) {
+      peak = fabs(samples->data[i]);
     }
   }
   // lowpass of peak and delta
@@ -599,7 +599,7 @@ void cOpenslesSource::android_AudioIn2(opensl_stream2 *p, const sWaveParameters 
         //p->hasNewInternalData_, p->internalBufferCurR, p->internalBufferCurW);
     int16_t * currentBuffer = p->internalInputBuffers[p->internalBufferCurR];
     threadMatrix_->nT = smilePcm_convertSamples((uint8_t *)currentBuffer,
-        pcmParam, threadMatrix_->dataF, nChannels_,
+        pcmParam, threadMatrix_->data, nChannels_,
         p->inBufSamples / nChannels_, monoMixdown_);
     // indicate to the callback in an atomic operation that another
     // internal buffer is free

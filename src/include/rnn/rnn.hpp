@@ -515,7 +515,7 @@ public:
 
 
 /* the RNN class */
-class DLLEXPORT cNnRnn  {
+class cNnRnn  {
 protected:
   // a net consists of layers and connections
   int nLayers; 
@@ -628,7 +628,7 @@ public:
 #define LAYER_HIDDEN_GATHER  8192*16
 #define LAYER_SUBSAMPLE  8192*32
 
-class DLLEXPORT cRnnWeightVector {
+class cRnnWeightVector {
 public:
   long nWeights;
   FLOAT_NN *weights;
@@ -646,7 +646,7 @@ public:
 };
 
 // data of parsed rnn net file
-class DLLEXPORT cRnnNetFile {
+class cRnnNetFile {
 public:
   int loaded;
   int nHiddenLayers; // the number of hidden layers!!
@@ -672,16 +672,16 @@ public:
 };
 
 // load and parse a saved network file
-DLLEXPORT int smileRnn_loadNetJson(const char *filename, cRnnNetFile &net);
+int smileRnn_loadNetJson(const char *filename, cRnnNetFile &net);
 
 // load and parse a saved network file
-DLLEXPORT int smileRnn_loadNet(const char *filename, cRnnNetFile &net);
+int smileRnn_loadNet(const char *filename, cRnnNetFile &net);
 
 //creat a cNnRnn class instance from a loaded network file
-DLLEXPORT int smileRnn_createNet(cRnnNetFile &net, cNnRnn *&rnn, int printConnections=1);
+int smileRnn_createNet(cRnnNetFile &net, cNnRnn *&rnn, int printConnections=1);
 
 // get the input weight statistics
-DLLEXPORT int smileRnn_getInputSelection(cRnnNetFile &net, FLOAT_NN **weights);
+int smileRnn_getInputSelection(cRnnNetFile &net, FLOAT_NN **weights);
 
 #endif // BUILD_RNN
 #endif // __RNN_HPP

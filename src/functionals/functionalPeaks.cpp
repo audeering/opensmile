@@ -214,14 +214,6 @@ long cFunctionalPeaks::process(FLOAT_DMEM *in,
   return 0;
 }
 
-/*
-long cFunctionalPeaks::process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout)
-{
-
-  return 0;
-}
-*/
-
 cFunctionalPeaks::~cFunctionalPeaks()
 {
 }

@@ -184,7 +184,7 @@ int cPitchBase::addCustomOutputs(FLOAT_DMEM *dstCur, long NdstLeft)
 }
 
 // a derived class should override this method, in order to implement the actual processing
-int cPitchBase::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cPitchBase::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   // we assume we have fft magnitude as input...
   //double _N = (double)(Nsrc);  

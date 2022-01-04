@@ -21,9 +21,11 @@
 
 // dll export for msvc++
 #ifdef _MSC_VER 
-#define DLLEXPORT_P __declspec(dllexport)
+#define DLLEXPORT __declspec(dllexport)
+#define DLLLOCAL
 #else
-#define DLLEXPORT_P
+#define DLLEXPORT
+#define DLLLOCAL
 #endif
 
 
@@ -42,7 +44,7 @@ static DLLLOCAL const registerFunction complist[] = {
 sComponentInfo *master=NULL;
 
 //Library:
-extern "C" DLLEXPORT_P sComponentInfo * registerPluginComponent(cConfigManager *_confman, cComponentManager *_compman) {
+extern "C" DLLEXPORT sComponentInfo * registerPluginComponent(cConfigManager *_confman, cComponentManager *_compman) {
   registerFunction f;
   sComponentInfo *cur = NULL, *last = NULL;
   int i=0;
@@ -58,13 +60,13 @@ extern "C" DLLEXPORT_P sComponentInfo * registerPluginComponent(cConfigManager *
   return master;
 }
 
-/*extern "C" DLLEXPORT_P sComponentInfo * registerPluginComponent(cConfigManager *_confman, cComponentManager *_compman) {
+/*extern "C" DLLEXPORT sComponentInfo * registerPluginComponent(cConfigManager *_confman, cComponentManager *_compman) {
   return (sComponentInfo *)complist;
 }*/
 
 
 // this function frees all memory allocated within the scope of the dll ...
-extern "C" DLLEXPORT_P void unRegisterPluginComponent() {
+extern "C" DLLEXPORT void unRegisterPluginComponent() {
   while (master != NULL) {
     sComponentInfo *tmp = master;
     if (master->next != NULL) master = master->next;

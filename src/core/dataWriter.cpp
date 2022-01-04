@@ -69,7 +69,7 @@ void cDataWriter::myFetchConfig() {
 //----- BEGIN obsolete methods --------
 // manual configuration:
 /*
-void cDataWriter::setConfig(int isRb, long nT, double period, double lenSec, int dyn, int _type, int _override)
+void cDataWriter::setConfig(int isRb, long nT, double period, double lenSec, int dyn, int _override)
 {
   cfg.isRb = isRb;
   if (!override_nT) cfg.nT = nT;
@@ -78,13 +78,12 @@ void cDataWriter::setConfig(int isRb, long nT, double period, double lenSec, int
   cfg.lenSec = lenSec;
   cfg.frameSizeSec = period;
   cfg.growDyn = dyn;
-  cfg.type = _type;
   //override = _override;
   manualConfig = 1;
 }
 
 // manual configuration:
-void cDataWriter::setConfig(int isRb, long nT, double period, double lenSec, double frameSizeSec, int dyn, int _type, int _override)
+void cDataWriter::setConfig(int isRb, long nT, double period, double lenSec, double frameSizeSec, int dyn, int _override)
 {
   cfg.isRb = isRb;
   if (!override_nT) cfg.nT = nT;
@@ -94,7 +93,6 @@ void cDataWriter::setConfig(int isRb, long nT, double period, double lenSec, dou
   if (frameSizeSec == 0.0) frameSizeSec = period;
   cfg.frameSizeSec = frameSizeSec;
   cfg.growDyn = dyn;
-  cfg.type = _type;
  // override = _override;
   manualConfig = 1;
 }
@@ -185,15 +183,6 @@ int cDataWriter::myConfigureInstance()
 
     if (isSet("levelconf.growDyn")||(!manualConfig_)) cfg.growDyn = getInt("levelconf.growDyn");
     if (isSet("levelconf.isRb")||(!manualConfig_)) cfg.isRb = getInt("levelconf.isRb");
-  
-    if (isSet("levelconf.type")||(!manualConfig_)) {
-      const char *tp = getStr("levelconf.type");
-      if (tp!=NULL) {
-        if (!strcmp(tp,"float")) { cfg.type = DMEM_FLOAT; }
-        else if (!strcmp(tp,"int")) { cfg.type = DMEM_INT; }
-          else if (!strcmp(tp,"integer")) { cfg.type = DMEM_INT; }
-      }
-    } 
 
 //  }
 

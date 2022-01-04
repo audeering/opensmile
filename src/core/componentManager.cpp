@@ -215,8 +215,6 @@ int cComponentManager::loadPlugin(const char * path, const char * fname)
   SMILE_ERR(1,"This binary is statically linked, dynamic loading of plugins is not supported!");
   return 0;
 #else
-  //sComponentInfo * registerComponent(cConfigManager *_confman, cComponentManager *_compman)
-  //sComponentInfo * (*regFn)(cConfigManager *_confman, cComponentManager *_compman);
   registerFunction regFn;
 
   char * fullname;
@@ -312,12 +310,7 @@ int cComponentManager::registerPlugins()
 
   // Prepare string for use with FindFile functions.  First, copy the
   // string to a buffer, then append '\*' to the directory name.
-
-#ifdef __MINGW32
   strncpy(szDir, pluginpath, MAX_PATH);
-#else
-  strcpy_s(szDir, MAX_PATH, pluginpath);
-#endif
   strncat(szDir, "\\*", MAX_PATH);
 
   hFind = FindFirstFile(szDir, &ffd);
@@ -387,7 +380,7 @@ int cComponentManager::registerPlugins()
 
     for (i=0; i<nPlugins; i++) {
       if (!(regDone[i])) {
-        sComponentInfo *c = (regFnlist[i])(confman,this);
+        sComponentInfo *c = (regFnlist[i])(confman,this,MAX_REG_ITER-regIter+1);
 
         //        registerFunction *tmp = (registerFunction *) c; //--
 
@@ -448,7 +441,7 @@ int cComponentManager::registerComponentTypes(const registerFunction _clist[])
       //TODO: remember already registered componentes right here.... do not call registerComponent twice!
       while (_clist[i] != NULL) {
         if (!(regDone[i])) {
-          int t = registerComponent( (_clist[i])(confman,this) );
+          int t = registerComponent( (_clist[i])(confman,this,MAX_REG_ITER-regIter+1) );
           if ( (t>=0) && (t < nCompTsAlloc)) {
             if (compTs[t].registerAgain) { nAgain++; }
             else { nReg++; regDone[i] = 1; }
@@ -543,8 +536,6 @@ void cComponentManager::exportComponentList()
   printf("%s\n", buffer.GetString());
 }
 
-extern void resetFunctionalsRaCounter();
-
 cComponentManager::cComponentManager(cConfigManager *_confman, const registerFunction _clist[]) :
   nComponents(0),
   lastComponent(0),
@@ -576,8 +567,6 @@ cComponentManager::cComponentManager(cConfigManager *_confman, const registerFun
   oldSingleIterationTickLoop(0),
   printFinalLevelStates(0)
 {
-  resetFunctionalsRaCounter();
-
   if (confman == NULL) COMP_ERR("cannot create component manager with _confman == NULL!");
   cComponentManager::confman = _confman;
 

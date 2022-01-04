@@ -24,8 +24,7 @@ output: complex values of fft or real signal values (for iFFT)
 #define COMPONENT_DESCRIPTION_CTRANSFORMFFT "This component performs an FFT on a sequence of real values (one frame), the output is the complex domain result of the transform. Use the cFFTmagphase component to compute magnitudes and phases from the complex output."
 #define COMPONENT_NAME_CTRANSFORMFFT "cTransformFFT"
 
-#undef class
-class DLLEXPORT cTransformFFT : public cVectorProcessor {
+class cTransformFFT : public cVectorProcessor {
   private:
     int inverse_;
     int **ip_;
@@ -49,7 +48,7 @@ class DLLEXPORT cTransformFFT : public cVectorProcessor {
 
     virtual int configureWriter(sDmLevelConfig &c) override;
     virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
 
   public:

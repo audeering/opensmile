@@ -701,7 +701,7 @@ int cVectorTransform::myFinaliseInstance()
   modifyInitTransform(&transform0);
 
   if ( (updateMethod == UPDMETHOD_FIX) || (updateMethod == UPDMETHOD_AVGI) ) {
-    // memory for ring-buffer is allocated during the first call to processVectorFloat
+    // memory for ring-buffer is allocated during the first call to processVector
     if (fixedBufferFrames < 3) {
       SMILE_IWRN(1,"fixedBuffer (in frames) is < 3, setting to minimum value of 3!!");
       fixedBufferFrames = 3;
@@ -744,7 +744,7 @@ int cVectorTransform::processComponentMessage( cComponentMessage *_msg )
 }
 
 /* this function will handle saving of transform data, if enabled */
-int cVectorTransform::flushVectorFloat(FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi)
+int cVectorTransform::flushVector(FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi)
 {
   if (!flushed) {
     /* call refactoring method: */
@@ -824,25 +824,25 @@ void cVectorTransform::initTransform(struct sTfData *tf, struct sTfData *tf0)
   
 }
 
-int cVectorTransform::updateTransformFloat(struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *buf,
+int cVectorTransform::updateTransform(struct sTfData * tf, const FLOAT_DMEM *src, FLOAT_DMEM *buf,
     long * _bufferNframes, long Nbuf, long wrPtr, int idxi)
 {
   if (tf == NULL) return 0;
   if (src == NULL) return 0;
   switch (updateMethod) {
     case UPDMETHOD_EXP: 
-      return updateTransformFloatExp(tf,src,idxi);
+      return updateTransformExp(tf,src,idxi);
     case UPDMETHOD_FIX: 
     case UPDMETHOD_FIXI:
-      return updateTransformFloatBuf(tf,src,buf,Nbuf,wrPtr,idxi);
+      return updateTransformBuf(tf,src,buf,Nbuf,wrPtr,idxi);
     case UPDMETHOD_AVG: 
-      return updateTransformFloatAvg(tf,src,idxi);
+      return updateTransformAvg(tf,src,idxi);
     case UPDMETHOD_AVGI: 
-      return updateTransformFloatAvgI(tf,src,buf,_bufferNframes,Nbuf,wrPtr,idxi);
+      return updateTransformAvgI(tf,src,buf,_bufferNframes,Nbuf,wrPtr,idxi);
     case UPDMETHOD_NUL:
       return 0;
     default:
-      SMILE_IWRN(2,"unknown update method in updateTransformFloat() : %i\n",updateMethod);
+      SMILE_IWRN(2,"unknown update method in updateTransform() : %i\n",updateMethod);
       return 0;
   }
 }
@@ -868,7 +868,7 @@ void cVectorTransform::updateRingBuffer(const FLOAT_DMEM *src, long Nsrc)
 
 
 // a derived class should override this method, in order to implement the actual processing
-int cVectorTransform::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst,
+int cVectorTransform::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst,
     long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   int ret = 0;
@@ -950,7 +950,7 @@ int cVectorTransform::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst,
         nFrames++; // NOTE: nFrames includes the current frame, when updateTransform is being called!
 
         /* hook for updating the transform parameters */
-        updateTransformFloat(&transform, src, buffer, bufferNframes,
+        updateTransform(&transform, src, buffer, bufferNframes,
             nAvgBuffer, wPtr, idxi);
 
 
@@ -980,7 +980,7 @@ int cVectorTransform::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst,
       if ((!turnOnlyNormalise)||(_isTurn)) {
         // apply transform
         //TODO: check !! transform might be uninitialized !!
-        int ret = transformDataFloat(&(transform), src, dst, Nsrc, Ndst, idxi);
+        int ret = transformData(&(transform), src, dst, Nsrc, Ndst, idxi);
         //fprintf(stderr,"XXX: instname: %s\n",getInstName());
         checkDstFinite(dst,ret);
         return ret;
@@ -1018,7 +1018,7 @@ int cVectorTransform::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst,
       }*/
       if ((!turnOnlyNormalise)||(_isTurn)) {
         // apply transform
-        int ret = transformDataFloat(&(transform), src, dst, Nsrc, Ndst, idxi);
+        int ret = transformData(&(transform), src, dst, Nsrc, Ndst, idxi);
         checkDstFinite(dst,ret);
         return ret;
       } else {

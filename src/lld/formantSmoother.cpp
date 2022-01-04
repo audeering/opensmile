@@ -216,7 +216,7 @@ int cFormantSmoother::setupNewNames(long nEl)
 }
 
 // a derived class should override this method, in order to implement the actual processing
-int cFormantSmoother::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cFormantSmoother::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   long i;
   long n=0;

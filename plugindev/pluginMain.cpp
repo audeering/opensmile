@@ -20,9 +20,11 @@
 
 // dll export for msvc++
 #ifdef _MSC_VER 
-#define DLLEXPORT_P __declspec(dllexport)
+#define DLLEXPORT __declspec(dllexport)
+#define DLLLOCAL
 #else
-#define DLLEXPORT_P
+#define DLLEXPORT
+#define DLLLOCAL
 #endif
 
 
@@ -38,7 +40,7 @@ static DLLLOCAL const registerFunction complist[] = {
 };
 
 //Library:
-extern "C" DLLEXPORT_P sComponentInfo * registerPluginComponent(cConfigManager *_confman, cComponentManager *_compman) {
+extern "C" DLLEXPORT sComponentInfo * registerPluginComponent(cConfigManager *_confman, cComponentManager *_compman) {
   registerFunction f;
   sComponentInfo *master=NULL;
   sComponentInfo *cur = NULL, *last = NULL;

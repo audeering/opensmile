@@ -1010,7 +1010,7 @@ struct svm_node * cLibsvmLiveSink::preprocessFrame(int modelIdx, cVector *vec)
     // copy all features
     for (i=0; i<vec->N; i++) {
       x[i].index = i+1; // FIXME!!! +1 is ok??? (no!?)
-      x[i].value = (FLOAT_DMEM)(vec->dataF[i]);
+      x[i].value = (FLOAT_DMEM)(vec->data[i]);
     }
     x[i].index = -1;
     x[i].value = 0.0;
@@ -1019,7 +1019,7 @@ struct svm_node * cLibsvmLiveSink::preprocessFrame(int modelIdx, cVector *vec)
     for (i=0; i<models[modelIdx].fselection->Nsel; i++) {
       x[i].index = i+1;
       if ( (models[modelIdx].fselection->outputSelIdx.map[i] < vec->N)&&(models[modelIdx].fselection->outputSelIdx.map[i] >= 0) ) 
-        x[i].value = (FLOAT_DMEM)(vec->dataF[models[modelIdx].fselection->outputSelIdx.map[i]]);
+        x[i].value = (FLOAT_DMEM)(vec->data[models[modelIdx].fselection->outputSelIdx.map[i]]);
       else 
         x[i].value = 0.0;
     }

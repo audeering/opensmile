@@ -7,6 +7,7 @@
 
 #include <core/smileCommon.hpp>
 #include <rnn/rnn.hpp>
+#include <limits>
 #include <string>
 #include <smileutil/JsonClasses.hpp>
 #include <fstream>
@@ -184,7 +185,7 @@ void cNnSoftmaxLayer::forward(FLOAT_NN *x, long N)
   //TODO: handle curPtr and context buffered output..!? OR: ensure nContext always == 1
   if (N > MIN(nInputs,nOutputs)) { N = MIN(nInputs,nOutputs); }
   for (i=0; i<N; i++) {
-    if (x[i] == -INFINITY) { output[i] = 0.0; }
+    if (x[i] == -std::numeric_limits<FLOAT_NN>::infinity()) { output[i] = 0.0; }
     else if (x[i] > expLim) { output[i] = FLT_MAX; }
     else output[i] = exp(x[i]);
     sum += output[i];

@@ -15,24 +15,6 @@
 #ifndef __SMILE_COMMON_H
 #define __SMILE_COMMON_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#if !defined(__STATIC_LINK) && defined(_MSC_VER) // Visual Studio specific macro
-  #ifdef BUILDING_DLL
-    #define DLLEXPORT __declspec(dllexport)
-//    #define class class __declspec(dllexport)
-  #else
-    #define DLLEXPORT __declspec(dllimport)
-//    #define class class __declspec(dllimport)
-  #endif
-  #define DLLLOCAL
-#else
-    #define DLLEXPORT
-    #define DLLLOCAL
-#endif
-
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -59,10 +41,10 @@
     The calling code is responsible of freeing this memory with free() at any
     later time which seems convenient (i.e. at the end of all calculations).
 */
-DLLEXPORT int smileMath_spline(const double *x, const double *y,
+int smileMath_spline(const double *x, const double *y,
     long n, double yp1, double ypn, double *y2, double **workspace);
 
-DLLEXPORT int smileMath_spline_FLOAT_DMEM(const FLOAT_DMEM *x, const FLOAT_DMEM *y,
+int smileMath_spline_FLOAT_DMEM(const FLOAT_DMEM *x, const FLOAT_DMEM *y,
     long n, FLOAT_DMEM yp1, FLOAT_DMEM ypn, FLOAT_DMEM *y2, FLOAT_DMEM **workspace);
 
 /* smileMath_cspline: cached variant of smileMath_spline:
@@ -81,14 +63,14 @@ typedef struct {
     double *diff2;
 } sSmileMath_splineCache;
 
-DLLEXPORT void smileMath_cspline_init(const double *x, long n, 
+void smileMath_cspline_init(const double *x, long n, 
     sSmileMath_splineCache *cache);
 
-DLLEXPORT int smileMath_cspline(const double *x, const double *y,
+int smileMath_cspline(const double *x, const double *y,
     long n, double yp1, double ypn, double *y2, double **workspace,
     const sSmileMath_splineCache *cache);
 
-DLLEXPORT void smileMath_cspline_free(sSmileMath_splineCache *cache);
+void smileMath_cspline_free(sSmileMath_splineCache *cache);
 
 /* smileMath_splint:
     Does spline interpolation of y for a given x value of function ya=f(xa).
@@ -100,10 +82,10 @@ DLLEXPORT void smileMath_cspline_free(sSmileMath_splineCache *cache);
     n contains the length of xa and ya
     x holds the position at which to interpolate *y = f(x).
 */
-DLLEXPORT int smileMath_splint(const double *xa, const double *ya,
+int smileMath_splint(const double *xa, const double *ya,
     const double *y2a, long n, double x, double *y);
 
-DLLEXPORT int smileMath_splint_FLOAT_DMEM(const FLOAT_DMEM *xa, const FLOAT_DMEM *ya,
+int smileMath_splint_FLOAT_DMEM(const FLOAT_DMEM *xa, const FLOAT_DMEM *ya,
     const FLOAT_DMEM *y2a, long n, FLOAT_DMEM x, FLOAT_DMEM *y);
 
 /* smileMath_csplint:
@@ -119,13 +101,13 @@ typedef struct {
     double *coeffs;
 } sSmileMath_splintCache;
 
-DLLEXPORT int smileMath_csplint_init(const double *xa, long n, const double *x, 
+int smileMath_csplint_init(const double *xa, long n, const double *x, 
     long nx, sSmileMath_splintCache *cache);
 
-DLLEXPORT void smileMath_csplint(const double *ya, const double *y2a,
+void smileMath_csplint(const double *ya, const double *y2a,
     const sSmileMath_splintCache *cache, double *y);
 
-DLLEXPORT void smileMath_csplint_free(sSmileMath_splintCache *cache);
+void smileMath_csplint_free(sSmileMath_splintCache *cache);
 
 #endif // __SMILE_UTIL_SPLINE_H
 

@@ -90,17 +90,17 @@ eTickResult cMonoMixdown::myTick(long long t)
   cMatrix *mat = reader_->getNextMatrix();
   if (mat == NULL) return TICK_SOURCE_NOT_AVAIL;
 
-  if (matout == NULL) matout = new cMatrix(mat->fmeta->N, mat->nT, mat->type);
+  if (matout == NULL) matout = new cMatrix(mat->fmeta->N, mat->nT);
 
   // sum up channels
   long i,j,c;
   for (i=0; i<mat->nT; i++) {
     for (j=0; j<matout->N; j++) {
-      matout->dataF[i*matout->N+j] = 0.0; long st = mat->fmeta->field[j].Nstart;
+      matout->data[i*matout->N+j] = 0.0; long st = mat->fmeta->field[j].Nstart;
       for (c=0; c<mat->fmeta->field[j].N; c++) 
-        matout->dataF[i*matout->N+j] += mat->dataF[i*mat->N+st+c];
+        matout->data[i*matout->N+j] += mat->data[i*mat->N+st+c];
       if ((mat->fmeta->field[j].N > 0)&&(normalise))
-        matout->dataF[i*matout->N+j] /= (FLOAT_DMEM)(mat->fmeta->field[j].N);
+        matout->data[i*matout->N+j] /= (FLOAT_DMEM)(mat->fmeta->field[j].N);
     }
   }
 

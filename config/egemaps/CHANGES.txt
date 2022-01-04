@@ -6,3 +6,8 @@ v01b (2020-05-29): Important fix for stability of formant features, other minor 
 
   - No changes made in the eGeMAPS-specific parts.
     For other changes, see the changelog of GeMAPS v01b.
+
+v02 (2021-02-10): Includes missing features F2bandwidth_sma3nz and F3bandwidth_sma3nz 
+                  in the LLD output (the functionals output is unaffected)
+
+  - No changes made in the parts shared with GeMAPS v01b.

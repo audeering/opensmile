@@ -173,7 +173,14 @@ int cCsvSink::myFinaliseInstance()
     long i;
     for(i=0; i<N-1; i++) {
       char *tmp = reader_->getElementName(i);
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-overflow"
+#endif
       fprintf(filehandle, "%s%c",tmp,delimChar_);
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
       free(tmp);
     }
     char *tmp = reader_->getElementName(i);
@@ -214,16 +221,16 @@ eTickResult cCsvSink::myTick(long long t)
   int i;
   for (i=0; i<vec->N-1; i++) {
     // print float as integer if its decimals are zero
-    if (vec->dataF[i] == floor(vec->dataF[i])) {
-      fprintf(filehandle,"%.0f%c",vec->dataF[i],delimChar_);
+    if (vec->data[i] == floor(vec->data[i])) {
+      fprintf(filehandle,"%.0f%c",vec->data[i],delimChar_);
     } else {
-      fprintf(filehandle,"%e%c",vec->dataF[i],delimChar_);
+      fprintf(filehandle,"%e%c",vec->data[i],delimChar_);
     }
   }
-  if (vec->dataF[i] == floor(vec->dataF[i])) {
-    fprintf(filehandle,"%0.f%s",vec->dataF[i],NEWLINE);
+  if (vec->data[i] == floor(vec->data[i])) {
+    fprintf(filehandle,"%0.f%s",vec->data[i],NEWLINE);
   } else {
-    fprintf(filehandle,"%e%s",vec->dataF[i],NEWLINE);
+    fprintf(filehandle,"%e%s",vec->data[i],NEWLINE);
   }
   if (flush_) {
     fflush(filehandle);

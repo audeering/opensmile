@@ -554,55 +554,28 @@ eTickResult cDataSelector::myTick(long long t)
     if (vec == NULL)
       return framesWritten > 0 ? TICK_SUCCESS : TICK_SOURCE_NOT_AVAIL;
 
-    if (vecO == NULL) vecO = new cVector(nElSel, vec->type);
+    if (vecO == NULL) vecO = new cVector(nElSel);
     long i;
 
-    if (vec->type == DMEM_FLOAT) {
-
-      if (elementMode) {
-        if (selectionIsRange) {
-          long j=0;
-          for (i=0; i<vec->N; i++) {
-            if (idxSelected[i]) { vecO->dataF[j++] = vec->dataF[i]; }
-          }
-        } else {
-          for (i=0; i<nElSel; i++) {
-            vecO->dataF[i] = vec->dataF[mapping[i].eIdx];
-          }
+    if (elementMode) {
+      if (selectionIsRange) {
+        long j=0;
+        for (i=0; i<vec->N; i++) {
+          if (idxSelected[i]) { vecO->data[j++] = vec->data[i]; }
         }
       } else {
-        int j; long n=0;
-        for (i=0; i<nFSel; i++) {
-          for (j=0; j<mapping[i].N; j++) {
-            vecO->dataF[n++] = vec->dataF[mapping[i].aIdx+j];
-          }
+        for (i=0; i<nElSel; i++) {
+          vecO->data[i] = vec->data[mapping[i].eIdx];
         }
       }
-
-    } else if (vec->type == DMEM_INT) {
-
-      if (elementMode) {
-        if (selectionIsRange) {
-          long j=0;
-          for (i=0; i<vec->N; i++) {
-            if (idxSelected[i]) { vecO->dataI[j++] = vec->dataI[i]; }
-          }
-        } else {
-          for (i=0; i<nElSel; i++) {
-            vecO->dataI[i] = vec->dataI[mapping[i].eIdx];
-          }
-        }
-      } else {
-        int j; long n=0;
-        for (i=0; i<nFSel; i++) {
-          for (j=0; j<mapping[i].N; j++) {
-            vecO->dataI[n++] = vec->dataI[mapping[i].aIdx+j];
-          }
+    } else {
+      int j; long n=0;
+      for (i=0; i<nFSel; i++) {
+        for (j=0; j<mapping[i].N; j++) {
+          vecO->data[n++] = vec->data[mapping[i].aIdx+j];
         }
       }
-
     }
-
 
     vecO->setTimeMeta(vec->tmeta);
 

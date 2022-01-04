@@ -6,7 +6,7 @@
     <Company>audEERING GmbH</Company>
     <Product>openSMILE</Product>    
     <Description>openSMILE SMILEapi .NET wrapper</Description>
-    <Copyright>Copyright 2019-2020 audEERING GmbH</Copyright>
+    <Copyright>Copyright 2019-2022 audEERING GmbH</Copyright>
   </PropertyGroup>
 
 </Project>

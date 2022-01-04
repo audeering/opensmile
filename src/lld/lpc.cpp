@@ -168,13 +168,7 @@ FLOAT_DMEM cLpc::calcLpc(const FLOAT_DMEM *x, long Nsrc, FLOAT_DMEM * lpc, long 
   return gain;
 }
 
-int cLpc::processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi)
-{
-  // not yet implemented
-  return 0;
-}
-
-int cLpc::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cLpc::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   long myN = Ndst;
   if (residual) myN = Ndst - Nsrc;

@@ -11,6 +11,7 @@
 
 #include <core/smileCommon.hpp>
 #include <core/smileComponent.hpp>
+#include <core/smileThread.hpp>
 #include <chrono>
 
 // this is the name of the configuration instance in the config file the component manager will search for:
@@ -18,12 +19,11 @@
 
 
 // global component list: -----------------
-#undef class
-class DLLEXPORT cComponentManager;
-typedef sComponentInfo * (*registerFunction)(cConfigManager *_confman, cComponentManager *_compman);
+class cComponentManager;
+typedef sComponentInfo * (*registerFunction)(cConfigManager *_confman, cComponentManager *_compman, int _iteration);
 typedef void (*unRegisterFunction)();
 
-extern DLLEXPORT const registerFunction componentlist[];
+extern const registerFunction componentlist[];
 
 // default number of initial component variable space and plugin variable space to allocate:
 #define COMPONENTMANAGER_DEFAULT_NCOMPS  200
@@ -50,7 +50,7 @@ typedef struct {
 } sThreadData;
 
 
-class DLLEXPORT cComponentManager {
+class cComponentManager {
 protected:
   int printPlugins;
 //#ifdef DEBUG

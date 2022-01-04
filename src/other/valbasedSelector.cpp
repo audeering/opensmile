@@ -152,7 +152,7 @@ eTickResult cValbasedSelector::myTick(long long t)
   // add offset
   int i = idx;
   if (i >= vec->N) i = vec->N-1;
-  FLOAT_DMEM val = vec->dataF[i];
+  FLOAT_DMEM val = vec->data[i];
 
   int copy = 0;
   if (adaptiveThreshold_) {
@@ -200,11 +200,11 @@ eTickResult cValbasedSelector::myTick(long long t)
     // TODO: remove threshold value if removeIdx == 1
     if (removeIdx == 1) {
 
-      if (myVec==NULL) myVec = new cVector(vec->N-1 , vec->type);
+      if (myVec==NULL) myVec = new cVector(vec->N-1);
       int j,n=0;
       for(j=0; j<vec->N; j++) {
         if (j!=i) {
-          myVec->dataF[n] = vec->dataF[j];
+          myVec->data[n] = vec->data[j];
           n++;
         }
       }
@@ -222,15 +222,15 @@ eTickResult cValbasedSelector::myTick(long long t)
       int j;
       // output a zero (or predefined value) vector
       if (removeIdx == 1) {
-        if (myVec==NULL) myVec = new cVector(vec->N-1 , vec->type);
+        if (myVec==NULL) myVec = new cVector(vec->N-1);
         for(j=0; j<myVec->N; j++) {
-          myVec->dataF[j] = outputVal;
+          myVec->data[j] = outputVal;
         }
         myVec->setTimeMeta(vec->tmeta);
         writer_->setNextFrame(myVec);
       } else {
         for(j=0; j<vec->N; j++) {
-          vec->dataF[j] = outputVal;
+          vec->data[j] = outputVal;
         }
         writer_->setNextFrame(vec);
       }

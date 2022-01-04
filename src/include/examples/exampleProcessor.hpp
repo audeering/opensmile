@@ -22,8 +22,7 @@ example for dataProcessor descendant
 #define COMPONENT_DESCRIPTION_CEXAMPLEPROCESSOR "This is an example of a cDataProcessor descendant. It has no meaningful function, this component is intended as a template for developers."
 #define COMPONENT_NAME_CEXAMPLEPROCESSOR "cExampleProcessor"
 
-#undef class
-class DLLEXPORT cExampleProcessor : public cDataProcessor {
+class cExampleProcessor : public cDataProcessor {
   private:
     double offset;
     

@@ -14,6 +14,7 @@ functionals: linear and quadratic regression coefficients
 
 
 #include <functionals/functionalRegression.hpp>
+#include <cmath>
 
 #define MODULE "cFunctionalRegression"
 
@@ -307,15 +308,15 @@ long cFunctionalRegression::process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted,
       x0 = b/(-2.0*a);
       if (x0 < -1.0*Nind) x0 = -Nind;
       if (x0 > Nind) x0 = Nind;
-      if (!finite(x0)) x0 = Nind;
+      if (!std::isfinite(x0)) x0 = Nind;
       x0nn = x0;
       y0 = c - b*b/(4.0*a);  // TODO: also limit to range 0..Nind
-      if (!finite(y0)) y0 = 0.0;
+      if (!std::isfinite(y0)) y0 = 0.0;
       y0nn = y0;
 
       // parabola left / right points
       yrnn = yr = a * (Nind-1.0)*(Nind-1.0) + b*(Nind-1.0) + c;
-      if (!finite(yr)) { yr = 0.0; yrnn = 0.0; }
+      if (!std::isfinite(yr)) { yr = 0.0; yrnn = 0.0; }
       c3nn = c;
     }
 
@@ -379,18 +380,18 @@ long cFunctionalRegression::process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted,
     }
 
     // security checks:
-    if (!finite(m)) m = 0.0;
-    if (!finite(t)) t = 0.0;
-    if (!finite(lea/Nind)) lea = 0.0;
-    if (!finite(leq/Nind)) leq = 0.0;
-    if (!finite(a)) a = 0.0;
-    if (!finite(b)) b = 0.0;
-    if (!finite(c)) { c = 0.0; c3nn = 0.0; }
-    if (!finite(ls)) ls = 0.0;
-    if (!finite(rs)) rs = 0.0;
-    if (!finite(qea/Nind)) qea = 0.0;
-    if (!finite(qeq/Nind)) qeq = 0.0;
-    if (!finite(centroid)) centroid = 0.0;
+    if (!std::isfinite(m)) m = 0.0;
+    if (!std::isfinite(t)) t = 0.0;
+    if (!std::isfinite(lea/Nind)) lea = 0.0;
+    if (!std::isfinite(leq/Nind)) leq = 0.0;
+    if (!std::isfinite(a)) a = 0.0;
+    if (!std::isfinite(b)) b = 0.0;
+    if (!std::isfinite(c)) { c = 0.0; c3nn = 0.0; }
+    if (!std::isfinite(ls)) ls = 0.0;
+    if (!std::isfinite(rs)) rs = 0.0;
+    if (!std::isfinite(qea/Nind)) qea = 0.0;
+    if (!std::isfinite(qeq/Nind)) qeq = 0.0;
+    if (!std::isfinite(centroid)) centroid = 0.0;
 
     // save values:
     if (enab[FUNCT_LINREGC1]) out[n++]=(FLOAT_DMEM)m;
@@ -424,14 +425,6 @@ long cFunctionalRegression::process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted,
   }
   return 0;
 }
-
-/*
-long cFunctionalRegression::process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout)
-{
-
-  return 0;
-}
-*/
 
 cFunctionalRegression::~cFunctionalRegression()
 {

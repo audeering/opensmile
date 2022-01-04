@@ -97,14 +97,6 @@ long cFunctionalCrossings::process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_D
   return 0;
 }
 
-/*
-long cFunctionalCrossings::process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout)
-{
-
-  return 0;
-}
-*/
-
 cFunctionalCrossings::~cFunctionalCrossings()
 {
 }

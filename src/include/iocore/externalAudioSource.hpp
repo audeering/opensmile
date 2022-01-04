@@ -17,13 +17,13 @@ This component reads audio input that is passed to the component programmaticall
 #define __CEXTERNALAUDIOSOURCE_HPP
 
 #include <core/smileCommon.hpp>
+#include <core/smileThread.hpp>
 #include <core/dataSource.hpp>
 
 #define COMPONENT_DESCRIPTION_CEXTERNALAUDIOSOURCE "This component reads audio input that is passed to the component programmatically."
 #define COMPONENT_NAME_CEXTERNALAUDIOSOURCE "cExternalAudioSource"
 
-#undef class
-class DLLEXPORT cExternalAudioSource : public cDataSource {
+class cExternalAudioSource : public cDataSource {
   private:
     int sampleRate_;
     int channels_;
@@ -36,6 +36,7 @@ class DLLEXPORT cExternalAudioSource : public cDataSource {
     mutable smileMutex writeDataMtx_;  // mutex for ensuring writeData is thread-safe
 
     bool externalEOI_;
+    bool eoiProcessed_;
 
   protected:
     SMILECOMPONENT_STATIC_DECL_PR

@@ -218,8 +218,8 @@ eTickResult cSmileResample::myTick(long long t)
         FLOAT_DMEM *lastOutBuf = lastOutputBuf + i*(winSizeFramesTarget/2+1);
         FLOAT_TYPE_FFT *inBuf = inputBuf+i*winSizeFrames;
         for (j=0; j<winSizeFramesTarget; j++) { outBuf[j]=0.0; }
-        getOutput(outBuf, lastOutBuf, winSizeFramesTarget, rowout->dataF, rowout->nT);
-        //rowout->dataF[0]= outBuf[0];
+        getOutput(outBuf, lastOutBuf, winSizeFramesTarget, rowout->data, rowout->nT);
+        //rowout->data[0]= outBuf[0];
         matnew->setRow(i,rowout);
       }
       writer_->setNextMatrix(matnew);
@@ -235,23 +235,21 @@ eTickResult cSmileResample::myTick(long long t)
   
   // TODO: if blocksize< order!! also check if we need to increase the read counter!
   if (mat != NULL) {
-    if (mat->type!=DMEM_FLOAT) COMP_ERR("dataType (%i) != DMEM_FLOAT not yet supported!",mat->type);
-
     // TODO: test quick resample algo here...!
     if (useQuickAlgo) {
 
-      if (matnew == NULL) matnew = new cMatrix(mat->N, winSizeFramesTarget,DMEM_FLOAT);
-      //if (rowout == NULL) rowout = new cMatrix(1,winSizeFramesTarget/2, DMEM_FLOAT);
-      //if (row == NULL) row = new cMatrix(1,winSizeFrames, DMEM_FLOAT);
+      if (matnew == NULL) matnew = new cMatrix(mat->N, winSizeFramesTarget);
+      //if (rowout == NULL) rowout = new cMatrix(1,winSizeFramesTarget/2);
+      //if (row == NULL) row = new cMatrix(1,winSizeFrames);
       long i,j,n,r=0;
       int rr = (int)(1.0/resampleRatio);
       if (rr<1) rr=1;
       for (i=0; i<mat->nT; i+=rr) {
         for (j=0; j<mat->N; j++) {
-          FLOAT_DMEM *out = matnew->dataF + (r*matnew->N+j);
+          FLOAT_DMEM *out = matnew->data + (r*matnew->N+j);
           *out = 0;
           for (n=0; n<rr; n++) {
-            *out += mat->dataF[(i+n)*mat->N+j];
+            *out += mat->data[(i+n)*mat->N+j];
           }
           *out /= rr;
         }
@@ -261,11 +259,11 @@ eTickResult cSmileResample::myTick(long long t)
     } else {
     
     /*
-    if (row == NULL) row = new cMatrix(1,mat->nT, mat->type);
+    if (row == NULL) row = new cMatrix(1,mat->nT);
 */
-    if (matnew == NULL) matnew = new cMatrix(mat->N, winSizeFramesTarget/2,DMEM_FLOAT);
-    if (rowout == NULL) rowout = new cMatrix(1,winSizeFramesTarget/2, DMEM_FLOAT);
-    if (row == NULL) row = new cMatrix(1,winSizeFrames, DMEM_FLOAT);
+    if (matnew == NULL) matnew = new cMatrix(mat->N, winSizeFramesTarget/2);
+    if (rowout == NULL) rowout = new cMatrix(1,winSizeFramesTarget/2);
+    if (row == NULL) row = new cMatrix(1,winSizeFrames);
 
     for (i=0; i<mat->N; i++)  {
       FLOAT_DMEM *outBuf = outputBuf+i*winSizeFramesTarget;
@@ -277,12 +275,12 @@ eTickResult cSmileResample::myTick(long long t)
       if (rowr==NULL) COMP_ERR("cWindowProcessor::myTick : Error getting row %i from matrix! (return obj = NULL!)",i);
 
       for (j=0; j<rowr->nT; j++) {
-        inBuf[j] = (FLOAT_TYPE_FFT) rowr->dataF[j];
+        inBuf[j] = (FLOAT_TYPE_FFT) rowr->data[j];
       }
       
       smileDsp_doResample(inBuf, row->nT, outBuf, winSizeFramesTarget, ND, &resampleWork);
-      getOutput(outBuf, lastOutBuf, winSizeFramesTarget, rowout->dataF, rowout->nT);
-      //rowout->dataF[0]= outBuf[0];
+      getOutput(outBuf, lastOutBuf, winSizeFramesTarget, rowout->data, rowout->nT);
+      //rowout->data[0]= outBuf[0];
       matnew->setRow(i,rowout);
     }
     

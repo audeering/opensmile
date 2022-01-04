@@ -23,8 +23,7 @@ functionals: percentiles and quartiles, and inter-percentile/quartile ranges
 #define COMPONENT_DESCRIPTION_CFUNCTIONALPERCENTILES "  percentile values and inter-percentile ranges (including quartiles, etc.). This component sorts the input array and then chooses the value at the index closest to p*buffer_len for the p-th percentile (p=0..1)."
 #define COMPONENT_NAME_CFUNCTIONALPERCENTILES "cFunctionalPercentiles"
 
-#undef class
-class DLLEXPORT cFunctionalPercentiles : public cFunctionalComponent {
+class cFunctionalPercentiles : public cFunctionalComponent {
   private:
     int nPctl, nPctlRange, nPctlQuot;
     double *pctl;
@@ -47,7 +46,6 @@ class DLLEXPORT cFunctionalPercentiles : public cFunctionalComponent {
     cFunctionalPercentiles(const char *name);
     // inputs: sorted and unsorted array of values, out: pointer to space in output array, You may not return MORE than Nout elements, please return as return value the number of actually computed elements (usually Nout)
     virtual long process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_DMEM *out, long Nin, long Nout) override;
-    //virtual long process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout) override;
 
     //virtual long getNoutputValues() override { return nEnab; }
     virtual const char* getValueName(long i) override;

@@ -20,7 +20,7 @@ packages. The best way to do this is in a virtual environment and using
         --no-site-packages \
         "${HOME}/.envs/opensmile-doc"
     source "${HOME}/.envs/opensmile-doc/bin/activate"
-    pip install -r requirements.txt
+    pip install -r requirements.txt.lock
 
 
 Usage

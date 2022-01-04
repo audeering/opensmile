@@ -28,8 +28,7 @@
 typedef bool (*ExternalMessageInterfaceCallback)(const cComponentMessage *msg, void *param);
 typedef bool (*ExternalMessageInterfaceJsonCallback)(const char *msg, void *param);
 
-#undef class
-class DLLEXPORT cExternalMessageInterface : public cSmileComponent {
+class cExternalMessageInterface : public cSmileComponent {
 private:
     ExternalMessageInterfaceCallback messageCallback;
     ExternalMessageInterfaceJsonCallback jsonMessageCallback;

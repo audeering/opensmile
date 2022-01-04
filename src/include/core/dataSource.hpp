@@ -22,8 +22,7 @@
 #define COMPONENT_DESCRIPTION_CDATASOURCE "This is a base class for components, which write data to dataMemory, but do not read from it."
 #define COMPONENT_NAME_CDATASOURCE "cDataSource"
 
-#undef class
-class DLLEXPORT cDataSource : public cSmileComponent {
+class cDataSource : public cSmileComponent {
   private:
 
   protected:

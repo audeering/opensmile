@@ -23,8 +23,7 @@ smooth data contours by moving average filter
 #define COMPONENT_DESCRIPTION_CCONTOURSMOOTHER "This component smooths data contours by applying a moving average filter of configurable length."
 #define COMPONENT_NAME_CCONTOURSMOOTHER "cContourSmoother"
 
-#undef class
-class DLLEXPORT cContourSmoother : public cWindowProcessor {
+class cContourSmoother : public cWindowProcessor {
   private:
     int smaWin;
     int noZeroSma;

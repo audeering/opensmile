@@ -23,7 +23,6 @@ BLSTM RNN processor
 #define COMPONENT_DESCRIPTION_CRNNVAD2 "BLSTM RNN processor."
 #define COMPONENT_NAME_CRNNVAD2 "cRnnVad2"
 
-#undef class
 
 
 /* ring buffer average computation over holdTime + decayTime segments */
@@ -111,7 +110,7 @@ public:
 };
 
 
-class DLLEXPORT cRnnVad2 : public cDataProcessor {
+class cRnnVad2 : public cDataProcessor {
   private:
     cEavgHold * eUser;
     cEavgHold * eCurrent;

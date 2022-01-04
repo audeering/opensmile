@@ -9,12 +9,15 @@ task runSwig(type: Exec) {
             'opensmile.i'
 }
 
-task swig(type: Exec) {
+tasks.register("swig") {
     dependsOn runSwig
     //post-fixing the parameter
-    commandLine 'sed', '-i',
-            's/(data == 0) ? null : new SWIGTYPE_p_float(data, false)/data/g',
-            'src/main/java/com/audeering/opensmile/OpenSMILEJNI.java'
+    doLast {
+        def path = 'src/main/java/com/audeering/opensmile/OpenSMILEJNI.java'
+        def content = new File(path).getText('UTF-8')
+        content = content.replaceAll(/\(data == 0\) \? null : new SWIGTYPE_p_float\(data, false\)/, 'data')
+        new File(path).write(content, 'UTF-8')
+    }
 }
 
 build.dependsOn swig
@@ -29,7 +32,6 @@ android {
             cmake {
                 arguments.add("-DSTATIC_LINK=OFF")
                 arguments.add("-DOPENSMILE_ROOT=../../../")
-                arguments.add("-DBUILD_FLAGS=-DBUILD_WITHOUT_EXPERIMENTAL")
                 arguments.add("-DANDROID_PLATFORM=" + project.ANDROID_PLATFORM)
                 arguments.add("-DANDROID_NATIVE_API_LEVEL=" + project.ANDROID_NATIVE_API_LEVEL)
                 arguments.addAll(project.CMAKE_FLAGS.split())

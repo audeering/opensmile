@@ -131,11 +131,12 @@ void cSignalGenerator::myFetchConfig()
   randSeed = getInt("randSeed");
   SMILE_IDBG(2,"randSeed = %i",randSeed);
 
-  stddev = (FLOAT_DMEM)getDouble("stddev");
-  SMILE_IDBG(2,"stddev = %f",stddev);
+  // stddev and mean options currently not implemented
+  //stddev = (FLOAT_DMEM)getDouble("stddev");
+  //SMILE_IDBG(2,"stddev = %f",stddev);
 
-  mean = (FLOAT_DMEM)getDouble("mean");
-  SMILE_IDBG(2,"mean = %f",mean);
+  //mean = (FLOAT_DMEM)getDouble("mean");
+  //SMILE_IDBG(2,"mean = %f",mean);
 
   scale = getDouble("scale");
   SMILE_IDBG(2,"scale = %f",scale);
@@ -295,18 +296,18 @@ eTickResult cSignalGenerator::myTick(long long t)
       random = ((float)rand() / ((float)(RAND_MAX) + 1.0f));
       v = (FLOAT_DMEM)scale * (FLOAT_DMEM)( (2.f * ((random * c2) + (random * c2) + (random * c2)) - 3.f * (c2 - 1.f)) * c3 );
       for (i=0; i<nValues; i++) {
-        vec_->dataF[i] = v;
+        vec_->data[i] = v;
       }
       break;
     case SIGNAL_CONST:
       for (i=0; i<nValues; i++) {
-        vec_->dataF[i] = constant;
+        vec_->data[i] = constant;
       }
       break;
     case SIGNAL_RECT:
       v = (FLOAT_DMEM)(val*scale);
       for (i=0; i<nValues; i++) {
-        vec_->dataF[i] = v;
+        vec_->data[i] = v;
       }
       myt += samplePeriod;
       if ((signalPeriod > 0.0) && (floor(myt/(signalPeriod*0.5)) > lastP)) {
@@ -319,7 +320,7 @@ eTickResult cSignalGenerator::myTick(long long t)
       val = sin(2.0*M_PI*(1.0/signalPeriod)*myt) ;
       v = (FLOAT_DMEM)( val * scale ); 
       for (i=0; i<nValues; i++) {
-        vec_->dataF[i] = v;
+        vec_->data[i] = v;
       }
       myt += samplePeriod;
       break;

@@ -21,8 +21,7 @@
 #define COMPONENT_DESCRIPTION_CMYCOMPONENT "a good template..."
 #define COMPONENT_NAME_CMYCOMPONENT "cMyComponent"
 
-#undef class
-class DLLEXPORT cMyComponent : public cSmileComponent {
+class cMyComponent : public cSmileComponent {
   private:
 
   protected:

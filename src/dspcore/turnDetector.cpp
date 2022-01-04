@@ -59,8 +59,8 @@ SMILECOMPONENT_REGCOMP(cTurnDetector)
     ct->setField("maxTurnLengthGrace", "The grace period to grant, after maxTurnLength is reached (in seconds). After a turn length of maxTurnLength + maxTurnLengthGrace an immediate turn end will be forced.",1.0);
     ct->setField("invert", "Invert the behaviour of turnStart/turnEnd messages. Also send a turnStart message at vIdx = 0, and a turnEnd message at the end (EOI).", 0);
     ct->setField("debug","log level to show some turn detector specific debug messages on",4);
-    ct->setField("timeoutSec","turnEnd timeout in seconds (send turnEnd after timeoutSec seconds no input data)",2.0);
-    ct->setField("eoiFramesMissing","set the number of frames that will be subtracted from the last turn end position (the forced turn end that will be sent when an EOI condition (end of input) is encountered). This is necessary, e.g. if you use delta or acceleration coefficients which introduce a lag of a few frames. Increase this value if SMILExtract hangs at the end of input when using the cTumkwsjSink component or a cFunctionals component, etc.",5);
+    ct->setField("timeoutSec","turnEnd timeout in seconds (send turnEnd after timeoutSec seconds no input data, <= 0 : infinite)",2.0);
+    ct->setField("eoiFramesMissing","set the number of frames that will be subtracted from the last turn end position (the forced turn end that will be sent when an EOI condition (end of input) is encountered). This is necessary, e.g. if you use delta or acceleration coefficients which introduce a lag of a few frames. Increase this value if SMILExtract hangs at the end of input when using a cFunctionals component, etc.",5);
     ct->setField("unblockTimeout","timeout in frames to wait after a turn block condition (started via a semaineCallback message)",60);
     ct->setField("blockStatus","apply event based speech detection block  for speakingStatus messages (i.e.  the sending of these messages is supressed)",0);
     ct->setField("blockAll","apply event based speech detection block for all types, i.e. the voice input is set to 0 by an incoming block message.",1);
@@ -606,7 +606,7 @@ eTickResult cTurnDetector::myTick(long long t) {
     vec = reader_->getNextFrame();
   }
   if (vec == NULL) {
-    if ((getSmileTime()-lastDataTime > timeoutSec)&&(lastDataTime>0)) {
+    if ((timeoutSec>0)&&(lastDataTime>0)&&(getSmileTime()-lastDataTime > timeoutSec)) {
       timeout = 1;
     } else {
       timeout = 0;
@@ -622,8 +622,8 @@ eTickResult cTurnDetector::myTick(long long t) {
   }
   
   cVector *vec0 = new cVector(1);  // TODO: move vec0 to class...
-  FLOAT_DMEM *src = vec->dataF;
-  FLOAT_DMEM *dst = vec0->dataF;
+  FLOAT_DMEM *src = vec->data;
+  FLOAT_DMEM *dst = vec0->data;
 
   if (rmsIdx < 0) {
     if (autoRmsIdx < 0) { // if autoRmsIdx has not been set yet

@@ -26,7 +26,6 @@ or sends all read data periodically as a message.
 #define COMPONENT_NAME_CSIMPLEMESSAGESENDER "cSimpleMessageSender"
 #define BUILD_COMPONENT_SimpleMessageSender
 
-#undef class
 
 enum cSimpleMessageSender_Conditions {
   COND_UNDEF=0,
@@ -42,7 +41,7 @@ enum cSimpleMessageSender_Conditions {
   COND_LEEQ_S=105, // trigger event, only the first time the value is lesser or equal
 };
 
-class DLLEXPORT cSimpleMessageSender : public cDataSink {
+class cSimpleMessageSender : public cDataSink {
   private:
     const char *messageRecp;  // the comma separated list of message receipients (component names)
     const char *messageName;

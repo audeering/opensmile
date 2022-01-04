@@ -134,7 +134,7 @@ int cPitchACF::setupNewNames(long nEl)
 
 
 // implementation of the actual processing
-int cPitchACF::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cPitchACF::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   // do domething to data in *src, save result to *dst
   // NOTE: *src and *dst may be the same...

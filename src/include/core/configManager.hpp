@@ -43,10 +43,9 @@ int instNameSplit(const char *n, char **b, const char **s);
 #define CFTP_CHR_ARR   102
 #define CFTP_OBJ_ARR   103
 
-#undef class
-class DLLEXPORT ConfigInstance;
+class ConfigInstance;
 
-class DLLEXPORT ConfigValue {
+class ConfigValue {
   protected:
     int set;
     int type;
@@ -90,7 +89,7 @@ class DLLEXPORT ConfigValue {
 };
 
 
-class DLLEXPORT ConfigValueNum : public ConfigValue {
+class ConfigValueNum : public ConfigValue {
   private:
     int valueI;
     double valueD;
@@ -110,7 +109,7 @@ class DLLEXPORT ConfigValueNum : public ConfigValue {
     ~ConfigValueNum() {}
 };
 
-class DLLEXPORT ConfigValueStr : public ConfigValue {
+class ConfigValueStr : public ConfigValue {
   private:
     char *str;  // string data
     size_t N;      // string length
@@ -134,7 +133,7 @@ class DLLEXPORT ConfigValueStr : public ConfigValue {
     ~ConfigValueStr() { if (str != NULL) free(str); }
 };
 
-class DLLEXPORT ConfigValueChr : public ConfigValue {
+class ConfigValueChr : public ConfigValue {
   private:
     char c;
 
@@ -151,7 +150,7 @@ class DLLEXPORT ConfigValueChr : public ConfigValue {
 };
 
 
-class DLLEXPORT ConfigValueObj : public ConfigValue {
+class ConfigValueObj : public ConfigValue {
   private:
     ConfigInstance *obj;
     int freeObj;
@@ -172,7 +171,7 @@ class DLLEXPORT ConfigValueObj : public ConfigValue {
 };
 
 // TODO: associative array functionality by over loading operators (int n  AND const char *name)
-class DLLEXPORT ConfigValueArr : public ConfigValue {
+class ConfigValueArr : public ConfigValue {
   protected:
     ConfigValue **el;
     char **aName;  // names for associative array
@@ -208,7 +207,7 @@ class DLLEXPORT ConfigValueArr : public ConfigValue {
     }
 };
 
-class DLLEXPORT ConfigValueNumArr : public ConfigValueArr {
+class ConfigValueNumArr : public ConfigValueArr {
   public:
     ConfigValueNumArr(int initN=NEL_ALLOC_BLOCK) : ConfigValueArr(initN) { type=CFTP_NUM_ARR; }
 
@@ -242,7 +241,7 @@ class DLLEXPORT ConfigValueNumArr : public ConfigValueArr {
     }
 };
 
-class DLLEXPORT ConfigValueStrArr : public ConfigValueArr {
+class ConfigValueStrArr : public ConfigValueArr {
   public:
     ConfigValueStrArr(int initN=NEL_ALLOC_BLOCK) : ConfigValueArr(initN) { type=CFTP_STR_ARR; }
 
@@ -262,7 +261,7 @@ class DLLEXPORT ConfigValueStrArr : public ConfigValueArr {
     }
 };
 
-class DLLEXPORT ConfigValueChrArr : public ConfigValueArr {
+class ConfigValueChrArr : public ConfigValueArr {
   public:
     ConfigValueChrArr(int initN=NEL_ALLOC_BLOCK) : ConfigValueArr(initN) { type=CFTP_CHR_ARR; }
 
@@ -282,7 +281,7 @@ class DLLEXPORT ConfigValueChrArr : public ConfigValueArr {
     }
 };
 
-class DLLEXPORT ConfigValueObjArr : public ConfigValueArr {
+class ConfigValueObjArr : public ConfigValueArr {
   public:
     ConfigValueObjArr(int initN=NEL_ALLOC_BLOCK) : ConfigValueArr(initN) { type=CFTP_OBJ_ARR; }
 
@@ -296,7 +295,7 @@ class DLLEXPORT ConfigValueObjArr : public ConfigValueArr {
 
 
 /*********** Config Type **********/
-class DLLEXPORT ConfigType;
+class ConfigType;
 #define NO_ARRAY        0
 #define ARRAY_TYPE      1
 #define DONT_FREE       0
@@ -322,7 +321,7 @@ typedef struct sConfigDescription {
   int overridden;        // if set to 1, this field is overridden
 } ConfigDescription;
 
-class DLLEXPORT ConfigType {
+class ConfigType {
   private:
     char                       name[CONFIGTYPE_STRLEN+1];  /* name of type */
     char                       parentName[CONFIGTYPE_STRLEN+1];  /* name of parent type, has length 0 if there is no parent type */
@@ -390,7 +389,7 @@ class DLLEXPORT ConfigType {
 
 
 /******* Config Instance *********/
-class DLLEXPORT ConfigInstance {
+class ConfigInstance {
   private:
     char                       name[CONFIGTYPE_STRLEN];
     const ConfigType *type;          /* single type class */
@@ -449,9 +448,9 @@ class DLLEXPORT ConfigInstance {
 
 
 /******* Config Reader *******/
-class DLLEXPORT cConfigManager;
+class cConfigManager;
 
-class DLLEXPORT cConfigReader {
+class cConfigReader {
   protected:
     char *inputPath;      // top level config file
     char *lastLevelFile;  // config file that was previously included (can be pointer identical to inputPath or NULL in this case)
@@ -565,7 +564,7 @@ public:
 #include <vector>
 #include <map>
 
-class DLLEXPORT cFileConfigReader : public cConfigReader {
+class cFileConfigReader : public cConfigReader {
   private:
     fileInstance *inst_;
     int nInst_, nInstAlloc_;
@@ -617,7 +616,7 @@ class DLLEXPORT cFileConfigReader : public cConfigReader {
 #ifndef MODULE
 #define MODULE "configManager"
 
-class DLLEXPORT cConfigManager {
+class cConfigManager {
   private:
     int nTypes, nTypesAlloc;
     ConfigInstance **defaults;
@@ -626,7 +625,6 @@ class DLLEXPORT cConfigManager {
     int nReaders, nReadersAlloc;
     cConfigReader   **reader;
     cCommandlineParser *cmdparser;
-    std::map <std::string, void *> *externalObjectMap_;
     
   protected:
     //int findInstance(const char *_instname);
@@ -779,23 +777,6 @@ class DLLEXPORT cConfigManager {
 
     rapidjson::Value exportTypeInfo(rapidjson::MemoryPoolAllocator<> &allocator);
 
-    // support for dirty pointer passing from external (pre tick loop) code
-    // into components
-    void addExternalPointer(const char * name, void * ptr) {
-      if (externalObjectMap_->find(name) != externalObjectMap_->end()) {
-        SMILE_WRN(1, "configManager: duplicate assignment of external pointer '%s'", name);
-      }
-      (*externalObjectMap_)[name] = ptr;
-    }
-
-    void * getExternalPointer(const char * name) {
-      if (externalObjectMap_->find(name) != externalObjectMap_->end()) {
-        return (*externalObjectMap_)[name];
-      } else {
-        SMILE_WRN(1, "configManager: external pointer with name '%s' not found! Returning NULL.", name);
-      }
-      return NULL;
-    }
     /*
     naming conventions
     */

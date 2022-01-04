@@ -59,7 +59,8 @@ cExternalAudioSource::cExternalAudioSource(const char *_name) :
   nBPS_(0),
   fieldName_(NULL),
   writtenDataBuffer_(NULL),
-  externalEOI_(false)
+  externalEOI_(false),
+  eoiProcessed_(false)
 {
   smileMutexCreate(writeDataMtx_);
 }
@@ -157,19 +158,19 @@ bool cExternalAudioSource::writeData(const void *data, int nBytes)
 
   // allocate/resize data buffer
   if (writtenDataBuffer_ == NULL) {
-    writtenDataBuffer_ = new cMatrix(channels_, nSamples, DMEM_FLOAT, true);
+    writtenDataBuffer_ = new cMatrix(channels_, nSamples, true);
   } else if (writtenDataBuffer_->nT < nSamples) {
     delete writtenDataBuffer_;
-    writtenDataBuffer_ = new cMatrix(channels_, nSamples, DMEM_FLOAT, true);
+    writtenDataBuffer_ = new cMatrix(channels_, nSamples, true);
   }
 
   if (nBits_ == 33) {
-    if (!smilePcm_convertFloatSamples(data, &pcmParam_, writtenDataBuffer_->dataF, channels_, nSamples, 0)) {
+    if (!smilePcm_convertFloatSamples(data, &pcmParam_, writtenDataBuffer_->data, channels_, nSamples, 0)) {
       smileMutexUnlock(writeDataMtx_);
       return false;
     }
   } else {
-    if (!smilePcm_convertSamples(data, &pcmParam_, writtenDataBuffer_->dataF, channels_, nSamples, 0)) {
+    if (!smilePcm_convertSamples(data, &pcmParam_, writtenDataBuffer_->data, channels_, nSamples, 0)) {
       smileMutexUnlock(writeDataMtx_);
       return false;
     }
@@ -196,10 +197,41 @@ bool cExternalAudioSource::writeData(const void *data, int nBytes)
 
 eTickResult cExternalAudioSource::myTick(long long t)
 {
-  if (isAbort() || isPaused() || isEOI() || externalEOI_)
+  if (isAbort() || isPaused() || isEOI()) {
     return TICK_INACTIVE;
-  else
+  }
+
+  smileMutexLock(writeDataMtx_);
+  bool eoi = externalEOI_;
+  smileMutexUnlock(writeDataMtx_);
+
+  if (!eoi) {
     return TICK_EXT_SOURCE_NOT_AVAIL;
+  } else if (!eoiProcessed_) {
+    // After the EOI has been set, we need to return TICK_SUCCESS once
+    // to account for the following corner case:
+    // * The cExternalAudioSource component is not registered at the beginning of the components list,
+    //   i.e. components that depend on the input run in the tick loop before the cExternalAudioSource component.
+    // * Part of the external data is written and all components have fully processed it as far as possible.
+    //   Thus, all components return TICK_SOURCE_NOT_AVAIL/TICK_INACTIVE.
+    // * Right before the tick of cExternalAudioSource is executed,
+    //   more external data is written and the external EOI is set,
+    //   then the tick function of cExternalAudioSource runs.
+    // If cExternalAudioSource immediately returned TICK_INACTIVE at this point, 
+    // the component manager would see all components as inactive and set the EOI condition even though 
+    // there is more data available that has not been processed yet.
+    // Premature entering of the EOI mode leads in general to wrong behavior of components.
+    //
+    // We need to return TICK_SUCCESS here, not TICK(_EXT)_SOURCE_NOT_AVAIL, because:
+    // * TICK_EXT_SOURCE_NOT_AVAIL would lead to suspending of the tick loop if no other components performed more work,
+    //   which is not what we want.
+    // * TICK_SOURCE_NOT_AVAIL would not fix the above corner case because it would not prevent the component manager 
+    //   from entering EOI mode early.
+    eoiProcessed_ = true;
+    return TICK_SUCCESS;
+  } else {
+    return TICK_INACTIVE;
+  }
 }
 
 void cExternalAudioSource::setExternalEOI()

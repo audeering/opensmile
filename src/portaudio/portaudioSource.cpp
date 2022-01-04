@@ -215,9 +215,9 @@ int cPortaudioSource::myFinaliseInstance()
   int ret = cDataSource::myFinaliseInstance();
   if (ret) {
     if ((monoMixdown)||(selectChannel>=0)) {
-      callbackMatrix = new cMatrix(1, audioBuffersize, DMEM_FLOAT, true);
+      callbackMatrix = new cMatrix(1, audioBuffersize, true);
     } else {
-      callbackMatrix = new cMatrix(getChannels(), audioBuffersize, DMEM_FLOAT, true);
+      callbackMatrix = new cMatrix(getChannels(), audioBuffersize, true);
     }
     //ret*=startRecording(); 
     // we start recording during first tick... this will ensure that all componentes are finalised when the first callback is called!
@@ -340,14 +340,14 @@ int pcmDataToMatrix(const void *buf, cMatrix *m, int nBPS, int nBits, int nChan,
           for (i=0; i<m->nT; i++) {
             FLOAT_DMEM tmp;
             tmp = (FLOAT_DMEM)b8[i*nChan+selectChannel];
-            m->setF(0,i,tmp/(FLOAT_DMEM)127.0);
+            m->set(0,i,tmp/(FLOAT_DMEM)127.0);
           }
           break;
         case 2: // 16-bit int
           for (i=0; i<m->nT; i++) {
             FLOAT_DMEM tmp;
             tmp = (FLOAT_DMEM)b16[i*nChan+selectChannel];
-            m->setF(0,i,tmp/(FLOAT_DMEM)32767.0);
+            m->set(0,i,tmp/(FLOAT_DMEM)32767.0);
           }
           break;
         case 3: // 24-bit int
@@ -355,7 +355,7 @@ int pcmDataToMatrix(const void *buf, cMatrix *m, int nBPS, int nBits, int nChan,
         /*
         int24_t *b24 = (int24_t*)buf;
         for (i=0; i<m->nT; i++) for (c=0; c<nChan; c++) {
-          m->setF(c,i,((FLOAT_DMEM)b24[i*nChan+c])/(32767.0*256.0));
+          m->set(c,i,((FLOAT_DMEM)b24[i*nChan+c])/(32767.0*256.0));
         } break;
         */
           break;
@@ -364,20 +364,20 @@ int pcmDataToMatrix(const void *buf, cMatrix *m, int nBPS, int nBits, int nChan,
             for (i=0; i<m->nT; i++) {
               FLOAT_DMEM tmp;
               tmp = (FLOAT_DMEM)(b32[i*nChan+selectChannel]&0xFFFFFF);
-              m->setF(0,i,tmp/(FLOAT_DMEM)(32767.0*256.0));
+              m->set(0,i,tmp/(FLOAT_DMEM)(32767.0*256.0));
             }
             break;
           } else if (nBits == 32) {
             for (i=0; i<m->nT; i++) {
               FLOAT_DMEM tmp;
               tmp = (FLOAT_DMEM)(b32[i*nChan+selectChannel]);
-              m->setF(0,i,tmp/(FLOAT_DMEM)(32767.0*32767.0*2.0));
+              m->set(0,i,tmp/(FLOAT_DMEM)(32767.0*32767.0*2.0));
             }
             break;
 //TODO: case nBits=33  : 32-bit float samples from portaudio....
 
       /*      for (i=0; i<m->nT; i++) for (c=0; c<nChan; c++) {
-              m->setF(c,i,((FLOAT_DMEM)b32[i*nChan+c])/(32767.0*32767.0*2.0));
+              m->set(c,i,((FLOAT_DMEM)b32[i*nChan+c])/(32767.0*32767.0*2.0));
             } break;*/
         }
         default:
@@ -394,7 +394,7 @@ int pcmDataToMatrix(const void *buf, cMatrix *m, int nBPS, int nBits, int nChan,
             for (c=0; c<nChan; c++) {
               tmp += (FLOAT_DMEM)b8[i*nChan+c];
             }
-            m->setF(0,i,(tmp/(FLOAT_DMEM)nChan)/(FLOAT_DMEM)127.0);
+            m->set(0,i,(tmp/(FLOAT_DMEM)nChan)/(FLOAT_DMEM)127.0);
           }
           break;
         case 2: // 16-bit int
@@ -403,7 +403,7 @@ int pcmDataToMatrix(const void *buf, cMatrix *m, int nBPS, int nBits, int nChan,
             for (c=0; c<nChan; c++) {
               tmp += (FLOAT_DMEM)b16[i*nChan+c];
             }
-            m->setF(0,i,(tmp/(FLOAT_DMEM)nChan)/(FLOAT_DMEM)32767.0);
+            m->set(0,i,(tmp/(FLOAT_DMEM)nChan)/(FLOAT_DMEM)32767.0);
           }
           break;
         case 3: // 24-bit int
@@ -411,7 +411,7 @@ int pcmDataToMatrix(const void *buf, cMatrix *m, int nBPS, int nBits, int nChan,
         /*
         int24_t *b24 = (int24_t*)buf;
         for (i=0; i<m->nT; i++) for (c=0; c<nChan; c++) {
-          m->setF(c,i,((FLOAT_DMEM)b24[i*nChan+c])/(32767.0*256.0));
+          m->set(c,i,((FLOAT_DMEM)b24[i*nChan+c])/(32767.0*256.0));
         } break;
         */
           break;
@@ -422,7 +422,7 @@ int pcmDataToMatrix(const void *buf, cMatrix *m, int nBPS, int nBits, int nChan,
               for (c=0; c<nChan; c++) {
                 tmp += (FLOAT_DMEM)(b32[i*nChan+c]&0xFFFFFF);
               }
-              m->setF(0,i,(tmp/(FLOAT_DMEM)nChan)/(FLOAT_DMEM)(32767.0*256.0));
+              m->set(0,i,(tmp/(FLOAT_DMEM)nChan)/(FLOAT_DMEM)(32767.0*256.0));
             }
             break;
           } else if (nBits == 32) {
@@ -431,13 +431,13 @@ int pcmDataToMatrix(const void *buf, cMatrix *m, int nBPS, int nBits, int nChan,
               for (c=0; c<nChan; c++) {
                 tmp += (FLOAT_DMEM)(b32[i*nChan+c]);
               }
-              m->setF(0,i,(tmp/(FLOAT_DMEM)nChan)/(FLOAT_DMEM)(32767.0*32767.0*2.0));
+              m->set(0,i,(tmp/(FLOAT_DMEM)nChan)/(FLOAT_DMEM)(32767.0*32767.0*2.0));
             }
             break;
 //TODO: case nBits=33  : 32-bit float samples from portaudio....
 
       /*      for (i=0; i<m->nT; i++) for (c=0; c<nChan; c++) {
-              m->setF(c,i,((FLOAT_DMEM)b32[i*nChan+c])/(32767.0*32767.0*2.0));
+              m->set(c,i,((FLOAT_DMEM)b32[i*nChan+c])/(32767.0*32767.0*2.0));
             } break;*/
         }
         default:
@@ -450,11 +450,11 @@ int pcmDataToMatrix(const void *buf, cMatrix *m, int nBPS, int nBits, int nChan,
       switch(nBPS) {
         case 1: // 8-bit int
           for (i=0; i<m->nT; i++) for (c=0; c<nChan; c++) {
-            m->setF(c,i,((FLOAT_DMEM)b8[i*nChan+c])/(FLOAT_DMEM)127.0);
+            m->set(c,i,((FLOAT_DMEM)b8[i*nChan+c])/(FLOAT_DMEM)127.0);
           } break;
         case 2: // 16-bit int
           for (i=0; i<m->nT; i++) for (c=0; c<nChan; c++) {
-            m->setF(c,i,((FLOAT_DMEM)b16[i*nChan+c])/(FLOAT_DMEM)32767.0);
+            m->set(c,i,((FLOAT_DMEM)b16[i*nChan+c])/(FLOAT_DMEM)32767.0);
           } break;
         case 3: // 24-bit int
         //  COMP_ERR("pcmDataToMatrix: 24-bit wave file with 3 bytes per sample encoding not yet supported!");
@@ -463,15 +463,15 @@ int pcmDataToMatrix(const void *buf, cMatrix *m, int nBPS, int nBits, int nChan,
         for (i=0; i<m->nT; i++) 
           for (c=0; c<nChan; c++) {
             FLOAT_DMEM tmp = (FLOAT_DMEM)ub8[i*3*nChan+c] * (FLOAT_DMEM)(256.0*256.0) + (FLOAT_DMEM)ub8[i*3*nChan+c+1]*(FLOAT_DMEM)256.0 + (FLOAT_DMEM)ub8[i*3*nChan+c+2]; 
-            m->setF(c,i,(tmp/(FLOAT_DMEM)(32767.0*256.0)));
+            m->set(c,i,(tmp/(FLOAT_DMEM)(32767.0*256.0)));
           } break;
         
         //  break;
         case 4: // 32-bit int or 24-bit packed int
           if (nBits == 24) {
             for (i=0; i<m->nT; i++) for (c=0; c<nChan; c++) {
-              //m->setF(c,i,((FLOAT_DMEM)(b32[i*nChan+c]&0xFFFFFF))/(32767.0*32767.0*2.0));
-              m->setF(c,i,((FLOAT_DMEM)((b32[i*nChan+c]&0xFFFFFFFF)>>8))/(FLOAT_DMEM)(32767.0*256.0));
+              //m->set(c,i,((FLOAT_DMEM)(b32[i*nChan+c]&0xFFFFFF))/(32767.0*32767.0*2.0));
+              m->set(c,i,((FLOAT_DMEM)((b32[i*nChan+c]&0xFFFFFFFF)>>8))/(FLOAT_DMEM)(32767.0*256.0));
             } break;
           } else if (nBits == 32) {
             for (i=0; i<m->nT; i++) for (c=0; c<nChan; c++) {
@@ -486,13 +486,13 @@ int pcmDataToMatrix(const void *buf, cMatrix *m, int nBPS, int nBits, int nChan,
               tmp2 = xx[1];
               xx[1] = xx[2];
               xx[2] = tmp2;*/
-              m->setF(c,i,((FLOAT_DMEM)(*xxx))/(FLOAT_DMEM)(32767.0*32767.0*2.0));
-//              m->setF(c,i,((FLOAT_DMEM)b32[i*nChan+c])/(32767.0*32767.0*4.0));
+              m->set(c,i,((FLOAT_DMEM)(*xxx))/(FLOAT_DMEM)(32767.0*32767.0*2.0));
+//              m->set(c,i,((FLOAT_DMEM)b32[i*nChan+c])/(32767.0*32767.0*4.0));
 
             } break;
           } else if (nBits == 33) {
             for (i=0; i<m->nT; i++) for (c=0; c<nChan; c++) {
-              m->setF(c,i,((FLOAT_DMEM)b32f[i*nChan+c]));
+              m->set(c,i,((FLOAT_DMEM)b32f[i*nChan+c]));
             } break;
           }
 //TODO: case nBits=33  : 32-bit float samples from portaudio....

@@ -194,7 +194,6 @@ int cDataReader::myFinaliseInstance()
   double lT = -1.0;
   long lN = 0;
   long lNf = 0;
-  int ldtype = -1;
 
   for (i = 0; i < nLevels; i++) {
     // find multiple levels, register multiple readers...
@@ -250,13 +249,6 @@ int cDataReader::myFinaliseInstance()
             dm->getLevelName(level[i]), c->T, dm->getLevelName(level[0]), lT);
         return 0;
       }
-      if (ldtype==-1)
-        ldtype = c->type;
-      else if (ldtype != c->type) {
-        SMILE_IERR(1, "dataType mismatch among input levels (conversion is not yet supported!) '%s':%i <> '%s':%i",
-            dm->getLevelName(level[i]), c->type, dm->getLevelName(level[0]), ldtype);
-        return 0;
-      }
 
     } else { 
       SMILE_IERR(1,"can't get config for level '%s' (i=%i level[i]=%i)",dmLevel[i],i,level[i]); 
@@ -297,7 +289,6 @@ int cDataReader::myFinaliseInstance()
 
   myLcfg->N = lN;
   myLcfg->Nf = lNf;
-  myLcfg->type = ldtype;
 
   int updatefmeta = 0;
   int f = 0;
@@ -389,7 +380,7 @@ cVector * cDataReader::getFrame(long vIdx, int special, int privateVec, int *res
     }
     if (r) {
       if (VV == NULL) {
-        VV = new cVector(myLcfg->N, myLcfg->type);
+        VV = new cVector(myLcfg->N);
       }
       int fmetaUpdate = 0;
       if (myfmeta == NULL) { 
@@ -409,17 +400,10 @@ cVector * cDataReader::getFrame(long vIdx, int special, int privateVec, int *res
           *result |= myResult;
         if (f2 != NULL) {
           // copy data from f2 into V at the correct position
-          if (f2->type == DMEM_FLOAT) {
-            memcpy(VV->dataF + e, f2->dataF, f2->N*sizeof(FLOAT_DMEM));
-            //            for (n=0; n<f2->N; n++)
-            //              V->dataF[e++] = f2->dataF[n];
-          } else if (f2->type == DMEM_INT) {
-            memcpy(VV->dataI + e, f2->dataI, f2->N*sizeof(INT_DMEM));
-            //            for (n=0; n<f2->N; n++)
-            //              V->dataI[e++] = f2->dataI[n];
-          }
+          memcpy(VV->data + e, f2->data, f2->N*sizeof(FLOAT_DMEM));
+          //            for (n=0; n<f2->N; n++)
+          //              V->data[e++] = f2->data[n];          
           e += f2->N;
-          // TODO: implement conversion from dataI <-> dataF
           if (i == 0)
             VV->copyTimeMeta(f2->tmeta); // TODO: change this for asynchronous levels...
 
@@ -483,7 +467,7 @@ cMatrix * cDataReader::getMatrix(long vIdx, long length, int special, int privat
           my_m=NULL;
         }
       }
-      if (my_m == NULL) my_m = new cMatrix(myLcfg->N,length,myLcfg->type);
+      if (my_m == NULL) my_m = new cMatrix(myLcfg->N,length);
       
       int fmetaUpdate = 0;
       if (myfmeta == NULL) { 
@@ -495,8 +479,7 @@ cMatrix * cDataReader::getMatrix(long vIdx, long length, int special, int privat
         myLcfg->fmeta = myfmeta;
       }
 
-      FLOAT_DMEM*df = my_m->dataF;
-      INT_DMEM*di = my_m->dataI;
+      FLOAT_DMEM*df = my_m->data;
       long N = myLcfg->N;
       long f=0;
       long minlen = length;
@@ -506,16 +489,9 @@ cMatrix * cDataReader::getMatrix(long vIdx, long length, int special, int privat
         if (m2 != NULL) {
           if (m2->nT < minlen) { minlen = m2->nT; }
           // copy data from f2 into V at the correct position
-          if (m2->type == DMEM_FLOAT) {
-            for (n=0; n<minlen /*length*/; n++)
-              memcpy( df+(N*n) , m2->dataF + n*(m2->N), m2->N*sizeof(FLOAT_DMEM) );
-            df += m2->N;
-          } else if (m2->type == DMEM_INT) {
-            for (n=0; n<minlen /*length*/; n++)
-              memcpy( di+(N*n) , m2->dataI + n*(m2->N), m2->N*sizeof(INT_DMEM) );
-            di += m2->N;
-          }
-          // TODO: implement conversion from dataI <-> dataF
+          for (n=0; n<minlen /*length*/; n++)
+            memcpy( df+(N*n) , m2->data + n*(m2->N), m2->N*sizeof(FLOAT_DMEM) );
+          df += m2->N;
 
           if (i==0) my_m->copyTimeMeta(m2->tmeta); // TODO: change this for asynchronous levels...
 

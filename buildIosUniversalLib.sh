@@ -1,16 +1,24 @@
 #!/bin/bash
 
-# Set -DPLATFORM to "SIMULATOR" to build for iOS simulator 32 bit (i386) DEPRECATED
-# Set -DPLATFORM to "SIMULATOR64" (example above) to build for iOS simulator 64 bit (x86_64)
-# Set -DPLATFORM to "OS" to build for Device (armv7, armv7s, arm64)
-# Set -DPLATFORM to "OS64" to build for Device (arm64)
-# Set -DPLATFORM to "OS64COMBINED" to build for Device & Simulator (FAT lib) (arm64, x86_64)
-# Set -DPLATFORM to "TVOS" to build for tvOS (arm64)
-# Set -DPLATFORM to "TVOSCOMBINED" to build for tvOS & Simulator (arm64, x86_64)
-# Set -DPLATFORM to "SIMULATOR_TVOS" to build for tvOS Simulator (x86_64)
-# Set -DPLATFORM to "WATCHOS" to build for watchOS (armv7k, arm64_32)
-# Set -DPLATFORM to "WATCHOSCOMBINED" to build for watchOS & Simulator (armv7k, arm64_32, i386)
-# Set -DPLATFORM to "SIMULATOR_WATCHOS" to build for watchOS Simulator (i386)
+# Set -DPLATFORM to
+#    OS = Build for iPhoneOS.
+#    OS64 = Build for arm64 iphoneOS.
+#    OS64COMBINED = Build for arm64 x86_64 iphoneOS. Combined into FAT STATIC lib (supported on 3.14+ of CMakewith "-G Xcode" argument ONLY)
+#    SIMULATOR = Build for x86 i386 iphoneOS Simulator.
+#    SIMULATOR64 = Build for x86_64 iphoneOS Simulator.
+#    SIMULATORARM64 = Build for arm64 iphoneOS Simulator.
+#    TVOS = Build for arm64 tvOS.
+#    TVOSCOMBINED = Build for arm64 x86_64 tvOS. Combined into FAT STATIC lib (supported on 3.14+ of CMake with "-G Xcode" argument ONLY)
+#    SIMULATOR_TVOS = Build for x86_64 tvOS Simulator.
+#    WATCHOS = Build for armv7k arm64_32 for watchOS.
+#    WATCHOSCOMBINED = Build for armv7k arm64_32 x86_64 watchOS. Combined into FAT STATIC lib (supported on 3.14+ of CMake with "-G Xcode" argument ONLY)
+#    SIMULATOR_WATCHOS = Build for x86_64 for watchOS Simulator.
+#    MAC = Build for x86_64 macOS.
+#    MAC_ARM64 = Build for Apple Silicon macOS.
+#    MAC_CATALYST = Build for x86_64 macOS with Catalyst support (iOS toolchain on macOS).
+#                   Note: The build argument "MACOSX_DEPLOYMENT_TARGET" can be used to control min-version of macOS
+#    MAC_CATALYST_ARM64 = Build for Apple Silicon macOS with Catalyst support (iOS toolchain on macOS).
+#                         Note: The build argument "MACOSX_DEPLOYMENT_TARGET" can be used to control min-version of macOS
 
 PLATFORMS=("OS" "SIMULATOR64")
 COMBINED_PLATFORMS=("OS64COMBINED" "TVOSCOMBINED" "WATCHOSCOMBINED") 
@@ -51,8 +59,7 @@ for PLATFORM in "${PLATFORMS[@]}"; do
 
   if [[ " ${COMBINED_PLATFORMS[@]} " =~ " ${PLATFORM} " ]]; then
     ios_flags+=(
-        -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=OFF
-        -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY=""
+        -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED=OFF
     )
     cmake "${cmake_flags[@]}" "${ios_flags[@]}" -DBUILD_FLAGS="$build_flags" "$@" -G Xcode ../..
     cmake --build . --target install --config Release

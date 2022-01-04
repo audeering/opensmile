@@ -958,14 +958,6 @@ long cFunctionalSegments::process(FLOAT_DMEM *in,
   return 0;
 }
 
-/*
-long cFunctionalSegments::process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout)
-{
-
-  return 0;
-}
-*/
-
 cFunctionalSegments::~cFunctionalSegments()
 {
   if (thresholdsTemp != NULL && thresholdsTemp != thresholds) free(thresholdsTemp);

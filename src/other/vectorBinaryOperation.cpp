@@ -14,6 +14,7 @@ do elementary element-wise binary operations on vectors
 
 
 #include <other/vectorBinaryOperation.hpp>
+#include <limits>
 
 #define MODULE "cVectorBinaryOperation"
 
@@ -227,70 +228,70 @@ eTickResult cVectorBinaryOperation::myTick(long long t)
   if (vec == NULL) 
     return TICK_SOURCE_NOT_AVAIL;
 
-  if (vecO == NULL) vecO = new cVector(dimension, vec->type);
+  if (vecO == NULL) vecO = new cVector(dimension);
   long i;
   int j;
 
   switch (operation) {
       case VBOP_ADD: 
         for (i=0; i<dimension; i++) {
-          vecO->dataF[i] = 0;
+          vecO->data[i] = 0;
           for (j=0; j<nSel; j++){
-            vecO->dataF[i] += vec->dataF[startIdx[j]+i];
+            vecO->data[i] += vec->data[startIdx[j]+i];
           }
         }
         break;
 
       case VBOP_SUB: 
         for (i=0; i<dimension; i++) {
-          vecO->dataF[i] = vec->dataF[startIdx[0]+i] - vec->dataF[startIdx[1]+i];
+          vecO->data[i] = vec->data[startIdx[0]+i] - vec->data[startIdx[1]+i];
         }
         break;
 
       case VBOP_MUL: 
         for (i=0; i<dimension; i++) {
-          vecO->dataF[i] = 1;
+          vecO->data[i] = 1;
           for (j=0; j<nSel; j++){
-            vecO->dataF[i] *= vec->dataF[startIdx[j]+i];
+            vecO->data[i] *= vec->data[startIdx[j]+i];
           }
         }
         break;
 
       case VBOP_DIV: 
         for (i=0; i<dimension; i++) {
-          FLOAT_DMEM denom = vec->dataF[startIdx[1]+i];
+          FLOAT_DMEM denom = vec->data[startIdx[1]+i];
           if (divZeroOutputVal1_) {
-            vecO->dataF[i] = vec->dataF[startIdx[0]+i];
+            vecO->data[i] = vec->data[startIdx[0]+i];
           } else {
-            vecO->dataF[i] = 0.0;
+            vecO->data[i] = 0.0;
           }
           if (denom != 0.0)
-            vecO->dataF[i] = vec->dataF[startIdx[0]+i] / denom;
+            vecO->data[i] = vec->data[startIdx[0]+i] / denom;
         }
         break;
 
       case VBOP_POW:
         if (powOnlyPos) {
           for (i=0; i<dimension; i++) {
-            if (vec->dataF[startIdx[0]+i]>0) {
-              vecO->dataF[i] = pow(vec->dataF[startIdx[0]+i],vec->dataF[startIdx[1]+i]);
+            if (vec->data[startIdx[0]+i]>0) {
+              vecO->data[i] = pow(vec->data[startIdx[0]+i],vec->data[startIdx[1]+i]);
             } else {
-              vecO->dataF[i] = 0;
+              vecO->data[i] = 0;
             }
           } 
         } else {
           for (i=0; i<dimension; i++) {
-            vecO->dataF[i] = pow(vec->dataF[startIdx[0]+i],vec->dataF[startIdx[1]+i]);
+            vecO->data[i] = pow(vec->data[startIdx[0]+i],vec->data[startIdx[1]+i]);
           }
         }
         break;
 
       case VBOP_MIN: 
         for (i=0; i<dimension; i++) {
-          vecO->dataF[i] = INFINITY;
+          vecO->data[i] = std::numeric_limits<FLOAT_DMEM>::infinity();
           for (j=0; j<nSel; j++){
-            if (vecO->dataF[i]>vec->dataF[startIdx[j]+i]) {
-              vecO->dataF[i] = vec->dataF[startIdx[j]+i];
+            if (vecO->data[i]>vec->data[startIdx[j]+i]) {
+              vecO->data[i] = vec->data[startIdx[j]+i];
             }
           }
         }
@@ -298,10 +299,10 @@ eTickResult cVectorBinaryOperation::myTick(long long t)
 
       case VBOP_MAX: 
         for (i=0; i<dimension; i++) {
-          vecO->dataF[i] = -INFINITY;
+          vecO->data[i] = -std::numeric_limits<FLOAT_DMEM>::infinity();
           for (j=0; j<nSel; j++){
-            if (vecO->dataF[i]<vec->dataF[startIdx[j]+i]) {
-              vecO->dataF[i] = vec->dataF[startIdx[j]+i];
+            if (vecO->data[i]<vec->data[startIdx[j]+i]) {
+              vecO->data[i] = vec->data[startIdx[j]+i];
             }
           }
         }

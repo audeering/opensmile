@@ -36,8 +36,7 @@ struct sWindowerConfigParsed
 
 
 // WINF_XXXXXX constants are defined in smileUtil.hpp !
-#undef class
-class DLLEXPORT cWindower : public cVectorProcessor {
+class cWindower : public cVectorProcessor {
   private:
     double offset, gain;
     double sigma, alpha, alpha0, alpha1, alpha2, alpha3;
@@ -48,7 +47,6 @@ class DLLEXPORT cWindower : public cVectorProcessor {
     double xshift;
     double fade;
     const char *saveWindowToFile;
-    int   dtype;     // data type (DMEM_FLOAT, DMEM_INT)
     double *win;
     
     void precomputeWinFunc();
@@ -59,8 +57,7 @@ class DLLEXPORT cWindower : public cVectorProcessor {
     virtual void myFetchConfig() override;
     virtual int myFinaliseInstance() override;
 
-    virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

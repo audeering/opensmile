@@ -32,13 +32,11 @@ reads in windows and outputs vectors (frames)
 #define FRAMEMODE_META  4
 
 
-#undef class
-class DLLEXPORT cWinToVecProcessor : public cDataProcessor {
+class cWinToVecProcessor : public cDataProcessor {
   private:
     int   frameMode;
     int   fsfGiven;   // flag that indicates whether frameSizeFrame, etc. was specified directly (to override frameSize in seconds)
     int   fstfGiven;   // flag that indicates whether frameStepFrame, etc. was specified directly (to override frameStep in seconds)
-    int   dtype;     // data type (DMEM_FLOAT, DMEM_INT)
     int   noPostEOIprocessing;
     int   nIntervals;  // number of intervals for frameMode = list
     double *ivSec; //interleaved array : start/end in seconds (frameList, frameMode = list)
@@ -55,7 +53,6 @@ class DLLEXPORT cWinToVecProcessor : public cDataProcessor {
     cMatrix *tmpRow;
     cVector *tmpVec;
     FLOAT_DMEM *tmpFrameF;
-    INT_DMEM *tmpFrameI;
 
     //mapping of field indices to config indices: (size of these array is maximum possible size: Nfi)
     int Nfconf;
@@ -125,11 +122,8 @@ class DLLEXPORT cWinToVecProcessor : public cDataProcessor {
     virtual int setupNamesForElement(int idxi, const char*name, long nEl);
     //virtual int setupNamesForField(int idxi, const char*name, long nEl) override;
     virtual int doProcessMatrix(int i, cMatrix *in, FLOAT_DMEM *out, long nOut);
-    virtual int doProcessMatrix(int i, cMatrix *in, INT_DMEM *out, long nOut);
     virtual int doProcess(int i, cMatrix *row, FLOAT_DMEM*x);
-    virtual int doProcess(int i, cMatrix *row, INT_DMEM*x);
     virtual int doFlush(int i, FLOAT_DMEM*x);
-    virtual int doFlush(int i, INT_DMEM*x);
 
     virtual int processComponentMessage(cComponentMessage *_msg) override;
 

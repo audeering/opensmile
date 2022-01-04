@@ -22,8 +22,7 @@ functionals: rise/fall times, up/down-level times
 #define COMPONENT_DESCRIPTION_CFUNCTIONALSAMPLES "sampled values at equidistant frames"
 #define COMPONENT_NAME_CFUNCTIONALSAMPLES "cFunctionalSamples"
 
-#undef class
-class DLLEXPORT cFunctionalSamples : public cFunctionalComponent {
+class cFunctionalSamples : public cFunctionalComponent {
   private:
     double* samplepos;
     int nSamples;
@@ -43,7 +42,6 @@ class DLLEXPORT cFunctionalSamples : public cFunctionalComponent {
     cFunctionalSamples(const char *name);
     // inputs: sorted and unsorted array of values, out: pointer to space in output array, You may not return MORE than Nout elements, please return as return value the number of actually computed elements (usually Nout)
     virtual long process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_DMEM min, FLOAT_DMEM max, FLOAT_DMEM mean, FLOAT_DMEM *out, long Nin, long Nout) override;
-    //virtual long process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout) override;
 
     //virtual long getNoutputValues() override { return nEnab; }
     virtual const char* getValueName(long i) override;

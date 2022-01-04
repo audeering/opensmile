@@ -16,6 +16,7 @@ This is the main commandline application
 #include <core/configManager.hpp>
 #include <core/commandlineParser.hpp>
 #include <core/componentManager.hpp>
+#include <memory>
 
 #define MODULE "SMILExtract"
 
@@ -46,10 +47,10 @@ int main(int argc, const char *argv[])
     smileCommon_enableVTInWindowsConsole();
 
     // set up the smile logger
-    cSmileLogger *logger = new cSmileLogger();
-    logger->useForCurrentThread();
-    logger->setLogLevel(1);
-    logger->setConsoleOutput(true);
+    cSmileLogger logger;
+    logger.useForCurrentThread();
+    logger.setLogLevel(1);
+    logger.setConsoleOutput(true);
 
     // commandline parser:
     cCommandlineParser cmdline(argc,argv);
@@ -66,14 +67,13 @@ int main(int argc, const char *argv[])
     cmdline.addBoolean("cfgFileDescriptions", 0, "Include description in config file templates.", 0);
     cmdline.addBoolean("ccmdHelp", 'c', "Show custom commandline option help (those specified in config file)", 0);
     cmdline.addBoolean("exportHelp", 0, "Print detailed documentation of registered config types in JSON format.", 0);
-    cmdline.addStr("logfile", 0, "Set path of log file", "smile.log");
-    cmdline.addBoolean("nologfile", 0, "Don't create a log file (e.g. on a read-only filesystem)", 0);
+    cmdline.addStr("logfile", 0, "Set path of log file");
     cmdline.addBoolean("noconsoleoutput", 0, "Don't output any messages to the console (log file is not affected by this option)", 0);
     cmdline.addBoolean("appendLogfile", 0, "Append log messages to an existing logfile instead of overwriting the logfile at every start", 0);
 
     int help = 0;
     if (cmdline.parse() == -1) {
-      logger->setLogLevel(0);
+      logger.setLogLevel(0);
       help = 1;
     }
     if (argc <= 1) {
@@ -84,101 +84,78 @@ int main(int argc, const char *argv[])
     if (help == 1)
       return EXIT_SUCCESS;
 
-    if (cmdline.getBoolean("nologfile")) {
-      logger->setLogFile((const char *)NULL,0);
+    if (cmdline.isSet("logfile")) {
+      logger.setLogFile(cmdline.getStr("logfile"),cmdline.getBoolean("appendLogfile"));
     } else {
-      logger->setLogFile(cmdline.getStr("logfile"),cmdline.getBoolean("appendLogfile"));
+      logger.setLogFile((const char *)NULL,0);
     }
-    logger->setConsoleOutput(!cmdline.getBoolean("noconsoleoutput"));
-    logger->setLogLevel(cmdline.getInt("loglevel"));
+    logger.setConsoleOutput(!cmdline.getBoolean("noconsoleoutput"));
+    logger.setLogLevel(cmdline.getInt("loglevel"));
     SMILE_MSG(2,"openSMILE starting!");
 
 #ifdef DEBUG 
     if (!cmdline.getBoolean("debug"))
-      logger->setLogLevel(LOG_DEBUG, 0);
+      logger.setLogLevel(LOG_DEBUG, 0);
 #endif
 
     SMILE_MSG(2,"config file is: %s", cmdline.getStr("configfile"));
 
-    cConfigManager *configManager = new cConfigManager(&cmdline);
-    cComponentManager *cMan = new cComponentManager(configManager,componentlist);
+    /* we declare componentManager before configManager because
+       configManager must be deleted BEFORE componentManager
+       (since component Manager unregisters plugin DLLs which might have allocated configTypes, etc.) */
+    std::unique_ptr<cComponentManager> cMan;
+    std::unique_ptr<cConfigManager> configManager;
+    configManager = std::unique_ptr<cConfigManager>(new cConfigManager(&cmdline));
+    cMan = std::unique_ptr<cComponentManager>(new cComponentManager(configManager.get(),componentlist));
 
     if (cmdline.isSet("configHelp")) {
-#ifndef EXTERNAL_BUILD
       const char *selStr = cmdline.getStr("configHelp");
       configManager->printTypeHelp(1/*!!! -> 1*/,selStr,0);
-#endif
       help = 1;
     }
     if (cmdline.isSet("configDflt")) {
-#ifndef EXTERNAL_BUILD
       int fullMode = 0; 
       int wDescr = 0;
       if (cmdline.getBoolean("cfgFileTemplate")) fullMode=1;
       if (cmdline.getBoolean("cfgFileDescriptions")) wDescr=1;
       const char *selStr = cmdline.getStr("configDflt");
       configManager->printTypeDfltConfig(selStr,1,fullMode,wDescr);
-#endif
       help = 1;
     }
     if (cmdline.getBoolean("exportHelp")) {
-#ifndef EXTERNAL_BUILD
       cMan->exportComponentList();
-#endif
       help = 1;
     }
     if (cmdline.getBoolean("components")) {
-#ifndef EXTERNAL_BUILD
       cMan->printComponentList();
-#endif
       help = 1;
     }
 
     if (help==1) {
-      delete configManager;
-      delete cMan;
-      delete logger;
       return EXIT_ERROR; 
     }
 
     // TODO: read config here and print ccmdHelp...
     // add the file config reader:
-    try { 
-      cFileConfigReader * reader = new cFileConfigReader(
-          cmdline.getStr("configfile"), -1, &cmdline);
-      configManager->addReader(reader);
-      configManager->readConfig();
-    } catch (const cConfigException&) {
-      delete configManager;
-      delete cMan;
-      delete logger;
-      return EXIT_ERROR;
-    }
+    cFileConfigReader * reader = new cFileConfigReader(
+        cmdline.getStr("configfile"), -1, &cmdline);
+    configManager->addReader(reader);
+    configManager->readConfig();
 
     /* re-parse the command-line to include options created in the config file */
     cmdline.parse(true, false); // warn if unknown options are detected on the commandline
     if (cmdline.getBoolean("ccmdHelp")) {
       cmdline.showUsage();
-      delete configManager;
-      delete cMan;
-      delete logger;
       return EXIT_ERROR;
     }
 
-    try { 
-      /* create all instances specified in the config file */
-      cMan->createInstances(0); // 0 = do not read config (we already did that above..)
-    } catch (const cConfigException&) {
-      delete configManager;
-      delete cMan;
-      delete logger;
-      return EXIT_ERROR;
-    }
+    /* create all instances specified in the config file */
+    cMan->createInstances(0); // 0 = do not read config (we already did that above..)
 
     /*
     MAIN TICK LOOP :
     */
-    cmanGlob = cMan;
+    cmanGlob = cMan.get();
     signal(SIGINT, INThandler); // install Ctrl+C signal handler
 
     bool run = true;
@@ -188,14 +165,7 @@ int main(int argc, const char *argv[])
     if (run) {
       nTicks = cMan->runMultiThreaded(cmdline.getInt("nticks"));
     }
-
-    /* it is important that configManager is deleted BEFORE componentManager! 
-      (since component Manager unregisters plugin DLLs, which might have allocated configTypes, etc.) */
-    delete configManager;
-    delete cMan;
-    delete logger;
-
-  } catch (const cSMILException&) { 
+  } catch (...) {
     return EXIT_ERROR; 
   } 
 

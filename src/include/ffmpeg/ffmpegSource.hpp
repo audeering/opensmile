@@ -28,8 +28,7 @@ extern "C" {
 #define COMPONENT_NAME_CFFMPEGSOURCE "cFFmpegSource"
 
 
-#undef class
-class DLLEXPORT cFFmpegSource : public cDataSource {
+class cFFmpegSource : public cDataSource {
   private:
     const char *filename;
     const char *outFieldName;

@@ -83,7 +83,7 @@ int cChroma::setupNamesForField(int i, const char*name, long nEl)
 
 
 // a derived class should override this method, in order to implement the actual processing
-int cChroma::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cChroma::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
 // input: power of tonespec...!
 

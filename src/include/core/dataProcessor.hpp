@@ -23,8 +23,7 @@ This is an abstract base class for all components which read data from the data 
 #define COMPONENT_DESCRIPTION_CDATAPROCESSOR "This is an abstract base class for all components which read data from the data memory and write new data to the data memory."
 #define COMPONENT_NAME_CDATAPROCESSOR "cDataProcessor"
 
-#undef class
-class DLLEXPORT cDataProcessor : public cSmileComponent {
+class cDataProcessor : public cSmileComponent {
   private:
     
   protected:

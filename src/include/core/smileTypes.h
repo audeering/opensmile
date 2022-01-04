@@ -16,10 +16,6 @@
 extern "C" {
 #endif
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <inttypes.h>
 #include <float.h>
 
@@ -34,10 +30,6 @@ typedef float FLOAT_DMEM;
                                            // 0 = float, 1 = double:
 #define FLOAT_DMEM_MAX FLT_MAX
 #define FLOAT_DMEM_MIN FLT_MIN
-
-
-// this defines the int type used throughout the data memory, either 'short', 'int' or 'long'
-typedef int INT_DMEM;
 
 #ifdef __cplusplus
 }

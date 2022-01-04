@@ -25,8 +25,7 @@ BLSTM RNN processor
 #define COMPONENT_DESCRIPTION_CRNNPROCESSOR "BLSTM RNN processor."
 #define COMPONENT_NAME_CRNNPROCESSOR "cRnnProcessor"
 
-#undef class
-class DLLEXPORT cRnnProcessor : public cDataProcessor {
+class cRnnProcessor : public cDataProcessor {
   private:
     const char *netfile;
     char *classlabels_;

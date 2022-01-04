@@ -533,7 +533,7 @@ eTickResult cPitchJitter::myTick2(long long t)
   }
   FLOAT_DMEM F0 = 0.0;
   if (F0fieldIdx < fvec->N) {
-    F0 = fvec->dataF[F0fieldIdx];
+    F0 = fvec->data[F0fieldIdx];
   }
 
   // get wave data belonging to this F0 frame..
@@ -551,7 +551,7 @@ eTickResult cPitchJitter::myTick2(long long t)
   }
   cMatrix *mat = reader_->getMatrix(startVidxS, toRead /* = pitch frame length/step */);
   // save in ringbuffer
-  waveBuffer->setNext(mat->dataF, mat->nT);
+  waveBuffer->setNext(mat->data, mat->nT);
   if (F0 > 0.0) {
     // figure out which data to process from wave buffer wrPtr_ backwards
     long wp = waveBuffer->getWritePointer();
@@ -604,7 +604,7 @@ eTickResult cPitchJitter::myTick(long long t)
 
   FLOAT_DMEM F0 = 0.0;
   if (F0fieldIdx < fvec->N) {
-    F0 = fvec->dataF[F0fieldIdx];  // F0 estimate
+    F0 = fvec->data[F0fieldIdx];  // F0 estimate
   }
   long lenF = (long)ceil(fvec->tmeta->lengthSec / fvec->tmeta->framePeriod);
 
@@ -670,8 +670,8 @@ eTickResult cPitchJitter::myTick(long long t)
     lastIdx += toRead0;
     return TICK_SOURCE_NOT_AVAIL;
   }
-  if (maxRead < 1 || mat->dataF==NULL) {
-    SMILE_IERR(1,"maxRead < 1 or mat->dataF==NULL, something is wrong (probably tmeta info on the pitch input level is not set correctly, thus the pitch frame length is read as 0; please debug the component that produces the pitch data this component reads!)");
+  if (maxRead < 1 || mat->data==NULL) {
+    SMILE_IERR(1,"maxRead < 1 or mat->data==NULL, something is wrong (probably tmeta info on the pitch input level is not set correctly, thus the pitch frame length is read as 0; please debug the component that produces the pitch data this component reads!)");
     return TICK_INACTIVE;
   }
 
@@ -727,7 +727,7 @@ eTickResult cPitchJitter::myTick(long long t)
       long _Tf;
       for (_Tf = T0minF; _Tf <= T0maxF; _Tf++) {
         long mid = start+_Tf;
-        cc[_Tf-T0minF] = crossCorr(mat->dataF+start,_Tf,mat->dataF+mid,_Tf);
+        cc[_Tf-T0minF] = crossCorr(mat->data+start,_Tf,mat->data+mid,_Tf);
 // FIXME: cross correlation with previous and next period, then average to get better estimate for current period length?
 // FIXME: re-evaluate period length and position after band-pass comb filtering (phase shift??) and peak detection for boundaries!
 // FIXME: sync correlation to max amplitude boundaries once found  (via lastMis variable..)
@@ -773,14 +773,14 @@ eTickResult cPitchJitter::myTick(long long t)
 // FIXME: smooth the period waveforms with a narrow band-pass (comb!?) before computing amplitude to improve noise robustness!
 //        --> better:  generate a sine (not dirac pulse... because f0 alone is sinusoidal) and correlate that with a single period to obtain period phase and magnitude...?
         if (shimmerUseRmsAmplitude) {
-          ad = rmsAmplitudeDiff(mat->dataF+os, pp, mat->dataF+start, pp, &max0, &max1, &_a0, &_a1);
+          ad = rmsAmplitudeDiff(mat->data+os, pp, mat->data+start, pp, &max0, &max1, &_a0, &_a1);
         } else {
-          ad = amplitudeDiff(mat->dataF+os, pp, mat->dataF+start, pp, &max0, &max1, &_a0, &_a1);
+          ad = amplitudeDiff(mat->data+os, pp, mat->data+start, pp, &max0, &max1, &_a0, &_a1);
         }
         periodBuffer[numPeriods++] = os;
         // compute averaged pitch period waveform for HNR
         for (i=0; i<T0f; i++) {
-          avgPeriodWf[i] += *(mat->dataF+(os+i));
+          avgPeriodWf[i] += *(mat->data+(os+i));
         }
 
         // parabolic interpolation of maxI
@@ -830,7 +830,7 @@ eTickResult cPitchJitter::myTick(long long t)
           // debug output
           // (TODO: save wave data properly to a pcm level, and save period start/end times..
           // TODO: save average waveform to output level...
-          //saveFloatDmemVectorWlen_bin("dataJ.dat",mat->dataF+os,start-os,1);
+          //saveFloatDmemVectorWlen_bin("dataJ.dat",mat->data+os,start-os,1);
           //saveDebugPeriod(lastIdx + start, (double)lastIdx + maxId);
           saveDebugPeriod(lastIdx + os + (int)round(max0), (double)lastIdx + os + max0);
           // Shimmer:
@@ -854,7 +854,7 @@ eTickResult cPitchJitter::myTick(long long t)
     // AND energy of averaged pitch period waveform (harmonic energy: H)
     FLOAT_DMEM Eh = 0.0;
     for (i=0; i<T0f && start+i < mat->nT; i++) {
-      avgPeriodWf[i] += *(mat->dataF+(start+i));
+      avgPeriodWf[i] += *(mat->data+(start+i));
       avgPeriodWf[i] /= (FLOAT_DMEM)numPeriods;
       if (i>2 && i<T0f-2) /* skip possibly unreliable beginning and end frames */
         Eh += avgPeriodWf[i]*avgPeriodWf[i];
@@ -873,7 +873,7 @@ eTickResult cPitchJitter::myTick(long long t)
     for (i=0; i<numPeriods; i++) {
       long n = 2;
       for (j=periodBuffer[i]+2; j<MIN(periodBuffer[i+1],periodBuffer[i]+T0f)-2; j++) {
-        FLOAT_DMEM delta = mat->dataF[j] - avgPeriodWf[n++];
+        FLOAT_DMEM delta = mat->data[j] - avgPeriodWf[n++];
         En += delta*delta;
         nEn++;
       }
@@ -915,14 +915,14 @@ eTickResult cPitchJitter::myTick(long long t)
     lastJitterDDP = 0.0; lastJitterLocal = 0.0;
     lastShimmerLocal = 0.0;
 
-    //saveFloatDmemVectorWlen_bin("dataJ.dat",mat->dataF,toRead,1);  
+    //saveFloatDmemVectorWlen_bin("dataJ.dat",mat->data,toRead,1);  
 
     // HNR:
     // noise energy is now signal RMS energy.. TODO!
     if (noiseERMS || linearHNR || logHNR) {
       long i; double E=0.0;
       for (i=0; i<mat->nT; i++) {
-        E += mat->dataF[i]*mat->dataF[i];
+        E += mat->data[i]*mat->data[i];
       }
       E /= (double)mat->nT;
 
@@ -943,7 +943,7 @@ eTickResult cPitchJitter::myTick(long long t)
   if (onlyVoiced && (F0==0.0)) { return TICK_INACTIVE; }
 
   long n=0;
-  if (out == NULL) out = new cVector(Nout,DMEM_FLOAT);
+  if (out == NULL) out = new cVector(Nout);
   if (out == NULL) OUT_OF_MEMORY;
 
   
@@ -956,20 +956,20 @@ eTickResult cPitchJitter::myTick(long long t)
     if ((nPeriods>0.0)&&(nPeriodsLocal > 0.0)&&(F0>0.0)) {
       //JitterLocal /= nPeriodsLocal;
       if (lastJitterLocal > 1.0) lastJitterLocal = 1.0;
-      out->dataF[n] = lastJitterLocal; // = JitterLocal / (avgPeriod/nPeriods);
+      out->data[n] = lastJitterLocal; // = JitterLocal / (avgPeriod/nPeriods);
     } else {
       if ((nPeriods == 0.0)&&(F0>0.0)) {
         if (lastJitterLocal > 1.0) lastJitterLocal = 1.0;
-        out->dataF[n] = lastJitterLocal;
+        out->data[n] = lastJitterLocal;
       } else {
-        out->dataF[n] = 0.0;
+        out->data[n] = 0.0;
       }
     }
     n++;
   }
   if (jitterLocalEnv) {
     if (lastJitterLocal_b > 1.0) lastJitterLocal_b = 1.0;
-    out->dataF[n] = lastJitterLocal_b;
+    out->data[n] = lastJitterLocal_b;
     n++;
   }
 
@@ -981,13 +981,13 @@ eTickResult cPitchJitter::myTick(long long t)
     if ((nPeriods>0.0)&&(nPeriodsDDP > 0.0)&&(F0>0.0)) {
       //JitterDDP /= nPeriodsDDP;
       if (lastJitterDDP > 1.0) lastJitterDDP = 1.0;
-      out->dataF[n] = lastJitterDDP;
+      out->data[n] = lastJitterDDP;
     } else {
       if ((nPeriods == 0.0)&&(F0>0.0)) {
         if (lastJitterDDP > 1.0) lastJitterDDP = 1.0;
-        out->dataF[n] = lastJitterDDP;
+        out->data[n] = lastJitterDDP;
       } else {
-        out->dataF[n] = 0.0;
+        out->data[n] = 0.0;
       }
     }
     n++;
@@ -995,7 +995,7 @@ eTickResult cPitchJitter::myTick(long long t)
 
   if (jitterDDPEnv) {
     if (lastJitterDDP_b > 1.0) lastJitterDDP_b = 1.0;
-    out->dataF[n] = lastJitterDDP_b;
+    out->data[n] = lastJitterDDP_b;
     n++;
   }
   
@@ -1010,31 +1010,31 @@ eTickResult cPitchJitter::myTick(long long t)
     if ((nPeriods>0.0)&&(F0>0.0)) {
       if (lastShimmerLocal > 1.0) lastShimmerLocal = 1.0;
       if (shimmerLocal) {
-        out->dataF[n] = lastShimmerLocal;
+        out->data[n] = lastShimmerLocal;
         n++;
       } 
       if (shimmerLocalDB) {
-        out->dataF[n] = (FLOAT_DMEM)smileDsp_amplitudeRatioToDB(lastShimmerLocal + 1.0);
+        out->data[n] = (FLOAT_DMEM)smileDsp_amplitudeRatioToDB(lastShimmerLocal + 1.0);
         n++;
       }
     } else {
       if ((nPeriods == 0.0)&&(F0>0.0)) {
         if (lastShimmerLocal > 1.0) lastShimmerLocal = 1.0;
         if (shimmerLocal) {
-          out->dataF[n] = lastShimmerLocal;
+          out->data[n] = lastShimmerLocal;
           n++;
         }
         if (shimmerLocalDB) {
-          out->dataF[n] = (FLOAT_DMEM)smileDsp_amplitudeRatioToDB(lastShimmerLocal + 1.0);
+          out->data[n] = (FLOAT_DMEM)smileDsp_amplitudeRatioToDB(lastShimmerLocal + 1.0);
           n++;
         }
       } else {
         if (shimmerLocal) {
-          out->dataF[n] = 0.0;
+          out->data[n] = 0.0;
           n++;
         }
         if (shimmerLocalDB) {
-          out->dataF[n] = 0.0;
+          out->data[n] = 0.0;
           n++;
         }
       }
@@ -1042,39 +1042,39 @@ eTickResult cPitchJitter::myTick(long long t)
   }
   if (shimmerLocalEnv) {
     if (lastShimmerLocal_b > 1.0) lastShimmerLocal_b = 1.0;
-    out->dataF[n] = lastShimmerLocal_b;
+    out->data[n] = lastShimmerLocal_b;
     n++;
   }
 
   if (harmonicERMS) {
 //      printf("XX   Eh %f\n", eH);
-    out->dataF[n++] = eH;
+    out->data[n++] = eH;
   }
   if (noiseERMS) {
-    out->dataF[n++] = eN;
+    out->data[n++] = eN;
   }
   if (linearHNR) {
-    out->dataF[n++] = HNR;
+    out->data[n++] = HNR;
   }
   if (logHNR) {
     if (lgHNR < lgHNRfloor) lgHNR = lgHNRfloor;
-    out->dataF[n++] = lgHNR;
+    out->data[n++] = lgHNR;
   }
   if (refinedF0) {
     // TODO: refined F0 only for step size, i.e. only until toRead0
     if (nPeriods > 0.0 && F0 > 0.0) {
-      out->dataF[n++] = (FLOAT_DMEM)1.0 / (avgPeriod / nPeriods);
+      out->data[n++] = (FLOAT_DMEM)1.0 / (avgPeriod / nPeriods);
     } else {
-      out->dataF[n++] = 0.0;
+      out->data[n++] = 0.0;
     }
   }
 
   // larynx
   if (sourceQualityMean) {
-    out->dataF[n++] = sumCC;
+    out->data[n++] = sumCC;
   }
   if (sourceQualityRange) {
-    out->dataF[n++] = fabs(maxCC-minCC);
+    out->data[n++] = fabs(maxCC-minCC);
   }
 
   out->setTimeMeta(fvec->tmeta);
@@ -1135,7 +1135,7 @@ eTickResult cPitchJitter::myTick(long long t)
         long mid = start+_Tf;
         long end = start+2*_Tf;
         //if (end < vec->nT) {
-        cc[_Tf-T0minF] = crossCorr(mat->dataF+start,_Tf,mat->dataF+mid,_Tf);
+        cc[_Tf-T0minF] = crossCorr(mat->data+start,_Tf,mat->data+mid,_Tf);
         //} 
       }
 
@@ -1166,7 +1166,7 @@ eTickResult cPitchJitter::myTick(long long t)
         start += T0f;
         printf("no match\n");
       }
-      saveFloatDmemVectorWlen_bin("dataJ.dat",mat->dataF+os,start-os,1);  
+      saveFloatDmemVectorWlen_bin("dataJ.dat",mat->data+os,start-os,1);  
 
 
       // save period start...

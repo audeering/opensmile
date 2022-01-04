@@ -23,8 +23,7 @@ number of segments based on delta thresholding
 #define COMPONENT_DESCRIPTION_CFUNCTIONALONSET "  relative position of the first onset and the last offset based on simple thresholding. Number of onsets and offsets can also be computed."
 #define COMPONENT_NAME_CFUNCTIONALONSET "cFunctionalOnset"
 
-#undef class
-class DLLEXPORT cFunctionalOnset : public cFunctionalComponent {
+class cFunctionalOnset : public cFunctionalComponent {
   private:
     int useAbsVal;
     FLOAT_DMEM thresholdOnset, thresholdOffset;
@@ -40,7 +39,6 @@ class DLLEXPORT cFunctionalOnset : public cFunctionalComponent {
     cFunctionalOnset(const char *_name);
     // inputs: sorted and unsorted array of values, out: pointer to space in output array, You may not return MORE than Nout elements, please return as return value the number of actually computed elements (usually Nout)
     virtual long process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_DMEM *out, long Nin, long Nout) override;
-    //virtual long process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout) override;
 
     virtual long getNoutputValues() override { return nEnab; }
     virtual int getRequireSorted() override { return 0; }

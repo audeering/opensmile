@@ -205,7 +205,7 @@ eTickResult cRnnProcessor::myTick(long long t)
 
   // pass current vector to net
   long i, N=0;
-  for (i=0; i<MIN(frame->N,net.inputSize); i++) { in[i] = (FLOAT_NN)(frame->dataF[i]); }
+  for (i=0; i<MIN(frame->N,net.inputSize); i++) { in[i] = (FLOAT_NN)(frame->data[i]); }
   rnn->forward(in, MIN(frame->N,net.inputSize));
   
   // get output
@@ -213,7 +213,7 @@ eTickResult cRnnProcessor::myTick(long long t)
   
   //copy to *dst;
   for (i=0; i<MIN(frameO->N,N); i++) {
-    frameO->dataF[i] = (FLOAT_DMEM)outp[i];
+    frameO->data[i] = (FLOAT_DMEM)outp[i];
   }
 
   writer_->setNextFrame(frameO);

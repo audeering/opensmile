@@ -41,8 +41,7 @@ a single statistical functional or the like....
 #define NORM_SAMPLES  3
 
 
-#undef class
-class DLLEXPORT cFunctionalComponent : public cSmileComponent {
+class cFunctionalComponent : public cSmileComponent {
   private:
     double T;
     
@@ -81,13 +80,6 @@ class DLLEXPORT cFunctionalComponent : public cSmileComponent {
     virtual long process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_DMEM *out, long Nin, long Nout);
     virtual long process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_DMEM min,
         FLOAT_DMEM max, FLOAT_DMEM mean, FLOAT_DMEM *out, long Nin, long Nout)
-    {
-      return process(in,inSorted,out,Nin,Nout);
-    }
-    
-    virtual long process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout);
-    virtual long process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM min,
-        INT_DMEM max, INT_DMEM mean, INT_DMEM *out, long Nin, long Nout)
     {
       return process(in,inSorted,out,Nin,Nout);
     }

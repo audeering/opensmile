@@ -26,10 +26,6 @@ functionals meta-component
 #define N_BLOCK_ALLOC 50
 
 SMILECOMPONENT_STATICS(cFunctionals)
-int cFunctionals::rAcounter=0;
-DLLEXPORT void resetFunctionalsRaCounter() {
-  cFunctionals::rAcounter = 0;
-}
 
 SMILECOMPONENT_REGCOMP(cFunctionals)
 {
@@ -39,8 +35,7 @@ SMILECOMPONENT_REGCOMP(cFunctionals)
   sdescription = COMPONENT_DESCRIPTION_CFUNCTIONALS;
 
   // we inherit cWinToVecProcessor configType and extend it:
-//use _compman to find cFunctionalXXXXX component types...
-// however, we return rA=1 twice, to allow cFunctionalXXXX to register!
+  // use _compman to find cFunctionalXXXXX component types...
   // add corresponding config sub-types to our config type here....
   SMILECOMPONENT_INHERIT_CONFIGTYPE("cWinToVecProcessor")
 
@@ -48,9 +43,9 @@ SMILECOMPONENT_REGCOMP(cFunctionals)
 
   SMILECOMPONENT_IFNOTREGAGAIN_BEGIN
 
-    if (rAcounter < 2) {
+    // we return rA=1 twice, to allow cFunctionalXXXX to register!
+    if (_iteration <= 2) {
       rA=1;
-      rAcounter++;
       SMILECOMPONENT_MAKEINFO(cFunctionals);
     }
 
@@ -62,7 +57,7 @@ SMILECOMPONENT_REGCOMP(cFunctionals)
         const char * tp = _compman->getComponentType(i,1);
         if (tp!=NULL) {
           if (!strncmp(tp,"cFunctional",11)&&strncmp(tp,COMPONENT_NAME_CFUNCTIONALS,COMPONENT_NAME_CFUNCTIONALS_LENGTH)) {
-             // find beginning "cFunctional" but not our own type (cFunctinals)
+             // find beginning "cFunctional" but not our own type (cFunctionals)
             const char *fn = tp+11;
             j++;
             if (funclist != NULL) {
@@ -128,6 +123,10 @@ int cFunctionals::myConfigureInstance()
 {
   int i,j;
 
+  int ret = cWinToVecProcessor::myConfigureInstance();
+  if (!ret)
+    return 0;
+
   nonZeroFuncts = getInt("nonZeroFuncts");
   SMILE_IDBG(2,"nonZeroFuncts = %i \n",nonZeroFuncts);
 
@@ -141,13 +140,13 @@ int cFunctionals::myConfigureInstance()
   SMILE_IDBG(2,"functNameAppend = '%s' \n",functNameAppend);
 
   if (isSet("masterTimeNorm")) {
-  const char*Norm = getStr("masterTimeNorm");
-  if (Norm != NULL) {
-    if (!strncmp(Norm,"seg",3)) timeNorm=TIMENORM_SEGMENT;
-    else if (!strncmp(Norm,"tur",3)) timeNorm=TIMENORM_SEGMENT;
-    else if (!strncmp(Norm,"sec",3)) timeNorm=TIMENORM_SECOND;
-    else if (!strncmp(Norm,"fra",3)) timeNorm=TIMENORM_FRAME;
-  }
+    const char*Norm = getStr("masterTimeNorm");
+    if (Norm != NULL) {
+      if (!strncmp(Norm,"seg",3)) timeNorm=TIMENORM_SEGMENT;
+      else if (!strncmp(Norm,"tur",3)) timeNorm=TIMENORM_SEGMENT;
+      else if (!strncmp(Norm,"sec",3)) timeNorm=TIMENORM_SECOND;
+      else if (!strncmp(Norm,"fra",3)) timeNorm=TIMENORM_FRAME;
+    }
   } else {
     timeNorm = TIMENORM_UNDEFINED;
   }
@@ -160,7 +159,7 @@ int cFunctionals::myConfigureInstance()
       const char * tp = _compman->getComponentType(i,1);
       if (tp!=NULL) {
         if (!strncmp(tp,"cFunctional",11)&&strcmp(tp,COMPONENT_NAME_CFUNCTIONALS)) {
-           // find beginning "cFunctional" but not our own type (cFunctinals)
+           // find beginning "cFunctional" but not our own type (cFunctionals)
           const char *fn = tp+11;
           if (nFunctTpAlloc == nFunctTp) { // realloc:
             functTp = (char **)crealloc( functTp, sizeof(char*)*(nFunctTpAlloc+N_BLOCK_ALLOC), nFunctTpAlloc );
@@ -222,7 +221,7 @@ int cFunctionals::myConfigureInstance()
     SMILE_IDBG(2,"%i Functional components require sorted data.",requireSorted);
   }
 
-  return cWinToVecProcessor::myConfigureInstance();
+  return ret;
 }
 
 // We need setupNamesForField if in wholeMatrixMode with ProcessFieldsInMatrixMode
@@ -321,7 +320,7 @@ int cFunctionals::doProcessMatrix(int idx, cMatrix *rows, FLOAT_DMEM *y, long nO
 int cFunctionals::doProcess(int idxi, cMatrix *row, FLOAT_DMEM*y)
 {
   // copy row to matrix... simple memcpy here
-  //  memcpy(y,row->dataF,row->nT*sizeof(FLOAT_DMEM));
+  //  memcpy(y,row->data,row->nT*sizeof(FLOAT_DMEM));
   // return the number of components in y!!
   if (row->nT <= 0) {
     SMILE_IWRN(2,"not processing input row of size <= 0 !");
@@ -330,7 +329,7 @@ int cFunctionals::doProcess(int idxi, cMatrix *row, FLOAT_DMEM*y)
   SMILE_IDBG(4, "cFunctionals::doProcess (nT = %ld) idxi %i\n", row->nT, idxi);
 
   long i; int ok=0; long NN=row->nT;
-  FLOAT_DMEM * unsorted = row->dataF;
+  FLOAT_DMEM * unsorted = row->data;
   FLOAT_DMEM * sorted=NULL;
   
   if (nonZeroFuncts) {
@@ -338,11 +337,11 @@ int cFunctionals::doProcess(int idxi, cMatrix *row, FLOAT_DMEM*y)
     unsorted = (FLOAT_DMEM*)malloc(sizeof(FLOAT_DMEM)*row->nT);
     if (nonZeroFuncts == 2) {
       for (i=0; i<row->nT; i++) {
-        if (row->dataF[i] > 0.0) unsorted[NN++] = row->dataF[i];
+        if (row->data[i] > 0.0) unsorted[NN++] = row->data[i];
       }
     } else {
       for (i=0; i<row->nT; i++) {
-        if (row->dataF[i] != 0.0) unsorted[NN++] = row->dataF[i];
+        if (row->data[i] != 0.0) unsorted[NN++] = row->data[i];
       }
     }
   }
@@ -389,28 +388,7 @@ int cFunctionals::doProcess(int idxi, cMatrix *row, FLOAT_DMEM*y)
   
   return nFunctValues;
 
-/*
-  } else if (row->type == DMEM_INT) {
-    // TODO....
-    SMILE_IERR(1,"type DMEM_INT not yet supported in cFunctionals!");
-    return 0;
-  } else {
-    SMILE_IERR(1,"unknown datatype encountered in cFunctionals doProcess!");
-    return 0;
-  }
-*/
-
 }
-
-/* TODO
-int cFunctionals::doProcess(int idxi, cMatrix *row, INT_DMEM*y)
-{
-  // copy row to matrix... simple memcpy here
-  //memcpy(y,row->dataI,row->nT*sizeof(INT_DMEM));
-  // return the number of components in y!!
-  return nFunctsEnabled;
-}
-*/
 
 cFunctionals::~cFunctionals()
 {

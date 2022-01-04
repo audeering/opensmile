@@ -23,8 +23,7 @@ pre-emphasis per frame  (simplification, however, this is the way HTK does it...
 #define COMPONENT_DESCRIPTION_CVECTORPREEMPHASIS "This component performs per frame pre-emphasis without an inter-frame state memory. (This is the way HTK does pre-emphasis). Pre-emphasis: y(t) = x(t) - k*x(t-1) ; de-emphasis : y(t) = x(t) + k*x(t-1)"
 #define COMPONENT_NAME_CVECTORPREEMPHASIS "cVectorPreemphasis"
 
-#undef class
-class DLLEXPORT cVectorPreemphasis : public cVectorProcessor {
+class cVectorPreemphasis : public cVectorProcessor {
   private:
     FLOAT_DMEM k;
     double f;
@@ -42,8 +41,7 @@ class DLLEXPORT cVectorPreemphasis : public cVectorProcessor {
 
     virtual int dataProcessorCustomFinalise() override;
 //    virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

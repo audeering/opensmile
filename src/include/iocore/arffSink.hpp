@@ -18,12 +18,13 @@ ARFF file output (for WEKA)
 
 #include <core/smileCommon.hpp>
 #include <core/dataSink.hpp>
+#include <string>
+#include <vector>
 
 #define COMPONENT_DESCRIPTION_CARFFSINK "This component writes dataMemory data to an ARFF file (WEKA). Depending on your config an instance name field, a frame index, and a frame time field can be added as well as multiple class/target attributes. See the config type documentation for more details."
 #define COMPONENT_NAME_CARFFSINK "cArffSink"
 
-#undef class
-class DLLEXPORT cArffSink : public cDataSink {
+class cArffSink : public cDataSink {
   private:
     FILE * filehandle;
     double frameTimeAdd;
@@ -38,11 +39,13 @@ class DLLEXPORT cArffSink : public cDataSink {
     int printDefaultClassDummyAttribute;    
     int nClasses; long nInst;
     long inr;
-    char **classname;
-    char **classtype;
+    std::vector<std::string> classname;
+    std::vector<std::string> classtype;
     
-    char **targetall;
-    char ***targetinst;
+    std::vector<std::string> targetall;
+    std::vector<std::vector<std::string>> targetinst;
+    
+    static std::string escape(const char *str);
     
   protected:
     SMILECOMPONENT_STATIC_DECL_PR

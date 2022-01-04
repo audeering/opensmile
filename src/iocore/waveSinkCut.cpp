@@ -346,10 +346,6 @@ cWaveSinkCut::~cWaveSinkCut()
 
 //----------------------------------------------------------------------------------
 
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
 /* WAVE Header struct, valid only for PCM Files */
 typedef struct {
   uint32_t	Riff;    /* Must be little endian 0x46464952 (RIFF) */
@@ -403,7 +399,7 @@ int cWaveSinkCut::writeWaveHeader()
   head.SampleRate = sampleRate;
   head.BitsPerSample = nBitsPerSample;
   head.ByteRate = sampleRate * nChannels * nBytesPerSample;
-  head.AudioFormat = 1; // !!! ??
+  head.AudioFormat = sampleFormat == SMILE_SF_32BIT_FLOAT ? WAVE_FORMAT_IEEE_FLOAT : WAVE_FORMAT_PCM;
   head.NumChannels = nChannels;
   head.BlockAlign = nChannels * nBytesPerSample;
   head.Subchunk2ID = 0x61746164; // data
@@ -439,7 +435,7 @@ int cWaveSinkCut::writeDataFrame(cVector *m)
         b8 = (int8_t*)sampleBuffer;
         for (i=0; i<sampleBufferLen; i++) { 
           for (j=0; j<nChannels; j++) { // conversion from separate channels to interleaved channels
-            b8[i*nChannels+j] = (int8_t)round(m->dataF[i+sampleBufferLen*j] * 127.0);
+            b8[i*nChannels+j] = (int8_t)round(m->data[i+sampleBufferLen*j] * 127.0);
           }
         }
         break;
@@ -447,7 +443,7 @@ int cWaveSinkCut::writeDataFrame(cVector *m)
         b16 = (int16_t*)sampleBuffer;
         for (i=0; i<sampleBufferLen; i++) { 
           for (j=0; j<nChannels; j++) { // conversion from separate channels to interleaved channels
-            b16[i*nChannels+j] = (int16_t)round(m->dataF[i+sampleBufferLen*j] * 32767.0); 
+            b16[i*nChannels+j] = (int16_t)round(m->data[i+sampleBufferLen*j] * 32767.0); 
           }
         }
         break;
@@ -455,20 +451,20 @@ int cWaveSinkCut::writeDataFrame(cVector *m)
         b32 = (int32_t*)sampleBuffer;
         for (i=0; i<sampleBufferLen; i++) { 
           for (j=0; j<nChannels; j++) { // conversion from separate channels to interleaved channels
-            b32[i*nChannels+j] = (int32_t)round(m->dataF[i+sampleBufferLen*j] * 32767.0 * 256.0);
+            b32[i*nChannels+j] = (int32_t)round(m->data[i+sampleBufferLen*j] * 32767.0 * 256.0);
           }
         }
         break;
       case SMILE_SF_24BITp: 
         COMP_ERR("24-bit wave file with 3 bytes per sample encoding not yet supported!");
         //int16_t *b16 = buf;
-        //for (i=0; i<m->nT*nChannels; i++) { b16[i] = (int16_t)round(m->dataF[i] * 32767.0); }
+        //for (i=0; i<m->nT*nChannels; i++) { b16[i] = (int16_t)round(m->data[i] * 32767.0); }
         //break;
       case SMILE_SF_32BIT: 
         b32 = (int32_t*)sampleBuffer;
         for (i=0; i<sampleBufferLen; i++) { 
           for (j=0; j<nChannels; j++) { // conversion from separate channels to interleaved channels
-            b32[i*nChannels+j] = (int32_t)round(m->dataF[i+sampleBufferLen*j] * 32767.0 * 32767.0 * 2.0); 
+            b32[i*nChannels+j] = (int32_t)round(m->data[i+sampleBufferLen*j] * 32767.0 * 32767.0 * 2.0); 
           }
         }
         break;
@@ -476,7 +472,7 @@ int cWaveSinkCut::writeDataFrame(cVector *m)
         b32f = (float*)sampleBuffer;
         for (i=0; i<sampleBufferLen; i++) { 
           for (j=0; j<nChannels; j++) { // conversion from separate channels to interleaved channels
-            b32f[i*nChannels+j] = (float)(m->dataF[i+sampleBufferLen*j]); 
+            b32f[i*nChannels+j] = (float)(m->data[i+sampleBufferLen*j]); 
           }
         }
         break;

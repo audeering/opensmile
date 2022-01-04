@@ -23,8 +23,7 @@ LPC, compute LPC coefficients from wave data (PCM) frames
 #define COMPONENT_DESCRIPTION_CFORMANTLPC "This component computes formant frequencies and bandwidths by solving for the roots of the LPC polynomial. The formant trajectories can and should be smoothed by the cFormantSmoother component."
 #define COMPONENT_NAME_CFORMANTLPC "cFormantLpc"
 
-#undef class
-class DLLEXPORT cFormantLpc : public cVectorProcessor {
+class cFormantLpc : public cVectorProcessor {
   private:
     int nFormants;
     int saveFormants;
@@ -54,8 +53,7 @@ class DLLEXPORT cFormantLpc : public cVectorProcessor {
     virtual int setupNewNames(long nEl) override;
     virtual void findInputFields();
 
-    virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

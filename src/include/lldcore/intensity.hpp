@@ -24,8 +24,7 @@ compute simplified intensity according to :
 #define COMPONENT_DESCRIPTION_CINTENSITY "This component computes simplified frame intensity (narrow band approximation). IMPORTANT: It expects UNwindowed raw PCM frames as input!! A Hamming window is internally applied and the resulting signal is squared bevore applying loudness compression, etc."
 #define COMPONENT_NAME_CINTENSITY "cIntensity"
 
-#undef class
-class DLLEXPORT cIntensity : public cVectorProcessor {
+class cIntensity : public cVectorProcessor {
   private:
     double I0;
     double *hamWin;
@@ -45,8 +44,7 @@ class DLLEXPORT cIntensity : public cVectorProcessor {
     //virtual int configureWriter(const sDmLevelConfig *c) override;
 
     virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    //virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

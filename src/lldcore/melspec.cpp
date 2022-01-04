@@ -454,7 +454,7 @@ int cMelspec::computeFilters( long blocksize, double frameSizeSec, int idxc )
   return 0;
 }
 
-int cMelspec::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cMelspec::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   int m,n;
   idxi=getFconf(idxi);

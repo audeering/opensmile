@@ -186,14 +186,14 @@ eTickResult cRnnVad2::myTick(long long t)
 
   int vad = 0;
   FLOAT_DMEM E = 0.0;
-  FLOAT_DMEM vact = frame->dataF[voiceIdx];
+  FLOAT_DMEM vact = frame->data[voiceIdx];
   FLOAT_DMEM aact = 0.0;
   
-  if (agentIdx >= 0) aact = frame->dataF[agentIdx];
+  if (agentIdx >= 0) aact = frame->data[agentIdx];
 
   /* get frame energy */
   if (energyIdx >= 0) {
-    E = frame->dataF[energyIdx];
+    E = frame->data[energyIdx];
     eCurrent->nextE(E); 
   }
 
@@ -289,7 +289,7 @@ eTickResult cRnnVad2::myTick(long long t)
   
   if (vadDebug==2) { vad=0; } /* Disable VAD output for debugging ONLY vad functionality without other interfering components */
 
-  frameO->dataF[0] = (FLOAT_DMEM)(vad);
+  frameO->data[0] = (FLOAT_DMEM)(vad);
   writer_->setNextFrame(frameO);
 
   return TICK_SUCCESS;

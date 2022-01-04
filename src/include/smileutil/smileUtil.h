@@ -28,37 +28,15 @@ extern "C" {
 #ifndef __SMILE_COMMON_H
 #define __SMILE_COMMON_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#if !defined(__STATIC_LINK) && defined(_MSC_VER) // Visual Studio specific macro
-  #ifdef BUILDING_DLL
-    #define DLLEXPORT __declspec(dllexport)
-//    #define class class __declspec(dllexport)
-  #else
-    #define DLLEXPORT __declspec(dllimport)
-//    #define class class __declspec(dllimport)
-  #endif
-  #define DLLLOCAL 
-#else 
-    #define DLLEXPORT 
-    #define DLLLOCAL  
-#endif
-
 #include <stdlib.h>
 #include <stdio.h>
 
 #endif  // __SMILE_COMMON_H
 
 
-
+#include <stdbool.h>
 #include <core/smileTypes.h>
 #include <smileutil/smileUtilSpline.h>
-
-#ifndef __cplusplus
-typedef enum {false, true} bool;
-#endif
 
 // --- mathematics ----::
 
@@ -70,7 +48,7 @@ typedef enum {false, true} bool;
  ***********************=====   Misc functions   ===== **************************************
  *******************************************************************************************/
 
-DLLEXPORT int smileUtil_stripline(char ** _line);
+int smileUtil_stripline(char ** _line);
 
 /*******************************************************************************************
  ***********************=====   Sort functions   ===== **************************************
@@ -79,16 +57,16 @@ DLLEXPORT int smileUtil_stripline(char ** _line);
   /* NOTE: the quicksort functions sort in ASCENDING order */
 
 /* QuickSort algorithm for a double array with nEl elements */
-DLLEXPORT void smileUtil_quickSort_double(double *arr, long nEl);
+void smileUtil_quickSort_double(double *arr, long nEl);
 
 /* QuickSort algorithm for a float array with nEl elements */
-DLLEXPORT void smileUtil_quickSort_float(float *arr, long nEl);
+void smileUtil_quickSort_float(float *arr, long nEl);
 
 /* QuickSort algorithm for a FLOAT_DMEM array with nEl elements */
-DLLEXPORT void smileUtil_quickSort_FLOATDMEM(FLOAT_DMEM *arr, long nEl);
+void smileUtil_quickSort_FLOATDMEM(FLOAT_DMEM *arr, long nEl);
 
 /* Reverse the order in an array of elements, i.e. swap first and last element, etc. */
-DLLEXPORT void smileUtil_reverseOrder_FLOATDMEM(FLOAT_DMEM *arr, long nEl);
+void smileUtil_reverseOrder_FLOATDMEM(FLOAT_DMEM *arr, long nEl);
 
 
 /*******************************************************************************************
@@ -97,17 +75,17 @@ DLLEXPORT void smileUtil_reverseOrder_FLOATDMEM(FLOAT_DMEM *arr, long nEl);
 
 
 /* allocate workspace (history matrix) for a temporal median filter */
-DLLEXPORT FLOAT_DMEM * smileUtil_temporalMedianFilterInit(long N, long T);
-DLLEXPORT FLOAT_DMEM * smileUtil_temporalMedianFilterInitSl(long N, long Ns, long T);
+FLOAT_DMEM * smileUtil_temporalMedianFilterInit(long N, long T);
+FLOAT_DMEM * smileUtil_temporalMedianFilterInitSl(long N, long Ns, long T);
 
 /* free the temporal median filter workspace and return NULL */
-DLLEXPORT FLOAT_DMEM * smileUtil_temporalMedianFilterFree(FLOAT_DMEM *workspace);
+FLOAT_DMEM * smileUtil_temporalMedianFilterFree(FLOAT_DMEM *workspace);
 
 /*
   Perform median filter of each element in frame x (over time) using a history matrix given in *workspace
   The workspace must be created with smileUtil_temporalMedianFilterInit
 */
-DLLEXPORT void smileUtil_temporalMedianFilter(FLOAT_DMEM *x, long N, FLOAT_DMEM *workspace);
+void smileUtil_temporalMedianFilter(FLOAT_DMEM *x, long N, FLOAT_DMEM *workspace);
 
 /*
   Perform median filter of each element in frame x (over time) using a history matrix given in *workspace
@@ -115,7 +93,7 @@ DLLEXPORT void smileUtil_temporalMedianFilter(FLOAT_DMEM *x, long N, FLOAT_DMEM 
   workspace : ptr el0 el0 el0(t-1)... el0(t) ; ptr el1 el1 el1(t-1) ... el1(t)
   **> Filter with slave data (Ns is number of slave elements for each element in x (total size of x thus is N*Ns))
 */
-DLLEXPORT void smileUtil_temporalMedianFilterWslave(FLOAT_DMEM *x, long N, long Ns, FLOAT_DMEM *workspace);
+void smileUtil_temporalMedianFilterWslave(FLOAT_DMEM *x, long N, long Ns, FLOAT_DMEM *workspace);
 
 /*******************************************************************************************
  ***********************=====   FIR filters   ===== ****************************************
@@ -226,7 +204,7 @@ FLOAT_DMEM smileMath_ratioLimit(FLOAT_DMEM x,
   (workspace can be a pointer to an array of N FLOAT_DMEMs which is used to sort the data in x without changing x)
   (if workspace is NULL , the function will allocate and free the workspace internally)
 */
-DLLEXPORT FLOAT_DMEM smileMath_median(const FLOAT_DMEM *x, long N, FLOAT_DMEM *workspace);
+FLOAT_DMEM smileMath_median(const FLOAT_DMEM *x, long N, FLOAT_DMEM *workspace);
 
 /*
   median of vector x
@@ -234,19 +212,19 @@ DLLEXPORT FLOAT_DMEM smileMath_median(const FLOAT_DMEM *x, long N, FLOAT_DMEM *w
   (if workspace is NULL , the function will allocate and free the workspace internally)
   THIS function should return the original vector index of the median in workspace[0] (and workspace[1] if N is even), to use this functionality you must provide a workspace pointer!
 */
-DLLEXPORT FLOAT_DMEM smileMath_medianOrdered(const FLOAT_DMEM *x, long N, FLOAT_DMEM *workspace);
+FLOAT_DMEM smileMath_medianOrdered(const FLOAT_DMEM *x, long N, FLOAT_DMEM *workspace);
 
 /* check if number x is power of 2 (positive or negative) */
-DLLEXPORT long smileMath_isPowerOf2(long x);
+long smileMath_isPowerOf2(long x);
 
 /* round x to nearest power of two */
-DLLEXPORT long smileMath_roundToNextPowOf2(long x);
+long smileMath_roundToNextPowOf2(long x);
 
 /* round up x to next power of 2 */
-DLLEXPORT long smileMath_ceilToNextPowOf2(long x);
+long smileMath_ceilToNextPowOf2(long x);
 
 /* round down x to next power of two */
-DLLEXPORT long smileMath_floorToNextPowOf2(long x);
+long smileMath_floorToNextPowOf2(long x);
 
 /* compute log to base 2 */
 double smileMath_log2(double x);
@@ -274,19 +252,19 @@ FLOAT_DMEM smileMath_vectorAngle(FLOAT_DMEM *x, FLOAT_DMEM *y, long N,
 FLOAT_DMEM smileMath_vectorDistanceEuc(FLOAT_DMEM *x, FLOAT_DMEM *y, long N);
 
 /* compute euclidean norm of given vector x */
-DLLEXPORT FLOAT_DMEM smileMath_vectorLengthEuc(FLOAT_DMEM *x, long N);
+FLOAT_DMEM smileMath_vectorLengthEuc(FLOAT_DMEM *x, long N);
 
 /* compute L1 norm (sum of absoulte values) of given vector x */
-DLLEXPORT FLOAT_DMEM smileMath_vectorLengthL1(FLOAT_DMEM *x, long N);
+FLOAT_DMEM smileMath_vectorLengthL1(FLOAT_DMEM *x, long N);
 
 /* normalise euclidean length of x to 1 */
-DLLEXPORT FLOAT_DMEM smileMath_vectorNormEuc(FLOAT_DMEM *x, long N);
+FLOAT_DMEM smileMath_vectorNormEuc(FLOAT_DMEM *x, long N);
 
 /* normalise vector sum to 1 */
-DLLEXPORT FLOAT_DMEM smileMath_vectorNormL1(FLOAT_DMEM *x, long N);
+FLOAT_DMEM smileMath_vectorNormL1(FLOAT_DMEM *x, long N);
 
 /* normalise values of vector x to range [min - max] */
-DLLEXPORT void smileMath_vectorNormMax(FLOAT_DMEM *x, long N, FLOAT_DMEM min, FLOAT_DMEM max);
+void smileMath_vectorNormMax(FLOAT_DMEM *x, long N, FLOAT_DMEM min, FLOAT_DMEM max);
 
 /* returns second largest value of vector and indices of 2nd and 1st largest element */
 FLOAT_DMEM smileMath_vectorMax2(FLOAT_DMEM *x, long N, long *maxPos, long *secondMaxPos);
@@ -295,17 +273,17 @@ FLOAT_DMEM smileMath_vectorMax2(FLOAT_DMEM *x, long N, long *maxPos, long *secon
 FLOAT_DMEM smileMath_vectorMax(FLOAT_DMEM *x, long N, long *maxPos);
 
 /* compute the arithmetic mean of vector x */
-DLLEXPORT FLOAT_DMEM smileMath_vectorAMean(FLOAT_DMEM *x, long N);
+FLOAT_DMEM smileMath_vectorAMean(FLOAT_DMEM *x, long N);
 
 /* root of each element in a vector */
-DLLEXPORT void smileMath_vectorRoot(FLOAT_DMEM *x, long N);
+void smileMath_vectorRoot(FLOAT_DMEM *x, long N);
 /* root of each element in a vector */
-DLLEXPORT void smileMath_vectorRootD(double *x, long N);
+void smileMath_vectorRootD(double *x, long N);
 
 /****** complex number math ****/
 
 /* compute A/B , store in C */
-DLLEXPORT void smileMath_complexDiv(double ReA, double ImA, double ReB, double ImB, double *ReC, double *ImC);
+void smileMath_complexDiv(double ReA, double ImA, double ReB, double ImB, double *ReC, double *ImC);
 
 /* absolute value of a complex number */
 double smileMath_complexAbs(double Re, double Im);
@@ -316,14 +294,14 @@ double smileMath_complexAbs(double Re, double Im);
 // then root = 1 / root*
 //
 // *roots is an array of n complex numbers (2*n doubles)
-DLLEXPORT void smileMath_complexIntoUnitCircle(double *roots, int n);
+void smileMath_complexIntoUnitCircle(double *roots, int n);
 
 
 /***** interpolation ****/
 
 // constructs a parabola from three points
 // returns: peak x of parabola, and optional (if not NULL) the y value of the peak in *y and the steepness in *_a
-DLLEXPORT double smileMath_quadFrom3pts(double x1, double y1, double x2, double y2, double x3, double y3, double *y, double *_a);
+double smileMath_quadFrom3pts(double x1, double y1, double x2, double y2, double x3, double y3, double *y, double *_a);
 
 
 /*******************************************************************************************
@@ -420,46 +398,46 @@ double smileDsp_sinc(double x);
 #endif
 
 /* Rectangular window */
-DLLEXPORT double * smileDsp_winRec(long N);
+double * smileDsp_winRec(long N);
 
 /* Triangular window (non-zero endpoint) */
-DLLEXPORT double * smileDsp_winTri(long N);
+double * smileDsp_winTri(long N);
 
 /* Powered triangular window (non-zero endpoint) */
-DLLEXPORT double * smileDsp_winTrP(long N);
+double * smileDsp_winTrP(long N);
 
 /* Bartlett window (triangular, zero endpoint) */
-DLLEXPORT double * smileDsp_winBar(long N);
+double * smileDsp_winBar(long N);
 
 /* Hann window */
-DLLEXPORT double * smileDsp_winHan(long N);
+double * smileDsp_winHan(long N);
 
 /* Hamming window */
-DLLEXPORT double * smileDsp_winHam(long N_);
+double * smileDsp_winHam(long N_);
 
 /* Sine window */
-DLLEXPORT double * smileDsp_winSin(long N);
+double * smileDsp_winSin(long N);
 
 /* Gauss window */
-DLLEXPORT double * smileDsp_winGau(long N, double sigma);
+double * smileDsp_winGau(long N, double sigma);
 
 /* Lanczos window */
-DLLEXPORT double * smileDsp_winLac(long N);
+double * smileDsp_winLac(long N);
 
 /* Blackman window */
-DLLEXPORT double * smileDsp_winBla(long N, double alpha0, 
+double * smileDsp_winBla(long N, double alpha0, 
   double alpha1, double alpha2);
 
 /* Bartlett-Hann window */
-DLLEXPORT double * smileDsp_winBaH(long N, double alpha0, 
+double * smileDsp_winBaH(long N, double alpha0, 
   double alpha1, double alpha2);
 
 /* Blackman-Harris window */
-DLLEXPORT double * smileDsp_winBlH(long N, double alpha0, 
+double * smileDsp_winBlH(long N, double alpha0, 
   double alpha1, double alpha2, double alpha3);
 
 /* convert string window function name (from config file) to integer constant */
-DLLEXPORT int winFuncToInt(const char * winF);
+int winFuncToInt(const char * winF);
 
 /****** FFT related dsp functions *****/
 
@@ -483,13 +461,13 @@ long smileDsp_fftComputeMagPhase(const FLOAT_DMEM *complex, long N,
 /***** other dsp functions ****/
 
 /* compute harmonic product spectrum from a magnitude spectrum, use up to maxMul down-scaled spectra */
-DLLEXPORT long smileDsp_harmonicProductLin(const FLOAT_DMEM *src, long Nsrc, FLOAT_DMEM *dst, long Ndst, int maxMul);
+long smileDsp_harmonicProductLin(const FLOAT_DMEM *src, long Nsrc, FLOAT_DMEM *dst, long Ndst, int maxMul);
 
 /* compute harmonic sum spectrum from a magnitude spectrum, use up to maxMul down-scaled spectra */
-DLLEXPORT long smileDsp_harmonicSumLin(const FLOAT_DMEM *src, long Nsrc, FLOAT_DMEM *dst, long Ndst, int maxMul);
+long smileDsp_harmonicSumLin(const FLOAT_DMEM *src, long Nsrc, FLOAT_DMEM *dst, long Ndst, int maxMul);
 
 /* LPC analysis via ACF (=implementation of Durbin recursion) */
-DLLEXPORT int smileDsp_calcLpcAcf(FLOAT_DMEM * acf, FLOAT_DMEM *lpc, int _p, FLOAT_DMEM *gain, FLOAT_DMEM *refl);
+int smileDsp_calcLpcAcf(FLOAT_DMEM * acf, FLOAT_DMEM *lpc, int _p, FLOAT_DMEM *gain, FLOAT_DMEM *refl);
 
 /* smileDsp_calcLpcBurg:
  * Computes LPC coefficients with Burg's method (N. Anderson (1978)):
@@ -508,7 +486,7 @@ DLLEXPORT int smileDsp_calcLpcAcf(FLOAT_DMEM * acf, FLOAT_DMEM *lpc, int _p, FLO
      free it at the end of the function
      (the latter is inefficient if memory allocation is slow)
  */
-DLLEXPORT int smileDsp_calcLpcBurg (const FLOAT_DMEM *samples, long N,
+int smileDsp_calcLpcBurg (const FLOAT_DMEM *samples, long N,
     FLOAT_DMEM *coeffs, int M, FLOAT_DMEM *lpcgain,
     FLOAT_DMEM **gbb, FLOAT_DMEM **gb2, FLOAT_DMEM **gaa);
 
@@ -516,7 +494,7 @@ DLLEXPORT int smileDsp_calcLpcBurg (const FLOAT_DMEM *samples, long N,
 /* Autocorrelation in the time domain (for ACF LPC method) */
 /* x is signal to correlate, n is number of samples in input buffer, 
    *outp is array to hold #lag output coefficients, lag is # of output coefficients (= max. lag) */
-DLLEXPORT void smileDsp_autoCorr(const FLOAT_DMEM *x, const int n, FLOAT_DMEM *outp, int lag);
+void smileDsp_autoCorr(const FLOAT_DMEM *x, const int n, FLOAT_DMEM *outp, int lag);
 
 /* computes formant frequencies and bandwidths from lpc polynomial roots 
    return value: number of valid formants detected from given lpc polynomial roots
@@ -528,7 +506,7 @@ samplePeriod is 1.0 / sampleFrequency,
 fLow is min. formant frequency (upper and lower margin for valid formant frequency range),
 fHigh is max. formant frequency  (if  -1 (or < fLow), "samplingFrequency / 2 - fLow" will be used)
  */
-DLLEXPORT int smileDsp_lpcrootsToFormants(double *r, int nR, double *fc, double *bc, int nF, double samplePeriod, double fLow, double fHigh);
+int smileDsp_lpcrootsToFormants(double *r, int nR, double *fc, double *bc, int nF, double samplePeriod, double fLow, double fHigh);
 
 
 /* Implementation of a lattice filter, processes a single value per call */
@@ -537,20 +515,20 @@ DLLEXPORT int smileDsp_lpcrootsToFormants(double *r, int nR, double *fc, double 
    *bM is an optional b(M) result
    returns: f(M), and filtered data in *in
  */
-DLLEXPORT FLOAT_DMEM smileDsp_lattice(FLOAT_DMEM *k, FLOAT_DMEM *b, int M, FLOAT_DMEM in, FLOAT_DMEM *bM);
+FLOAT_DMEM smileDsp_lattice(FLOAT_DMEM *k, FLOAT_DMEM *b, int M, FLOAT_DMEM in, FLOAT_DMEM *bM);
 
 /* Implementation of an inverse lattice filter, processes a single value per call */
 /* k is filter coefficients, *b is work area (initialise with 0 when calling! (size: sizeof(FLOAT_DMEM)*M )),
    M is filter order (number of coefficients),  *out is input samples array (will contain in-place filtered outputs),
    returns: f(M), and filtered data in *out
  */
-DLLEXPORT FLOAT_DMEM smileDsp_invLattice(FLOAT_DMEM *k, FLOAT_DMEM *b, int M, FLOAT_DMEM out);
+FLOAT_DMEM smileDsp_invLattice(FLOAT_DMEM *k, FLOAT_DMEM *b, int M, FLOAT_DMEM out);
 
 /* peak enhancement in a linear magnitude spectrum */
-DLLEXPORT int smileDsp_specEnhanceSHS(double *a, long n);
+int smileDsp_specEnhanceSHS(double *a, long n);
 
 /* smooth a magnitude spectrum (linear) */
-DLLEXPORT void smileDsp_specSmoothSHS(double *a, long n);
+void smileDsp_specSmoothSHS(double *a, long n);
 
 
 /****** simple, slow & full inverse DFT ******/
@@ -568,13 +546,13 @@ typedef struct {
 // K is number of frequency bins (input)
 // I is the number of actual output samples to compute
 // nI is the denominator of the sin/cos functions (usually =I) 
-DLLEXPORT sDftWork * smileDsp_initIrdft(long K, long I, double nI, int antialias);
+sDftWork * smileDsp_initIrdft(long K, long I, double nI, int antialias);
 
 // free a DFT work area
-DLLEXPORT sDftWork * smileDsp_freeDftwork(sDftWork * w);
+sDftWork * smileDsp_freeDftwork(sDftWork * w);
 
 // perform an arbitrary inverse RDFT (slow version)
-DLLEXPORT void smileDsp_irdft(const FLOAT_DMEM * inData, FLOAT_DMEM *out, sDftWork *w);
+void smileDsp_irdft(const FLOAT_DMEM * inData, FLOAT_DMEM *out, sDftWork *w);
 
 #include <dspcore/fftXg.h>
 
@@ -586,14 +564,14 @@ typedef struct {
   sDftWork *irdftWork;
 } sResampleWork;
 
-DLLEXPORT sResampleWork * smileDsp_resampleWorkFree(sResampleWork * work);
-DLLEXPORT sResampleWork * smileDsp_resampleWorkInit(long Nin);
-DLLEXPORT int smileDsp_doResample(FLOAT_TYPE_FFT *x, long Nin, FLOAT_DMEM *y, long Nout, double nd, sResampleWork ** _work);
+sResampleWork * smileDsp_resampleWorkFree(sResampleWork * work);
+sResampleWork * smileDsp_resampleWorkInit(long Nin);
+int smileDsp_doResample(FLOAT_TYPE_FFT *x, long Nin, FLOAT_DMEM *y, long Nout, double nd, sResampleWork ** _work);
 
 // converts an amplitude ratio a to decibel (dB) 
 //     using the equation: 20*log(a)
 // a must be > 0
-DLLEXPORT double smileDsp_amplitudeRatioToDB(double a);
+double smileDsp_amplitudeRatioToDB(double a);
 
 
 /*******************************************************************************************
@@ -601,10 +579,10 @@ DLLEXPORT double smileDsp_amplitudeRatioToDB(double a);
  *******************************************************************************************/
 
 /* compute entropy of a "pmf" (the given pmf (in _vals) will be normalised by this function internally) */
-DLLEXPORT FLOAT_DMEM smileStat_entropy(const FLOAT_DMEM *vals, long N);
+FLOAT_DMEM smileStat_entropy(const FLOAT_DMEM *vals, long N);
 
 /* compute relative entropy of a "pmf" (may also be unnormalised) */
-DLLEXPORT FLOAT_DMEM smileStat_relativeEntropy(const FLOAT_DMEM *vals, long N);
+FLOAT_DMEM smileStat_relativeEntropy(const FLOAT_DMEM *vals, long N);
 
 typedef struct {
   long Nbins;
@@ -628,10 +606,10 @@ if a valid pointer is given in *_pmf, then the histogram will be added to the ex
 the resulting histogram will then be unnormalised, you will have to call smileMath_vectorNormEuc in the end.. 
 the memory pointed to by *h must be initialised with 0s! (at least h->bins must be NULL...)
 */
-DLLEXPORT void smileStat_getPMF(FLOAT_DMEM *_vals, long N, sHistogram *h);
+void smileStat_getPMF(FLOAT_DMEM *_vals, long N, sHistogram *h);
 
 /* Estimate the probability of a vector x with a given pmf (the pmf must be normalised to sum 1!) */
-DLLEXPORT FLOAT_DMEM smileStat_probEstim(FLOAT_DMEM x, sHistogram *h, FLOAT_DMEM probFloor);
+FLOAT_DMEM smileStat_probEstim(FLOAT_DMEM x, sHistogram *h, FLOAT_DMEM probFloor);
 
 /* get a PMF vector from a data matrix (result is a pmf histogram for each row of the matrix) */
 /* N: number of colums in matrix  , R: number of rows in the matrix (must match the size of *h) */
@@ -686,16 +664,16 @@ typedef struct {
   read the wave file header from fileHandle, store parameters in struct pointed to by pcmParam 
   the file must be opened via fopen()
  */
-DLLEXPORT int smilePcm_readWaveHeader(FILE *filehandle, sWaveParameters *pcmParam, const char *filename);
+int smilePcm_readWaveHeader(FILE *filehandle, sWaveParameters *pcmParam, const char *filename);
 
 /* parse a wave header from a wave file in memory */
-DLLEXPORT int smilePcm_parseWaveHeader(void *raw, long long N, sWaveParameters *pcmParam);
+int smilePcm_parseWaveHeader(void *raw, long long N, sWaveParameters *pcmParam);
 
 // Compute the number of samples from a given byte buffer length and PCM parameters
-DLLEXPORT int smilePcm_numberBytesToNumberSamples(int nBytes, const sWaveParameters *pcmParam);
+int smilePcm_numberBytesToNumberSamples(int nBytes, const sWaveParameters *pcmParam);
 
 // Computes the number of bytes required for a given number of samples and given PCM parameters
-DLLEXPORT int smilePcm_numberSamplesToNumberBytes(int nSamples, const sWaveParameters *pcmParam);
+int smilePcm_numberSamplesToNumberBytes(int nSamples, const sWaveParameters *pcmParam);
 
 // Convert samples from binary buffer to float array, given the wave parameters
 //  *buf : the raw PCM data buffer
@@ -706,9 +684,9 @@ DLLEXPORT int smilePcm_numberSamplesToNumberBytes(int nSamples, const sWaveParam
 //  nSamples : number of audio samples to copy from *buf to *a
 //  monoMixdown : 1 = convert from multi-channel recording to mono (1 channel)
 //  Return value: number of samples processed (= nSamples)
-DLLEXPORT int smilePcm_convertSamples(const void *buf, const sWaveParameters *pcmParam,
+int smilePcm_convertSamples(const void *buf, const sWaveParameters *pcmParam,
     float *a, int nChan, int nSamples, int monoMixdown);
-DLLEXPORT int smilePcm_convertFloatSamples(const void *buf, const sWaveParameters *pcmParam,
+int smilePcm_convertFloatSamples(const void *buf, const sWaveParameters *pcmParam,
     float *a, int nChan, int nSamples, int monoMixdown);
 
 /*read samples from wave file (after reading header). 
@@ -719,7 +697,7 @@ DLLEXPORT int smilePcm_convertFloatSamples(const void *buf, const sWaveParameter
   return value : -1 eof (or filehandle==NULL), 0 error, > 0 , num samples read
   the filehandle will automatically be closed and set to NULL at the end of file
 */
-DLLEXPORT int smilePcm_readSamples(FILE **filehandle, sWaveParameters *pcmParam,
+int smilePcm_readSamples(FILE **filehandle, sWaveParameters *pcmParam,
     float *a, int nChan, int nSamples, int monoMixdown);
 
 
@@ -729,13 +707,13 @@ DLLEXPORT int smilePcm_readSamples(FILE **filehandle, sWaveParameters *pcmParam,
 
 /* these functions are not safe and should only be used for data output during debugging ! */
 
-DLLEXPORT void saveDoubleVector_csv(const char * filename, double * vec, long N, int append);
-DLLEXPORT void saveFloatVector_csv(const char * filename, float * vec, long N, int append);
-DLLEXPORT void saveFloatDmemVector_csv(const char * filename, FLOAT_DMEM * vec, long N, int append);
-DLLEXPORT void saveDoubleVector_bin(const char * filename, double * vec, long N, int append);
-DLLEXPORT void saveFloatVector_bin(const char * filename, float * vec, long N, int append);
-DLLEXPORT void saveFloatDmemVector_bin(const char * filename, FLOAT_DMEM * vec, long N, int append);
-DLLEXPORT void saveFloatDmemVectorWlen_bin(const char * filename, FLOAT_DMEM * vec, long N, int append);
+void saveDoubleVector_csv(const char * filename, double * vec, long N, int append);
+void saveFloatVector_csv(const char * filename, float * vec, long N, int append);
+void saveFloatDmemVector_csv(const char * filename, FLOAT_DMEM * vec, long N, int append);
+void saveDoubleVector_bin(const char * filename, double * vec, long N, int append);
+void saveFloatVector_bin(const char * filename, float * vec, long N, int append);
+void saveFloatDmemVector_bin(const char * filename, FLOAT_DMEM * vec, long N, int append);
+void saveFloatDmemVectorWlen_bin(const char * filename, FLOAT_DMEM * vec, long N, int append);
 
 
 /** HTK functions **/

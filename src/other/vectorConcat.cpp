@@ -45,15 +45,7 @@ cVectorConcat::cVectorConcat(const char *_name) :
 {
 }
 
-
-int cVectorConcat::processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
-{
-  if (dst!=src)
-    memcpy( dst, src,  MIN(Ndst,Nsrc)*sizeof(INT_DMEM) );
-  return 1;
-}
-
-int cVectorConcat::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cVectorConcat::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   if (dst!=src)
     memcpy( dst, src,  MIN(Ndst,Nsrc)*sizeof(FLOAT_DMEM) );

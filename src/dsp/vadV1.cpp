@@ -186,8 +186,8 @@ eTickResult cVadV1::myTick(long long t)
 
   cVector *vec0 = new cVector(3);  // TODO: move vec0 to class...
   
-  FLOAT_DMEM *src = vec->dataF;
-  FLOAT_DMEM *dst = vec0->dataF;
+  FLOAT_DMEM *src = vec->data;
+  FLOAT_DMEM *dst = vec0->data;
 
 
 /*

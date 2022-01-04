@@ -49,7 +49,8 @@ cExternalSource::cExternalSource(const char *_name):
   cDataSource(_name),
   vectorSize_(0),
   writtenDataBuffer_(NULL),
-  externalEOI_(false)
+  externalEOI_(false),
+  eoiProcessed_(false)
 {
   smileMutexCreate(writeDataMtx_);
 }
@@ -115,13 +116,13 @@ bool cExternalSource::writeData(const FLOAT_DMEM *dataMatrix, int nFrames) {
 
   // allocate/resize data buffer
   if (writtenDataBuffer_ == NULL) {
-    writtenDataBuffer_ = new cMatrix(vectorSize_, nFrames, DMEM_FLOAT, true);
+    writtenDataBuffer_ = new cMatrix(vectorSize_, nFrames, true);
   } else if (writtenDataBuffer_->nT < nFrames) {
     delete writtenDataBuffer_;
-    writtenDataBuffer_ = new cMatrix(vectorSize_, nFrames, DMEM_FLOAT, true);
+    writtenDataBuffer_ = new cMatrix(vectorSize_, nFrames, true);
   }
 
-  memcpy(writtenDataBuffer_->dataF, dataMatrix, sizeof(FLOAT_DMEM) * vectorSize_ * nFrames);
+  memcpy(writtenDataBuffer_->data, dataMatrix, sizeof(FLOAT_DMEM) * vectorSize_ * nFrames);
 
   // temporarily set the size of writtenDataBuffer_ to the current amount of data to write
   long realBufferSize = writtenDataBuffer_->nT;
@@ -144,10 +145,41 @@ bool cExternalSource::writeData(const FLOAT_DMEM *dataMatrix, int nFrames) {
 
 eTickResult cExternalSource::myTick(long long t)
 {
-  if (isAbort() || isPaused() || isEOI() || externalEOI_)
+  if (isAbort() || isPaused() || isEOI()) {
     return TICK_INACTIVE;
-  else
+  }
+
+  smileMutexLock(writeDataMtx_);
+  bool eoi = externalEOI_;
+  smileMutexUnlock(writeDataMtx_);
+
+  if (!eoi) {
     return TICK_EXT_SOURCE_NOT_AVAIL;
+  } else if (!eoiProcessed_) {
+    // After the EOI has been set, we need to return TICK_SUCCESS once
+    // to account for the following corner case:
+    // * The cExternalSource component is not registered at the beginning of the components list,
+    //   i.e. components that depend on the input run in the tick loop before the cExternalSource component.
+    // * Part of the external data is written and all components have fully processed it as far as possible.
+    //   Thus, all components return TICK_SOURCE_NOT_AVAIL/TICK_INACTIVE.
+    // * Right before the tick of cExternalSource is executed,
+    //   more external data is written and the external EOI is set,
+    //   then the tick function of cExternalSource runs.
+    // If cExternalSource immediately returned TICK_INACTIVE at this point, 
+    // the component manager would see all components as inactive and set the EOI condition even though 
+    // there is more data available that has not been processed yet.
+    // Premature entering of the EOI mode leads in general to wrong behavior of components.
+    //
+    // We need to return TICK_SUCCESS here, not TICK(_EXT)_SOURCE_NOT_AVAIL, because:
+    // * TICK_EXT_SOURCE_NOT_AVAIL would lead to suspending of the tick loop if no other components performed more work,
+    //   which is not what we want.
+    // * TICK_SOURCE_NOT_AVAIL would not fix the above corner case because it would not prevent the component manager 
+    //   from entering EOI mode early.
+    eoiProcessed_ = true;
+    return TICK_SUCCESS;
+  } else {
+    return TICK_INACTIVE;
+  }
 }
 
 void cExternalSource::setExternalEOI()

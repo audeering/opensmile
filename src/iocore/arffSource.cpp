@@ -328,7 +328,7 @@ eTickResult cArffSource::myTick(long long t)
             char *ep=NULL;
             double val = strtod(x0, &ep);
             if ((val==0.0)&&(ep==x0)) { SMILE_IERR(1,"error parsing value in arff file '%s' (line %i), expected double value (element %i).",filename,lineNr,i); }
-            if (ncnt < vec_->N) vec_->dataF[ncnt++] = (FLOAT_DMEM)val;
+            if (ncnt < vec_->N) vec_->data[ncnt++] = (FLOAT_DMEM)val;
             else { SMILE_IERR(1,"more elements in field selection (%i) than allocated in vector (%i)!",ncnt,vec_->N); } // <- should never happen?
           }
           if (readFrameTime_ && i == frameTimeNr_) {

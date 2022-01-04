@@ -35,17 +35,11 @@ public:
   }
 
   void feed(const cVector &vec) {
-    if (vec.type == DMEM_FLOAT)
-      feed(vec.dataF, sizeof(FLOAT_DMEM) * vec.N);
-    else if (vec.type == DMEM_INT)
-      feed(vec.dataI, sizeof(INT_DMEM) * vec.N);
+    feed(vec.data, sizeof(FLOAT_DMEM) * vec.N);
   }
 
   void feed(const cMatrix &mat) {
-    if (mat.type == DMEM_FLOAT)
-      feed(mat.dataF, sizeof(FLOAT_DMEM) * mat.nT * mat.N);
-    else if (mat.type == DMEM_INT)
-      feed(mat.dataI, sizeof(INT_DMEM) * mat.nT * mat.N);
+    feed(mat.data, sizeof(FLOAT_DMEM) * mat.nT * mat.N);
   }
 
   void reset() { 
@@ -80,26 +74,14 @@ public:
   }
 
   void fill(cVector &vec) {
-    if (vec.type == DMEM_FLOAT) {
-      for (long i = 0; i < vec.N; i++) {
-        vec.dataF[i] = mt();
-      }
-    } else if (vec.type == DMEM_INT) {
-      for (long i = 0; i < vec.N; i++) {
-        vec.dataI[i] = mt();
-      }
+    for (long i = 0; i < vec.N; i++) {
+      vec.data[i] = mt();
     }
   }
 
   void fill(cMatrix &mat) {
-    if (mat.type == DMEM_FLOAT) {
-      for (long i = 0; i < mat.nT * mat.N; i++) {
-        mat.dataF[i] = mt();
-      }
-    } else if (mat.type == DMEM_INT) {
-      for (long i = 0; i < mat.nT * mat.N; i++) {
-        mat.dataI[i] = mt();
-      }
+    for (long i = 0; i < mat.nT * mat.N; i++) {
+      mat.data[i] = mt();
     }
   }
 };
@@ -107,19 +89,10 @@ public:
 // define string representations for cVector and cMatrix, used by Catch2 in log and error messages
 
 static std::ostream &operator<<(std::ostream &stream, const cVector &vec) {
-  if (vec.type == DMEM_FLOAT) {
-    if (vec.N == 0) return stream << "[]";
-    else if (vec.N == 1) return stream << "[" << vec.dataF[0] << "]";
-    else if (vec.N == 2) return stream << "[" << vec.dataF[0] << ", " << vec.dataF[1] << "]";
-    else return stream << "[" << vec.dataF[0] << ", " << vec.dataF[1] << ", " << vec.N - 2 << " more values...]";
-  } else if (vec.type == DMEM_INT) {
-    if (vec.N == 0) return stream << "[]";
-    else if (vec.N == 1) return stream << "[" << vec.dataI[0] << "]";
-    else if (vec.N == 2) return stream << "[" << vec.dataI[0] << ", " << vec.dataI[1] << "]";
-    else return stream << "[" << vec.dataI[0] << ", " << vec.dataI[1] << ", " << vec.N - 2 << " more values...]";
-  } else {
-    throw std::logic_error("unsupported vector data type");
-  }
+  if (vec.N == 0) return stream << "[]";
+  else if (vec.N == 1) return stream << "[" << vec.data[0] << "]";
+  else if (vec.N == 2) return stream << "[" << vec.data[0] << ", " << vec.data[1] << "]";
+  else return stream << "[" << vec.data[0] << ", " << vec.data[1] << ", " << vec.N - 2 << " more values...]";
 }
 
 static std::ostream &operator<<(std::ostream &stream, const cMatrix &mat) {
@@ -154,15 +127,9 @@ public:
   EqualsVectorMatcher(const cVector &vec) : vec(vec) {}
 
   virtual bool match(const cVector& other) const override {
-    if (vec.type != other.type) return false;
     if (vec.N != other.N) return false;
 
-    if (vec.type == DMEM_FLOAT)
-      return memcmp(vec.dataF, other.dataF, sizeof(FLOAT_DMEM) * vec.N) == 0;
-    else if (vec.type == DMEM_INT)
-      return memcmp(vec.dataI, other.dataI, sizeof(INT_DMEM) * vec.N) == 0;
-    else
-      throw std::logic_error("unsupported vector data type");
+    return memcmp(vec.data, other.data, sizeof(FLOAT_DMEM) * vec.N) == 0;
   }
 
   virtual std::string describe() const override {
@@ -187,20 +154,11 @@ public:
   WithinAbsVectorMatcher(const cVector &vec, FLOAT_DMEM margin) : vec(vec), margin(margin) {}
 
   virtual bool match(const cVector& other) const override {
-    if (vec.type != other.type) return false;
     if (vec.N != other.N) return false;
 
-    if (vec.type == DMEM_FLOAT) {
-      for (int i = 0; i < vec.N; i++)
-        if (std::fabs(vec.dataF[i] - other.dataF[i]) > margin)
-          return false;
-    } else if (vec.type == DMEM_INT) {
-      for (int i = 0; i < vec.N; i++)
-        if (std::abs(vec.dataI[i] - other.dataI[i]) > margin)
-          return false;
-    } else {
-      throw std::logic_error("unsupported vector data type");
-    }
+    for (int i = 0; i < vec.N; i++)
+      if (std::fabs(vec.data[i] - other.data[i]) > margin)
+        return false;
 
     return true;
   }
@@ -224,16 +182,10 @@ public:
   EqualsMatrixMatcher(const cMatrix &mat) : mat(mat) {}
 
   virtual bool match(const cMatrix& other) const override {
-    if (mat.type != other.type) return false;
     if (mat.N != other.N) return false;
     if (mat.nT != other.nT) return false;
 
-    if (mat.type == DMEM_FLOAT)
-      return memcmp(mat.dataF, other.dataF, sizeof(FLOAT_DMEM) * mat.N * mat.nT) == 0;
-    else if (mat.type == DMEM_INT)
-      return memcmp(mat.dataI, other.dataI, sizeof(INT_DMEM) * mat.N * mat.nT) == 0;
-    else
-      throw std::logic_error("unsupported matrix data type");
+    return memcmp(mat.data, other.data, sizeof(FLOAT_DMEM) * mat.N * mat.nT) == 0;
   }
 
   virtual std::string describe() const override {
@@ -258,20 +210,11 @@ public:
   WithinAbsMatrixMatcher(const cMatrix &mat, FLOAT_DMEM margin) : mat(mat), margin(margin) {}
 
   virtual bool match(const cMatrix& other) const override {
-    if (mat.type != other.type) return false;
     if (mat.N != other.N) return false;
 
-    if (mat.type == DMEM_FLOAT) {
-      for (int i = 0; i < mat.N * mat.nT; i++)
-        if (std::fabs(mat.dataF[i] - other.dataF[i]) > margin)
-          return false;
-    } else if (mat.type == DMEM_INT) {
-      for (int i = 0; i < mat.N * mat.nT; i++)
-        if (std::abs(mat.dataI[i] - other.dataI[i]) > margin)
-          return false;
-    } else {
-      throw std::logic_error("unsupported vector data type");
-    }
+    for (int i = 0; i < mat.N * mat.nT; i++)
+      if (std::fabs(mat.data[i] - other.data[i]) > margin)
+        return false;
 
     return true;
   }

@@ -24,8 +24,7 @@ compute delta regression using regression formula
 #define COMPONENT_DESCRIPTION_CDELTAREGRESSION "This component computes delta regression coefficients using the regression equation from the HTK book."
 #define COMPONENT_NAME_CDELTAREGRESSION "cDeltaRegression"
 
-#undef class
-class DLLEXPORT cDeltaRegression : public cWindowProcessor {
+class cDeltaRegression : public cWindowProcessor {
 private:
   int halfWaveRect, absOutput;
   int deltawin;

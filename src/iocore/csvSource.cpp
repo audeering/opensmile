@@ -306,7 +306,7 @@ eTickResult cCsvSource::myTick(long long t)
                           " (line %i), expected float/int value (element %i).",
                           filename, lineNr, i);
                     }
-                    vec_->dataF[ncnt++] = (FLOAT_DMEM)val;
+                    vec_->data[ncnt++] = (FLOAT_DMEM)val;
                   } else {
                     SMILE_IWRN(2,"trying to import more fields than selected (%i>%i) on "
                         "line %i of CSV file '%s'. Ignoring the excess fields!",

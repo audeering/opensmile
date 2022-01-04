@@ -50,7 +50,4 @@ $cmakeFlags = @(
 
     # whether to compile with OpenSL ES support (only applies when building for Android)
     "-DWITH_OPENSLES=ON"
-
-    # whether to compile with Julius support
-    "-DWITH_JULIUS=OFF"
 )

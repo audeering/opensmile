@@ -29,8 +29,7 @@ Signal source. Generates various noise types and pre-defined signals.
 #define SIGNAL_RECT   3   // rectangular periodic signal 'rect'
 //...
 
-#undef class
-class DLLEXPORT cSignalGenerator : public cDataSource {
+class cSignalGenerator : public cDataSource {
   private:
     long nValues;
     int randSeed;

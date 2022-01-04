@@ -23,8 +23,7 @@ computes MFCC from Mel-spectrum (see cMelspec)
 #define COMPONENT_DESCRIPTION_CMFCC "This component computes Mel-frequency cepstral coefficients (MFCC) from a critical band spectrum (see 'cMelspec'). An I-DCT of type-II is used from transformation from the spectral to the cepstral domain. Liftering of cepstral coefficients is supported. HTK compatible values can be computed."
 #define COMPONENT_NAME_CMFCC "cMfcc"
 
-#undef class
-class DLLEXPORT cMfcc : public cVectorProcessor {
+class cMfcc : public cVectorProcessor {
   private:
     int printDctBaseFunctions;
     int inverse;
@@ -49,8 +48,7 @@ class DLLEXPORT cMfcc : public cVectorProcessor {
     //virtual int configureWriter(const sDmLevelConfig *c) override;
     virtual int dataProcessorCustomFinalise() override;
     virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    //virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

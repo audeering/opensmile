@@ -85,18 +85,8 @@ int cVectorPreemphasis::dataProcessorCustomFinalise()
   return ret;
 }
 
-
 // a derived class should override this method, in order to implement the actual processing
-int cVectorPreemphasis::processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
-{
-  // do domething to data in *src, save result to *dst
-  // NOTE: *src and *dst may be the same...
-  
-  return 0;
-}
-
-// a derived class should override this method, in order to implement the actual processing
-int cVectorPreemphasis::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cVectorPreemphasis::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   // do domething to data in *src, save result to *dst
   // NOTE: *src and *dst may be the same...

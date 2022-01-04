@@ -101,7 +101,7 @@ eTickResult cExampleSource::myTick(long long t)
     return TICK_DEST_NO_SPACE;
 
   // todo: fill with random values...
-  vec_->dataF[0] = (FLOAT_DMEM)t+(FLOAT_DMEM)3.3;
+  vec_->data[0] = (FLOAT_DMEM)t+(FLOAT_DMEM)3.3;
   writer_->setNextFrame(vec_);
   
   return TICK_SUCCESS;

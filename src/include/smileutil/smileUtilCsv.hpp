@@ -13,7 +13,6 @@
 #include <vector>
 #include <map>
 
-#undef class
 
 // TODO: file rewind function,
 // which positions pointer to first line or line after

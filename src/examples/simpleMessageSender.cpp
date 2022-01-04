@@ -364,13 +364,13 @@ eTickResult cSimpleMessageSender::myTick(long long t)
   
   if (dataElementIndex < vec->N && dataElementIndex >= 0) {
     if (sendPeriodically) {
-      sendPeriodicMessage(vec->dataF, dataElementIndex, 1, vi, tm);
+      sendPeriodicMessage(vec->data, dataElementIndex, 1, vi, tm);
     } else {
-      eventMessage(vec->dataF[dataElementIndex], vi, tm);
+      eventMessage(vec->data[dataElementIndex], vi, tm);
     }
   } else if (dataElementIndex == -1) {
     if (sendPeriodically) {
-      sendPeriodicMessage(vec->dataF, 0, vec->N, vi, tm);
+      sendPeriodicMessage(vec->data, 0, vec->N, vi, tm);
     }
   }
   return TICK_SUCCESS;

@@ -285,7 +285,7 @@ eTickResult cOpenCVSource::myTick(long long t)
 	//SMILE_IMSG(1,"cOpenCVSource::myTick # %i ...",t);
 	//std::vector<FLOAT_DMEM> nextFrame;
 	//nextFrame.reserve(mVectorSize);
-	cVector nextVector(mVectorSize, DMEM_FLOAT);
+	cVector nextVector(mVectorSize);
 	int vectorPosition = 0;
 
 	mVideoCapture >> mCurrentFrame_bgr; // Get new frame from cap stream
@@ -333,17 +333,17 @@ eTickResult cOpenCVSource::myTick(long long t)
 			
 			if(cfgIncludeFaceFeatures)
 			{
-				nextVector.setF(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.faceFound));
-				nextVector.setF(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.eyesFound));
-				nextVector.setF(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.faceRect.tl().x)); // top left corner
-				nextVector.setF(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.faceRect.tl().y));
-				nextVector.setF(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.faceRect.width)); // width+height
-				nextVector.setF(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.faceRect.height));
+				nextVector.set(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.faceFound));
+				nextVector.set(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.eyesFound));
+				nextVector.set(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.faceRect.tl().x)); // top left corner
+				nextVector.set(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.faceRect.tl().y));
+				nextVector.set(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.faceRect.width)); // width+height
+				nextVector.set(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.faceRect.height));
 
-				nextVector.setF(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.leftEye.x)); // left eye, xy
-				nextVector.setF(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.leftEye.y));
-				nextVector.setF(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.rightEye.x)); // right eye, xy
-				nextVector.setF(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.rightEye.y));
+				nextVector.set(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.leftEye.x)); // left eye, xy
+				nextVector.set(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.leftEye.y));
+				nextVector.set(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.rightEye.x)); // right eye, xy
+				nextVector.set(vectorPosition++, static_cast<FLOAT_DMEM>(extractedFace.rightEye.y));
 			}
 
 			if (cfgDisplay) {
@@ -381,7 +381,7 @@ eTickResult cOpenCVSource::myTick(long long t)
 			std::map<unsigned char, FLOAT_DMEM>::iterator i = currentLBPHistogram.begin();
 			for( ; i != currentLBPHistogram.end(); ++i )
 			{
-				nextVector.setF(vectorPosition++, i->second);
+				nextVector.set(vectorPosition++, i->second);
 			}
 			if (cfgDisplay)
 			{
@@ -400,15 +400,15 @@ eTickResult cOpenCVSource::myTick(long long t)
 
 			for(int i = 0; i < cfgHueBins; i++)
 			{
-				nextVector.setF(vectorPosition++, hsvHists[0].at<FLOAT_DMEM>(i));
+				nextVector.set(vectorPosition++, hsvHists[0].at<FLOAT_DMEM>(i));
 			}
 			for(int i = 0; i < cfgSatBins; i++)
 			{
-				nextVector.setF(vectorPosition++, hsvHists[1].at<FLOAT_DMEM>(i));
+				nextVector.set(vectorPosition++, hsvHists[1].at<FLOAT_DMEM>(i));
 			}
 			for(int i = 0; i < cfgValBins; i++)
 			{
-				nextVector.setF(vectorPosition++, hsvHists[2].at<FLOAT_DMEM>(i));
+				nextVector.set(vectorPosition++, hsvHists[2].at<FLOAT_DMEM>(i));
 			}
 		}
 		
@@ -443,7 +443,7 @@ eTickResult cOpenCVSource::myTick(long long t)
 			// ... copy to nextFrame ...
 			for(int i = 0; i < opticalFlowHist.size(); i++)
 			{
-				nextVector.setF(vectorPosition++, opticalFlowHist.at(i));
+				nextVector.set(vectorPosition++, opticalFlowHist.at(i));
 			}
 			opticalFlowHist.clear();
 		}
@@ -470,7 +470,7 @@ eTickResult cOpenCVSource::myTick(long long t)
 		waitKey(1);
 	}
 
-	/*vec_->dataF = nextFrame.data(); // This part caused an error when program finishes... (double free)
+	/*vec_->data = nextFrame.data(); // This part caused an error when program finishes... (double free)
 	vec_->tmeta->smileTime = (t / cfgFps); // Set timestamp
 	vec_->tmeta->time = (t / cfgFps); // Timestamp
 	writer_->setNextFrame(vec_);*/

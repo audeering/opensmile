@@ -246,7 +246,7 @@ int cVectorProcessor::dataProcessorCustomFinalise()
   }
   // NOTE: even in "transposed" processArrayFields, we keep the same layout as
   // otherwise, just the processing is applied differently when
-  // processVectorFloat is called.
+  // processVector is called.
   namesAreSet_ = 1;
   return 1;
 }
@@ -272,34 +272,18 @@ int cVectorProcessor::myFinaliseInstance()
 */
 
 // a derived class should override this method, in order to implement the actual processing
-int cVectorProcessor::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cVectorProcessor::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   //memcpy(dst,src, MIN(Nsrc,Ndst));
-  SMILE_IERR(1,"component '%s' (type '%s') does not support data type DMEM_FLOAT (yet) !",getInstName(),getTypeName());
+  SMILE_IERR(1,"component '%s' (type '%s') not implemented yet!",getInstName(),getTypeName());
   return 1;
 }
 
 // a derived class should override this method, in order to implement the actual processing
-int cVectorProcessor::processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cVectorProcessor::flushVector(FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   //memcpy(dst,src, MIN(Nsrc,Ndst));
-  SMILE_IERR(1,"component '%s' (type '%s') does not support data type DMEM_INT (yet) !",getInstName(),getTypeName());
-  return 1;
-}
-
-// a derived class should override this method, in order to implement the actual processing
-int cVectorProcessor::flushVectorFloat(FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
-{
-  //memcpy(dst,src, MIN(Nsrc,Ndst));
-  //SMILE_IERR(1,"component '%s' (type '%s') does not support data type DMEM_FLOAT (yet) !",getInstName(),getTypeName());
-  return 0;
-}
-
-// a derived class should override this method, in order to implement the actual processing
-int cVectorProcessor::flushVectorInt(INT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
-{
-  //memcpy(dst,src, MIN(Nsrc,Ndst));
-  //SMILE_IERR(1,"component '%s' (type '%s') does not support data type DMEM_INT (yet) !",getInstName(),getTypeName());
+  //SMILE_IERR(1,"component '%s' (type '%s') not implemented yet!",getInstName(),getTypeName());
   return 0;
 }
 
@@ -318,19 +302,8 @@ eTickResult cVectorProcessor::myTick(long long t)
   int ret = 1;
   int res;
 
-  int type;
-  if (vec==NULL) {
-    const sDmLevelConfig * c = writer_->getLevelConfig();
-    if (c != NULL) {
-      type = c->type;
-    } else {
-      return TICK_SOURCE_NOT_AVAIL;
-    }
-  } else { 
-    type = vec->type;
-  }
   if (vecO == NULL)
-    vecO = new cVector(No, type);
+    vecO = new cVector(No);
   if (customVecProcess(vec, vecO)) {
     if (vec != NULL) vecO->setTimeMeta(vec->tmeta);
     // save the output to dataMemory
@@ -342,107 +315,70 @@ eTickResult cVectorProcessor::myTick(long long t)
   if (vec == NULL && !isEOI())
     return TICK_SOURCE_NOT_AVAIL;
 
-  if (type == DMEM_FLOAT) {
-    FLOAT_DMEM *dFi = NULL;
-    if (vec != NULL) {
-      dFi = vec->dataF;
+  FLOAT_DMEM *dFi = NULL;
+  if (vec != NULL) {
+    dFi = vec->data;
+  }
+  FLOAT_DMEM *dFo = vecO->data;
+  if (processArrayFields == 2) {
+    if (Nfo != Nfi) {
+      SMILE_IERR(1, "Number of input fields (%i) != Number of output fields (%i) - "
+          "not yet supported in mode processArrayFields=2 (transposed).", Nfi, Nfo);
+      COMP_ERR("aborting");
     }
-    FLOAT_DMEM *dFo = vecO->dataF;
-    if (processArrayFields == 2) {
-      if (Nfo != Nfi) {
-        SMILE_IERR(1, "Number of input fields (%i) != Number of output fields (%i) - "
-            "not yet supported in mode processArrayFields=2 (transposed).", Nfi, Nfo);
-        COMP_ERR("aborting");
+    for (i = 0; i < fieldLength_; i++) {
+      if (vec != NULL) {
+        // assemble bufTransposedInput from dFi buffer (vec->data)
+        for (int j = 0; j < Nfi; j++) {
+          bufTransposeInput_[j] = dFi[j * fieldLength_ + i];
+        }
+        res = processVector(bufTransposeInput_, bufTransposeOutput_,
+            Nfi, Nfo, i);
+      } else {
+        res = flushVector(bufTransposeOutput_, Nfi, Nfo, i);
       }
-      for (i = 0; i < fieldLength_; i++) {
-        if (vec != NULL) {
-          // assemble bufTransposedInput from dFi buffer (vec->dataF)
-          for (int j = 0; j < Nfi; j++) {
-            bufTransposeInput_[j] = dFi[j * fieldLength_ + i];
-          }
-          res = processVectorFloat(bufTransposeInput_, bufTransposeOutput_,
-              Nfi, Nfo, i);
-        } else {
-          res = flushVectorFloat(bufTransposeOutput_, Nfi, Nfo, i);
-        }
-        if (res == 0)
-          ret = 0;
-        else
-          if (res < 0)
-            toSet = 0;
-        // save bufTransposedOutput to dFo buffer (vecO->dataF)
-        for (int j = 0; j < Nfo; j++) {
-          dFo[j * fieldLength_ + i] = bufTransposeOutput_[j];
-        }
-      }
-    } else {
-      for (i=0; i<Nfi; i++) {
-        if ((fNi[i] == 1 && includeSingleElementFields == 0 && processArrayFields == 1) || (fNi[i] < 1)) {
-          continue;
-        }
-        if (vec != NULL) {
-          if ((dFo == NULL)||(fNo[iO]<=0)) {
-            SMILE_IERR(1,"output field size for field %i is 0 in call to processVectorFloat!\n  Please check if setupNewNames or setupNamesForField returns a number > 0 !!",iO);
-            COMP_ERR("aborting here, since this is a serious bug in this component ...");
-          }
-          res = processVectorFloat(dFi, dFo, fNi[i], fNo[iO], i);
-        } else {
-          if ((dFo == NULL)||(fNo[iO]<=0)) {
-            SMILE_IERR(1,"output field size for field %i is 0 in call to processVectorFloat!\n  Please check if setupNewNames or setupNamesForField returns a number > 0 !!",iO);
-            COMP_ERR("aborting here, since this is a serious bug in this component ...");
-          }
-          res = flushVectorFloat(dFo, fNi[i], fNo[iO], i);
-        }
-        if (res == 0)
-          ret = 0;
-        else
-          if (res < 0)
-            toSet = 0;
-        dFi += fNi[i];
-        dFo += fNo[iO];
-        iO++;
-        // TODO: a processArrayFields "transposed" option, which can be applied if all the fields
-        // have the same size
-        // thus, there is the options: processArrayFields = 0 (flatten matrix)
-        // processArrayFields = 1 (process each row, i.e. each field)
-        // processArrayFields = 2 (transposed - process each column - all fields must have the same size!)
+      if (res == 0)
+        ret = 0;
+      else
+        if (res < 0)
+          toSet = 0;
+      // save bufTransposedOutput to dFo buffer (vecO->data)
+      for (int j = 0; j < Nfo; j++) {
+        dFo[j * fieldLength_ + i] = bufTransposeOutput_[j];
       }
     }
-  } else if (type == DMEM_INT) {
-    if (processArrayFields == 2) {
-      COMP_ERR("DMEM_INT and processArrayFields == 2 not yet supported!");
-    }
-    INT_DMEM *iFi = NULL;
-    if (vec != NULL) {
-      iFi = vec->dataI;
-    }
-    INT_DMEM *iFo = vecO->dataI;
+  } else {
     for (i=0; i<Nfi; i++) {
       if ((fNi[i] == 1 && includeSingleElementFields == 0 && processArrayFields == 1) || (fNi[i] < 1)) {
         continue;
       }
       if (vec != NULL) {
-        if ((iFo == NULL)||(fNo[iO]<=0)) {
-          SMILE_IERR(1,"output field size for field %i is 0 in call to processVectorFloat!\n  Please check if setupNewNames or setupNamesForField returns a number > 0 !!",iO);
+        if ((dFo == NULL)||(fNo[iO]<=0)) {
+          SMILE_IERR(1,"output field size for field %i is 0 in call to processVector!\n  Please check if setupNewNames or setupNamesForField returns a number > 0 !!",iO);
           COMP_ERR("aborting here, since this is a serious bug in this component ...");
         }
-        res = processVectorInt(iFi, iFo, fNi[i], fNo[iO], i);
+        res = processVector(dFi, dFo, fNi[i], fNo[iO], i);
       } else {
-        if ((iFo == NULL)||(fNo[iO]<=0)) {
-          SMILE_IERR(1,"output field size for field %i is 0 in call to processVectorFloat!\n  Please check if setupNewNames or setupNamesForField returns a number > 0 !!",iO);
+        if ((dFo == NULL)||(fNo[iO]<=0)) {
+          SMILE_IERR(1,"output field size for field %i is 0 in call to processVector!\n  Please check if setupNewNames or setupNamesForField returns a number > 0 !!",iO);
           COMP_ERR("aborting here, since this is a serious bug in this component ...");
         }
-        res = flushVectorInt(iFo, fNi[i], fNo[iO], i);
+        res = flushVector(dFo, fNi[i], fNo[iO], i);
       }
-      if (res == 0) ret=0;
-      else if (res < 0) toSet=0;
-
-      iFi += fNi[i];
-      iFo += fNo[iO];
+      if (res == 0)
+        ret = 0;
+      else
+        if (res < 0)
+          toSet = 0;
+      dFi += fNi[i];
+      dFo += fNo[iO];
       iO++;
+      // TODO: a processArrayFields "transposed" option, which can be applied if all the fields
+      // have the same size
+      // thus, there is the options: processArrayFields = 0 (flatten matrix)
+      // processArrayFields = 1 (process each row, i.e. each field)
+      // processArrayFields = 2 (transposed - process each column - all fields must have the same size!)
     }
-  } else {
-    SMILE_IERR(1,"unknown data type: vec->type = %i!",vec->type);
   }
 
   if (!ret) {

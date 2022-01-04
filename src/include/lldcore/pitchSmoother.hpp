@@ -26,8 +26,7 @@ Input: candidates produced by a pitchBase descendant
 #define POSTSMOOTHING_SIMPLE 1
 #define POSTSMOOTHING_MEDIAN 2
 
-#undef class
-class DLLEXPORT cPitchSmoother : public cVectorProcessor {
+class cPitchSmoother : public cVectorProcessor {
   private:
     int firstFrame;
     int no0f0;
@@ -73,8 +72,7 @@ class DLLEXPORT cPitchSmoother : public cVectorProcessor {
     virtual void myFetchConfig() override;
 	  virtual int setupNewNames(long nEl) override;
     
-    //virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

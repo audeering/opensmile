@@ -34,11 +34,9 @@ struct sVecToWinProcessorOla
 };
 
 
-#undef class
-class DLLEXPORT cVecToWinProcessor : public cDataProcessor {
+class cVecToWinProcessor : public cDataProcessor {
   private:
     
-    int   dtype;     // data type (DMEM_FLOAT, DMEM_INT)
     int   noPostEOIprocessing;
     int   processArrayFields;
     int   normaliseAdd;
@@ -87,9 +85,7 @@ class DLLEXPORT cVecToWinProcessor : public cDataProcessor {
     int flushOlaBuffer(cMatrix *mat);
     
     virtual int doProcess(int i, cMatrix *row, FLOAT_DMEM*x);
-    virtual int doProcess(int i, cMatrix *row, INT_DMEM*x);
     virtual int doFlush(int i, FLOAT_DMEM*x);
-    virtual int doFlush(int i, INT_DMEM*x);
     
 
     //virtual int processComponentMessage(cComponentMessage *_msg) override;

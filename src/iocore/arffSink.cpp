@@ -86,8 +86,6 @@ cArffSink::cArffSink(const char *_name) :
   nInst(0),
   nClasses(0),
   inr(0),
-  classname(NULL), classtype(NULL),
-  targetall(NULL), targetinst(NULL),
   disabledSink_(false)
 {
 }
@@ -133,13 +131,13 @@ void cArffSink::myFetchConfig()
   int i;
   nClasses = getArraySize("class");
   //printf("nclasses: %i\n", nClasses);
-  classname = (char**)calloc(1,sizeof(char*)*nClasses);
-  classtype = (char**)calloc(1,sizeof(char*)*nClasses);
+  classname.resize(nClasses);
+  classtype.resize(nClasses);
   for (i=0; i<nClasses; i++) {
     const char *tmp = getStr_f(myvprint("class[%i].name",i));
-    if (tmp!=NULL) classname[i] = strdup(tmp);
+    if (tmp!=NULL) classname[i] = escape(tmp);
     tmp = getStr_f(myvprint("class[%i].type",i));
-    if (tmp!=NULL) classtype[i] = strdup(tmp);
+    if (tmp!=NULL) classtype[i] = tmp;
   }
 /*
     ConfigType * classType = new ConfigType("arffClass");
@@ -155,13 +153,13 @@ void cArffSink::myFetchConfig()
   if (getArraySize("target") != nClasses) {
     SMILE_IERR(1,"number of targets (%i) is != number of class attributes (%i)!",getArraySize("target"),nClasses);
   } else {
-    targetall = (char**)calloc(1,sizeof(char*)*nClasses);
-    targetinst = (char***)calloc(1,sizeof(char**)*nClasses);
+    targetall.resize(nClasses);
+    targetinst.resize(nClasses);
     nInst = -2;
     for (i=0; i<nClasses; i++) {
       char *tmp = myvprint("target[%i].instance",i);
       const char *t = getStr_f(myvprint("target[%i].all",i));
-      if (t!=NULL) targetall[i] = strdup(t);
+      if (t!=NULL) targetall[i] = escape(t);
       long ni = getArraySize(tmp);
       if (nInst==-2) nInst = ni; // -1 if no array
       else {
@@ -169,10 +167,10 @@ void cArffSink::myFetchConfig()
       }
       int j;
       if (nInst > 0) {
-        targetinst[i] = (char**)calloc(1,sizeof(char*)*nInst);
+        targetinst[i].resize(nInst);
         for (j=0; j<nInst; j++) {
           t = getStr_f(myvprint("%s[%i]",tmp,j));
-          if (t!=NULL) targetinst[i][j] = strdup(t);
+          if (t!=NULL) targetinst[i][j] = escape(t);
         }
       }
       free(tmp);
@@ -185,6 +183,62 @@ void cArffSink::myFetchConfig()
   SMILE_IDBG(2,"useTargetsFromMetadata = %i",useTargetsFromMetadata);
   frameTimeAdd= getDouble("frameTimeAdd");
 //    ct->setField("target","targets (classes) for each target (class) attribute",targetType,ARRAY_TYPE);
+}
+
+// Escapes and quotes a string value to be written to the ARFF file.
+// "?" will not be escaped to "'?'" since other code relies on it to
+// represent unknown values.
+std::string cArffSink::escape(const char *str)
+{
+  if (*str == '\0')
+    return "''";
+  
+  bool quote = false;
+  
+  // in the "worst" case, every character needs to be escaped (* 2) and the string quoted (+ 2)
+  std::string escaped;
+  escaped.reserve(strlen(str) * 2 + 2);
+  
+  for (const char *c = str; *c != '\0'; c++) {
+    switch (*c) {
+      case '"':
+      case '\'':
+      case '%':
+      case '\\':
+        escaped.append({ '\\', *c });
+        quote = true;
+        break;
+      case '\r':
+        escaped.append({ '\\', 'r' });
+        quote = true;
+        break;
+      case '\n':
+        escaped.append({ '\\', 'n' });
+        quote = true;
+        break;
+      case '\t':
+        escaped.append({ '\\', 't' });
+        quote = true;
+        break;
+      case ' ':
+      case ',':
+      case '{':
+      case '}':
+        escaped.append({ *c });
+        quote = true;
+        break;
+      default:
+        escaped.append({ *c });
+    }
+  }
+  
+  // surround escaped value with quotes if needed
+  if (quote) {
+    escaped.insert(escaped.begin(), '\'');
+    escaped.append({ '\'' });
+  }
+  
+  return escaped;
 }
 
 int cArffSink::myFinaliseInstance()
@@ -228,7 +282,7 @@ int cArffSink::myFinaliseInstance()
 
   if (!ap) {
     // write arff header ....
-    fprintf(filehandle, "@relation %s%s%s",relation,NEWLINE,NEWLINE);
+    fprintf(filehandle, "@relation %s%s%s",escape(relation).c_str(),NEWLINE,NEWLINE);
     if (prname) {
       fprintf(filehandle, "@attribute name string%s",NEWLINE);
     }
@@ -249,9 +303,9 @@ int cArffSink::myFinaliseInstance()
       SMILE_IMSG(2,"writing ARFF header (%i features)...",N);
     }
     for(i=0; i<N; i++) {
-      char *tmp = reader_->getElementName(i);
-      fprintf(filehandle, "@attribute %s numeric%s",tmp,NEWLINE);
-      free(tmp);
+      char *attribute = reader_->getElementName(i);
+      fprintf(filehandle, "@attribute %s numeric%s",escape(attribute).c_str(),NEWLINE);
+      free(attribute);
       if ((i>0)&&(i%20000==0)) {
         SMILE_IMSG(2,"Status: %i feature names written.",i);
       }
@@ -263,8 +317,8 @@ int cArffSink::myFinaliseInstance()
     // TODO: classes..... as config file options...
     if (nClasses > 0) {
       for (i=0; i<nClasses; i++) {
-        if (classtype[i] == NULL) fprintf(filehandle, "@attribute %s numeric%s",classname[i],NEWLINE);
-        else fprintf(filehandle, "@attribute %s %s%s",classname[i],classtype[i],NEWLINE);
+        if (classtype[i].empty()) fprintf(filehandle, "@attribute %s numeric%s",classname[i].c_str(),NEWLINE);
+        else fprintf(filehandle, "@attribute %s %s%s",classname[i].c_str(),classtype[i].c_str(),NEWLINE);
       }
     } else {
       // default dummy class attribute...
@@ -297,13 +351,15 @@ eTickResult cArffSink::myTick(long long t)
   if (vec->tmeta->metadata != NULL && (vec->tmeta->metadata->iData[1] == 1234 || instanceNameFromMetadata)) {
     instanceName = vec->tmeta->metadata->text;
     if (prname==1) {
-      fprintf(filehandle,"%s,",instanceName);
+      fprintf(filehandle,"%s,",escape(instanceName).c_str());
     }
   } else {
     if (prname==1) {
-      fprintf(filehandle,"'%s',",instanceName);
+      fprintf(filehandle,"%s,",escape(instanceName).c_str());
     } else if (prname==2) {
-      fprintf(filehandle,"'%s_%ld',",instanceBase,vi);
+      char *name = myvprint("%s_%ld",instanceBase,vi);
+      fprintf(filehandle,"%s,",escape(name).c_str());
+      free(name);
     }
   }
 
@@ -313,10 +369,10 @@ eTickResult cArffSink::myTick(long long t)
   
   // now print the vector:
   int i;
-  fprintf(filehandle,"%e",vec->dataF[0]);
+  fprintf(filehandle,"%e",vec->data[0]);
   for (i=1; i<vec->N; i++) {
-    fprintf(filehandle,",%e",vec->dataF[i]);
-    //printf("  (a=%i vi=%i, tm=%fs) %s.%s = %f\n",reader->getCurR(),vi,tm,reader->getLevelName().c_str(),vec->name(i),vec->dataF[i]);
+    fprintf(filehandle,",%e",vec->data[i]);
+    //printf("  (a=%i vi=%i, tm=%fs) %s.%s = %f\n",reader->getCurR(),vi,tm,reader->getLevelName().c_str(),vec->name(i).c_str(),vec->data[i]);
   }
 
   // classes: 
@@ -326,16 +382,17 @@ eTickResult cArffSink::myTick(long long t)
       vec->tmeta->metadata->customLength > 0 &&
       useTargetsFromMetadata) {
     // TODO: check the order of the fields....
-    fprintf(filehandle, ",%s", (const char *)(vec->tmeta->metadata->custom));
+    const char *target = (const char *)(vec->tmeta->metadata->custom);
+    fprintf(filehandle, ",%s", escape(target).c_str());
   } else {
     if (nClasses > 0) {
       if (nInst>0) {
         if (inr >= nInst) {
           SMILE_IWRN(3,"more instances written to ARFF file than there are targets available for (%i)!",nInst);
-          if (targetall != NULL) {
+          if (!targetall.empty()) {
             for (i=0; i<nClasses; i++) {
-              if (targetall[i] != NULL)
-                fprintf(filehandle,",%s",targetall[i]);
+              if (!targetall[i].empty())
+                fprintf(filehandle,",%s",targetall[i].c_str());
               else
                 fprintf(filehandle,",NULL");
             }
@@ -347,15 +404,15 @@ eTickResult cArffSink::myTick(long long t)
           //inr++;
         } else {
           for (i=0; i<nClasses; i++) {
-            fprintf(filehandle,",%s",targetinst[i][inr]);
+            fprintf(filehandle,",%s",targetinst[i][inr].c_str());
           }
           inr++;
         }
       } else {
-        if (targetall != NULL) {
+        if (!targetall.empty()) {
           for (i=0; i<nClasses; i++) {
-            if (targetall[i] != NULL)
-              fprintf(filehandle,",%s",targetall[i]);
+            if (!targetall[i].empty())
+              fprintf(filehandle,",%s",targetall[i].c_str());
             else
               fprintf(filehandle,",NULL");
           }
@@ -393,31 +450,6 @@ cArffSink::~cArffSink()
   if (filehandle != NULL) {
     fclose(filehandle);
     filehandle = NULL;
-  }
-  int i;
-  if (classname!=NULL) {
-    for (i=0; i<nClasses; i++) if (classname[i] != NULL) free(classname[i]);
-    free(classname);
-  }
-  if (classtype!=NULL) {
-    for (i=0; i<nClasses; i++) if (classtype[i] != NULL) free(classtype[i]);
-    free(classtype);
-  }
-  if (targetall!=NULL) {
-    for (i=0; i<nClasses; i++) if (targetall[i] != NULL) free(targetall[i]);
-    free(targetall);
-  }
-  if (targetinst!=NULL) {
-    int j;
-    for (i=0; i<nClasses; i++) {
-      if (targetinst[i] != NULL) {
-        for (j=0; j<nInst; j++) {
-          if (targetinst[i][j] != NULL) free(targetinst[i][j]);
-        }
-        free(targetinst[i]);
-      }
-    }
-    free(targetinst);
   }
 }
 

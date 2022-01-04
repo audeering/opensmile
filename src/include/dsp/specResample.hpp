@@ -24,8 +24,7 @@ this component takes a complex (!) dft spectrum (generated from real values) as 
 #define COMPONENT_DESCRIPTION_CSPECRESAMPLE "This component implements a spectral domain resampling component. Input frames are complex valued spectral domain data, which will be shifted and scaled by this component, and a modified DFT is performed to synthesize samples at the new rate."
 #define COMPONENT_NAME_CSPECRESAMPLE "cSpecResample"
 
-#undef class
-class DLLEXPORT cSpecResample : public cVectorProcessor {
+class cSpecResample : public cVectorProcessor {
   private:
     int antiAlias;
     long kMax;
@@ -46,8 +45,7 @@ class DLLEXPORT cSpecResample : public cVectorProcessor {
     virtual void myFetchConfig() override;
 	  virtual int setupNewNames(long nEl) override;
     virtual int configureWriter(sDmLevelConfig &c) override;
-    //virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

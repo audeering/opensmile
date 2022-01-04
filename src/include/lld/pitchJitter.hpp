@@ -24,8 +24,7 @@ example for dataProcessor descendant
 #define COMPONENT_DESCRIPTION_CPITCHJITTER "This component computes Voice Quality parameters Jitter (pitch period deviations) and Shimmer (pitch period amplitude deviations). It requires the raw PCM frames and the corresponding fundamental frequency (F0) as inputs."
 #define COMPONENT_NAME_CPITCHJITTER "cPitchJitter"
 
-#undef class
-class DLLEXPORT cPitchJitter : public cDataProcessor {
+class cPitchJitter : public cDataProcessor {
   private:
     int onlyVoiced;
     long savedMaxDebugPeriod;

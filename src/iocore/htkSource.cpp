@@ -174,11 +174,11 @@ eTickResult cHtkSource::myTick(long long t)
       if (vax) {
         for (i=0; i<vec_->N; i++) {
           smileHtk_SwapFloat ( (tmpvec+i) );
-          vec_->dataF[i] = (FLOAT_DMEM)tmpvec[i];
+          vec_->data[i] = (FLOAT_DMEM)tmpvec[i];
         }
       } else {
         for (i=0; i<vec_->N; i++) {
-          vec_->dataF[i] = (FLOAT_DMEM)tmpvec[i];
+          vec_->data[i] = (FLOAT_DMEM)tmpvec[i];
         }
       }
     } else {

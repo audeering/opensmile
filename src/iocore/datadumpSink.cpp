@@ -142,17 +142,8 @@ eTickResult cDatadumpSink::myTick(long long t)
   int i; float *tmp = (float*)malloc(sizeof(float)*vec->N);
   if (tmp==NULL) OUT_OF_MEMORY;
   
-  if (vec->type == DMEM_FLOAT) {
-    for (i=0; i<vec->N; i++) {
-      tmp[i] = (float)(vec->dataF[i]);
-    }
-  } else if (vec->type == DMEM_INT) {
-    for (i=0; i<vec->N; i++) {
-      tmp[i] = (float)(vec->dataI[i]);
-    }
-  } else {
-    SMILE_IERR(1,"unknown data type %i",vec->type);
-    return TICK_INACTIVE;
+  for (i=0; i<vec->N; i++) {
+    tmp[i] = (float)(vec->data[i]);
   }
 
   int ret=1;

@@ -67,9 +67,8 @@
 #define EX_MEMORY     4
 #define EX_USER       9
 
-#undef class
 /* The base class for all exception classes in openSMILE */
-class DLLEXPORT cSMILException {
+class cSMILException {
   protected:
     int code;
     int type;
@@ -86,14 +85,14 @@ class DLLEXPORT cSMILException {
 };
 
 /* generic exception, only contains an error code */
-class DLLEXPORT cGenericException : public cSMILException {
+class cGenericException : public cSMILException {
   public:
     cGenericException(int _code) : cSMILException(EX_GENERIC, _code) { }
     virtual ~cGenericException() {}
 };
 
 /* memory exception, only contains an error code */
-class DLLEXPORT cMemoryException : public cSMILException {
+class cMemoryException : public cSMILException {
   public:
     cMemoryException(int _code) : cSMILException(EX_MEMORY, _code) { }
     virtual ~cMemoryException() {}
@@ -103,7 +102,7 @@ class DLLEXPORT cMemoryException : public cSMILException {
 
 
 /* Component Exception, base class for all exceptions with a text message and module name */
-class DLLEXPORT cComponentException : public cSMILException {
+class cComponentException : public cSMILException {
   private:
     mutable char *tmp;
 
@@ -148,7 +147,7 @@ class DLLEXPORT cComponentException : public cSMILException {
           b) a module detects a bogus configuration, invalid value, etc.  (origin = CE_INVALID)
           c) mandatory parameters are not specified, etc. (origin = CE_MANAGER)
 */
-class DLLEXPORT cConfigException : public cComponentException {
+class cConfigException : public cComponentException {
   private:
     int origin;
 
@@ -166,7 +165,7 @@ class DLLEXPORT cConfigException : public cComponentException {
 #define CONF_PARSER_ERR(...)  throw(cConfigException(CE_PARSER, myvprint(__VA_ARGS__), MODULE))
 #define CONF_MANAGER_ERR(...)  throw(cConfigException(CE_MANAGER, myvprint(__VA_ARGS__), MODULE))
 
-class DLLEXPORT cIOException : public cComponentException {
+class cIOException : public cComponentException {
   public:
     cIOException(char *t, int _code=0, const char *m=NULL) :
       cComponentException(EX_IO,t,m)
@@ -176,7 +175,7 @@ class DLLEXPORT cIOException : public cComponentException {
 
 #define IO_ERR(...)  throw(cIOException(FMT(__VA_ARGS__),0,MODULE));
 
-class DLLEXPORT cUserException : public cComponentException {
+class cUserException : public cComponentException {
   public:
     cUserException(char *t, int _code, const char *m=NULL) :
       cComponentException(EX_USER,t,m)

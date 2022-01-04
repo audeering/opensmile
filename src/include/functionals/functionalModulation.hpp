@@ -121,8 +121,7 @@ public:
 
 ////////////////////////
 
-#undef class
-class DLLEXPORT cFunctionalModulation : public cFunctionalComponent {
+class cFunctionalModulation : public cFunctionalComponent {
 private:
   double stftWinSizeSec_;
   double stftWinStepSec_;
@@ -154,7 +153,6 @@ public:
   cFunctionalModulation(const char *_name);
   // inputs: sorted and unsorted array of values, out: pointer to space in output array, You may not return MORE than Nout elements, please return as return value the number of actually computed elements (usually Nout)
   virtual long process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_DMEM *out, long Nin, long Nout) override;
-  //virtual long process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout) override;
   virtual const char * getValueName(long i) override;
   virtual void setFieldMetaData(cDataWriter *writer, const FrameMetaInfo *fmeta, int idxi, long nEl) override;
   virtual long getNumberOfElements(long j) override;

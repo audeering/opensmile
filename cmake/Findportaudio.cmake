@@ -19,7 +19,7 @@ if (PORTAUDIO_LIBRARIES AND PORTAUDIO_INCLUDE_DIRS)
   set(PORTAUDIO_FOUND TRUE)
 else (PORTAUDIO_LIBRARIES AND PORTAUDIO_INCLUDE_DIRS)
   if (NOT WIN32)
-    include(FindPkgConfig)
+    find_package(PkgConfig)
     pkg_check_modules(PORTAUDIO2 portaudio-2.0)
   endif (NOT WIN32)
 

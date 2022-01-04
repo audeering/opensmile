@@ -23,8 +23,7 @@ example for a cSmileComponent descendant
 #define COMPONENT_NAME_CSMILECOMPONENTEXAMPLE "cSmileComponentExample"
 
 
-#undef class
-class DLLEXPORT cSmileComponentExample : public cSmileComponent {
+class cSmileComponentExample : public cSmileComponent {
   private:
 
   protected:

@@ -23,6 +23,9 @@ C API wrapper for libopensmile
 #include <iocore/externalAudioSource.hpp>
 #include <other/externalMessageInterface.hpp>
 
+#include <locale.h>
+#include <memory>
+
 #if FLOAT_DMEM_NUM != FLOAT_DMEM_FLOAT
   #error SMILEapi is only compatible with float as FLOAT_DMEM type
 #endif
@@ -87,7 +90,7 @@ smileres_t smile_initialize(smileobj_t *smileobj, const char *configFile, int nO
     // we should adapt the config file parser to make use of the improved locale handling in C++
     smileCommon_fixLocaleEnUs();
 
-    cSmileLogger *logger = new cSmileLogger(1);
+    std::unique_ptr<cSmileLogger> logger { new cSmileLogger(1) };
 
     logger->useForCurrentThread();
     logger->setLogFile(logFile, 0);
@@ -130,8 +133,13 @@ smileres_t smile_initialize(smileobj_t *smileobj, const char *configFile, int nO
     SMILE_MSG(2,"openSMILE starting!");
     SMILE_MSG(2,"config file is: %s", configFile);
 
-    cConfigManager *configManager = new cConfigManager(&cmdline);
-    cComponentManager *cMan = new cComponentManager(configManager,componentlist);
+    /* we declare componentManager before configManager because
+       configManager must be deleted BEFORE componentManager
+       (since component Manager unregisters plugin DLLs which might have allocated configTypes, etc.) */
+    std::unique_ptr<cComponentManager> cMan;
+    std::unique_ptr<cConfigManager> configManager;
+    configManager = std::unique_ptr<cConfigManager>(new cConfigManager(&cmdline));
+    cMan = std::unique_ptr<cComponentManager>(new cComponentManager(configManager.get(),componentlist));
 
     // before parsing the config file, we temporarily
     // override the default numerical format
@@ -145,9 +153,6 @@ smileres_t smile_initialize(smileobj_t *smileobj, const char *configFile, int nO
       setlocale(LC_NUMERIC, origLocale.c_str());
     } catch (const cConfigException& ex) {
       setlocale(LC_NUMERIC, origLocale.c_str());
-      delete configManager;
-      delete cMan;
-      delete logger;
       SMILE_FAIL_WITH(SMILE_CONFIG_PARSE_FAIL, ex.getText());
     }
 
@@ -158,15 +163,12 @@ smileres_t smile_initialize(smileobj_t *smileobj, const char *configFile, int nO
       /* create all instances specified in the config file */
       cMan->createInstances(0); // 0 = do not read config (we already did that above..)
     } catch (const cConfigException& ex) {
-      delete configManager;
-      delete cMan;
-      delete logger;
       SMILE_FAIL_WITH(SMILE_CONFIG_INIT_FAIL, ex.getText());
     }
 
-    smileobj->logger = logger;
-    smileobj->cMan = cMan;
-    smileobj->configManager = configManager;
+    smileobj->logger = logger.release();
+    smileobj->cMan = cMan.release();
+    smileobj->configManager = configManager.release();
 
     smile_set_state(smileobj, SMILE_INITIALIZED);
 

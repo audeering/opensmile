@@ -3,7 +3,40 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [3.0.1] - 2022-01-04
+
+## Added
+- eGeMAPSv02 feature set config which fixes two missing features in the LLD output
+  that are mentioned in the GeMAPS paper.
+
+## Changed
+- Introduced a standard_data_output_no_lld_de.conf.inc include file to make the GeMAPS configs
+  not need to define a fake lld_de level.
+- Removed -ffast-math and /fp:fast compiler flags to improve the reproducability
+  of output across compilers and systems.
+- SMILExtract no longer logs to a file by default.
+- Many internal refactorings and cleanups.
+
+## Removed
+- Removed SEMAINE-related components and binaries.
+- Removed obsolete cJniSink and cJniMessageInterface components.
+- Removed unused internal support for integer data in data memory levels.
+
+## Fixed
+- Fixed a race condition when multiple openSMILE instances are initialized at the same time
+  in separate threads.
+- Fixed a race condition in smile_reset which could lead to the function failing when
+  multiple openSMILE instances are used concurrently.
+- Multiple fixes and improvements to the condition variable implementation.
+- Fixed a rare race condition in cExternalSource and cExternalAudioSource.
+- Fixed incorrect Wave file headers written by cWaveSink when sample format was set to 32-bit float.
+- cArffSink now correctly escapes special characters in the output (e.g. instance names).
+- Fixed a build issue preventing the android-template sample app from being buildable
+  on Windows and macOS.
+- Various other minor fixes and tweaks.
+
 ## [3.0.0] - 2020-10-20
+
 ## Added
 - New components:
   - cDataPrintSink

@@ -51,8 +51,7 @@ typedef struct {
  * nHarmonicDifferences_ x (linear, logrel)
  * formantAmplitudesEnd_ - formantAmplitudesStart_ + 1
  */
-#undef class
-class DLLEXPORT cHarmonics : public cVectorProcessor {
+class cHarmonics : public cVectorProcessor {
   private:
     int nHarmonics_;
     int nHarmonicMagnitudes_;
@@ -118,7 +117,7 @@ class DLLEXPORT cHarmonics : public cVectorProcessor {
 
     virtual void myFetchConfig() override;
     virtual int setupNewNames(long nEl) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

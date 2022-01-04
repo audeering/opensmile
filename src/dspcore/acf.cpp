@@ -167,7 +167,7 @@ int cAcf::dataProcessorCustomFinalise()
 }
 
 // a derived class should override this method, in order to implement the actual processing
-int cAcf::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cAcf::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   long i,n;
   idxi=getFconf(idxi);

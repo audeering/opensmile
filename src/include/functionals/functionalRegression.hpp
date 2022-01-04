@@ -23,8 +23,7 @@ functionals: linear and quadratic regression coefficients
 #define COMPONENT_DESCRIPTION_CFUNCTIONALREGRESSION "  linear and quadratic regression coefficients and corresponding linear and quadratic regression errors. Linear regression line: y = m*x + t ; quadratic regression parabola: y = a*x^2 + b*x + c . Algorithm used: Minimum mean square error, direct analytic solution. This component also computes the centroid of the contour."
 #define COMPONENT_NAME_CFUNCTIONALREGRESSION "cFunctionalRegression"
 
-#undef class
-class DLLEXPORT cFunctionalRegression : public cFunctionalComponent {
+class cFunctionalRegression : public cFunctionalComponent {
   private:
     int enQreg;
     int oldBuggyQerr;
@@ -72,7 +71,6 @@ class DLLEXPORT cFunctionalRegression : public cFunctionalComponent {
     cFunctionalRegression(const char *name);
     // inputs: sorted and unsorted array of values, out: pointer to space in output array, You may not return MORE than Nout elements, please return as return value the number of actually computed elements (usually Nout)
     virtual long process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_DMEM min, FLOAT_DMEM max, FLOAT_DMEM mean, FLOAT_DMEM *out, long Nin, long Nout) override;
-    //virtual long process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout) override;
 
     virtual long getNoutputValues() override { return nEnab; }
     virtual int getRequireSorted() override { return 0; }

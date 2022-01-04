@@ -25,8 +25,7 @@ vector Processor :  (abstract class only)
 #define COMPONENT_DESCRIPTION_CVECTORPROCESSOR "dataProcessor, where each array field is processed individually as a vector"
 #define COMPONENT_NAME_CVECTORPROCESSOR "cVectorProcessor"
 
-#undef class
-class DLLEXPORT cVectorProcessor : public cDataProcessor {
+class cVectorProcessor : public cDataProcessor {
   private:
     long Nfi, Nfo, Ni, No;
     long *fNi, *fNo;
@@ -108,7 +107,7 @@ class DLLEXPORT cVectorProcessor : public cDataProcessor {
       // process vector float will not be called in this case!
       // return 1;
       // A return value of 0 means that we have done nothing, or only modified incoming data
-      // processVectorFloat on fields etc. will still be called!
+      // processVector on fields etc. will still be called!
       return 0;
     }
     
@@ -121,15 +120,13 @@ class DLLEXPORT cVectorProcessor : public cDataProcessor {
        in this case for each input field a corresponding output field exists
        IF the option processArrayFields is set to 0, then the full input and output vector is passed
        to processVectorX and processVectorX is only called once per vector (idxi = 0)*/
-    virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi);
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi);
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi);
 
     /* these methods are called at the end of processing (end-of-input) to allow the component
        to flush data, save final results to files, etc. 
        you should also use these functions for components that collect data/statistics over the
        full input, instead of doing incremental processing */
-    virtual int flushVectorInt(INT_DMEM *dst, long Nsrc, long Ndst, int idxi);
-    virtual int flushVectorFloat(FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi);
+    virtual int flushVector(FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi);
     
   public:
     SMILECOMPONENT_STATIC_DECL

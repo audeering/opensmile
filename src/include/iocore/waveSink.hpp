@@ -24,8 +24,7 @@ writes data to an uncompressed PCM WAVE file
 #define COMPONENT_DESCRIPTION_CWAVESINK "This component saves data to an uncompressed PCM WAVE file"
 #define COMPONENT_NAME_CWAVESINK "cWaveSink"
 
-#undef class
-class DLLEXPORT cWaveSink : public cDataSink {
+class cWaveSink : public cDataSink {
 private:
   const char *filename;
   FILE * fHandle;

@@ -257,13 +257,13 @@ int matrixToPcmDataFloat(void *outputBuffer, long __N, cMatrix *_mat, int channe
       out[i*channels] = 0.0;
       for (c=0; c<channels; c++) {
 	    for (n=0; n<_mat->N; n++) 
-          out[i*channels+c] += (float)(_mat->dataF)[i*(_mat->N)+n];
+          out[i*channels+c] += (float)(_mat->data)[i*(_mat->N)+n];
       }
 	} else {
 	  int minc = channels;
 	  if (_mat->N < minc) minc = _mat->N;
       for (c=0; c<channels; c++) {
-        out[i*channels+c] = (float)(_mat->dataF)[i*(_mat->N)+c];
+        out[i*channels+c] = (float)(_mat->data)[i*(_mat->N)+c];
 	  }
 	}
   }

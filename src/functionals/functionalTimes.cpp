@@ -365,14 +365,6 @@ long cFunctionalTimes::process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted,  FLOAT_DMEM
   return 0;
 }
 
-/*
-long cFunctionalTimes::process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout)
-{
-
-  return 0;
-}
-*/
-
 cFunctionalTimes::~cFunctionalTimes()
 {
   if(ultime!=NULL) free(ultime);

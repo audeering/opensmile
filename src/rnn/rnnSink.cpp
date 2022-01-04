@@ -716,10 +716,10 @@ eTickResult cRnnSink::myTick(long long t)
   
 // pass current vector to net
   long i, N=0;
-  for (i=0; i<MIN(vec->N,net.inputSize); i++) { in[i] = (FLOAT_NN)(vec->dataF[i]); }
+  for (i=0; i<MIN(vec->N,net.inputSize); i++) { in[i] = (FLOAT_NN)(vec->data[i]); }
   rnn->forward(in, /*vec->N*/ MIN(vec->N,net.inputSize));
   const FLOAT_NN *outp = rnn->getOutput(&N);
-//printf("outp[0]= %f , vec->dataF[0] = %f\n",outp[0],vec->dataF[0]);  
+//printf("outp[0]= %f , vec->data[0] = %f\n",outp[0],vec->data[0]);  
 
   // for now, print the output vector to stdout...
   //printf("--- vi = %i ---\n",vi);

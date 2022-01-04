@@ -932,7 +932,7 @@ eTickResult cSvmSink::myTick(long long t)
   const char * name;
   FLOAT_DMEM conf;
   FLOAT_DMEM *probs=NULL;
-  cls = modelObj->evaluate(vec->dataF, vec->N, &name, &probs, &conf, winningClassMethod, usePairwiseCoupling);
+  cls = modelObj->evaluate(vec->data, vec->N, &name, &probs, &conf, winningClassMethod, usePairwiseCoupling);
   // cls contains the index of the winning class, name the name, and conf the confidence measure
 
   int isFinal = 0; // TODO: read this from meta-data

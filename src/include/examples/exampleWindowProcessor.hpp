@@ -22,8 +22,7 @@ example of a windowProcessor component
 #define COMPONENT_DESCRIPTION_CEXAMPLEWINDOWPROCESSOR "This is an example of a cWindowProcessor descendant. It has no meaningful function, this component is intended as a template for developers."
 #define COMPONENT_NAME_CEXAMPLEWINDOWPROCESSOR "cExampleWindowProcessor"
 
-#undef class
-class DLLEXPORT cExampleWindowProcessor : public cWindowProcessor {
+class cExampleWindowProcessor : public cWindowProcessor {
   private:
     FLOAT_DMEM k;
 

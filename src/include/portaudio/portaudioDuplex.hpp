@@ -18,6 +18,7 @@ portAudio dataSink for live audio playback
 #define __CPORTAUDIODUPLEX_HPP
 
 #include <core/smileCommon.hpp>
+#include <core/smileThread.hpp>
 #include <core/dataProcessor.hpp>
 
 #ifdef HAVE_PORTAUDIO
@@ -31,8 +32,7 @@ portAudio dataSink for live audio playback
 #define PA_STREAM_STOPPED 0
 #define PA_STREAM_STARTED 1
 
-#undef class
-class DLLEXPORT cPortaudioDuplex : public cDataProcessor {
+class cPortaudioDuplex : public cDataProcessor {
   private:
     PaStream *stream;
     long paFrames;

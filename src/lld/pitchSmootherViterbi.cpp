@@ -469,16 +469,16 @@ eTickResult cPitchSmootherViterbi::myTick(long long t)
     // fill framePtr: candidates first, then 3 values from input..
     for (i=0; i<nCandidates[0]; i++) {
       // TODO : add candidates from other input levels...
-      framePtr[i*2] = vec->dataF[f0candI[0]+i];
-      framePtr[i*2+1] = vec->dataF[candVoiceI[0]+i];
+      framePtr[i*2] = vec->data[f0candI[0]+i];
+      framePtr[i*2+1] = vec->data[candVoiceI[0]+i];
     }
-    if (F0rawI[0] >= 0) framePtr[nCandidates[0]*2] = vec->dataF[F0rawI[0]];
+    if (F0rawI[0] >= 0) framePtr[nCandidates[0]*2] = vec->data[F0rawI[0]];
     else framePtr[nCandidates[0]*2] = 0.0;
 
-    if (voicingClipI[0] > 0) framePtr[nCandidates[0]*2+1] = vec->dataF[voicingClipI[0]];
+    if (voicingClipI[0] > 0) framePtr[nCandidates[0]*2+1] = vec->data[voicingClipI[0]];
     else framePtr[nCandidates[0]*2+1] = 0.0;
 
-    if (voicingC1I[0] > 0) framePtr[nCandidates[0]*2+2] = vec->dataF[voicingC1I[0]];
+    if (voicingC1I[0] > 0) framePtr[nCandidates[0]*2+2] = vec->data[voicingC1I[0]];
     else framePtr[nCandidates[0]*2+2] = 0.0;
 
     /* TODO: store vIdx as long in framePtr... */
@@ -506,7 +506,7 @@ eTickResult cPitchSmootherViterbi::myTick(long long t)
     FLOAT_DMEM f0 = viterbi->getNextOutputFrame(&frameOptr, &av, &state);
     long n=0;
     if (F0final) {
-      vecO->dataF[n++] = f0;
+      vecO->data[n++] = f0;
     }
     if (F0finalLog) {
       FLOAT_DMEM f0scaled = 0.0;
@@ -516,7 +516,7 @@ eTickResult cPitchSmootherViterbi::myTick(long long t)
       } else if (f0 > 0.0) {
         f0scaled = 1.0;
       }
-      vecO->dataF[n++] = f0scaled;
+      vecO->data[n++] = f0scaled;
     }
     if (F0finalEnv || F0finalEnvLog) {
       if (f0 <= 0.0) {
@@ -525,7 +525,7 @@ eTickResult cPitchSmootherViterbi::myTick(long long t)
         lastValidf0 = f0;
       }
       if (F0finalEnv) {
-        vecO->dataF[n++] = f0;
+        vecO->data[n++] = f0;
       }
       if (F0finalEnvLog) {
         FLOAT_DMEM f0scaled = 0.0;
@@ -535,22 +535,22 @@ eTickResult cPitchSmootherViterbi::myTick(long long t)
         } else if (f0 > 0.0) {
           f0scaled = 1.0;
         }
-        vecO->dataF[n++] = f0scaled;
+        vecO->data[n++] = f0scaled;
       }
     }
     FLOAT_DMEM vp = 0.0;
     if (state < nCandidates[0]) { vp = frameOptr[state*2+1]; }
     else { vp = frameOptr[1]; }
     if (voicingFinalClipped) {
-      if (vp >= voiceThresh) vecO->dataF[n++] = vp;
-      else vecO->dataF[n++] = 0.0;
+      if (vp >= voiceThresh) vecO->data[n++] = vp;
+      else vecO->data[n++] = 0.0;
     }
 
-    if (voicingFinalUnclipped) vecO->dataF[n++] = vp;
+    if (voicingFinalUnclipped) vecO->data[n++] = vp;
 
-    if (F0raw) vecO->dataF[n++] = frameOptr[nCandidates[0]*2];
-    if (voicingC1) vecO->dataF[n++] = frameOptr[nCandidates[0]*2+1];
-    if (voicingClip) vecO->dataF[n++] = frameOptr[nCandidates[0]*2+2];
+    if (F0raw) vecO->data[n++] = frameOptr[nCandidates[0]*2];
+    if (voicingC1) vecO->data[n++] = frameOptr[nCandidates[0]*2+1];
+    if (voicingClip) vecO->data[n++] = frameOptr[nCandidates[0]*2+2];
 
     /* read frames from second reader to obtain correct tmeta object */
     long vid = (long)(frameOptr[nCandidates[0]*2+3]);

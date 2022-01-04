@@ -22,8 +22,7 @@ compute RMS and log frame energy
 #define COMPONENT_DESCRIPTION_CENERGY "This component computes logarithmic (log) and root-mean-square (rms) signal energy from PCM frames."
 #define COMPONENT_NAME_CENERGY "cEnergy"
 
-#undef class
-class DLLEXPORT cEnergy : public cVectorProcessor {
+class cEnergy : public cVectorProcessor {
   private:
     int htkcompatible;
 	  int erms, elog;
@@ -42,8 +41,7 @@ class DLLEXPORT cEnergy : public cVectorProcessor {
     //virtual int configureWriter(const sDmLevelConfig *c) override;
 
     virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    //virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

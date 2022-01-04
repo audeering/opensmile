@@ -132,31 +132,28 @@ eTickResult cFullinputMean::readNewData()
   cVector *vec = reader_->getNextFrame();
   if (vec == NULL) 
     return TICK_SOURCE_NOT_AVAIL;
-  if (vec->type != DMEM_FLOAT) {
-    COMP_ERR("only float data-type is supported by cFullinputMean!");
-  }
   if (means_ == NULL) {
-    means_ = new cVector(vec->N, vec->type);
+    means_ = new cVector(vec->N);
     n_means_arr_ = new long[vec->N];
     if (mean_type_ == MEANTYPE_RQMEAN) {
       for (int i = 0; i < vec->N; i++) {
-        means_->dataF[i] = vec->dataF[i] * vec->dataF[i];
+        means_->data[i] = vec->data[i] * vec->data[i];
       }
     } else if (mean_type_ == MEANTYPE_ABSMEAN) {
       for (int i = 0; i < vec->N; i++) {
-        means_->dataF[i] = (FLOAT_DMEM)fabs(vec->dataF[i]);
+        means_->data[i] = (FLOAT_DMEM)fabs(vec->data[i]);
       }
     } else {
       if (mean_type_ == MEANTYPE_AMEAN && exclude_zeros_) {
         for (int i = 0; i < vec->N; i++) {
-          if (vec->dataF[i] != 0.0) {
-            means_->dataF[i] = vec->dataF[i];
+          if (vec->data[i] != 0.0) {
+            means_->data[i] = vec->data[i];
             n_means_arr_[i] = 1;
           }
         }
       } else {
         for (int i = 0; i < vec->N; i++) {
-          means_->dataF[i] = vec->dataF[i];
+          means_->data[i] = vec->data[i];
         }
       }
     }
@@ -164,31 +161,31 @@ eTickResult cFullinputMean::readNewData()
   } else {
     if (mean_type_ == MEANTYPE_ENORM) {
       for (int i = 0; i < vec->N; i++) {
-        if (vec->dataF[i] > means_->dataF[i])
-          means_->dataF[i] = vec->dataF[i];
+        if (vec->data[i] > means_->data[i])
+          means_->data[i] = vec->data[i];
       }
     } else if (mean_type_ == MEANTYPE_AMEAN) {
       if (exclude_zeros_) {
         for (int i = 0; i < vec->N; i++) {
-          if (vec->dataF[i] != 0.0) {
-            means_->dataF[i] += vec->dataF[i];
+          if (vec->data[i] != 0.0) {
+            means_->data[i] += vec->data[i];
             n_means_arr_[i]++;
           }
         }
       } else {
         for (int i = 0; i < vec->N; i++) {
-          means_->dataF[i] += vec->dataF[i];
+          means_->data[i] += vec->data[i];
         }
       }
       n_means_++;
     } else if (mean_type_ == MEANTYPE_RQMEAN) {
       for (int i = 0; i < vec->N; i++) {
-        means_->dataF[i] += vec->dataF[i] * vec->dataF[i];
+        means_->data[i] += vec->data[i] * vec->data[i];
       }
       n_means_++;
     } else if (mean_type_ == MEANTYPE_ABSMEAN) {
       for (int i = 0; i < vec->N; i++) {
-        means_->dataF[i] += (FLOAT_DMEM)fabs(vec->dataF[i]);
+        means_->data[i] += (FLOAT_DMEM)fabs(vec->data[i]);
       }
       n_means_++;
     }
@@ -200,48 +197,48 @@ void cFullinputMean::meanSubtract(cVector *vec)
 {
   if (mvn_) {
     for (int i = 0; i < variances2_->N; i++) {
-      if (variances2_->dataF[i] == 0.0)
-        vec->dataF[i] = 0.0;
+      if (variances2_->data[i] == 0.0)
+        vec->data[i] = 0.0;
       else
-        vec->dataF[i] = (vec->dataF[i] - means2_->dataF[i])
-          / variances2_->dataF[i];
-      if (symm_subtract_clip_to_zero_ && vec->dataF[i] < 0)
-        vec->dataF[i] = 0.0;
+        vec->data[i] = (vec->data[i] - means2_->data[i])
+          / variances2_->data[i];
+      if (symm_subtract_clip_to_zero_ && vec->data[i] < 0)
+        vec->data[i] = 0.0;
     }
   } else {
     if (mean_type_ == MEANTYPE_ENORM) {
       for (int i = 0; i < means2_->N; i++) {
-        vec->dataF[i] -= means2_->dataF[i] - (FLOAT_DMEM)1.0;
+        vec->data[i] -= means2_->data[i] - (FLOAT_DMEM)1.0;
       }
     } else if (mean_type_ == MEANTYPE_AMEAN) {
       for (int i = 0; i < means2_->N; i++) {
-        vec->dataF[i] -= means2_->dataF[i];
-        if (symm_subtract_clip_to_zero_ && vec->dataF[i] < 0) vec->dataF[i] = 0.0;
+        vec->data[i] -= means2_->data[i];
+        if (symm_subtract_clip_to_zero_ && vec->data[i] < 0) vec->data[i] = 0.0;
       }
     } else if (mean_type_ == MEANTYPE_RQMEAN || mean_type_ == MEANTYPE_ABSMEAN) {
       if (symm_subtract_) {
         for (int i = 0; i < means2_->N; i++) {
-          if (vec->dataF[i] >= 0) {
-            vec->dataF[i] -= means2_->dataF[i];
+          if (vec->data[i] >= 0) {
+            vec->data[i] -= means2_->data[i];
           } else {
-            vec->dataF[i] += means2_->dataF[i];
+            vec->data[i] += means2_->data[i];
           }
         }
       } else if (symm_subtract_clip_to_zero_) {
         for (int i = 0; i < means2_->N; i++) {
-          if (vec->dataF[i] >= means2_->dataF[i]) {
-            vec->dataF[i] -= means2_->dataF[i];
+          if (vec->data[i] >= means2_->data[i]) {
+            vec->data[i] -= means2_->data[i];
           } else {
-            if (vec->dataF[i] <= -means2_->dataF[i]) {
-              vec->dataF[i] += means2_->dataF[i];
+            if (vec->data[i] <= -means2_->data[i]) {
+              vec->data[i] += means2_->data[i];
             } else {
-              vec->dataF[i] = 0.0;
+              vec->data[i] = 0.0;
             }
           }
         }
       } else {
         for (int i = 0; i < means2_->N; i++) {
-          vec->dataF[i] -= means2_->dataF[i];
+          vec->data[i] -= means2_->data[i];
         }
       }
     }
@@ -253,12 +250,12 @@ int cFullinputMean::finaliseMeans()
   if (mean_type_ == MEANTYPE_AMEAN && exclude_zeros_) {
     for (int i = 0; i < means_->N; i++) {
       if (n_means_arr_[i] > 0) {
-        means_->dataF[i] /= (FLOAT_DMEM)n_means_arr_[i];
+        means_->data[i] /= (FLOAT_DMEM)n_means_arr_[i];
       }
     }
     if (print_means_) {
       for (int i = 0; i < means_->N; i++) {
-        SMILE_PRINT("means[%i] = %f  (n = %ld)", i, means_->dataF[i],
+        SMILE_PRINT("means[%i] = %f  (n = %ld)", i, means_->data[i],
             n_means_arr_[i]);
       }
     }
@@ -266,11 +263,11 @@ int cFullinputMean::finaliseMeans()
     if (n_means_ > 0) {
       FLOAT_DMEM nM = (FLOAT_DMEM)n_means_;
       for (int i = 0; i < means_->N; i++) {
-        means_->dataF[i] /= nM;
+        means_->data[i] /= nM;
       }
       if (print_means_) {
         for (int i = 0; i < means_->N; i++) {
-          SMILE_PRINT("means[%i] = %f  (n = %ld)", i, means_->dataF[i], n_means_);
+          SMILE_PRINT("means[%i] = %f  (n = %ld)", i, means_->data[i], n_means_);
         }
       }
     }
@@ -297,7 +294,7 @@ int cFullinputMean::finaliseVariances() {
     for (int i = 0; i < variances_->N; i++) {
       if (n_variances_arr_[i] > 0) {
         // computes standard deviations
-        variances_->dataF[i] = sqrt(variances_->dataF[i]
+        variances_->data[i] = sqrt(variances_->data[i]
           / (FLOAT_DMEM)n_variances_arr_[i]);
         if (n_variances_arr_[i] != n_means2_arr_[i])
           SMILE_IWRN(2, "n_variances (%ld) != n_means2_ (%ld)_",
@@ -307,7 +304,7 @@ int cFullinputMean::finaliseVariances() {
     if (print_variances_) {
       for (int i = 0; i < variances_->N; i++) {
         SMILE_PRINT("variances[%i] = %f  (n = %ld)", i,
-            variances_->dataF[i], n_variances_arr_[i]);
+            variances_->data[i], n_variances_arr_[i]);
       }
     }
   } else {
@@ -318,13 +315,13 @@ int cFullinputMean::finaliseVariances() {
     if (N > 0.0) {
       for (int i = 0; i < variances_->N; i++) {
         // computes standard deviations
-        variances_->dataF[i] = sqrt(variances_->dataF[i] / N);
+        variances_->data[i] = sqrt(variances_->data[i] / N);
       }
     }
     if (print_variances_) {
       for (int i = 0; i < variances_->N; i++) {
         SMILE_PRINT("variances[%i] = %f  (n = %ld)", i,
-            variances_->dataF[i], n_variances_);
+            variances_->data[i], n_variances_);
       }
     }
   }
@@ -349,19 +346,19 @@ int cFullinputMean::doVarianceComputation()
   cVector * vec = reader_->getFrame(reader_pointer3_);
   if (vec != NULL) {
     if (variances_ == NULL) {
-      variances_ = new cVector(vec->N, vec->type);
+      variances_ = new cVector(vec->N);
       if (exclude_zeros_) {
         for (int i = 0; i < vec->N; i++) {
-          if (vec->dataF[i] != 0.0) {
-            FLOAT_DMEM tmp = (vec->dataF[i] - means2_->dataF[i]);
-            variances_->dataF[i] = tmp * tmp;
+          if (vec->data[i] != 0.0) {
+            FLOAT_DMEM tmp = (vec->data[i] - means2_->data[i]);
+            variances_->data[i] = tmp * tmp;
             n_variances_arr_[i] = 1;
           }
         }
       } else {
         for (int i = 0; i < vec->N; i++) {
-          FLOAT_DMEM tmp = (vec->dataF[i] - means2_->dataF[i]);
-          variances_->dataF[i] = tmp * tmp;
+          FLOAT_DMEM tmp = (vec->data[i] - means2_->data[i]);
+          variances_->data[i] = tmp * tmp;
         }
       }
       n_variances_ = 1;
@@ -371,16 +368,16 @@ int cFullinputMean::doVarianceComputation()
       //       the best way is to add multi read pointer functionality to the dataReader class
       if (exclude_zeros_) {
         for (int i = 0; i < vec->N; i++) {
-          if (vec->dataF[i] != 0.0) {
-            FLOAT_DMEM tmp = (vec->dataF[i] - means2_->dataF[i]);
-            variances_->dataF[i] += tmp * tmp;
+          if (vec->data[i] != 0.0) {
+            FLOAT_DMEM tmp = (vec->data[i] - means2_->data[i]);
+            variances_->data[i] += tmp * tmp;
             n_variances_arr_[i]++;
           }
         }
       } else {
         for (int i = 0; i < vec->N; i++) {
-          FLOAT_DMEM tmp = (vec->dataF[i] - means2_->dataF[i]);
-          variances_->dataF[i] += tmp * tmp;
+          FLOAT_DMEM tmp = (vec->data[i] - means2_->data[i]);
+          variances_->data[i] += tmp * tmp;
         }
       }
       n_variances_++;
@@ -492,9 +489,9 @@ eTickResult cFullinputMean::myTick(long long t)
       if (means_ == NULL) {
         SMILE_IWRN(1,"sequence too short, cannot compute statistics (mean or max value)!");
         long N = reader_->getLevelN();
-        means_ = new cVector( N, DMEM_FLOAT );
+        means_ = new cVector( N );
         for (i=0; i<N; i++) {
-          means_->dataF[i] = 0;
+          means_->data[i] = 0;
         }
         n_means_ = 1;
       }
@@ -508,7 +505,7 @@ eTickResult cFullinputMean::myTick(long long t)
           FLOAT_DMEM nM = (FLOAT_DMEM)n_means_;
           if (nM <= 0.0) nM = 1.0;
           for (i=0; i<means_->N; i++) {
-            means_->dataF[i] /= nM;
+            means_->data[i] /= nM;
           }
         }
       }
@@ -516,11 +513,11 @@ eTickResult cFullinputMean::myTick(long long t)
       if (vec== NULL) return TICK_SOURCE_NOT_AVAIL;
       if (mean_type_ == MEANTYPE_ENORM) {
         for (i=0; i<means_->N; i++) {
-          vec->dataF[i] -= means_->dataF[i] - (FLOAT_DMEM)1.0;  // x - max + 1 
+          vec->data[i] -= means_->data[i] - (FLOAT_DMEM)1.0;  // x - max + 1 
         }
       } else {
         for (i=0; i<means_->N; i++) {
-          vec->dataF[i] -= means_->dataF[i];
+          vec->data[i] -= means_->data[i];
         }
       }
       writer_->setNextFrame(vec);
@@ -529,22 +526,21 @@ eTickResult cFullinputMean::myTick(long long t)
       // compute means, do not write data
       cVector *vec = reader_->getNextFrame();
       if (vec == NULL) return TICK_SOURCE_NOT_AVAIL;
-      if (vec->type != DMEM_FLOAT) { COMP_ERR("only float data-type is supported by cFullinputMean!"); }
 
       if (means_ == NULL) {
-        means_ = new cVector( vec->N, vec->type );
+        means_ = new cVector( vec->N );
         for (i=0; i<vec->N; i++) {
-          means_->dataF[i] = vec->dataF[i];
+          means_->data[i] = vec->data[i];
         }
         n_means_ = 1;
       } else {
         if (mean_type_ == MEANTYPE_ENORM) {
           for (i=0; i<vec->N; i++) {
-            if (vec->dataF[i] > means_->dataF[i]) means_->dataF[i] = vec->dataF[i];
+            if (vec->data[i] > means_->data[i]) means_->data[i] = vec->data[i];
           }
         } else {
           for (i=0; i<vec->N; i++) {
-            means_->dataF[i] += vec->dataF[i];
+            means_->data[i] += vec->data[i];
           }
           n_means_++;
         }

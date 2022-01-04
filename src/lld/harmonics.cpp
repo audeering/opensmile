@@ -740,11 +740,11 @@ int * cHarmonics::getFormantAmplitudeIndices(const FLOAT_DMEM * centreFreq,
 }
 
 // a derived class should override this method, in order to implement the actual processing
-int cHarmonics::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cHarmonics::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   //printf("Nsrc = %i, Ndst = %i\n", Nsrc, Ndst);
   if (idxi > 0) {
-    SMILE_IERR(1, "Field index > 0 in processVectorFloat. This should not happen, please use processArrayFields = 1!");
+    SMILE_IERR(1, "Field index > 0 in processVector. This should not happen, please use processArrayFields = 1!");
     return 0;
   }
   if (Nsrc <= 0) {

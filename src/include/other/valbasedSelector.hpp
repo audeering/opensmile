@@ -22,8 +22,7 @@ vector selector based on threshold of value <idx>
 #define COMPONENT_DESCRIPTION_CVALBASEDSELECTOR "This component copies only those frames from the input to the output that match a certain threshold criterion, i.e. where a specified value N exceeds a certain threshold."
 #define COMPONENT_NAME_CVALBASEDSELECTOR "cValbasedSelector"
 
-#undef class
-class DLLEXPORT cValbasedSelector : public cDataProcessor {
+class cValbasedSelector : public cDataProcessor {
   private:
     long idx;
     int removeIdx, invert, allowEqual, zerovec;

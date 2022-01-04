@@ -11,8 +11,7 @@
 #include <core/smileCommon.hpp>
 #include <core/smileLogger.hpp>
 
-#undef class
-class DLLEXPORT cSmileUtilBase {
+class cSmileUtilBase {
 private:
   const char * instname_;
 public:

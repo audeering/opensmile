@@ -15,10 +15,8 @@
  */
 
 
-#include <time.h>
-
-//#include <exceptions.hpp>
 #include <core/smileLogger.hpp>
+#include <time.h>
 
 // include android native logging functionality
 #ifdef __ANDROID__
@@ -29,9 +27,7 @@
 #include <io.h>
 #define isatty _isatty
 #define fileno _fileno
-#endif
-
-#ifdef HAVE_UNISTD_H
+#else
 #include <unistd.h>
 #endif
 

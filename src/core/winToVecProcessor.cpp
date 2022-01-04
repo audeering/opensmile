@@ -106,13 +106,11 @@ cWinToVecProcessor::cWinToVecProcessor(const char *_name) :
   frameStep(0.0),
   frameCenter(0.0),
   pre(0),
-  dtype(0),
   matBuf(NULL), matBufN(0), matBufNalloc(0),
   tmpRow(NULL),
   tmpVec(NULL),
   lastText(NULL), lastCustom(NULL),
   tmpFrameF(NULL),
-  tmpFrameI(NULL),
   noPostEOIprocessing(0),
   nQ(0),
   frameMode(FRAMEMODE_FIXED),
@@ -564,8 +562,6 @@ int cWinToVecProcessor::configureWriter(sDmLevelConfig &c)
   // we overwrite the reader period with the recently computed writer period...
   c.T = frameStep;
   c.frameSizeSec = frameSize;
-  dtype = c.type; // INPUT type ??
-  c.type = DMEM_FLOAT;
 
   if ((frameMode != FRAMEMODE_VAR) && (frameMode != FRAMEMODE_META)
       && (frameMode != FRAMEMODE_LIST)) {
@@ -671,7 +667,6 @@ int cWinToVecProcessor::dataProcessorCustomFinalise()
     Mult = getMultiplier();
     if (Mult*Ni != No) COMP_ERR("Mult not constant (as returned by setupNamesForField! This is not allowed! Mult*Ni=%i <> No=%i",Mult*Ni,No);
     if (tmpFrameF==NULL) tmpFrameF=(FLOAT_DMEM*)calloc(1,sizeof(FLOAT_DMEM)*Mult);
-    if (tmpFrameI==NULL) tmpFrameI=(INT_DMEM*)calloc(1,sizeof(INT_DMEM)*Mult);
   }
   return 1;
 }
@@ -715,7 +710,6 @@ int cWinToVecProcessor::myFinaliseInstance()
   Mult = getMultiplier();
   if (Mult*Ni != No) COMP_ERR("Mult not constant (as returned by setupNamesForField! This is not allowed! Mult*Ni=%i <> No=%i",Mult*Ni,No);
   if (tmpFrameF==NULL) tmpFrameF=(FLOAT_DMEM*)calloc(1,sizeof(FLOAT_DMEM)*Mult);
-  if (tmpFrameI==NULL) tmpFrameI=(INT_DMEM*)calloc(1,sizeof(INT_DMEM)*Mult);
 
   if (frameMode != FRAMEMODE_VAR) 
     reader->setupSequentialMatrixReading(frameStepFrames, frameSizeFrames, pre);
@@ -731,12 +725,6 @@ int cWinToVecProcessor::doProcessMatrix(int idxi, cMatrix *in, FLOAT_DMEM *out, 
   return 0;
 }
 
-int cWinToVecProcessor::doProcessMatrix(int idxi, cMatrix *in, INT_DMEM *out, long nOut)
-{
-  SMILE_IERR(1,"doProcessMatrix (type INT_DMEM) is not implemented in this component, however for some reason the 'wholeMatrixMode' variable was set to 1...!");
-  return 0;
-}
-
 // idxi is index of input element
 // row is the input row
 // y is the output vector (part) for the input row
@@ -744,19 +732,9 @@ int cWinToVecProcessor::doProcess(int idxi, cMatrix *row, FLOAT_DMEM*y)
 {
    /* int i;
     for (i=0;i<row->nT; i++) {
-      printf("[%i] %f\n",i,row->dataF[i]);
+      printf("[%i] %f\n",i,row->data[i]);
     }*/
   SMILE_IERR(1,"dataType FLOAT_DMEM not yet supported!");
-  //return getMultiplier();
-  return 0;
-  // return the number of actually set components in y!!
-  // return 0 on failue
-  // return -1 if you don't want to set a new output frame...
-}
-
-int cWinToVecProcessor::doProcess(int idxi, cMatrix *row, INT_DMEM*y)
-{
-  SMILE_IERR(1,"dataType INT_DMEM not yet supported!");
   //return getMultiplier();
   return 0;
   // return the number of actually set components in y!!
@@ -767,16 +745,6 @@ int cWinToVecProcessor::doProcess(int idxi, cMatrix *row, INT_DMEM*y)
 int cWinToVecProcessor::doFlush(int idxi, FLOAT_DMEM*y)
 {
   //SMILE_IERR(1,"dataType FLOAT_DMEM not yet supported!");
-  //return getMultiplier();
-  return 0;
-  // return the number of actually set components in y!!
-  // return 0 on failue
-  // return -1 if you don't want to set a new output frame...
-}
-
-int cWinToVecProcessor::doFlush(int idxi, INT_DMEM*y)
-{
-  //SMILE_IERR(1,"dataType INT_DMEM not yet supported!");
   //return getMultiplier();
   return 0;
   // return the number of actually set components in y!!
@@ -892,7 +860,7 @@ void cWinToVecProcessor::addVecToBuf(cVector *ve)
   }
   long i;
   for (i=0; i<ve->N; i++) {
-    matBuf->dataF[i+matBufN*matBuf->N] = ve->dataF[i];
+    matBuf->data[i+matBufN*matBuf->N] = ve->data[i];
   }
   matBufN++;
 }
@@ -1027,14 +995,7 @@ eTickResult cWinToVecProcessor::myTick(long long t)
     return TICK_SOURCE_NOT_AVAIL; 
   } 
 
-  int type;
-  if (mat==NULL) {
-    const sDmLevelConfig * c = writer_->getLevelConfig();
-    if (c!=NULL) type = c->type;
-    else return TICK_SOURCE_NOT_AVAIL;
-  } else { type=mat->type; }
-
-  if (tmpVec==NULL) tmpVec = new cVector(No,type);
+  if (tmpVec==NULL) tmpVec = new cVector(No);
   
   if (frameMode == FRAMEMODE_META) { 
     // set tmeta correctly in tmpVec...      
@@ -1061,74 +1022,48 @@ eTickResult cWinToVecProcessor::myTick(long long t)
 
 //  printf("vs=%i Nf=%i nn=%i\n",tmpVec->N,Nf,nNotes);
   int i,toSet=1,ret=1;
-  if (type == DMEM_FLOAT) {
-    if (wholeMatrixMode) { // call the function to process the whole data matrix, producing a single output vector
 
-      if (mat != NULL) {
-      if (processFieldsInMatrixMode) {
-        FLOAT_DMEM * opVec = tmpVec->dataF;
-        for(i=0; i<Nfi; i++) {
-          long nout = getNoutputs(mat->fmeta->field[i].N);
-          doProcessMatrix(i,mat,opVec,nout);
-          opVec += nout;
-        }
-      } else { 
-        doProcessMatrix(0,mat,tmpVec->dataF,tmpVec->N);
+  if (wholeMatrixMode) { // call the function to process the whole data matrix, producing a single output vector
+
+    if (mat != NULL) {
+    if (processFieldsInMatrixMode) {
+      FLOAT_DMEM * opVec = tmpVec->data;
+      for(i=0; i<Nfi; i++) {
+        long nout = getNoutputs(mat->fmeta->field[i].N);
+        doProcessMatrix(i,mat,opVec,nout);
+        opVec += nout;
       }
-
-      } else { ret = 0; toSet = 0; }
-
-    } else { // process each row independently and concatenate output vectors
-
-      for (i=0; i<Ni; i++) {
-        long Mu;
-        //cMatrix *r=NULL;
-        if (mat!=NULL) {
-          tmpRow = mat->getRow(i,tmpRow);
-          Mu = doProcess(i,tmpRow,tmpFrameF);
-        } else {
-          Mu = doFlush(i,tmpFrameF);
-        }
-        if ((Mu > 0)&&(toSet==1)) {
-          // copy data into main vector
-          Mu = MIN(Mu,Mult);
-          memcpy( tmpVec->dataF+i*Mult, tmpFrameF, sizeof(FLOAT_DMEM)*Mu ); // was: *Mult
-          if (Mu<Mult)
-            memset( tmpVec->dataF+i*Mult+Mu, 0, sizeof(FLOAT_DMEM)*(Mult-Mu) );
-        } else { 
-          toSet=0;
-          if (Mu==0) {
-            ret=0;
-          }
-        }
-        //if (r!=NULL) delete r;
-      }
+    } else { 
+      doProcessMatrix(0,mat,tmpVec->data,tmpVec->N);
     }
-  } else if (mat->type == DMEM_INT) {
-    if (wholeMatrixMode) { // call the function to process the whole data matrix, producing a single output vector
-      if (processFieldsInMatrixMode) {
-        for(i=0; i<Nfi; i++) {
-          //doProcessMatrix(i,mat,tmpVec); // TODO!
-        }
-      } else { 
-        doProcessMatrix(0,mat,tmpVec->dataI, tmpVec->N);
+
+    } else { ret = 0; toSet = 0; }
+
+  } else { // process each row independently and concatenate output vectors
+
+    for (i=0; i<Ni; i++) {
+      long Mu;
+      //cMatrix *r=NULL;
+      if (mat!=NULL) {
+        tmpRow = mat->getRow(i,tmpRow);
+        Mu = doProcess(i,tmpRow,tmpFrameF);
+      } else {
+        Mu = doFlush(i,tmpFrameF);
       }
-
-    } else { // process each row independently and concattenate output vectors
-
-
-      for (i=0; i<Ni; i++) {
-        // TODO: return value... toSet, etc...
-        //!!!!!!!!!!!!
-        //cMatrix *r = mat->getRow(i);
-        doProcess(i,tmpRow,tmpFrameI);
+      if ((Mu > 0)&&(toSet==1)) {
         // copy data into main vector
-        memcpy( tmpVec->dataI+i*Mult, tmpFrameI, sizeof(INT_DMEM)*Mult );
+        Mu = MIN(Mu,Mult);
+        memcpy( tmpVec->data+i*Mult, tmpFrameF, sizeof(FLOAT_DMEM)*Mu ); // was: *Mult
+        if (Mu<Mult)
+          memset( tmpVec->data+i*Mult+Mu, 0, sizeof(FLOAT_DMEM)*(Mult-Mu) );
+      } else { 
+        toSet=0;
+        if (Mu==0) {
+          ret=0;
+        }
       }
+      //if (r!=NULL) delete r;
     }
-  } else { 
-    SMILE_IERR(1,"unknown dataType %i!!",mat->type);
-    return TICK_INACTIVE;
   }
   
   if (toSet == 1) {
@@ -1167,7 +1102,6 @@ eTickResult cWinToVecProcessor::myTick(long long t)
 cWinToVecProcessor::~cWinToVecProcessor()
 {
   if (tmpFrameF!=NULL) free(tmpFrameF);
-  if (tmpFrameI!=NULL) free(tmpFrameI);
   if (ivSec != NULL) free(ivSec);
   if (ivFrames != NULL) free(ivFrames);
   if (tmpVec!=NULL) delete tmpVec;

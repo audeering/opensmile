@@ -23,8 +23,7 @@ example for dataProcessor descendant
 #define COMPONENT_DESCRIPTION_CPITCHDIRECTION "This component reads pitch data, detects pseudo syllables, and computes pitch direction estimates per syllable. Thereby the classes falling, flat, and rising are distinguished. \n    Required input fields: F0, F0env, and 'loudness' or 'RMSenergy'."
 #define COMPONENT_NAME_CPITCHDIRECTION "cPitchDirection"
 
-#undef class
-class DLLEXPORT cPitchDirection : public cDataProcessor {
+class cPitchDirection : public cDataProcessor {
   private:
     cVector *myVec;
     long F0field, F0envField, LoudnessField, RMSField;

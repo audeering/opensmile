@@ -22,8 +22,7 @@
 #define COMPONENT_DESCRIPTION_CFFTMAGPHASE "This component computes magnitude and phase of each array in the input level (it thereby assumes that the arrays contain complex numbers with real and imaginary parts alternating, as computed by the cTransformFFT component)."
 #define COMPONENT_NAME_CFFTMAGPHASE "cFFTmagphase"
 
-#undef class
-class DLLEXPORT cFFTmagphase : public cVectorProcessor {
+class cFFTmagphase : public cVectorProcessor {
   private:
     int inverse;
     int magnitude;
@@ -40,7 +39,7 @@ class DLLEXPORT cFFTmagphase : public cVectorProcessor {
     virtual void myFetchConfig() override;
 
     virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
 
   public:

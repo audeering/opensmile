@@ -357,10 +357,10 @@ eTickResult cPitchDirection::myTick(long long t)
   FLOAT_DMEM f0eNow=0.0;
   FLOAT_DMEM f0now =0.0;
   FLOAT_DMEM loudn =0.0;
-  if (F0envField >= 0) f0eNow = vec->dataF[F0envField];
-  if (F0field >= 0) f0now = vec->dataF[F0field];
-  if (LoudnessField >= 0) loudn = vec->dataF[LoudnessField];
-  else if (RMSField >= 0) loudn = vec->dataF[RMSField];
+  if (F0envField >= 0) f0eNow = vec->data[F0envField];
+  if (F0field >= 0) f0now = vec->data[F0field];
+  if (LoudnessField >= 0) loudn = vec->data[LoudnessField];
+  else if (RMSField >= 0) loudn = vec->data[RMSField];
   /*
   #ifdef DEBUG
   float dbg[3];
@@ -617,7 +617,7 @@ eTickResult cPitchDirection::myTick(long long t)
       }
   }
 
-  if (myVec == NULL) myVec = new cVector(nEnabled,vec->type);
+  if (myVec == NULL) myVec = new cVector(nEnabled);
 
   // if you create a new vector here and pass it to setNextFrame(),
   // then be sure to assign a valid tmeta info for correct timing info:
@@ -626,20 +626,20 @@ eTickResult cPitchDirection::myTick(long long t)
 
   int n=0;
   if (F0directionOutp) {
-    myVec->dataF[n] = dir; n++;
+    myVec->data[n] = dir; n++;
   }
   if (directionScoreOutp) { // smean-lmean
-    myVec->dataF[n] = (FLOAT_DMEM)(smean-lmean); n++;
+    myVec->data[n] = (FLOAT_DMEM)(smean-lmean); n++;
   }
   if (speakingRateOutp) {
-    myVec->dataF[n] = (FLOAT_DMEM)(curSpkRate); n++; // TODO!!
+    myVec->data[n] = (FLOAT_DMEM)(curSpkRate); n++; // TODO!!
   }
   if (F0avgOutp) {
-    myVec->dataF[n] = (FLOAT_DMEM)( ltSum/(double)ltbsFrames ); n++;
+    myVec->data[n] = (FLOAT_DMEM)( ltSum/(double)ltbsFrames ); n++;
   }
   if (F0smoothOutp) {
-    myVec->dataF[n] = (float)f0s; n++;
-    if (!insyl) { myVec->dataF[n] = (FLOAT_DMEM)(0.0); }
+    myVec->data[n] = (float)f0s; n++;
+    if (!insyl) { myVec->data[n] = (FLOAT_DMEM)(0.0); }
   }
   
   // save to dataMemory

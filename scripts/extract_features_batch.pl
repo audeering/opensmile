@@ -109,7 +109,7 @@ foreach my $wav (@Wavs) {
     ##   e.g. sox -R $wav -c 1 -e signed-integer -b 16 tmp-output.wav
     ## then set $wav = "tmp-output.wav"
     ## and don't forget to delete tmp-output.wav at the end...
-    my $cmd = "$SMILExtract -nologfile -l 2 -C \"$config\" -I \"$wav\" -O \"$arff\" -instname \"$inst\" $targets";
+    my $cmd = "$SMILExtract -l 2 -C \"$config\" -I \"$wav\" -O \"$arff\" -instname \"$inst\" $targets";
     print "running: $cmd\n";
     my $ret = system($cmd);
     if ($ret) {

@@ -5,7 +5,6 @@
  * See the file COPYING for details on license terms.
  ***************************************************************************E*/
 
-
 // basic functionality / SMILE API
 #include <core/dataMemory.hpp>
 #include <core/dataReader.hpp>
@@ -23,9 +22,7 @@
 // examples:
 #include <examples/exampleSource.hpp>
 #include <examples/exampleSink.hpp>
-#ifndef EXTERNAL_BUILD
 #include <examples/simpleMessageSender.hpp>
-#endif
 //#include <examples/exampleProcessor.hpp>
 
 // basic operations:
@@ -60,10 +57,7 @@
 #include <iocore/waveSinkCut.hpp>
 
 //"fake" sources / producers:
-#ifndef EXTERNAL_BUILD
-#include <other/bowProducer.hpp>
 #include <dsp/signalGenerator.hpp>
-#endif
 
 // portaudio code:
 #ifdef HAVE_PORTAUDIO
@@ -80,7 +74,6 @@
 
 #ifdef __ANDROID__
  #include <android/openslesSource.hpp>
- #include <android/jniMessageInterface.hpp>
 #endif
 
 #if defined(__IOS__) && !defined(__IOS_WATCH__)
@@ -88,10 +81,8 @@
 #endif
 
 // live sinks (classifiers):
-#ifndef EXTERNAL_BUILD
 #ifdef BUILD_LIBSVM
  #include <classifiers/libsvmliveSink.hpp>
-#endif
 #endif
 
 #ifdef BUILD_RNN
@@ -100,14 +91,8 @@
  #include <rnn/rnnVad2.hpp>
 #endif
 
-#ifdef HAVE_JULIUSLIB
-#include <classifiers/julius/juliusSink.hpp>
-#endif
-
-#ifndef EXTERNAL_BUILD
 #ifdef BUILD_SVMSMO
 #include <classifiers/svmSink.hpp>
-#endif
 #endif
 
 // dsp core:
@@ -123,14 +108,11 @@
 #include <dspcore/deltaRegression.hpp>
 #include <dspcore/contourSmoother.hpp>
 
-
 // dsp advanced:
-#ifndef EXTERNAL_BUILD
 #include <dsp/smileResample.hpp>
 #include <dsp/specResample.hpp>
 #include <dsp/dbA.hpp>
 #include <dsp/vadV1.hpp>
-#endif
 
 #include <dsp/specScale.hpp>
 
@@ -147,15 +129,12 @@
 #include <lldcore/pitchSmoother.hpp>
 
 // LLD (low-level descriptors):
-#ifndef EXTERNAL_BUILD
 #include <lld/tonespec.hpp>
 #include <lld/tonefilt.hpp>
 #include <lld/chroma.hpp>
 #include <lld/cens.hpp>
 #include <lld/pitchDirection.hpp>
 #include <lld/formantSmoother.hpp>
-#endif
-
 #include <lld/pitchSmootherViterbi.hpp>
 #include <lld/pitchJitter.hpp>
 #include <lld/pitchShs.hpp>
@@ -183,21 +162,14 @@
 #include <functionals/functionalModulation.hpp>
 
 // advanced io
-#ifndef EXTERNAL_BUILD
 #include <io/libsvmSink.hpp>
-#endif
 
 // OpenCV:
 #ifdef HAVE_OPENCV
   #include <video/openCVSource.hpp>
 #endif
 
-// other:
-//#include <booleanOp.hpp>
-
-
-
-DLLEXPORT const registerFunction componentlist[] = {
+const registerFunction componentlist[] = {
   // basic functionality / SMILE API
   cDataMemory::registerComponent,
   cDataWriter::registerComponent,
@@ -256,9 +228,6 @@ DLLEXPORT const registerFunction componentlist[] = {
   cWaveSinkCut::registerComponent,
 
   //"fake" sources / producers:
-  #ifdef BUILD_COMPONENT_BowProducer
-  cBowProducer::registerComponent,
-  #endif
   #ifdef BUILD_COMPONENT_SignalGenerator
   cSignalGenerator::registerComponent,
   #endif
@@ -268,21 +237,16 @@ DLLEXPORT const registerFunction componentlist[] = {
    cPortaudioSource::registerComponent,
    cPortaudioSink::registerComponent,
    cPortaudioDuplex::registerComponent,
-//   cPortaudioDuplexS::registerComponent,
-//   cPortaudioDuplexD::registerComponent,
   #endif
 
   #ifdef HAVE_FFMPEG
-   #ifndef BUILD_WITHOUT_EXPERIMENTAL
-    cFFmpegSource::registerComponent,
-   #endif
+   cFFmpegSource::registerComponent,
   #endif
 
   #ifdef __ANDROID__
    #ifdef BUILD_COMPONENT_OpenslesSource
    cOpenslesSource::registerComponent,
    #endif
-   cJniMessageInterface::registerComponent,
   #endif
 
   #if defined(__IOS__) && !defined(__IOS_WATCH__)
@@ -302,12 +266,6 @@ DLLEXPORT const registerFunction componentlist[] = {
    cRnnVad2::registerComponent,
   #endif
 
-  #ifdef HAVE_JULIUSLIB
-#ifdef BUILD_COMPONENT_JuliusSink
-   cJuliusSink::registerComponent,
-#endif
-  #endif
-
   #ifdef BUILD_SVMSMO
   #ifdef BUILD_COMPONENT_SvmSink
    cSvmSink::registerComponent,
@@ -317,7 +275,6 @@ DLLEXPORT const registerFunction componentlist[] = {
   // dsp core:
   cMonoMixdown::registerComponent,
   cTransformFFT::registerComponent,
-  //cTransformFFTr::registerComponent,
   cFFTmagphase::registerComponent,
   cAmdf::registerComponent,
   cAcf::registerComponent,
@@ -428,9 +385,6 @@ DLLEXPORT const registerFunction componentlist[] = {
   cOpenCVSource::registerComponent,
   #endif
 #endif
-
-  // other:
-  //cBooleanOp::registerComponent,
 
   NULL   // the last element must always be NULL !
 };

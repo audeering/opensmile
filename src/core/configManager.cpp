@@ -398,7 +398,11 @@ ConfigType::ConfigType(const char *_name, int N_) :
   element(NULL),
   I(0)
 {
-  if (_name != NULL) setName( _name );
+  if (_name != NULL) {
+    setName(_name);
+  } else {
+    name[0] = 0; // no name..
+  }
   parentName[0] = 0; // no parent name..
   if (N_ > 0) {
     N=N_;
@@ -446,15 +450,7 @@ void ConfigType::setName(const char *_name)
 {
   if (_name == NULL) { SMILE_ERR(1,"cannot set name == NULL (setName)"); }
   else {
-    size_t l = strlen(_name);
-    if (l>CONFIGTYPE_STRLEN) {
-      l=CONFIGTYPE_STRLEN;
-    }
-#ifdef _MSC_VER // Visual Studio specific macro
-    strncpy_s( name, CONFIGTYPE_STRLEN, _name, MIN((l+1),CONFIGTYPE_STRLEN) );
-#else
-    strncpy( name, _name, MIN((l+1),CONFIGTYPE_STRLEN) );
-#endif
+    strncpy(name, _name, CONFIGTYPE_STRLEN);
     name[CONFIGTYPE_STRLEN] = 0; // ensure last element is always the terminating NULL character
   }
 }
@@ -463,15 +459,7 @@ void ConfigType::setParentName(const char *_parentName)
 {
   if (_parentName == NULL) { SMILE_ERR(1,"cannot set _parentName == NULL (setParentName)"); }
   else {
-    size_t l = strlen(_parentName);
-    if (l>CONFIGTYPE_STRLEN) {
-      l=CONFIGTYPE_STRLEN;
-    }
-#ifdef _MSC_VER // Visual Studio specific macro
-    strncpy_s( parentName, CONFIGTYPE_STRLEN, _parentName, MIN((l+1),CONFIGTYPE_STRLEN) );
-#else
-    strncpy( parentName, _parentName, MIN((l+1),CONFIGTYPE_STRLEN) );
-#endif
+    strncpy(parentName, _parentName, CONFIGTYPE_STRLEN);
     parentName[CONFIGTYPE_STRLEN] = 0; // ensure last element is always the terminating NULL character
   }
 }
@@ -1011,11 +999,7 @@ int ConfigType::setField(const char *_name, const char *description, int type, i
     element[I].subtype = subtype;
     element[I].subType = subType;
     element[I].freeType = freeType;
-#ifdef _MSC_VER // Visual Studio specific macro
-    strncpy_s( element[I].name, CONFIGTYPE_STRLEN, _name, CONFIGTYPE_STRLEN );
-#else
-    strncpy( element[I].name, _name, CONFIGTYPE_STRLEN );
-#endif
+    strncpy(element[I].name, _name, CONFIGTYPE_STRLEN);
     //printf("name: %s.%s (d=%s)\n",this->getName(),_name,description); fflush(stdout);
     if (description != NULL) {
       element[I].description = strdup(description);
@@ -1216,11 +1200,8 @@ ConfigInstance::ConfigInstance(const char *_name, const ConfigType *_type, int _
 {
   int n;
   if (_name != NULL) {
-#ifdef _MSC_VER // Visual Studio specific macro
-	strncpy_s(name,CONFIGTYPE_STRLEN,_name,CONFIGTYPE_STRLEN);
-#else
     strncpy(name,_name,CONFIGTYPE_STRLEN);
-#endif
+    name[CONFIGTYPE_STRLEN-1] = 0; // ensure last element is always the terminating NULL character
     type=_type;
     if (_type != NULL) {
       n=_type->getN();
@@ -1244,10 +1225,10 @@ ConfigInstance::ConfigInstance(const char *_name, const ConfigType *_type, int _
         if (field[i] != NULL) field[i]->unset();
       }
     } else {
-      CONF_MANAGER_ERR("Canot create a ConfigInstance with _type==NULL !");
+      CONF_MANAGER_ERR("Cannot create a ConfigInstance with _type==NULL !");
     }
   } else {
-    CONF_MANAGER_ERR("Canot create a ConfigInstance with _name==NULL !");
+    CONF_MANAGER_ERR("Cannot create a ConfigInstance with _name==NULL !");
   }
 }
 
@@ -2678,7 +2659,6 @@ cConfigManager::cConfigManager(cCommandlineParser *parser) :
  //   if (readerPriority != NULL) free(readerPriority);
     nReadersAlloc = 0;
   }
-  externalObjectMap_ = new std::map <std::string, void *>();
 }
 
 /* order in which readers are added determines their priority,
@@ -3154,6 +3134,4 @@ cConfigManager::~cConfigManager()
     free(reader);
   }
   nReadersAlloc=0; nReaders=0;
-  if (externalObjectMap_ != NULL)
-    delete externalObjectMap_;
 }

@@ -24,7 +24,6 @@ functionals: number of peaks and various measures associated with peaks
 #define COMPONENT_NAME_CFUNCTIONALPEAKS2 "cFunctionalPeaks2"
 
 
-#undef class
 struct peakMinMaxListEl {
   int type;
   FLOAT_DMEM y;
@@ -32,7 +31,7 @@ struct peakMinMaxListEl {
   struct peakMinMaxListEl * next, *prev;
 };
 
-class DLLEXPORT cFunctionalPeaks2 : public cFunctionalComponent {
+class cFunctionalPeaks2 : public cFunctionalComponent {
   private:
     int enabSlope;
     int noClearPeakList;
@@ -93,7 +92,6 @@ class DLLEXPORT cFunctionalPeaks2 : public cFunctionalComponent {
     cFunctionalPeaks2(const char *name);
     // inputs: sorted and unsorted array of values, out: pointer to space in output array, You may not return MORE than Nout elements, please return as return value the number of actually computed elements (usually Nout)
     virtual long process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_DMEM min, FLOAT_DMEM max, FLOAT_DMEM mean, FLOAT_DMEM *out, long Nin, long Nout) override;
-    //virtual long process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout) override;
 
     virtual long getNoutputValues() override { return nEnab; }
     virtual int getRequireSorted() override { return 0; }

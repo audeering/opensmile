@@ -58,7 +58,6 @@ SMILECOMPONENT_CREATE(cWindower)
 
 cWindower::cWindower(const char *_name) :
   cVectorProcessor(_name),
-  dtype(0),
   win(NULL)
 {
 
@@ -218,18 +217,8 @@ void cWindower::precomputeWinFunc()
   }
 }
 
-int cWindower::processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi)
-{
-  if (win != NULL) {
-    double *w = win;
-    long n;
-    for (n=0; n<Ndst; n++) { *dst = (int) round( (double)(*src) * (*(w++)) + offset ); src++; dst++; }
-  }
-  return 1;
-}
-
 // a derived class should override this method, in order to implement the actual processing
-int cWindower::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cWindower::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   if (win != NULL) {
     double *w = win;

@@ -14,6 +14,7 @@ ffmpegSource : opens and decodes audio in media files through FFmpeg
 
 
 #include <ffmpeg/ffmpegSource.hpp>
+#include <core/smileThread.hpp>
 
 #define MODULE "cFFmpegSource"
 
@@ -366,73 +367,73 @@ void cFFmpegSource::convertAndCopyFrameSamplesToMatrix(int index, int numSamples
       case AV_SAMPLE_FMT_U8:   // unsigned 8 bits, packed
         for (int i = index; i < index + numSamples; i++)
           for (int ch = 0; ch < nChan; ch++) {
-            mat_->setF(ch, i - index, (((uint8_t *)avFrame->extended_data[0])[i*nChan+ch]-128)/(FLOAT_DMEM)127.0);
+            mat_->set(ch, i - index, (((uint8_t *)avFrame->extended_data[0])[i*nChan+ch]-128)/(FLOAT_DMEM)127.0);
           }
         break;
       case AV_SAMPLE_FMT_U8P:  // unsigned 8 bits, planar   
         for (int i = index; i < index + numSamples; i++)
           for (int ch = 0; ch < nChan; ch++) {
-            mat_->setF(ch, i - index, (((uint8_t *)avFrame->extended_data[ch])[i]-128)/(FLOAT_DMEM)127.0);
+            mat_->set(ch, i - index, (((uint8_t *)avFrame->extended_data[ch])[i]-128)/(FLOAT_DMEM)127.0);
           }
         break;
       case AV_SAMPLE_FMT_S16:   // signed 16 bits, packed
         for (int i = index; i < index + numSamples; i++)
           for (int ch = 0; ch < nChan; ch++) {
-            mat_->setF(ch, i - index, ((int16_t *)avFrame->extended_data[0])[i*nChan+ch]/(FLOAT_DMEM)32767.0); 
+            mat_->set(ch, i - index, ((int16_t *)avFrame->extended_data[0])[i*nChan+ch]/(FLOAT_DMEM)32767.0); 
           }
         break;
       case AV_SAMPLE_FMT_S16P:  // signed 16 bits, planar   
         for (int i = index; i < index + numSamples; i++)
           for (int ch = 0; ch < nChan; ch++) {
-            mat_->setF(ch, i - index, ((int16_t *)avFrame->extended_data[ch])[i]/(FLOAT_DMEM)32767.0);
+            mat_->set(ch, i - index, ((int16_t *)avFrame->extended_data[ch])[i]/(FLOAT_DMEM)32767.0);
           }
         break;
       case AV_SAMPLE_FMT_S32:   // signed 32 bits, packed
         for (int i = index; i < index + numSamples; i++)
           for (int ch = 0; ch < nChan; ch++) {
-            mat_->setF(ch, i - index, ((int32_t *)avFrame->extended_data[0])[i*nChan+ch]/(FLOAT_DMEM)2147483647.0); 
+            mat_->set(ch, i - index, ((int32_t *)avFrame->extended_data[0])[i*nChan+ch]/(FLOAT_DMEM)2147483647.0); 
           }
         break;
       case AV_SAMPLE_FMT_S32P:  // signed 32 bits, planar   
         for (int i = index; i < index + numSamples; i++)
           for (int ch = 0; ch < nChan; ch++) {
-            mat_->setF(ch, i - index, ((int32_t *)avFrame->extended_data[ch])[i]/(FLOAT_DMEM)2147483647.0);
+            mat_->set(ch, i - index, ((int32_t *)avFrame->extended_data[ch])[i]/(FLOAT_DMEM)2147483647.0);
           }
         break;
       case AV_SAMPLE_FMT_FLT:   // IEEE float 32 bits, packed
         for (int i = index; i < index + numSamples; i++)
           for (int ch = 0; ch < nChan; ch++) {
-            mat_->setF(ch, i - index, (FLOAT_DMEM)((float *)avFrame->extended_data[0])[i*nChan+ch]);
+            mat_->set(ch, i - index, (FLOAT_DMEM)((float *)avFrame->extended_data[0])[i*nChan+ch]);
           }
         break;
       case AV_SAMPLE_FMT_FLTP:  // IEEE float 32 bits, planar   
         for (int i = index; i < index + numSamples; i++)
           for (int ch = 0; ch < nChan; ch++) {
-            mat_->setF(ch, i - index, (FLOAT_DMEM)((float *)avFrame->extended_data[ch])[i]);
+            mat_->set(ch, i - index, (FLOAT_DMEM)((float *)avFrame->extended_data[ch])[i]);
           }
         break;
       case AV_SAMPLE_FMT_DBL:   // IEEE float 64 bits, packed
         for (int i = index; i < index + numSamples; i++)
           for (int ch = 0; ch < nChan; ch++) {
-            mat_->setF(ch, i - index, (FLOAT_DMEM)((double *)avFrame->extended_data[0])[i*nChan+ch]);
+            mat_->set(ch, i - index, (FLOAT_DMEM)((double *)avFrame->extended_data[0])[i*nChan+ch]);
           }
         break;
       case AV_SAMPLE_FMT_DBLP:  // IEEE float 64 bits, planar   
         for (int i = index; i < index + numSamples; i++)
           for (int ch = 0; ch < nChan; ch++) {
-            mat_->setF(ch, i - index, (FLOAT_DMEM)((double *)avFrame->extended_data[ch])[i]);
+            mat_->set(ch, i - index, (FLOAT_DMEM)((double *)avFrame->extended_data[ch])[i]);
           }
         break;
       case AV_SAMPLE_FMT_S64:   // signed 64 bits, packed
         for (int i = index; i < index + numSamples; i++)
           for (int ch = 0; ch < nChan; ch++) {
-            mat_->setF(ch, i - index, ((int64_t *)avFrame->extended_data[0])[i*nChan+ch]/(FLOAT_DMEM)9223372036854775807.0);
+            mat_->set(ch, i - index, ((int64_t *)avFrame->extended_data[0])[i*nChan+ch]/(FLOAT_DMEM)9223372036854775807.0);
           }
         break;
       case AV_SAMPLE_FMT_S64P:  // signed 64 bits, planar   
         for (int i = index; i < index + numSamples; i++)
           for (int ch = 0; ch < nChan; ch++) {
-            mat_->setF(ch, i - index, ((int64_t *)avFrame->extended_data[ch])[i]/(FLOAT_DMEM)9223372036854775807.0);
+            mat_->set(ch, i - index, ((int64_t *)avFrame->extended_data[ch])[i]/(FLOAT_DMEM)9223372036854775807.0);
           }
         break;
       default:
@@ -451,7 +452,7 @@ void cFFmpegSource::convertAndCopyFrameSamplesToMatrix(int index, int numSamples
           for (int ch = 0; ch < nChan; ch++) {
             tmp += (((uint8_t *)avFrame->extended_data[0])[i*nChan+ch]-128)/(FLOAT_DMEM)127.0;
           }
-          mat_->setF(0, i - index, tmp / nChan);
+          mat_->set(0, i - index, tmp / nChan);
         }
         break;
       case AV_SAMPLE_FMT_U8P:  // unsigned 8 bits, planar   
@@ -460,7 +461,7 @@ void cFFmpegSource::convertAndCopyFrameSamplesToMatrix(int index, int numSamples
           for (int ch = 0; ch < nChan; ch++) {
             tmp += (((uint8_t *)avFrame->extended_data[ch])[i]-128)/(FLOAT_DMEM)127.0;
           }
-          mat_->setF(0, i - index, tmp / nChan);
+          mat_->set(0, i - index, tmp / nChan);
         }
         break;
       case AV_SAMPLE_FMT_S16:   // signed 16 bits, packed
@@ -469,7 +470,7 @@ void cFFmpegSource::convertAndCopyFrameSamplesToMatrix(int index, int numSamples
           for (int ch = 0; ch < nChan; ch++) {
             tmp += ((int16_t *)avFrame->extended_data[0])[i*nChan+ch]/(FLOAT_DMEM)32767.0; 
           }
-          mat_->setF(0, i - index, tmp / nChan);
+          mat_->set(0, i - index, tmp / nChan);
         }
         break;
       case AV_SAMPLE_FMT_S16P:  // signed 16 bits, planar   
@@ -478,7 +479,7 @@ void cFFmpegSource::convertAndCopyFrameSamplesToMatrix(int index, int numSamples
           for (int ch = 0; ch < nChan; ch++) {
             tmp += ((int16_t *)avFrame->extended_data[ch])[i]/(FLOAT_DMEM)32767.0;
           }
-          mat_->setF(0, i - index, tmp / nChan);
+          mat_->set(0, i - index, tmp / nChan);
         }
         break;
       case AV_SAMPLE_FMT_S32:   // signed 32 bits, packed
@@ -487,7 +488,7 @@ void cFFmpegSource::convertAndCopyFrameSamplesToMatrix(int index, int numSamples
           for (int ch = 0; ch < nChan; ch++) {
             tmp += ((int32_t *)avFrame->extended_data[0])[i*nChan+ch]/(FLOAT_DMEM)2147483647.0; 
           }
-          mat_->setF(0, i - index, tmp / nChan);
+          mat_->set(0, i - index, tmp / nChan);
         }
         break;
       case AV_SAMPLE_FMT_S32P:  // signed 32 bits, planar   
@@ -496,7 +497,7 @@ void cFFmpegSource::convertAndCopyFrameSamplesToMatrix(int index, int numSamples
           for (int ch = 0; ch < nChan; ch++) {
             tmp += ((int32_t *)avFrame->extended_data[ch])[i]/(FLOAT_DMEM)2147483647.0;
           }
-          mat_->setF(0, i - index, tmp / nChan);
+          mat_->set(0, i - index, tmp / nChan);
         }
         break;
       case AV_SAMPLE_FMT_FLT:   // IEEE float 32 bits, packed
@@ -505,7 +506,7 @@ void cFFmpegSource::convertAndCopyFrameSamplesToMatrix(int index, int numSamples
           for (int ch = 0; ch < nChan; ch++) {
             tmp += (FLOAT_DMEM)((float *)avFrame->extended_data[0])[i*nChan+ch];
           }
-          mat_->setF(0, i - index, tmp / nChan);
+          mat_->set(0, i - index, tmp / nChan);
         }
         break;
       case AV_SAMPLE_FMT_FLTP:  // IEEE float 32 bits, planar   
@@ -514,7 +515,7 @@ void cFFmpegSource::convertAndCopyFrameSamplesToMatrix(int index, int numSamples
           for (int ch = 0; ch < nChan; ch++) {
             tmp += (FLOAT_DMEM)((float *)avFrame->extended_data[ch])[i];
           }
-          mat_->setF(0, i - index, tmp / nChan);
+          mat_->set(0, i - index, tmp / nChan);
         }
         break;
       case AV_SAMPLE_FMT_DBL:   // IEEE float 64 bits, packed
@@ -523,7 +524,7 @@ void cFFmpegSource::convertAndCopyFrameSamplesToMatrix(int index, int numSamples
           for (int ch = 0; ch < nChan; ch++) {
             tmp += (FLOAT_DMEM)((double *)avFrame->extended_data[0])[i*nChan+ch];
           }
-          mat_->setF(0, i - index, tmp / nChan);
+          mat_->set(0, i - index, tmp / nChan);
         }
         break;
       case AV_SAMPLE_FMT_DBLP:  // IEEE float 64 bits, planar   
@@ -532,7 +533,7 @@ void cFFmpegSource::convertAndCopyFrameSamplesToMatrix(int index, int numSamples
           for (int ch = 0; ch < nChan; ch++) {
             tmp += (FLOAT_DMEM)((double *)avFrame->extended_data[ch])[i];
           }
-          mat_->setF(0, i - index, tmp / nChan);
+          mat_->set(0, i - index, tmp / nChan);
         }
         break;
       case AV_SAMPLE_FMT_S64:   // signed 64 bits, packed
@@ -541,7 +542,7 @@ void cFFmpegSource::convertAndCopyFrameSamplesToMatrix(int index, int numSamples
           for (int ch = 0; ch < nChan; ch++) {
             tmp += ((int64_t *)avFrame->extended_data[0])[i*nChan+ch]/(FLOAT_DMEM)9223372036854775807.0;
           }
-          mat_->setF(0, i - index, tmp / nChan);
+          mat_->set(0, i - index, tmp / nChan);
         }
         break;
       case AV_SAMPLE_FMT_S64P:  // signed 64 bits, planar   
@@ -550,7 +551,7 @@ void cFFmpegSource::convertAndCopyFrameSamplesToMatrix(int index, int numSamples
           for (int ch = 0; ch < nChan; ch++) {
             tmp += ((int64_t *)avFrame->extended_data[ch])[i]/(FLOAT_DMEM)9223372036854775807.0;
           }
-          mat_->setF(0, i - index, tmp / nChan);
+          mat_->set(0, i - index, tmp / nChan);
         }
         break;
       default:

@@ -14,6 +14,7 @@ functional: dct of input data
 
 
 #include <functionals/functionalDCT.hpp>
+#include <cmath>
 
 #define MODULE "cFunctionalDCT"
 
@@ -130,7 +131,7 @@ long cFunctionalDCT::process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_DMEM *o
       out[i] +=  in[m] * costable[m+i*Nin];
     }
     out[i] *= factor;
-    if (!finite(out[i])) {
+    if (!std::isfinite(out[i])) {
       SMILE_IERR(1,"non-finite value dct[%i] as output, please help to solve this bug... . The value will be set to 0.",i);
       out[i] = 0.0;
     }
@@ -140,14 +141,6 @@ long cFunctionalDCT::process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_DMEM *o
   }
   return 0;
 }
-
-/*
-long cFunctionalDCT::process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout)
-{
-
-  return 0;
-}
-*/
 
 cFunctionalDCT::~cFunctionalDCT()
 {

@@ -165,7 +165,7 @@ eTickResult cExampleProcessor::myTick(long long t)
   // add offset
   int i;
   for (i=0; i<vec->N; i++) {
-    vec->dataF[i] += (FLOAT_DMEM)offset;
+    vec->data[i] += (FLOAT_DMEM)offset;
   }
 
   // if you create a new vector here and pass it to setNextFrame(),

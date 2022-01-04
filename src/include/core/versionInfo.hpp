@@ -3,10 +3,9 @@
 #define __CORE_VERSION_INFO_HPP
 
 #define APPNAME "openSMILE"
-#define APPVERSION "3.0.0"
+#define APPVERSION "3.0.1"
 #define APPCPAUTHOR "audEERING GmbH"
-#define APPCPYEAR "2020"
-#define NEWLINE "\n"
+#define APPCPYEAR "2022"
 
 #include <core/git_version.hpp>
 

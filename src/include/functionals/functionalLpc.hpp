@@ -23,8 +23,7 @@ number of segments based on delta thresholding
 #define COMPONENT_DESCRIPTION_CFUNCTIONALLPC "  LP coefficients as functionals"
 #define COMPONENT_NAME_CFUNCTIONALLPC "cFunctionalLpc"
 
-#undef class
-class DLLEXPORT cFunctionalLpc : public cFunctionalComponent {
+class cFunctionalLpc : public cFunctionalComponent {
 private:
   int firstCoeff, lastCoeff, order;
   FLOAT_DMEM *acf, *lpc;
@@ -40,7 +39,6 @@ public:
     cFunctionalLpc(const char *_name);
   // inputs: sorted and unsorted array of values, out: pointer to space in output array, You may not return MORE than Nout elements, please return as return value the number of actually computed elements (usually Nout)
   virtual long process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_DMEM *out, long Nin, long Nout) override;
-  //virtual long process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout) override;
   virtual const char * getValueName(long i) override;
 
   virtual long getNoutputValues() override { return nEnab; }

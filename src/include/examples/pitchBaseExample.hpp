@@ -25,8 +25,7 @@ Note that the type of input data is not checked, thus be careful when writing yo
 #define COMPONENT_NAME_CPITCHBASEEXAMPLE "cPitchBaseExample"
 
 
-#undef class
-class DLLEXPORT cPitchBaseExample : public cPitchBase {
+class cPitchBaseExample : public cPitchBase {
   private:
 
   protected:

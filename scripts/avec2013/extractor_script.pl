@@ -57,7 +57,7 @@ if ($clean == 2) {
 unless (-e $vadcsv) {
 if (-e "tum_vad_2012.conf") {
   print "Performing VAD on audio stream $instance ...\n";
-  my $cmd = "$SE -l 0 -C tum_vad_2012.conf -I \"$wav\" -csv \"$vadcsv\" -nologfile >/dev/null 2>/dev/null";
+  my $cmd = "$SE -l 0 -C tum_vad_2012.conf -I \"$wav\" -csv \"$vadcsv\" >/dev/null 2>/dev/null";
   my $ret = system($cmd);
   if ($ret) {
     print "  ERROR: Failed to run openSMILE! Instance: $instance.\n  Command: $cmd\n";
@@ -163,7 +163,7 @@ if ($clean == 2) {
 }
 unless (-e "$lld_arff") {
   print "Extracting LLD features ...\n";
-  my $cmd = "$SE -C avec2013_lld_htk_and_arff.conf -I \"$wav\" -output_htk \"$lld_htk\" -output_arff \"$lld_arff\" -instname \"$instance\" -nologfile 2> /dev/null >/dev/null";
+  my $cmd = "$SE -C avec2013_lld_htk_and_arff.conf -I \"$wav\" -output_htk \"$lld_htk\" -output_arff \"$lld_arff\" -instname \"$instance\" 2> /dev/null >/dev/null";
   my $ret = system($cmd);
   if ($ret) {
     unlink("$lld_arff");
@@ -181,7 +181,7 @@ if ($clean) {
 }
 unless (-e $func_short) {
 print "Extracting Functionals (short) ...\n";
-my $cmd = "$SE -C avec2013_functionals.conf -I \"$wav\" -O \"$func_short\" -frameModeConf avec2013_functionals_frame_mode_short.conf -instname \"$instance\" -nologfile 2> /dev/null >/dev/null";
+my $cmd = "$SE -C avec2013_functionals.conf -I \"$wav\" -O \"$func_short\" -frameModeConf avec2013_functionals_frame_mode_short.conf -instname \"$instance\" 2> /dev/null >/dev/null";
 my $ret = system($cmd);
 if ($ret) {
   print "  ERROR: Failed to run openSMILE! Instance: $instance.\n  Command: $cmd\n";
@@ -199,7 +199,7 @@ if ($clean) {
 }
 unless (-e $func_long) {
 print "Extracting Functionals (long) ...\n";
-my $cmd = "$SE -C avec2013_functionals.conf -I \"$wav\" -O \"$func_long\" -frameModeConf avec2013_functionals_frame_mode_long.conf -instname \"$instance\" -nologfile 2>/dev/null >/dev/null";
+my $cmd = "$SE -C avec2013_functionals.conf -I \"$wav\" -O \"$func_long\" -frameModeConf avec2013_functionals_frame_mode_long.conf -instname \"$instance\" 2>/dev/null >/dev/null";
 my $ret = system($cmd);
 if ($ret) {
   print "  ERROR: Failed to run openSMILE! Instance: $instance.\n  Command: $cmd\n";
@@ -216,7 +216,7 @@ if ($clean) {
 }
 unless (-e $func_per_instance) {
 print "Extracting Functionals (per instance) ...\n";
-my $cmd = "$SE -C avec2013_functionals.conf -I \"$wav\" -O \"$func_per_instance\" -frameModeConf avec2013_functionals_frame_mode.conf -instname \"$instance\" -nologfile 2>/dev/null >/dev/null";
+my $cmd = "$SE -C avec2013_functionals.conf -I \"$wav\" -O \"$func_per_instance\" -frameModeConf avec2013_functionals_frame_mode.conf -instname \"$instance\" 2>/dev/null >/dev/null";
 my $ret = system($cmd);
 if ($ret) {
   print "  ERROR: Failed to run openSMILE! Instance: $instance.\n  Command: $cmd\n";
@@ -237,7 +237,7 @@ print "Extracting functionals for VAD segments (full) ...\n";
 for (my $i = 0; $i <= $#vad_segs; $i++) {
   my $start = $vad_segs[$i]{"start"} * 0.01;
   my $end = $vad_segs[$i]{"end"} * 0.01;
-  my $cmd = "$SE -C avec2013_functionals.conf -frameTimeAdd \"$start\" -start \"$start\" -end \"$end\" -I \"$wav\" -O \"$func_vad_seg\" -frameModeConf avec2013_functionals_frame_mode.conf -instname \"$instance\_seg$i\" -nologfile 2>/dev/null >/dev/null";
+  my $cmd = "$SE -C avec2013_functionals.conf -frameTimeAdd \"$start\" -start \"$start\" -end \"$end\" -I \"$wav\" -O \"$func_vad_seg\" -frameModeConf avec2013_functionals_frame_mode.conf -instname \"$instance\_seg$i\" 2>/dev/null >/dev/null";
   my $ret = system($cmd);
   if ($ret) {
     print "  ERROR: Failed to run openSMILE! Instance: $instance.\n  Command: $cmd\n";
@@ -258,7 +258,7 @@ print "Extracting functionals for VAD segments (short) ...\n";
 for (my $i = 0; $i <= $#vad_segs; $i++) {
   my $start = $vad_segs[$i]{"start"} * 0.01;
   my $end = $vad_segs[$i]{"end"} * 0.01;
-  my $cmd = "$SE -C avec2013_functionals.conf -frameTimeAdd \"$start\" -start \"$start\" -end \"$end\" -I \"$wav\" -O \"$func_short_vad\" -frameModeConf avec2013_functionals_frame_mode_short_with_last.conf -instname \"$instance\_seg$i\" -nologfile 2>/dev/null >/dev/null";
+  my $cmd = "$SE -C avec2013_functionals.conf -frameTimeAdd \"$start\" -start \"$start\" -end \"$end\" -I \"$wav\" -O \"$func_short_vad\" -frameModeConf avec2013_functionals_frame_mode_short_with_last.conf -instname \"$instance\_seg$i\" 2>/dev/null >/dev/null";
   my $ret = system($cmd);
   if ($ret) {
     print "  ERROR: Failed to run openSMILE! Instance: $instance.\n  Command: $cmd\n";

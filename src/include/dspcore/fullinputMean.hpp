@@ -29,8 +29,7 @@ enum cFullinputMean_meanType {
   MEANTYPE_ENORM = 3   // htk compatible energy normalisation
 };
 
-#undef class
-class DLLEXPORT cFullinputMean : public cDataProcessor {
+class cFullinputMean : public cDataProcessor {
   private:
     bool mvn_;
     bool exclude_zeros_;
@@ -79,8 +78,7 @@ class DLLEXPORT cFullinputMean : public cDataProcessor {
 
     //virtual void configureField(int idxi, long __N, long nOut) override;
     //virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    //virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    //virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    //virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

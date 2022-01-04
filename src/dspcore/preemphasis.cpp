@@ -97,9 +97,8 @@ int cPreemphasis::processBuffer(cMatrix *_in, cMatrix *_out, int _pre, int _post
 {
   long n;
 
-  if (_in->type!=DMEM_FLOAT) COMP_ERR("dataType (%i) != DMEM_FLOAT not yet supported!",_in->type);
-  FLOAT_DMEM *x=_in->dataF;
-  FLOAT_DMEM *y=_out->dataF;
+  FLOAT_DMEM *x=_in->data;
+  FLOAT_DMEM *y=_out->data;
   if (de) {
     for (n=0; n<_out->nT; n++) {
       *(y++) = *(x) + k * *(x-1);

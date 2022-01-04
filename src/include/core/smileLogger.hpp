@@ -40,6 +40,7 @@ Log Levels for Warnings:
 #define __SMILE_LOGGER_HPP
 
 #include <core/smileCommon.hpp>
+#include <core/smileThread.hpp>
 #include <functional>
 #ifdef __ANDROID__
 #include <android/log.h>
@@ -54,8 +55,7 @@ Log Levels for Warnings:
 
 using SmileLogCallback = std::function<void (int type, int level, const char *text, const char *module)>;
 
-#undef class
-class DLLEXPORT cSmileLogger {
+class cSmileLogger {
   private:
     smileMutex logmsgMtx;
     char *logfile;

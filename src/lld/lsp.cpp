@@ -110,12 +110,6 @@ int cLsp::myFinaliseInstance()
 }
 */
 
-int cLsp::processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi)
-{
-  // not yet implemented
-  return 0;
-}
-
 FLOAT_DMEM cLsp::cheb_poly_eva(FLOAT_DMEM *coef, FLOAT_DMEM x, int m)
 {
    int k;
@@ -292,7 +286,7 @@ int cLsp::setupNewNames(long nEl)
   return nLpc;
 }
 
-int cLsp::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cLsp::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   // (TODO:) check if Ndst >= Nsrc!
   if (Ndst < Nsrc ) return 0;

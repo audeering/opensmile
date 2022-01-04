@@ -51,8 +51,7 @@ public:
 #define COMPONENT_DESCRIPTION_COPENCVSOURCE "Captures frames from either webcam or file stream, extracts a square region containing the face and creates a LBP, HSV and optical flow histogram."
 #define COMPONENT_NAME_COPENCVSOURCE "cOpenCVSource"
 
-#undef class
-class DLLEXPORT cOpenCVSource : public cDataSource {
+class cOpenCVSource : public cDataSource {
   private:
     int cfgDisplay; // Display video output
 	String cfgVideoSource; // WEBCAM or FILE

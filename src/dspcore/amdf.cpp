@@ -129,17 +129,6 @@ return ret;
 }
 */
 
-/*
-// a derived class should override this method, in order to implement the actual processing
-int cAmdf::processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
-{
-// do domething to data in *src, save result to *dst
-// NOTE: *src and *dst may be the same...
-
-return 0;
-}
-*/
-
 // SMILElib function:
 // compute AMDF
 int computeAMDF(const FLOAT_DMEM *in, FLOAT_DMEM *out, long nIn, long nOut)
@@ -220,7 +209,7 @@ int computeAMDFzeropad(const FLOAT_DMEM *in, FLOAT_DMEM *out, long nIn, long nOu
 }
 
 // a derived class should override this method, in order to implement the actual processing
-int cAmdf::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cAmdf::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   // do domething to data in *src, save result to *dst
   // NOTE: *src and *dst may be the same...

@@ -97,7 +97,7 @@ eTickResult cExampleSinkPlugin::myTick(long long t)
   SMILE_IMSG(2,"FUCKING AWSOME PLUGIN OUTPUT:");
   int i;
   for (i=0; i<vec->N; i++) {
-    printf("  (a=%ld vi=%ld, tm=%fs) %s.%s = %f\n",reader_->getCurR(),vi,tm,reader_->getLevelName().c_str(),vec->name(i),vec->dataF[i]);
+    printf("  (a=%ld vi=%ld, tm=%fs) %s.%s = %f\n",reader_->getCurR(),vi,tm,reader_->getLevelName().c_str(),vec->name(i).c_str(),vec->data[i]);
   }
 
 // SMILE_PRINT("%i",var1,)

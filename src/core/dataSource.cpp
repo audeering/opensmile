@@ -80,14 +80,14 @@ void cDataSource::allocVec(int n)
 {
   if (vec_ != NULL) { delete vec_; }
   bool noTimeMeta = writer_->getLevelConfig()->noTimeMeta;
-  vec_ = new cVector(n,DMEM_FLOAT,noTimeMeta);
+  vec_ = new cVector(n,noTimeMeta);
 }
 
 void cDataSource::allocMat(int n, int t)
 {
   if (mat_ != NULL) { delete mat_; }
   bool noTimeMeta = writer_->getLevelConfig()->noTimeMeta;
-  mat_ = new cMatrix(n,t,DMEM_FLOAT,noTimeMeta);
+  mat_ = new cMatrix(n,t,noTimeMeta);
 }
 
 void cDataSource::myFetchConfig()

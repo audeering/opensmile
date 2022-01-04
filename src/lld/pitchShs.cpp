@@ -258,9 +258,9 @@ int cPitchShs::pitchDetect(FLOAT_DMEM * inData, long N, double fsSec,
   // TODO : support output of SHS spectrum here for vis and debug
   if (shsSpectrumOutput != 0) {
     if (shsVector_ == NULL) {
-      shsVector_ = new cVector(N, DMEM_FLOAT);
+      shsVector_ = new cVector(N);
     }
-    memcpy(shsVector_->dataF, SS, N * sizeof(FLOAT_DMEM));
+    memcpy(shsVector_->data, SS, N * sizeof(FLOAT_DMEM));
     // TODO: properly set timestamps
     shsWriter_->setNextFrame(shsVector_);
   }

@@ -323,7 +323,7 @@ int cSpecScale::dataProcessorCustomFinalise()
 
 
 // a derived class should override this method, in order to implement the actual processing
-int cSpecScale::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cSpecScale::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   // we assume we have fft magnitude as input...
   int i;

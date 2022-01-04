@@ -24,8 +24,7 @@ writes data to an uncompressed PCM WAVE file
 #define COMPONENT_DESCRIPTION_CWAVESINKCUT "This component writes data to uncompressed PCM WAVE files. Only chunks, based on timings received via smile messages are written to files. The files may have consecutive numbers appended to the file name."
 #define COMPONENT_NAME_CWAVESINKCUT "cWaveSinkCut"
 
-#undef class
-class DLLEXPORT cWaveSinkCut : public cDataSink {
+class cWaveSinkCut : public cDataSink {
   private:
     const char *fileExtension;
     const char *filebase;

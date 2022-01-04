@@ -18,13 +18,10 @@ known to work on windows, linux, and mac
 #define __CPORTAUDIOSOURCE_HPP
 
 #include <core/smileCommon.hpp>
+#include <core/smileThread.hpp>
 #include <core/dataSource.hpp>
 
 #ifdef HAVE_PORTAUDIO
-
-//#ifdef HAVE_PTHREAD
-//#include <pthread.h>
-//#endif
 
 #define COMPONENT_DESCRIPTION_CPORTAUDIOSOURCE "This component handles live audio recording from the soundcard via the PortAudio library"
 #define COMPONENT_NAME_CPORTAUDIOSOURCE "cPortaudioSource"
@@ -49,8 +46,7 @@ typedef struct {
 
 typedef void PaStream;
 
-#undef class
-class DLLEXPORT cPortaudioSource : public cDataSource {
+class cPortaudioSource : public cDataSource {
   private:
     PaStream *stream;
     int byteSwap;

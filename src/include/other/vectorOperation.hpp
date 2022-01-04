@@ -56,8 +56,7 @@ do elementary operations on vectors
 #define VOP_X_L2       1004
 
 
-#undef class
-class DLLEXPORT cVectorOperation : public cVectorProcessor {
+class cVectorOperation : public cVectorProcessor {
   private:
     int powOnlyPos;
     double gnGenerator();
@@ -77,8 +76,7 @@ class DLLEXPORT cVectorOperation : public cVectorProcessor {
   
     virtual int setupNamesForField(int i, const char*name, long nEl) override;
     //virtual int setupNewNames(long ni) override;
-    virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

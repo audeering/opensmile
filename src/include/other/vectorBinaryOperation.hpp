@@ -31,8 +31,7 @@ do elementary element-wise binary operations on vectors
 #define VBOP_MIN      5
 #define VBOP_MAX      6
 
-#undef class
-class DLLEXPORT cVectorBinaryOperation : public cDataProcessor {
+class cVectorBinaryOperation : public cDataProcessor {
   private:
     int elementMode, selectionIsRange, dummyMode;
     cVector *vecO;

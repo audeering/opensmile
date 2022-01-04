@@ -24,8 +24,7 @@ simple preemphasis : x(t) = x(t) - k*x(t-1)
 #define COMPONENT_NAME_CSMILERESAMPLE "cSmileResample"
 
 
-#undef class
-class DLLEXPORT cSmileResample : public cDataProcessor {
+class cSmileResample : public cDataProcessor {
   private:
     cMatrix *matnew; cMatrix *rowout;
     cMatrix *row;
@@ -63,9 +62,8 @@ class DLLEXPORT cSmileResample : public cDataProcessor {
     virtual int dataProcessorCustomFinalise() override;
 /*
     virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 */
-    //virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    //virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
     
   public:

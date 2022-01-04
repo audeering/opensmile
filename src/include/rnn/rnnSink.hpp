@@ -27,12 +27,11 @@ this component is also useful for debugging
 #define COMPONENT_DESCRIPTION_CRNNSINK "This is an example of a cDataSink descendant. It reads data from the data memory and prints it to the console. This component is intended as a template for developers."
 #define COMPONENT_NAME_CRNNSINK "cRnnSink"
 
-#undef class
 
 
 
 
-class DLLEXPORT cRnnSink : public cDataSink {
+class cRnnSink : public cDataSink {
   private:
     FILE *outfile;
     FILE *outfileC;

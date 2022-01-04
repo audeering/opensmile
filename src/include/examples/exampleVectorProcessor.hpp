@@ -22,8 +22,7 @@ example vectorProcessor descendant
 #define COMPONENT_DESCRIPTION_CEXAMPLEVECTORPROCESSOR "This is an example of a cVectorProcessor descendant. It has no meaningful function, this component is intended as a template for developers."
 #define COMPONENT_NAME_CEXAMPLEVECTORPROCESSOR "cExampleVectorProcessor"
 
-#undef class
-class DLLEXPORT cExampleVectorProcessor : public cVectorProcessor {
+class cExampleVectorProcessor : public cVectorProcessor {
   private:
 
   protected:
@@ -38,8 +37,7 @@ class DLLEXPORT cExampleVectorProcessor : public cVectorProcessor {
 
     virtual void configureField(int idxi, long __N, long nOut) override;
     //virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

@@ -332,7 +332,6 @@ int cVecToWinProcessor::dataProcessorCustomFinalise()
   //if (Mult*Ni != No) COMP_ERR("Mult not constant (as returned by setupNamesForField! This is not allowed! Mult*Ni=%i <> No=%i",Mult*Ni,No);
   //???
   //if (tmpFrameF==NULL) tmpFrameF=(FLOAT_DMEM*)calloc(1,sizeof(FLOAT_DMEM)*Mult);
-  //if (tmpFrameI==NULL) tmpFrameI=(INT_DMEM*)calloc(1,sizeof(INT_DMEM)*Mult);
   return 1;
 }
 
@@ -375,7 +374,6 @@ int cVecToWinProcessor::myFinaliseInstance()
   Mult = getMultiplier();
   if (Mult*Ni != No) COMP_ERR("Mult not constant (as returned by setupNamesForField! This is not allowed! Mult*Ni=%i <> No=%i",Mult*Ni,No);
   if (tmpFrameF==NULL) tmpFrameF=(FLOAT_DMEM*)calloc(1,sizeof(FLOAT_DMEM)*Mult);
-  if (tmpFrameI==NULL) tmpFrameI=(INT_DMEM*)calloc(1,sizeof(INT_DMEM)*Mult);
 
   if (frameMode != FRAMEMODE_VAR) 
     reader->setupSequentialMatrixReading(frameStepFrames, frameSizeFrames, pre);
@@ -392,19 +390,9 @@ int cVecToWinProcessor::doProcess(int idxi, cMatrix *row, FLOAT_DMEM*y)
 {
    /* int i;
     for (i=0;i<row->nT; i++) {
-      printf("[%i] %f\n",i,row->dataF[i]);
+      printf("[%i] %f\n",i,row->data[i]);
     }*/
   SMILE_IERR(1,"dataType FLOAT_DMEM not yet supported!");
-  //return getMultiplier();
-  return 0;
-  // return the number of actually set components in y!!
-  // return 0 on failue
-  // return -1 if you don't want to set a new output frame...
-}
-
-int cVecToWinProcessor::doProcess(int idxi, cMatrix *row, INT_DMEM*y)
-{
-  SMILE_IERR(1,"dataType INT_DMEM not yet supported!");
   //return getMultiplier();
   return 0;
   // return the number of actually set components in y!!
@@ -415,16 +403,6 @@ int cVecToWinProcessor::doProcess(int idxi, cMatrix *row, INT_DMEM*y)
 int cVecToWinProcessor::doFlush(int idxi, FLOAT_DMEM*y)
 {
   //SMILE_IERR(1,"dataType FLOAT_DMEM not yet supported!");
-  //return getMultiplier();
-  return 0;
-  // return the number of actually set components in y!!
-  // return 0 on failue
-  // return -1 if you don't want to set a new output frame...
-}
-
-int cVecToWinProcessor::doFlush(int idxi, INT_DMEM*y)
-{
-  //SMILE_IERR(1,"dataType INT_DMEM not yet supported!");
   //return getMultiplier();
   return 0;
   // return the number of actually set components in y!!
@@ -464,7 +442,7 @@ int cVecToWinProcessor::flushOlaBuffer(cMatrix *mat)
     long ptr = ola[i].bufferReadPtr;
     long bs = ola[i].buffersize;
     FLOAT_DMEM * buf = ola[i].buffer;
-    FLOAT_DMEM * df = mat->dataF+i;
+    FLOAT_DMEM * df = mat->data+i;
     for (j=0; j<inputPeriodS; j++) {
       df[j*Nfi] = buf[ptr]; //(float)rand()/(float)RAND_MAX; 
       buf[ptr++] = 0.0;
@@ -513,7 +491,7 @@ eTickResult cVecToWinProcessor::myTick(long long t)
   vec = reader_->getNextFrame();
   if (vec==NULL) { return TICK_SOURCE_NOT_AVAIL; } // currently no data available
 
-  if (mat == NULL) mat = new cMatrix(Nfi, inputPeriodS, DMEM_FLOAT);
+  if (mat == NULL) mat = new cMatrix(Nfi, inputPeriodS);
   
 
   long i,j;
@@ -524,14 +502,14 @@ eTickResult cVecToWinProcessor::myTick(long long t)
       long ptr1 = ola[i].bufferPtr;
       long ptr = ola[i].bufferPtr;
       FLOAT_DMEM * buf = ola[i].buffer;
-      FLOAT_DMEM * df = vec->dataF+el;
+      FLOAT_DMEM * df = vec->data+el;
       long bs = ola[i].buffersize;
       double * norm = ola[i].norm;
 
       if (normaliseAdd)  {
         // multiply input with norm function & add to buffer
         for (j=0; j<ola[i].framelen; j++) {
-          //setOlaBufferNext(i, (FLOAT_DMEM)( vec->dataF[el+j] * ola[i].norm[j] ));
+          //setOlaBufferNext(i, (FLOAT_DMEM)( vec->data[el+j] * ola[i].norm[j] ));
           buf[ptr1++] += df[j] * (FLOAT_DMEM)norm[j];
           if (ptr1 >= bs) ptr1 = 0;
         }
@@ -539,14 +517,14 @@ eTickResult cVecToWinProcessor::myTick(long long t)
         if (gain != 1.0) {
           // add to buffer, multiply with gain
           for (j=0; j<ola[i].framelen; j++) {
-            //setOlaBufferNext(i, vec->dataF[el+j] * gain); 
+            //setOlaBufferNext(i, vec->data[el+j] * gain); 
             buf[ptr1++] += df[j] * gain;
             if (ptr1 >= bs) ptr1 = 0;
           }
         } else {
           // add to buffer
           for (j=0; j<ola[i].framelen; j++) {
-            //setOlaBufferNext(i, vec->dataF[el+j]); 
+            //setOlaBufferNext(i, vec->data[el+j]); 
             buf[ptr1++] += df[j];
             if (ptr1 >= bs) ptr1 = 0;
           }
@@ -571,11 +549,11 @@ eTickResult cVecToWinProcessor::myTick(long long t)
       long el = vec->fmeta->fieldToElementIdx(i);
       if (gain != 1.0) {
         for (j=0; j<ola[i].framelen; j++) {
-          mat->dataF[j*Nfi+i] = vec->dataF[el+j] * gain;
+          mat->data[j*Nfi+i] = vec->data[el+j] * gain;
         }
       } else {
         for (j=0; j<ola[i].framelen; j++) {
-          mat->dataF[j*Nfi+i] = vec->dataF[el+j];
+          mat->data[j*Nfi+i] = vec->data[el+j];
         }
       }
     }

@@ -19,13 +19,13 @@ this component is also useful for debugging
 #define __CSIMPLEVISUALISERGUI_HPP
 
 #include <core/smileCommon.hpp>
+#include <core/smileThread.hpp>
 #include <core/dataSink.hpp>
 #include <wx/wx.h>
 
 #define COMPONENT_DESCRIPTION_CSIMPLEVISUALISERGUI "This is an example of a cDataSink descendant. It reads data from the data memory and prints it to the console. This component is intended as a template for developers."
 #define COMPONENT_NAME_CSIMPLEVISUALISERGUI "cSimpleVisualiserGUI"
 
-#undef class
 
 class paintDataEvent {
 public:

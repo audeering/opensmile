@@ -22,8 +22,7 @@ simple mixer, which adds multiple channels (elements) to a single channel (eleme
 #define COMPONENT_DESCRIPTION_CMONOMIXDOWN "This is a simple mixer, which adds multiple channels (elements) to a single channel (element)."
 #define COMPONENT_NAME_CMONOMIXDOWN "cMonoMixdown"
 
-#undef class
-class DLLEXPORT cMonoMixdown : public cDataProcessor {
+class cMonoMixdown : public cDataProcessor {
   private:
     int normalise;
     long bufsize;

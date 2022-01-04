@@ -56,8 +56,7 @@ public:
   }
 };
 
-#undef class
-class DLLEXPORT cCommandlineParser {
+class cCommandlineParser {
   private:
     int argc;
     const char **argv;

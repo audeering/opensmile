@@ -172,7 +172,7 @@ int cSpecResample::setupNewNames(long nEl)
 
 
 // a derived class should override this method, in order to implement the actual processing
-int cSpecResample::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cSpecResample::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   //long i,k;
   // we assume we have complex fft as input...

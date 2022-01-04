@@ -170,7 +170,7 @@ int cMfcc::initTables( long blocksize, int idxc )
 }
 
 // idxi=input field index
-int cMfcc::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) 
+int cMfcc::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) 
 {
   int i,m;
   idxi = getFconf(idxi);

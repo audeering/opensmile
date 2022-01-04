@@ -26,8 +26,7 @@ also number of non-zero values, etc.
 #define COMPONENT_DESCRIPTION_CFUNCTIONALMEANS "  various mean values (arithmetic, geometric, quadratic, ...)"
 #define COMPONENT_NAME_CFUNCTIONALMEANS "cFunctionalMeans"
 
-#undef class
-class DLLEXPORT cFunctionalMeans : public cFunctionalComponent {
+class cFunctionalMeans : public cFunctionalComponent {
   private:
     
   protected:
@@ -40,7 +39,6 @@ class DLLEXPORT cFunctionalMeans : public cFunctionalComponent {
     cFunctionalMeans(const char *_name);
     // inputs: sorted and unsorted array of values, out: pointer to space in output array, You may not return MORE than Nout elements, please return as return value the number of actually computed elements (usually Nout)
     virtual long process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_DMEM min, FLOAT_DMEM max, FLOAT_DMEM mean, FLOAT_DMEM *out, long Nin, long Nout) override;
-    //virtual long process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout) override;
 
     virtual long getNoutputValues() override { return nEnab; }
     virtual int getRequireSorted() override { return 0; }

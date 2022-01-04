@@ -24,8 +24,7 @@ LibSVM file output
 #define COMPONENT_NAME_CLIBSVMSINK "cLibsvmSink"
 
 
-#undef class
-class DLLEXPORT cLibsvmSink : public cDataSink {
+class cLibsvmSink : public cDataSink {
   private:
     FILE * filehandle;
     const char *filename;

@@ -67,8 +67,7 @@ Computes LSP (line spectral pairs) from LPC coefficients
 #define COMPONENT_DESCRIPTION_CLSP "This component computes LSP (line spectral pair frequencies, also known as LSF) from LPC coefficients by partial factorisation of the LPC polynomial."
 #define COMPONENT_NAME_CLSP "cLsp"
 
-#undef class
-class DLLEXPORT cLsp : public cVectorProcessor {
+class cLsp : public cVectorProcessor {
   private:
 
     long lpcIdx, nLpc;
@@ -82,8 +81,7 @@ class DLLEXPORT cLsp : public cVectorProcessor {
     virtual void myFetchConfig() override;
     virtual int setupNewNames(long nEl) override;
 
-    virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

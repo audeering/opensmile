@@ -7,7 +7,9 @@
 
 
 #include <core/smileCommon.hpp>
+#include <core/versionInfo.hpp>
 #include <cmath>
+#include <locale.h>
 
 void smilePrintHeader()
 {
@@ -243,6 +245,11 @@ long smile_getline_frombuffer(char **linePointer, size_t *n,
   *readPosition = 0;  // NULL-terminate string
   return (long)((long long)readPosition
       - ((long long)*linePointer + (long long)offset));
+}
+
+void smileCommon_fixLocaleEnUs()
+{
+  setlocale(LC_NUMERIC, "en_US");
 }
 
 void smileCommon_enableVTInWindowsConsole()

@@ -1,3 +1,4 @@
-sphinx
-sphinxcontrib-bibtex
+docutils<0.17 # sphinx-audeering-theme is currently not compatible with docutils 1.17 and newer
+sphinx>=4.0
 sphinx-audeering-theme
+sphinxcontrib-bibtex

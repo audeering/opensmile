@@ -31,8 +31,7 @@ typedef struct {
   long N;
 } sDataSelectorSelData;
 
-#undef class
-class DLLEXPORT cDataSelector : public cDataProcessor {
+class cDataSelector : public cDataProcessor {
   private:
     int elementMode, selectionIsRange, dummyMode;
     const char *outputSingleField;

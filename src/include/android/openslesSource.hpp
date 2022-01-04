@@ -23,6 +23,7 @@ reads openSL audio buffer input into datamemory
 #define __COPENSLESSOURCE_HPP
 
 #include <core/smileCommon.hpp>
+#include <core/smileThread.hpp>
 #include <core/dataSource.hpp>
 
 #ifdef __ANDROID__
@@ -112,8 +113,7 @@ typedef struct opensl_stream22 {
 } opensl_stream2;
 
 
-#undef class
-class DLLEXPORT cOpenslesSource : public cDataSource {
+class cOpenslesSource : public cDataSource {
 private:
 
   opensl_stream2 * audioDevice_;

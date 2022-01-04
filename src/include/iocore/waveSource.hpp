@@ -43,8 +43,7 @@ typedef struct {
 } sWaveParameters;
 */
 
-#undef class
-class DLLEXPORT cWaveSource : public cDataSource {
+class cWaveSource : public cDataSource {
   private:
     const char *filename;
     //long buffersize;

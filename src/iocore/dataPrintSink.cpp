@@ -77,11 +77,11 @@ eTickResult cDataPrintSink::myTick(long long t)
   if (parseable_) {
     for (i=0; i<vec->N; i++) {
       printf("SMILE-RESULT::ORIGIN=dataprint::TYPE=value::COMPONENT=%s::VIDX=%ld::TIME=%f::NAME=%s::VALUE=%e\n",
-        getInstName(), vi, tm, vec->name(i), vec->dataF[i]);
+        getInstName(), vi, tm, vec->name(i).c_str(), vec->data[i]);
     }
   } else {
     for (i=0; i<vec->N; i++) {
-      print("  %s.%s = %f\n", reader_->getLevelName().c_str(), vec->name(i), vec->dataF[i]);
+      print("  %s.%s = %f\n", reader_->getLevelName().c_str(), vec->name(i).c_str(), vec->data[i]);
     }
     if (printTimeMeta_) {
       print("  tmeta:\n");      

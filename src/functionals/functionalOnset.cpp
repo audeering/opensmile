@@ -153,14 +153,6 @@ long cFunctionalOnset::process(FLOAT_DMEM *in,
   return 0;
 }
 
-/*
-long cFunctionalOnset::process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout)
-{
-
-  return 0;
-}
-*/
-
 cFunctionalOnset::~cFunctionalOnset()
 {
 }

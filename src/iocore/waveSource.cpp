@@ -262,7 +262,7 @@ eTickResult cWaveSource::myTick(long long t)
     }
     if (negstartoffset > 0 && negstartoffset < blocksizeW_) {
       bool noTimeMeta = writer_->getLevelConfig()->noTimeMeta;
-      cMatrix *matout = new cMatrix(mat_->N, negstartoffset, mat_->type, noTimeMeta);
+      cMatrix *matout = new cMatrix(mat_->N, negstartoffset, noTimeMeta);
       if (writer_->checkWrite(negstartoffset)) {
         writer_->setNextMatrix(matout);
       }
@@ -301,11 +301,6 @@ cWaveSource::~cWaveSource()
 
 //--------------------------------------------------  wave specific
 
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
-
 // reads data into matrix m, size is determined by m, also performs format conversion to float samples and matrix format
 int cWaveSource::readData(cMatrix *m)
 {
@@ -339,14 +334,14 @@ int cWaveSource::readData(cMatrix *m)
   // if they match, convert with smilePcm_readSamples();
   long nRead = 0;
 #if FLOAT_DMEM_NUM == FLOAT_DMEM_FLOAT
-  nRead = smilePcm_readSamples(&filehandle, &pcmParam, m->dataF, nChan, samplesToRead, monoMixdown);
+  nRead = smilePcm_readSamples(&filehandle, &pcmParam, m->data, nChan, samplesToRead, monoMixdown);
 #else
   // TODO: allocate only once, put variable in class object
   float * a = (float *)malloc(sizeof(float) * m->nT);
   nRead = smilePcm_readSamples(&filehandle, &pcmParam, a, nChan, samplesToRead, monoMixdown);
   // convert to matrix
   for (long i = 0; i < nRead && i < m->nT; i++) {
-    m->dataF[i] = (FLOAT_DMEM)a[i];
+    m->data[i] = (FLOAT_DMEM)a[i];
   }
   free(a);
 #endif

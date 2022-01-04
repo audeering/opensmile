@@ -29,7 +29,6 @@ computes mean of full input ?
 #define COMPONENT_NAME_CFULLTURNMEAN "cFullturnMean"
 
 
-#undef class
 
 // A message received from the turn detector.
 struct TurnTimeMsg {
@@ -42,7 +41,7 @@ struct TurnTimeMsg {
 // A queue of turn detector messages.
 typedef std::queue<TurnTimeMsg> TurnTimeMsgQueue;
 
-class DLLEXPORT cFullturnMean : public cDataProcessor {
+class cFullturnMean : public cDataProcessor {
   private:
     TurnTimeMsgQueue msgQue;
 
@@ -69,8 +68,7 @@ class DLLEXPORT cFullturnMean : public cDataProcessor {
 
     //virtual void configureField(int idxi, long __N, long nOut) override;
     //virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    //virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    //virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    //virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

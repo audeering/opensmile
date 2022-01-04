@@ -34,8 +34,7 @@ Mel-frequency spectrum
 #define TWELFTH_ROOT_OF_2  1.1224620483093729814335330496787
 
 
-#undef class
-class DLLEXPORT cMelspec : public cVectorProcessor {
+class cMelspec : public cVectorProcessor {
   private:
     int hfcc_;
     int inverse_;
@@ -137,8 +136,7 @@ class DLLEXPORT cMelspec : public cVectorProcessor {
 
     virtual void configureField(int idxi, long myN, long _nOut) override;
     virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    //virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
   public:
     SMILECOMPONENT_STATIC_DECL

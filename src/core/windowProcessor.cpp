@@ -99,7 +99,7 @@ if (blocksize >= c->nT/2) {
     if (buffersize > 0) bs = buffersize;
     else bs=c->nT;
     if (bs < 2*blocksize+1) bs=2*blocksize+1;
-    writer->setConfig(c->isRb, bs, c->T, c->lenSec, c->frameSizeSec, c->growDyn, c->type, 0);
+    writer->setConfig(c->isRb, bs, c->T, c->lenSec, c->frameSizeSec, c->growDyn, 0);
   } else {
     if (writer->getBuffersize() < 2*blocksize+1) writer->setBuffersize(2*blocksize+1);
   }
@@ -180,20 +180,19 @@ eTickResult cWindowProcessor::myTick(long long t)
 
     int i,j,toSet=0;
     if (matnew == NULL) {
-      matnew = new cMatrix(mat->N*multiplier, mat->nT-winsize,mat->type);
+      matnew = new cMatrix(mat->N*multiplier, mat->nT-winsize);
 //      printf("XXXaa matnew N = %i, mult = %i, matN = %i, matNt %i, ws %i\n",matnew->N,multiplier,mat->N,mat->nT,winsize);
     }
 
     // TODO: support multiplier for N output rows for each input row!
-    if (rowsout == NULL) rowsout = new cMatrix(multiplier, mat->nT-winsize, mat->type);
-    if (multiplier > 1 && rowout == NULL) rowout = new cMatrix(1, mat->nT-winsize, mat->type);
-    if (row == NULL) row = new cMatrix(1,mat->nT, mat->type);
+    if (rowsout == NULL) rowsout = new cMatrix(multiplier, mat->nT-winsize);
+    if (multiplier > 1 && rowout == NULL) rowout = new cMatrix(1, mat->nT-winsize);
+    if (row == NULL) row = new cMatrix(1,mat->nT);
     for (i=0; i<mat->N; i++)  {
       // get matrix row...
       cMatrix *rowr = mat->getRow(i,row);
       if (rowr==NULL) COMP_ERR("cWindowProcessor::myTick : Error getting row %i from matrix! (return obj = NULL!)",i);
-      if (row->dataF != NULL) row->dataF += pre;
-      if (row->dataI != NULL) row->dataI += pre;
+      if (row->data != NULL) row->data += pre;
       row->nT -= winsize;
       toSet = processBuffer(row, rowsout, pre, post);
       if (toSet == 0) toSet = processBuffer(row, rowsout, pre, post, i);
@@ -209,8 +208,7 @@ eTickResult cWindowProcessor::myTick(long long t)
           matnew->setRow(i,rowsout);
         }
       }
-      if (row->dataF != NULL) row->dataF -= pre;
-      if (row->dataI != NULL) row->dataI -= pre;
+      if (row->data != NULL) row->data -= pre;
       row->nT += winsize;
     }
     // set next matrix...

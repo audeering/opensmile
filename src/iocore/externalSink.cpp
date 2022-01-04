@@ -84,17 +84,12 @@ eTickResult cExternalSink::myTick(long long t)
   if (mat == NULL)
     return TICK_SOURCE_NOT_AVAIL;
 
-  if (mat->type != DMEM_FLOAT) {
-    SMILE_IERR(1,"This component currently supports only data type DMEM_FLOAT.");
-    return TICK_INACTIVE;
-  }
-
   if (dataCallback == NULL && dataCallbackEx == NULL)
     return TICK_INACTIVE;
 
   if (dataCallback) {
     for (long i = 0; i < mat->nT; i++) {
-      dataCallback(mat->dataF + i * mat->N, mat->N, callbackParam);
+      dataCallback(mat->data + i * mat->N, mat->N, callbackParam);
     }
   }
 
@@ -104,7 +99,7 @@ eTickResult cExternalSink::myTick(long long t)
     metaData.time = mat->tmeta[0].time;
     metaData.period = mat->tmeta[0].period;
     metaData.lengthSec = mat->tmeta[0].lengthSec;
-    dataCallbackEx(mat->dataF, mat->nT, mat->N, &metaData, callbackParamEx);
+    dataCallbackEx(mat->data, mat->nT, mat->N, &metaData, callbackParamEx);
   }
 
   nWritten_ += mat->nT;

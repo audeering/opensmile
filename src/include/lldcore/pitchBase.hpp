@@ -25,8 +25,7 @@ Note that the type of input data is not checked, thus be careful when writing yo
 #define COMPONENT_NAME_CPITCHBASE "cPitchBase"
 
 
-#undef class
-class DLLEXPORT cPitchBase : public cVectorProcessor {
+class cPitchBase : public cVectorProcessor {
   private:
     const char *inputFieldPartial;
     int nCandidates_;
@@ -50,8 +49,7 @@ class DLLEXPORT cPitchBase : public cVectorProcessor {
     virtual void myFetchConfig() override;
 	  virtual int setupNewNames(long nEl) override;
     
-    //virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
     // to be overwritten by child class:
     virtual int pitchDetect(FLOAT_DMEM * inData, long N_, double _fsSec, double baseT, FLOAT_DMEM *f0cand, FLOAT_DMEM *candVoice, FLOAT_DMEM *candScore, long nCandidates);

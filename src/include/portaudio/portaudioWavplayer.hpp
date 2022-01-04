@@ -19,14 +19,11 @@ portAudio dataSink for live audio playback
 
 #include <core/smileCommon.hpp>
 #include <core/smileComponent.hpp>
+#include <core/smileThread.hpp>
 
 #ifdef HAVE_PORTAUDIO
 
 #include <portaudio.h>
-
-#ifdef HAVE_JULIUSLIB
-#include <classifiers/julius/kwsjKresult.h>
-#endif 
 
 #define COMPONENT_DESCRIPTION_CPORTAUDIOWAVPLAYER "This component can play wavefiles directly to a portaudio output device. Multiple wave files can be specified as inputs and they can be played via smile messages containing the index of the sample to play. Concurrent play requests will be discarded (TODO: mix the output). All wave files must have the same sampling rate."
 #define COMPONENT_NAME_CPORTAUDIOWAVPLAYER "cPortaudioWavplayer"
@@ -35,8 +32,7 @@ portAudio dataSink for live audio playback
 #define PA_STREAM_STOPPED 0
 #define PA_STREAM_STARTED 1
 
-#undef class
-class DLLEXPORT cPortaudioWavplayer : public cSmileComponent {
+class cPortaudioWavplayer : public cSmileComponent {
   private:
     PaStream *stream;
     long paFrames;

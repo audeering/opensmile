@@ -23,8 +23,7 @@ example for dataProcessor descendant
 #define COMPONENT_DESCRIPTION_CPITCHSMOOTHERVITERBI "Viterbi algorithm to smooth pitch contours and remove octave jumps."
 #define COMPONENT_NAME_CPITCHSMOOTHERVITERBI "cPitchSmootherViterbi"
 
-#undef class
-class DLLEXPORT cSmileViterbi
+class cSmileViterbi
 {
 private:
   /* Memory: buflen input data (candidates&scores and (from inp: voicingC1, F0raw, voicingClip)) in ring buffer, NOT full matrix type of full input vector)
@@ -156,7 +155,7 @@ public:
 
 //-----------------------------------
 
-class DLLEXPORT cSmileViterbiPitchSmooth : public cSmileViterbi
+class cSmileViterbiPitchSmooth : public cSmileViterbi
 {
 private:
   FLOAT_DMEM voiceThresh;
@@ -304,7 +303,7 @@ public:
 
 //-------------------------------
 
-class DLLEXPORT cPitchSmootherViterbi : public cDataProcessor {
+class cPitchSmootherViterbi : public cDataProcessor {
   private:
     cSmileViterbiPitchSmooth *viterbi;
     FLOAT_DMEM *framePtr;

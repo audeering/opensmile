@@ -149,7 +149,7 @@ void cCens::chromaDiscretise(const FLOAT_DMEM *in, FLOAT_DMEM *out, long N)
 }
 
 // a derived class should override this method, in order to implement the actual processing
-int cCens::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cCens::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   // manage internal history for reasons of simplicity (we could get it from the dataMemory too, but then we would have to take care of multiple fields (i.e. this class must be a dataProcessor), and of the correct input level buffersize!
   FLOAT_DMEM *_buf = buffer[idxi];  

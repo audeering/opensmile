@@ -17,13 +17,13 @@ This component reads data that is passed to the component programmatically.
 #define __CEXTERNALSOURCE_HPP
 
 #include <core/smileCommon.hpp>
+#include <core/smileThread.hpp>
 #include <core/dataSource.hpp>
 
 #define COMPONENT_DESCRIPTION_CEXTERNALSOURCE "This component reads data that is passed to the component programmatically."
 #define COMPONENT_NAME_CEXTERNALSOURCE "cExternalSource"
 
-#undef class
-class DLLEXPORT cExternalSource : public cDataSource {
+class cExternalSource : public cDataSource {
   private:
     int vectorSize_;
 
@@ -31,6 +31,7 @@ class DLLEXPORT cExternalSource : public cDataSource {
     mutable smileMutex writeDataMtx_;  // mutex for ensuring writeData is thread-safe
 
     bool externalEOI_;
+    bool eoiProcessed_;
 
   protected:
     SMILECOMPONENT_STATIC_DECL_PR

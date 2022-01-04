@@ -593,7 +593,7 @@ eTickResult cSimpleVisualiserGUI::myTick(long long t)
 
     long idx = inputsIdx[nr];
     FLOAT_DMEM data = 0.0;
-    if (idx >= 0) data = vec->dataF[idx];
+    if (idx >= 0) data = vec->data[idx];
     pe->val[nr] = (int)((data+inputOffset[nr])*inputScale[nr]);
 
   }

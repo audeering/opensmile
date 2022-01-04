@@ -23,8 +23,7 @@ on-line semi-tone filter bank
 #define COMPONENT_DESCRIPTION_CTONEFILT "This component implements an on-line, sample by sample semi-tone filter bank which can be used as first step for the computation of CHROMA features as a replacement of cTonespec. The filter is based on correlating with a sine wave of the exact target frequency of a semi-tone for each note in the filter-bank."
 #define COMPONENT_NAME_CTONEFILT "cTonefilt"
 
-#undef class
-class DLLEXPORT cTonefilt : public cDataProcessor {
+class cTonefilt : public cDataProcessor {
   private:
     double outputPeriod; /* in seconds */
     long  /*outputBuffersize,*/ outputPeriodFrames; /* in frames */

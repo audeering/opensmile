@@ -19,6 +19,7 @@ inherit this class, if you want custom handling of classifier output values..
 #define __CLIBSVMLIVESINK_HPP
 
 #include <core/smileCommon.hpp>
+#include <core/smileThread.hpp>
 
 #ifdef BUILD_LIBSVM
 #define BUILD_COMPONENT_LibsvmLiveSink
@@ -34,7 +35,7 @@ inherit this class, if you want custom handling of classifier output values..
 #define COMPONENT_DESCRIPTION_CLIBSVMLIVESINK "This component classifies data from dataMemory 'on-the-fly' using the LibSVM or LibLINEAR library. Loading of ASCII and binary LibSVM models is supported, as well as application of LibSVM scale files and openSMILE feature selection lists."
 #define COMPONENT_NAME_CLIBSVMLIVESINK "cLibsvmLiveSink"
 
-class DLLEXPORT sClassifierResults {
+class sClassifierResults {
 public:
   sClassifierResults() : res(NULL), prob(NULL), resnameA(NULL), resnameB(NULL), nFilled(0), nResults(0) {}
 
@@ -112,10 +113,9 @@ typedef struct{
   sOutputSelectionIdx outputSelIdx;
 } sFselectionData;
 
-#undef class
 
 
-class DLLEXPORT lsvmDataFrame 
+class lsvmDataFrame 
 { public:
 
   int isLast; // indicates the last frame for batchMode (a result message will be sent)
@@ -258,7 +258,7 @@ public:
 };
 
 
-class DLLEXPORT cLibsvmLiveSink : public cDataSink {
+class cLibsvmLiveSink : public cDataSink {
 private:
   int sendResult;
   int predictProbability;

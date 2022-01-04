@@ -24,7 +24,6 @@ simple silence threshold based turn detector
 #define COMPONENT_DESCRIPTION_CTURNDETECTOR "Speaker turn detector using data from cVadV1 component or cSemaineSpeakerID1 (adaptive VAD) to determine speaker turns and identify continuous segments of voice activity."
 #define COMPONENT_NAME_CTURNDETECTOR "cTurnDetector"
 
-#undef class
 class sTurnSegment {
 public:
   double startTime;
@@ -36,7 +35,7 @@ public:
       startVidx(0), endVidx(0), voiceScore(0.0) {}
 };
 
-class DLLEXPORT cTurnDetector : public cDataProcessor {
+class cTurnDetector : public cDataProcessor {
   private:
     int lastVIdx;
     double lastVTime;
@@ -141,8 +140,7 @@ class DLLEXPORT cTurnDetector : public cDataProcessor {
     }
     //virtual void configureField(int idxi, long __N, long nOut) override;
     //virtual int setupNamesForField(int i, const char*name, long nEl) override;
-//    virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-//    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+//    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
     bool loadSegmentsFromFile(double T);
 

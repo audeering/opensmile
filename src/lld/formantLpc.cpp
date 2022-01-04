@@ -189,15 +189,7 @@ void cFormantLpc::findInputFields()
   }
 }
 
-
-int cFormantLpc::processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi)
-{
-  // not yet implemented
-  return 0;
-}
-
-
-int cFormantLpc::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cFormantLpc::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   long i,j;
   if (lpc == NULL) lpc = (double*)malloc(sizeof(double)*(nLpc+1));

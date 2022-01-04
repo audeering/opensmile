@@ -23,8 +23,7 @@ This component reads all columns as attributes into the data memory. One line th
 #define COMPONENT_DESCRIPTION_CCSVSOURCE "This component reads CSV (Comma seperated value) files. It reads all columns as attributes into the data memory. One line represents one frame. The first line may contain a header with the feature names (see header=yes/no/auto option)."
 #define COMPONENT_NAME_CCSVSOURCE "cCsvSource"
 
-#undef class
-class DLLEXPORT cCsvSource : public cDataSource {
+class cCsvSource : public cDataSource {
   private:
     //int nAttr;
     FILE *filehandle;

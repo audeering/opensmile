@@ -23,8 +23,7 @@ dataSink
 #define COMPONENT_DESCRIPTION_CDATASINK "This is a base class for components reading from (and not writing to) the dataMemory and dumping/passing data to external entities."
 #define COMPONENT_NAME_CDATASINK "cDataSink"
 
-#undef class
-class DLLEXPORT cDataSink : public cSmileComponent {
+class cDataSink : public cSmileComponent {
   private:
 
   protected:

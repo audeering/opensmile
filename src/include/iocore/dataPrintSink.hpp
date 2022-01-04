@@ -16,8 +16,7 @@
 #define COMPONENT_DESCRIPTION_CDATAPRINTSINK "This component prints data as text to stdout or log, optionally in a standard parseable result format."
 #define BUILD_COMPONENT_DataPrintSink
 
-#undef class
-class DLLEXPORT cDataPrintSink : public cDataSink {
+class cDataPrintSink : public cDataSink {
   private:
     int parseable_;
     int useLog_;

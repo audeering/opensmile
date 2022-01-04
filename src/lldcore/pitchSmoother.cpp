@@ -236,7 +236,7 @@ int cPitchSmoother::setupNewNames(long nEl)
 
 // NOTE: pitchSmoother introduces a delay of 1 frame, vIdx will not reflect the correct start time anymore,
 //  instead, tmeta->time should be used!
-int cPitchSmoother::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cPitchSmoother::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   long i, j;
   long n=0;

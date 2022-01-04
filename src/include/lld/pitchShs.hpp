@@ -26,8 +26,7 @@ Note that the type of input data is not checked, thus be careful when writing yo
 #define COMPONENT_NAME_CPITCHSHS "cPitchShs"
 
 
-#undef class
-class DLLEXPORT cPitchShs : public cPitchBase {
+class cPitchShs : public cPitchBase {
   private:
     int nHarmonics;
     int greedyPeakAlgo;

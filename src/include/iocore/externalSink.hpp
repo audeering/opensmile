@@ -26,7 +26,7 @@ this sink component reads.
 
 typedef bool (*ExternalSinkCallback)(const FLOAT_DMEM *data, long vectorSize, void *param);
 
-struct DLLEXPORT sExternalSinkMetaDataEx {
+struct sExternalSinkMetaDataEx {
   long vIdx;
   double time;
   double period;
@@ -36,8 +36,7 @@ struct DLLEXPORT sExternalSinkMetaDataEx {
 typedef bool (*ExternalSinkCallbackEx)(const FLOAT_DMEM *data, long nT, long N, const sExternalSinkMetaDataEx *metaData, void *param);
 
 
-#undef class
-class DLLEXPORT cExternalSink : public cDataSink {
+class cExternalSink : public cDataSink {
   private:
     ExternalSinkCallback dataCallback;
 	  void *callbackParam; // optional pointer to a custom object that will be passed to the callback function as a second parameter

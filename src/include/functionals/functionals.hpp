@@ -27,8 +27,7 @@ passes unsorted row data array AND (if required) sorted row data array to functi
 #define COMPONENT_NAME_CFUNCTIONALS "cFunctionals"
 #define COMPONENT_NAME_CFUNCTIONALS_LENGTH 12
 
-#undef class
-class DLLEXPORT cFunctionals : public cWinToVecProcessor {
+class cFunctionals : public cWinToVecProcessor {
   private:
     int nFunctTp, nFunctTpAlloc;  // number of cFunctionalXXXX types found
     char **functTp;  // type names (without cFunctional prefix)
@@ -59,11 +58,9 @@ class DLLEXPORT cFunctionals : public cWinToVecProcessor {
     virtual int doProcess(int i, cMatrix *row, FLOAT_DMEM*x) override;
     virtual int doProcessMatrix(int i, cMatrix *in, FLOAT_DMEM *out, long nOut) override;
 
-//    virtual int doProcess(int i, cMatrix *row, INT_DMEM*x) override;
-
   public:
     SMILECOMPONENT_STATIC_DECL
-    static int rAcounter;
+
     cFunctionals(const char *_name);
 
     virtual ~cFunctionals();

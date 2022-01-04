@@ -106,7 +106,7 @@ int cMZcr::setupNamesForField(int i, const char*name, long nEl)
 
 
 // a derived class should override this method, in order to implement the actual processing
-int cMZcr::processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
+int cMZcr::processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) // idxi=input field index
 {
   // do domething to data in *src, save result to *dst
   // NOTE: *src and *dst may be the same...

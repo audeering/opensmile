@@ -22,8 +22,7 @@ computes spectral features such as flux, roll-off, centroid, etc.
 #define COMPONENT_DESCRIPTION_CSPECTRAL "This component computes spectral features such as flux, roll-off, centroid, and user defined band energies (rectangular summation of FFT magnitudes), etc."
 #define COMPONENT_NAME_CSPECTRAL "cSpectral"
 
-#undef class
-class DLLEXPORT cSpectral : public cVectorProcessor {
+class cSpectral : public cVectorProcessor {
   private:
     int frqScale;
     int normBandEnergies;
@@ -77,7 +76,7 @@ class DLLEXPORT cSpectral : public cVectorProcessor {
     virtual void myFetchConfig() override;
 
     virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 
 
   public:

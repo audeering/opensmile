@@ -104,12 +104,6 @@ long cFunctionalComponent::process(FLOAT_DMEM *in, FLOAT_DMEM *inSorted, FLOAT_D
   return 0;
 }
 
-long cFunctionalComponent::process(INT_DMEM *in, INT_DMEM *inSorted, INT_DMEM *out, long Nin, long Nout)
-{
-  SMILE_IERR(1,"dataType INT_DMEM not yet supported in component '%s' of type '%s'",getTypeName(), getInstName());
-  return 0;
-}
-
 cFunctionalComponent::~cFunctionalComponent()
 {
   if (enab!=NULL) free(enab);

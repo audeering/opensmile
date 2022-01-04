@@ -20,8 +20,7 @@
 #define COMPONENT_DESCRIPTION_CDATAREADER  "This is the dataMemory interface component that reads data as vector or matrix from dataMemory component. It is used internally by all dataProcessor, dataSource, and dataSink components. A cDataReader can read from one or more data memory levels. In the latter case a single vector is returned which consists of all individual vectors concattenated. Reading from multiple levels implies waiting for data on the 'slowest' level, since only completely concattenated frames are read."
 #define COMPONENT_NAME_CDATAREADER  "cDataReader"
 
-#undef class
-class DLLEXPORT cDataReader : public cSmileComponent {
+class cDataReader : public cSmileComponent {
   private:
     
     cDataMemory * dm;

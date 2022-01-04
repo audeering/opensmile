@@ -18,8 +18,7 @@
 #define COMPONENT_DESCRIPTION_CDATAWRITER  "This is the dataMemory interface component that writes vector or matrix data to a dataMemory level. A writer can write only to a single level in the dataMemory, this level cannot be changed during the run-time phase."
 #define COMPONENT_NAME_CDATAWRITER  "cDataWriter"
 
-#undef class
-class DLLEXPORT cDataWriter : public cSmileComponent {
+class cDataWriter : public cSmileComponent {
   private:
     cDataMemory * dm;
     const char *dmInstName;

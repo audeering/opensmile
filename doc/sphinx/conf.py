@@ -3,7 +3,7 @@
 # Project -----------------------------------------------------------------
 
 project = 'openSMILE'
-copyright = '2013-2020 audEERING GmbH and 2008-2013 TU München, MMK'
+copyright = '2013-2022 audEERING GmbH and 2008-2013 TU München, MMK'
 author = 'Florian Eyben, Felix Weninger, Martin Wöllmer, Björn Schuller'
 # TODO: add script to get version automatically
 version = '3.0'
@@ -19,6 +19,7 @@ source_suffix = '.rst'
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'README.rst']
 pygments_style = None
 extensions = ['sphinxcontrib.bibtex']
+bibtex_bibfiles = ['bibliography.bib']
 numfig = True
 
 
@@ -28,6 +29,14 @@ html_theme = 'sphinx_audeering_theme'
 html_theme_options = {
     'display_version': True,
     'logo_only': True,
+    'footer_links': False
+}
+html_context= {
+    'display_github': True,
+    'github_host': 'github.com',
+    'github_user': 'audeering',
+    'github_repo': 'opensmile',
+    'conf_py_path': '/doc/sphinx/'
 }
 html_logo = '_static/images/openSMILE-logoSlogan-white.svg'
 html_static_path = ['_static']
@@ -61,7 +70,7 @@ latex_elements = {
             \vspace{0.2cm}
             E-mails: fe, fw, mw, bs at audeering.com \\
             \vspace{0.5cm}
-            Copyright (C) 2013-2020 by\\
+            Copyright (C) 2013-2022 by\\
             \vspace{0.2cm}
             {\large{audEERING GmbH}} \\
             \vspace{0.8cm}

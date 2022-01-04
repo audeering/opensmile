@@ -25,8 +25,7 @@ this component is also useful for debugging
 #define COMPONENT_NAME_CEXAMPLESINK "cExampleSink"
 #define BUILD_COMPONENT_ExampleSink
 
-#undef class
-class DLLEXPORT cExampleSink : public cDataSink {
+class cExampleSink : public cDataSink {
   private:
     const char *filename;
     FILE * fHandle;

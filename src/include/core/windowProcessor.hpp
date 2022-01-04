@@ -25,8 +25,7 @@ filter :  (abstract class only)
 #define COMPONENT_DESCRIPTION_CWINDOWPROCESSOR "filter dataProcessor, filters each element in a dataMemory level independently"
 #define COMPONENT_NAME_CWINDOWPROCESSOR "cWindowProcessor"
 
-#undef class
-class DLLEXPORT cWindowProcessor : public cDataProcessor {
+class cWindowProcessor : public cDataProcessor {
   private:
     //int blocksize;         // block size for filter (speed up purpose only)
     long Ni;
@@ -62,8 +61,7 @@ class DLLEXPORT cWindowProcessor : public cDataProcessor {
 
 /*
     virtual int setupNamesForField(int i, const char*name, long nEl) override;
-    virtual int processVectorInt(const INT_DMEM *src, INT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
-    virtual int processVectorFloat(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
+    virtual int processVector(const FLOAT_DMEM *src, FLOAT_DMEM *dst, long Nsrc, long Ndst, int idxi) override;
 */
     
   public:
