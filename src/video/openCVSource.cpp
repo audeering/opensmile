@@ -249,9 +249,9 @@ int cOpenCVSource::myFinaliseInstance()
 		bool success = mVideoCapture.open(cfgFilename); // open video stream from file
 
 		// Doesn't work for linux, assume 30 fps...
-		if(mVideoCapture.get(CV_CAP_PROP_FPS) != 0)
+		if(mVideoCapture.get(cv::CAP_PROP_FPS) != 0)
 		{
-			cfgFps = mVideoCapture.get(CV_CAP_PROP_FPS);
+			cfgFps = mVideoCapture.get(cv::CAP_PROP_FPS);
 		}
 	}
 	else
@@ -308,7 +308,7 @@ eTickResult cOpenCVSource::myTick(long long t)
 			mCurrentFrameDisplay_bgr = mCurrentFrame_bgr.clone();
 		}
 
-		cvtColor( mCurrentFrame_bgr, mCurrentFrame_gray, CV_BGR2GRAY );
+		cvtColor( mCurrentFrame_bgr, mCurrentFrame_gray, cv::COLOR_BGR2GRAY );
 		equalizeHist( mCurrentFrame_gray, mCurrentFrame_gray );
 		
 		auto convertColor = std::chrono::high_resolution_clock::now();
@@ -539,7 +539,7 @@ ExtractedFace cOpenCVSource::extractFace(cv::Mat& frame, cv::Mat& frame_gray)
 			     Mat faceROI = frame_gray(insideFrame).clone();
 			     Mat faceResized_gray = Mat::zeros(faceROI.rows, faceROI.cols, faceROI.type());
 			     std::vector<Rect> eyes;
-			     mEyes_cascade.detectMultiScale( faceROI, eyes, 1.1, 2, 0 |CV_HAAR_SCALE_IMAGE, Size(30, 30) );
+			     mEyes_cascade.detectMultiScale( faceROI, eyes, 1.1, 2, 0 |cv::CASCADE_SCALE_IMAGE, Size(30, 30) );
 			     if( eyes.size() == 2)
 			     {
 			    	extractedFace.eyesFound = true;
