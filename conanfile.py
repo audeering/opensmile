@@ -9,7 +9,7 @@ class OpensmileConan(ConanFile):
     name = "opensmile"
     version = "3.0.1"
     license = "audEERING Research License Agreement"
-    url = "https://gitlab.audeering.com/tools/opensmile"
+    url = "https://github.com/audeering/opensmile"
     description = "Speech and Music Interpretation by Large-space Extraction"
     topics = ("speech", "music", "feature extraction")
 

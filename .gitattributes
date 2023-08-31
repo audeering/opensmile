@@ -1,0 +1,2 @@
+# Ensure line endings are the same on all systems to prevent "outdated" error while uploading recipe
+* text=auto eol=lf
