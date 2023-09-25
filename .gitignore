@@ -7,3 +7,4 @@
 /doc/sphinx/_build
 /doc/sphinx/_components
 /inst
+CMakeUserPresets.json

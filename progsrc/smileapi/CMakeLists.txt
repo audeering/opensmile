@@ -1,4 +1,5 @@
 # SMILEapi target #########################################################
+cmake_minimum_required(VERSION 3.5.1)
 
 option(SMILEAPI_STATIC_LINK "Creating a static library" OFF)
 
