@@ -97,7 +97,7 @@ Contact us at info@audeering.com (or visit us at https://www.audeering.com) for 
 Original authors: Florian Eyben, Felix Weninger, Martin Wöllmer, Björn Schuller  
 Copyright © 2008-2013, Institute for Human-Machine Communication, Technische Universität München, Germany  
 Copyright © 2013-2015, audEERING UG (haftungsbeschränkt)  
-Copyright © 2016-2022, audEERING GmbH
+Copyright © 2016-2023, audEERING GmbH
 
 Citing
 ------
