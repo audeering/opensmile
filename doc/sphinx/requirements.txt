@@ -1,3 +1,4 @@
+conan
 sphinx
 sphinx-audeering-theme >=1.2.1
 sphinxcontrib-bibtex

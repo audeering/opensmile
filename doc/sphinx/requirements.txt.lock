@@ -15,24 +15,36 @@ certifi==2023.7.22
     # via requests
 charset-normalizer==3.3.0
     # via requests
+colorama==0.4.6
+    # via conan
+conan==2.0.13
+    # via -r requirements.txt
+distro==1.8.0
+    # via conan
 docutils==0.16
     # via
     #   pybtex-docutils
     #   sphinx
     #   sphinx-audeering-theme
     #   sphinxcontrib-bibtex
+fasteners==0.19
+    # via conan
 idna==3.4
     # via requests
 imagesize==1.4.1
     # via sphinx
 jinja2==3.1.2
-    # via sphinx
+    # via
+    #   conan
+    #   sphinx
 latexcodec==2.0.1
     # via pybtex
 markupsafe==2.1.3
     # via jinja2
 packaging==23.2
     # via sphinx
+patch-ng==1.17.4
+    # via conan
 pybtex==0.24.0
     # via
     #   pybtex-docutils
@@ -41,14 +53,21 @@ pybtex-docutils==1.0.3
     # via sphinxcontrib-bibtex
 pygments==2.16.1
     # via sphinx
+python-dateutil==2.8.2
+    # via conan
 pyyaml==6.0.1
-    # via pybtex
+    # via
+    #   conan
+    #   pybtex
 requests==2.31.0
-    # via sphinx
+    # via
+    #   conan
+    #   sphinx
 six==1.16.0
     # via
     #   latexcodec
     #   pybtex
+    #   python-dateutil
 snowballstemmer==2.2.0
     # via sphinx
 sphinx==5.3.0
@@ -77,5 +96,7 @@ sphinxcontrib-qthelp==1.0.6
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.9
     # via sphinx
-urllib3==2.0.6
-    # via requests
+urllib3==1.26.17
+    # via
+    #   conan
+    #   requests

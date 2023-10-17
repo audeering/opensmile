@@ -1,3 +1,4 @@
+import conanfile
 
 
 # Project -----------------------------------------------------------------
@@ -5,9 +6,8 @@
 project = 'openSMILE'
 copyright = '2013-2023 audEERING GmbH and 2008-2013 TU München, MMK'
 author = 'Florian Eyben, Felix Weninger, Martin Wöllmer, Björn Schuller'
-# TODO: add script to get version automatically
-version = '3.0'
-release = '3.0'
+version = conanfile.OpensmileConan.version
+release = conanfile.OpensmileConan.version
 title = '{} Documentation'.format(project)
 
 
