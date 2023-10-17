@@ -3,7 +3,7 @@
 # Project -----------------------------------------------------------------
 
 project = 'openSMILE'
-copyright = '2013-2022 audEERING GmbH and 2008-2013 TU München, MMK'
+copyright = '2013-2023 audEERING GmbH and 2008-2013 TU München, MMK'
 author = 'Florian Eyben, Felix Weninger, Martin Wöllmer, Björn Schuller'
 # TODO: add script to get version automatically
 version = '3.0'
