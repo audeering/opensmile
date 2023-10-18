@@ -81,8 +81,14 @@ for architecture in "linux-armv7" "linux-armv8" "linux-x86_64" "macos-armv8" "ma
 
     release="opensmile-$version-$architecture"
 
+    # Clean up
     rm -rf "$release"
+    rm -rf "$release.zip"
+
+    # Create folder to store release
     mkdir "$release"
+
+    # bin
     cp -R "release/$architecture/bin" "$release/bin"
     cp -R release/$architecture/lib/* "$release/bin/"
 
@@ -115,4 +121,5 @@ for architecture in "linux-armv7" "linux-armv8" "linux-x86_64" "macos-armv8" "ma
 
     # Create ZIP archive
     zip "$release.zip" "$release"
+
 done
