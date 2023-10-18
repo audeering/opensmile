@@ -58,6 +58,9 @@
 # and commit those changes as release,
 # and run the CI pipeline on that commit.
 
+# Exit if a command fails
+set -e
+
 # === Get version number ===
 # Extract version from conanfile,
 # see https://stackoverflow.com/a/43644495
