@@ -81,6 +81,7 @@ for architecture in "linux-armv7" "linux-armv8" "linux-x86_64" "macos-armv8" "ma
 
     release="opensmile-$version-$architecture"
 
+    rm -rf "$release"
     mkdir "$release"
     cp -R "release/$architecture/bin" "$release/bin"
     cp -R release/$architecture/lib/* "$release/bin/"
