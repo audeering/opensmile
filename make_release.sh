@@ -83,7 +83,7 @@ for architecture in "linux-armv7" "linux-armv8" "linux-x86_64" "macos-armv8" "ma
 
     mkdir "$release"
     cp -R "release/$architecture/bin" "$release/bin"
-    cp -R "release/$architecture/lib" "$release/lib"
+    cp -R release/$architecture/lib/* "$release/bin/"
 
     # config
     cp -R "config" "$release/config"
