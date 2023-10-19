@@ -123,6 +123,6 @@ for architecture in "linux-armv7" "linux-armv8" "linux-x86_64" "macos-armv8" "ma
     cp "README.md" "$release/README.md"
 
     # Create ZIP archive
-    zip "$release.zip" "$release"
+    zip -r "$release.zip" "$release"
 
 done
