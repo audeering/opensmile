@@ -7,7 +7,7 @@ from conan.tools.files import copy, rmdir
 
 class OpensmileConan(ConanFile):
     name = "opensmile"
-    version = "3.0.1"
+    version = "3.0.2"
     license = "audEERING Research License Agreement"
     url = "https://github.com/audeering/opensmile"
     description = "Speech and Music Interpretation by Large-space Extraction"
