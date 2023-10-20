@@ -68,7 +68,7 @@ inline cv::Mat computeSingleHistogram(cv::Mat& input, int& histSize, const float
 inline std::vector<cv::Mat> computeHSVHistogram(cv::Mat& image, int cfgHueSize, int cfgSatSize, int cfgValSize, int normalize)
 {
 	cv::Mat hsvImage;
-	cv::cvtColor(image, hsvImage, CV_BGR2HSV);
+	cv::cvtColor(image, hsvImage, cv::COLOR_BGR2HSV);
 
 	std::vector<cv::Mat> hsvPlanes;
 	cv::split(hsvImage, hsvPlanes);
