@@ -32,23 +32,23 @@ cmake_flags=(
     # This ensures that openSMILE runs with optimal performance on the machine it was
     # compiled on but it may not run at all on other machines.
     # Disable if the compiled binary needs to be portable.
-    -DMARCH_NATIVE=OFF
+    -DMARCH_NATIVE=ON
 
     # whether to compile with PortAudio support
-    -DWITH_PORTAUDIO=OFF
+    -DWITH_PORTAUDIO=ON
 
     # whether to compile with FFmpeg support
     # 1. download ffmpeg source distribution
     # 2. run: mkdir build ; cd build
     #         ../configure --enable-shared --disable-static
     #         make ; sudo make install
-    -DWITH_FFMPEG=OFF
+    -DWITH_FFMPEG=ON
 
     # whether to compile with OpenCV support
-    -DWITH_OPENCV=OFF
+    -DWITH_OPENCV=ON
 
     # whether to compile with OpenSL ES support (only applies when building for Android)
-    -DWITH_OPENSLES=ON
+    -DWITH_OPENSLES=OFF
 )
 
 build_flags="${build_flags[@]}"

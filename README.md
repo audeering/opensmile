@@ -1,3 +1,10 @@
+# Change Notes:
+
+changed constant names related to opencv. (src/include/video/* and src/video/*).
+
+changed settings in `build_flags.sh` to turn on PortAudio, ffmpeg, and opencv compiling options.
+
+
 <p align="center"><img width="50%" src="doc/sphinx/_static/images/openSMILE-logoSlogan-color.svg" /></p>
 
 [![Latest release](https://img.shields.io/github/v/release/audeering/opensmile)](https://github.com/audeering/opensmile/releases/latest)
