@@ -4,7 +4,7 @@ import conanfile
 # Project -----------------------------------------------------------------
 
 project = 'openSMILE'
-copyright = '2013-2023 audEERING GmbH and 2008-2013 TU München, MMK'
+copyright = '2016-present, audEERING GmbH and 2013-2015, audEERING UG (haftungsbeschraenkt) and 2008-2013 TU München, MMK'
 author = 'Florian Eyben, Felix Weninger, Martin Wöllmer, Björn Schuller'
 version = conanfile.OpensmileConan.version
 release = conanfile.OpensmileConan.version
